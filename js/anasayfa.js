@@ -8,6 +8,7 @@ import { idIleRenkBul } from './data/colors.js';
 import { idIleModelBul, KAPAK_MODELLERI } from './data/models.js';
 import { varsayilanOrtami } from './data/ortamlar.js';
 import { GALERI_FOTOGRAFLARI } from './data/galeri.js';
+import { durumuSorguyaKodla } from './paylasim.js';
 
 const HERO_MODEL_ID = 'hk-012-001';
 
@@ -28,23 +29,112 @@ const HERO_RENK_SIRASI = [
     'lake-ral-5013'  // Kobalt Lacivert
 ];
 
-let heroRenkId = HERO_RENK_SIRASI[0];
+// Ana sayfanın kendi canlı durumu. Ölçüler artık sabit değil: hero'daki 8-bit
+// kaydırıcılar bunları değiştiriyor ve kapak anında güncelleniyor. Alan adları
+// paylasim.js'in beklediği şekilde (modelId/renkId/genislik/...) — böylece
+// "Konfigüratörü Aç" bağlantıları durumu ekstra dönüşüm olmadan taşıyabiliyor.
+const heroVarsayilanModel = idIleModelBul(HERO_MODEL_ID);
+const heroDurum = {
+    modelId: HERO_MODEL_ID,
+    renkId: HERO_RENK_SIRASI[0],
+    genislik: heroVarsayilanModel.varsayilan.genislik,
+    yukseklik: heroVarsayilanModel.varsayilan.yukseklik,
+    kalinlik: heroVarsayilanModel.varsayilan.kalinlik
+};
+
+// Bu üç bağlantı ziyaretçinin o anki seçimini konfigüratöre taşır. Model
+// kartlarının kendi ?m= bağlantıları var, onlara DOKUNULMUYOR — bu yüzden
+// href'e göre değil, kimliğe göre seçiliyorlar.
+const KONFIG_LINK_IDLERI = ['ustbar-konfigurator-link', 'hero-konfigurator-link', 'cta-konfigurator-link'];
 
 function hexMetni(renk) {
     return `#${renk.hex.toString(16).padStart(6, '0')}`;
 }
 
-function heroKapagiGuncelle(renk) {
-    const model = idIleModelBul(HERO_MODEL_ID);
-    kapagiGuncelle(model.id, model.varsayilan.genislik, model.varsayilan.yukseklik,
-        model.varsayilan.kalinlik, renk, model.gltfUrl, model.glbIcerikDonusu);
+function heroKapagiGuncelle() {
+    const model = idIleModelBul(heroDurum.modelId);
+    const renk = idIleRenkBul(heroDurum.renkId);
+    kapagiGuncelle(model.id, heroDurum.genislik, heroDurum.yukseklik,
+        heroDurum.kalinlik, renk, model.gltfUrl, model.glbIcerikDonusu);
+}
+
+// Kaydırıcı sürüklenirken 'input' saniyede onlarca kez tetikleniyor; her
+// tetiklemede GLB grubunu yeniden klonlamak gereksiz. Konfigüratördeki
+// (ui.js goruntuGuncellemesiPlanla) desenle aynı: kare başına tek güncelleme,
+// sekme arka plandaysa rAF hiç çalışmayabileceği için zamanlayıcı yedeği var.
+let heroGuncellemeBekliyor = false;
+function heroGuncellemesiPlanla() {
+    if (heroGuncellemeBekliyor) return;
+    heroGuncellemeBekliyor = true;
+    let calisti = false;
+    const calistir = () => {
+        if (calisti) return;
+        calisti = true;
+        heroGuncellemeBekliyor = false;
+        heroKapagiGuncelle();
+    };
+    requestAnimationFrame(calistir);
+    setTimeout(calistir, 200);
+}
+
+function heroOlcuEtiketiniGuncelle() {
+    const el = document.getElementById('hero-olcu-etiketi');
+    if (el) el.textContent = `${heroDurum.genislik} × ${heroDurum.yukseklik} MM`;
+}
+
+function konfiguratorLinkleriniGuncelle() {
+    const sorgu = durumuSorguyaKodla(heroDurum);
+    KONFIG_LINK_IDLERI.forEach((id) => {
+        const a = document.getElementById(id);
+        if (a) a.href = `configurator.html${sorgu}`;
+    });
+}
+
+// Hero ölçü kaydırıcıları (8-bit). Klasik ana sayfada bu elemanlar yok —
+// input bulunamazsa sessizce çıkılıyor, iki sayfa da aynı dosyayı kullanabilsin.
+function heroKaydiriciyiKur(inputId, degerId, alan) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const sarmal = input.closest('.pk-kaydirici');
+    const degerEl = document.getElementById(degerId);
+
+    // Dolgu genişliği ve tutamacın konumu tek bir --pk-oran değişkeninden
+    // besleniyor (bkz. piksel.css) — JS iki ayrı stil yazmıyor.
+    const gorunumuYaz = () => {
+        const min = Number(input.min);
+        const max = Number(input.max);
+        const deger = Number(input.value);
+        const oran = max > min ? ((deger - min) / (max - min)) * 100 : 0;
+        if (sarmal) sarmal.style.setProperty('--pk-oran', `${oran}%`);
+        if (degerEl) degerEl.textContent = `${deger} MM`;
+    };
+
+    input.addEventListener('input', () => {
+        heroDurum[alan] = Number(input.value);
+        gorunumuYaz();
+        heroOlcuEtiketiniGuncelle();
+        konfiguratorLinkleriniGuncelle();
+        heroGuncellemesiPlanla();
+    });
+
+    // Açılış değeri modelin varsayılanı olsun (HTML'deki value ile durum
+    // arasında ikinci bir doğruluk kaynağı oluşmasın).
+    input.value = heroDurum[alan];
+    gorunumuYaz();
+}
+
+function heroKaydiricilariniKur() {
+    heroKaydiriciyiKur('hero-genislik', 'hero-genislik-deger', 'genislik');
+    heroKaydiriciyiKur('hero-yukseklik', 'hero-yukseklik-deger', 'yukseklik');
+    heroOlcuEtiketiniGuncelle();
+    konfiguratorLinkleriniGuncelle();
 }
 
 async function heroSahnesiniBaslat() {
     const konteyner = document.getElementById('hero-canvas');
     if (!konteyner) return;
     sahneyiBaslat('hero-canvas', { kameraMesafesi: HERO_KAMERA_MESAFESI });
-    heroKapagiGuncelle(idIleRenkBul(heroRenkId));
+    heroKapagiGuncelle();
     // Sahne procedural ortamla anında görünür; gerçek HDR arka planda yüklenip
     // hazır olunca sorunsuzca devralır (bkz. viewer.js ortamiDegistir yorumu).
     ortamiDegistir(varsayilanOrtami().dosya);
@@ -58,7 +148,7 @@ function heroRenkleriniKur() {
         if (!renk) return;
         const btn = document.createElement('button');
         btn.type = 'button';
-        const aktif = id === heroRenkId;
+        const aktif = id === heroDurum.renkId;
         btn.className = 'hero-renk-btn' + (aktif ? ' aktif' : '');
         btn.style.setProperty('--renk', hexMetni(renk));
         btn.dataset.renkId = id;
@@ -66,9 +156,10 @@ function heroRenkleriniKur() {
         btn.setAttribute('aria-label', `${renk.isim}, ${renk.kod}`);
         btn.title = `${renk.isim} · ${renk.kod}`;
         btn.addEventListener('click', () => {
-            if (heroRenkId === id) return;
-            heroRenkId = id;
-            heroKapagiGuncelle(renk);
+            if (heroDurum.renkId === id) return;
+            heroDurum.renkId = id;
+            konfiguratorLinkleriniGuncelle();
+            heroGuncellemesiPlanla();
             kapsayici.querySelectorAll('.hero-renk-btn').forEach((b) => {
                 const a = b === btn;
                 b.classList.toggle('aktif', a);
@@ -238,6 +329,7 @@ function kaydirmaBelirmesiniKur() {
 function anasayfayiBaslat() {
     document.documentElement.classList.add('anasayfa-sayfa');
     heroSahnesiniBaslat().catch((hata) => console.error('Hero sahnesi başlatılamadı:', hata));
+    heroKaydiricilariniKur();
     heroRenkleriniKur();
     modelKartlariniKur();
     galeriyiKur();

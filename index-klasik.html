@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Şahinkaya Ahşap | Kapak Konfigüratörü</title>
+<meta name="description" content="Kapağınızı 77 RAL Lake renginde, gerçek 3ds Max modelleri ve kendi ölçünüzde 3B olarak görün. Sürükleyin, rengi değiştirin, deneyin.">
+<link rel="icon" href="assets/mini-logo.png">
+<link rel="apple-touch-icon" href="assets/mini-logo.png">
+<link rel="stylesheet" href="css/tema.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/anasayfa.css">
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+}
+</script>
+</head>
+<body>
+<header class="ustbar">
+    <span class="marka-link" aria-hidden="false">
+        <img src="assets/logo.png" alt="Şahinkaya Ahşap" class="marka-logo">
+    </span>
+    <div class="ustbar-sag">
+        <a href="configurator.html" class="araci-dugme">
+            <span class="araci-etiket">Konfigüratörü Aç</span>
+            <span class="araci-simge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+    </div>
+</header>
+
+<main class="anasayfa">
+
+    <!-- ===== Hero: gerçek, canlı, sürüklenebilir 3B kapak — kaydırmalı bir
+         "sahne" değil, sayfa açılır açılmaz denenebilen gerçek ürün. ===== -->
+    <section class="hero">
+        <div class="hero-metin">
+            <p class="hero-ustyazi">Gerçek 3B Konfigüratör</p>
+            <h1>Kapağınızı görün,<br><em>rengini</em> siz seçin.</h1>
+            <p class="hero-aciklama">3ds Max'ten aktarılan gerçek kapak modelleri, 77 RAL Lake rengi ve kendi ölçünüz — tam kontrol için konfigüratörü açmadan önce burada deneyin.</p>
+
+            <div class="hero-renkler" id="hero-renkler" role="group" aria-label="Hızlı renk denemesi"></div>
+
+            <div class="hero-eylemler">
+                <a href="configurator.html" class="cta-buton">Konfigüratörü Aç</a>
+                <span class="hero-ipucu">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a2 2 0 1 1 4 0v5"/><path d="M13 6a2 2 0 1 1 4 0v6"/><path d="M17 8a2 2 0 1 1 4 0v6a6 6 0 0 1-6 6h-2a6 6 0 0 1-5.4-3.4L5 12.7a1.7 1.7 0 0 1 2.7-2l1.3 1.6"/></svg>
+                    Sürükleyerek döndürün
+                </span>
+            </div>
+
+            <dl class="hero-istatistik">
+                <div><dt>77</dt><dd>RAL Lake rengi</dd></div>
+                <div><dt>3B</dt><dd>gerçek zamanlı önizleme</dd></div>
+                <div><dt>3</dt><dd>gerçek kapak modeli</dd></div>
+            </dl>
+        </div>
+
+        <div class="hero-sahne">
+            <div id="hero-canvas" class="hero-canvas" aria-hidden="true"></div>
+        </div>
+    </section>
+
+    <!-- ===== Özellikler: sadece gerçekten var olan yetenekler ===== -->
+    <section class="ozellikler" id="ozellikler" aria-label="Konfigüratör özellikleri">
+        <div class="ozellik-kart reveal">
+            <span class="ozellik-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="8.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="16" cy="12.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="8" cy="12.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="16" r="1.4" fill="currentColor" stroke="none"/></svg></span>
+            <h3>77 RAL Lake Rengi</h3>
+            <p>RAL Classic standardına göre gruplanmış açık ve koyu tonlar; her biri kod ve isimle işaretli.</p>
+        </div>
+        <div class="ozellik-kart reveal">
+            <span class="ozellik-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="6" rx="1"/><path d="M7 9v2M11 9v3M15 9v2M19 9v3"/></svg></span>
+            <h3>Kendi Ölçünüzde</h3>
+            <p>Genişlik ve yükseklik girdiğiniz anda kapak sahnede gerçek oranıyla güncellenir.</p>
+        </div>
+        <div class="ozellik-kart reveal">
+            <span class="ozellik-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M5 5l1.4 1.4M17.6 17.6L19 19M3 12h2M19 12h2M5 19l1.4-1.4M17.6 6.4L19 5"/></svg></span>
+            <h3>Gerçek Stüdyo Işığı</h3>
+            <p>Fotoğraflanmış bir stüdyo HDR ortamı, lake yüzeydeki yansımaları ve tonu gerçekçi biçimde aydınlatır.</p>
+        </div>
+        <div class="ozellik-kart reveal">
+            <span class="ozellik-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg></span>
+            <h3>Paylaşılabilir Link</h3>
+            <p>Seçtiğiniz model, renk, ölçü ve ışık tek bir linke kodlanır — kendinize veya satıcınıza gönderin.</p>
+        </div>
+    </section>
+
+    <!-- ===== Modeller: gerçek 3 model, doğrudan konfigüratöre o model
+         seçiliyken açılan linkler (paylaşım linkiyle aynı ?m= parametresi). ===== -->
+    <section class="modeller reveal" aria-label="Kapak modelleri">
+        <div class="modeller-basi">
+            <h2>Modeller</h2>
+            <p>Her biri 3ds Max'ten aktarılan gerçek bir kapak — birine tıklayın, o model seçiliyken konfigüratör açılsın.</p>
+        </div>
+        <div id="model-serit-anasayfa" class="model-serit-anasayfa"></div>
+    </section>
+
+    <!-- ===== Galeri: gerçek fotoğraflar ==========================
+         Kartlar js/data/galeri.js'ten üretilir; `dosya`sı henüz girilmemiş
+         kayıtlar YER TUTUCU çerçeve olarak çizilir, böylece fotoğraflar
+         gelmeden de düzen görünür. Kaydırma tarayıcının kendi yatay
+         kaydırması + scroll-snap ile yapılıyor (dokunmatikte parmakla
+         kaydırma doğal çalışsın diye); oklar yalnızca scrollBy çağırır ve
+         şerit taşmıyorsa kendiliğinden gizlenir. ===== -->
+    <section class="galeri reveal" id="galeri" aria-labelledby="galeri-baslik">
+        <div class="galeri-basi">
+            <div class="galeri-basi-metin">
+                <h2 id="galeri-baslik">Galeri</h2>
+                <p>Atölyemizden ve tamamlanan işlerden kareler.</p>
+            </div>
+            <div class="galeri-oklar" id="galeri-oklar" hidden>
+                <button type="button" class="galeri-ok" id="galeri-geri" aria-label="Önceki fotoğraflar" aria-controls="galeri-serit">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button type="button" class="galeri-ok" id="galeri-ileri" aria-label="Sonraki fotoğraflar" aria-controls="galeri-serit">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="galeri-serit" id="galeri-serit" role="group" aria-label="Fotoğraflar"></div>
+    </section>
+
+    <!-- ===== Kapanış CTA ===== -->
+    <section class="cta-bolumu reveal">
+        <h2 class="cta-baslik">Kendi kapağınızı tasarlayın</h2>
+        <p class="cta-aciklama">Modeli, rengi ve ölçüyü seçin; sonucu anında görün.</p>
+        <a href="configurator.html" class="cta-buton">Konfigüratörü Aç</a>
+    </section>
+
+</main>
+
+<footer class="anasayfa-footer">
+    <img src="assets/mini-logo.png" alt="" class="footer-logo" aria-hidden="true">
+    <span>Şahinkaya Ahşap Mobilya — Mobilya · İç Mimari · Tasarım</span>
+</footer>
+
+<!-- Galeri büyüteci: fotoğrafa tıklayınca tam boy açılır. base.css'teki
+     .modal-katman deseni yeniden kullanılıyor (konfigüratörün model
+     galerisiyle aynı davranış: dışına tıkla veya Esc ile kapanır). -->
+<div id="galeri-buyutec" class="modal-katman galeri-buyutec gizli" role="dialog" aria-modal="true" aria-label="Fotoğraf">
+    <button type="button" class="galeri-buyutec-kapat" id="galeri-buyutec-kapat" aria-label="Kapat">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <figure class="galeri-buyutec-kutu">
+        <img id="galeri-buyutec-gorsel" alt="">
+        <figcaption id="galeri-buyutec-yazi" class="galeri-buyutec-yazi"></figcaption>
+    </figure>
+</div>
+
+<script type="module" src="js/anasayfa.js"></script>
+</body>
+</html>
