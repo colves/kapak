@@ -54,7 +54,7 @@
 
             <dl class="hero-istatistik">
                 <div><dt>77</dt><dd>RAL Lake rengi</dd></div>
-                <div><dt>10</dt><dd>stüdyo ışığı</dd></div>
+                <div><dt>3B</dt><dd>gerçek zamanlı önizleme</dd></div>
                 <div><dt>3</dt><dd>gerçek kapak modeli</dd></div>
             </dl>
         </div>
@@ -78,8 +78,8 @@
         </div>
         <div class="ozellik-kart reveal">
             <span class="ozellik-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M5 5l1.4 1.4M17.6 17.6L19 19M3 12h2M19 12h2M5 19l1.4-1.4M17.6 6.4L19 5"/></svg></span>
-            <h3>10 Stüdyo Işığı</h3>
-            <p>Gerçek stüdyo HDR ortamları arasında geçiş yapıp kapağınızın farklı ışıkta nasıl göründüğünü karşılaştırın.</p>
+            <h3>Gerçek Stüdyo Işığı</h3>
+            <p>Fotoğraflanmış bir stüdyo HDR ortamı, lake yüzeydeki yansımaları ve tonu gerçekçi biçimde aydınlatır.</p>
         </div>
         <div class="ozellik-kart reveal">
             <span class="ozellik-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg></span>
@@ -98,6 +98,31 @@
         <div id="model-serit-anasayfa" class="model-serit-anasayfa"></div>
     </section>
 
+    <!-- ===== Galeri: gerçek fotoğraflar ==========================
+         Kartlar js/data/galeri.js'ten üretilir; `dosya`sı henüz girilmemiş
+         kayıtlar YER TUTUCU çerçeve olarak çizilir, böylece fotoğraflar
+         gelmeden de düzen görünür. Kaydırma tarayıcının kendi yatay
+         kaydırması + scroll-snap ile yapılıyor (dokunmatikte parmakla
+         kaydırma doğal çalışsın diye); oklar yalnızca scrollBy çağırır ve
+         şerit taşmıyorsa kendiliğinden gizlenir. ===== -->
+    <section class="galeri reveal" id="galeri" aria-labelledby="galeri-baslik">
+        <div class="galeri-basi">
+            <div class="galeri-basi-metin">
+                <h2 id="galeri-baslik">Galeri</h2>
+                <p>Atölyemizden ve tamamlanan işlerden kareler.</p>
+            </div>
+            <div class="galeri-oklar" id="galeri-oklar" hidden>
+                <button type="button" class="galeri-ok" id="galeri-geri" aria-label="Önceki fotoğraflar" aria-controls="galeri-serit">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button type="button" class="galeri-ok" id="galeri-ileri" aria-label="Sonraki fotoğraflar" aria-controls="galeri-serit">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="galeri-serit" id="galeri-serit" role="group" aria-label="Fotoğraflar"></div>
+    </section>
+
     <!-- ===== Kapanış CTA ===== -->
     <section class="cta-bolumu reveal">
         <h2 class="cta-baslik">Kendi kapağınızı tasarlayın</h2>
@@ -111,6 +136,19 @@
     <img src="assets/mini-logo.png" alt="" class="footer-logo" aria-hidden="true">
     <span>Şahinkaya Ahşap Mobilya — Mobilya · İç Mimari · Tasarım</span>
 </footer>
+
+<!-- Galeri büyüteci: fotoğrafa tıklayınca tam boy açılır. base.css'teki
+     .modal-katman deseni yeniden kullanılıyor (konfigüratörün model
+     galerisiyle aynı davranış: dışına tıkla veya Esc ile kapanır). -->
+<div id="galeri-buyutec" class="modal-katman galeri-buyutec gizli" role="dialog" aria-modal="true" aria-label="Fotoğraf">
+    <button type="button" class="galeri-buyutec-kapat" id="galeri-buyutec-kapat" aria-label="Kapat">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <figure class="galeri-buyutec-kutu">
+        <img id="galeri-buyutec-gorsel" alt="">
+        <figcaption id="galeri-buyutec-yazi" class="galeri-buyutec-yazi"></figcaption>
+    </figure>
+</div>
 
 <script type="module" src="js/anasayfa.js"></script>
 </body>

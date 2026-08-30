@@ -7,6 +7,7 @@ import { sahneyiBaslat, kapagiGuncelle, ortamiDegistir } from './viewer.js';
 import { idIleRenkBul } from './data/colors.js';
 import { idIleModelBul, KAPAK_MODELLERI } from './data/models.js';
 import { varsayilanOrtami } from './data/ortamlar.js';
+import { GALERI_FOTOGRAFLARI } from './data/galeri.js';
 
 const HERO_MODEL_ID = 'hk-012-001';
 
@@ -99,6 +100,121 @@ function modelKartlariniKur() {
     });
 }
 
+/* ---------------- Galeri ----------------
+   Kartlar js/data/galeri.js'ten üretiliyor. `dosya`sı olmayan kayıtlar
+   TIKLANAMAZ yer tutucu (<div>), gerçek fotoğraflar büyüteci açan <button>.
+   Kaydırma tarayıcının kendi yatay kaydırması + scroll-snap ile yapılıyor;
+   buradaki JS yalnızca kartları çiziyor, okları scrollBy ile sürüyor ve
+   okların etkin/pasif durumunu güncelliyor. */
+
+// Büyüteç açılmadan önceki odak — kapanınca oraya geri dönülsün (klavyeyle
+// gezen kullanıcı bastığı fotoğrafın yerini kaybetmesin).
+let buyutecOncesiOdak = null;
+
+function buyutecAc(foto, altMetni) {
+    const katman = document.getElementById('galeri-buyutec');
+    const gorsel = document.getElementById('galeri-buyutec-gorsel');
+    const yazi = document.getElementById('galeri-buyutec-yazi');
+    if (!katman || !gorsel) return;
+    buyutecOncesiOdak = document.activeElement;
+    gorsel.src = foto.dosya;
+    gorsel.alt = altMetni;
+    if (yazi) {
+        yazi.textContent = foto.baslik || '';
+        yazi.hidden = !foto.baslik;
+    }
+    katman.classList.remove('gizli');
+    const kapat = document.getElementById('galeri-buyutec-kapat');
+    if (kapat) kapat.focus();
+}
+
+function buyutecKapat() {
+    const katman = document.getElementById('galeri-buyutec');
+    if (!katman || katman.classList.contains('gizli')) return;
+    katman.classList.add('gizli');
+    // src boşaltılıyor: kapalı bir büyüteçte tam boy fotoğraf bellekte durmasın.
+    const gorsel = document.getElementById('galeri-buyutec-gorsel');
+    if (gorsel) gorsel.removeAttribute('src');
+    if (buyutecOncesiOdak) buyutecOncesiOdak.focus();
+    buyutecOncesiOdak = null;
+}
+
+function buyuteciKur() {
+    const katman = document.getElementById('galeri-buyutec');
+    if (!katman) return;
+    const kapat = document.getElementById('galeri-buyutec-kapat');
+    if (kapat) kapat.addEventListener('click', buyutecKapat);
+    // Yalnızca karartılmış zemine tıklamak kapatır; fotoğrafın üstü kapatmaz.
+    katman.addEventListener('click', (e) => { if (e.target === katman) buyutecKapat(); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') buyutecKapat();
+    });
+}
+
+function galeriKartiOlustur(foto, sira) {
+    if (!foto || !foto.dosya) {
+        const yer = document.createElement('div');
+        yer.className = 'galeri-kart';
+        yer.innerHTML = `
+            <div class="galeri-yer-tutucu">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.4"/></svg>
+                <span>Fotoğraf eklenecek</span>
+            </div>
+        `;
+        return yer;
+    }
+
+    const altMetni = foto.baslik || `Galeri fotoğrafı ${sira}`;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'galeri-kart';
+    btn.setAttribute('aria-label', `${altMetni} — büyüt`);
+    btn.innerHTML = `
+        <img class="galeri-kart-gorsel" src="${foto.dosya}" alt="${altMetni}" loading="lazy" decoding="async">
+        ${foto.baslik ? `<span class="galeri-kart-yazi">${foto.baslik}</span>` : ''}
+    `;
+    btn.addEventListener('click', () => buyutecAc(foto, altMetni));
+    return btn;
+}
+
+function galeriyiKur() {
+    const serit = document.getElementById('galeri-serit');
+    if (!serit) return;
+    GALERI_FOTOGRAFLARI.forEach((foto, i) => serit.appendChild(galeriKartiOlustur(foto, i + 1)));
+    buyuteciKur();
+
+    const oklar = document.getElementById('galeri-oklar');
+    const geri = document.getElementById('galeri-geri');
+    const ileri = document.getElementById('galeri-ileri');
+    if (!oklar || !geri || !ileri) return;
+
+    // Bir tıklamada tam olarak bir kart kayılsın: kartın ölçülen genişliği +
+    // şeridin gerçek boşluğu. Sabit bir px değeri yazılmıyor çünkü kart
+    // genişliği clamp() ile ekran boyutuna göre değişiyor.
+    const adim = () => {
+        const kart = serit.querySelector('.galeri-kart');
+        if (!kart) return serit.clientWidth;
+        const bosluk = parseFloat(getComputedStyle(serit).columnGap) || 0;
+        return kart.getBoundingClientRect().width + bosluk;
+    };
+
+    const durumuGuncelle = () => {
+        // Kartlar zaten sığıyorsa ok göstermek yanıltıcı olur — tamamen gizle.
+        const tasiyor = serit.scrollWidth - serit.clientWidth > 1;
+        oklar.hidden = !tasiyor;
+        if (!tasiyor) return;
+        const enSag = serit.scrollWidth - serit.clientWidth;
+        geri.disabled = serit.scrollLeft <= 1;
+        ileri.disabled = serit.scrollLeft >= enSag - 1;
+    };
+
+    geri.addEventListener('click', () => serit.scrollBy({ left: -adim(), behavior: 'smooth' }));
+    ileri.addEventListener('click', () => serit.scrollBy({ left: adim(), behavior: 'smooth' }));
+    serit.addEventListener('scroll', durumuGuncelle, { passive: true });
+    window.addEventListener('resize', durumuGuncelle);
+    durumuGuncelle();
+}
+
 // Bölümler ekrana girerken hafif bir belirme — prefers-reduced-motion zaten
 // base.css'teki global kuralla geçiş süresini sıfırlıyor, burada ek kontrol gerekmez.
 function kaydirmaBelirmesiniKur() {
@@ -124,6 +240,7 @@ function anasayfayiBaslat() {
     heroSahnesiniBaslat().catch((hata) => console.error('Hero sahnesi başlatılamadı:', hata));
     heroRenkleriniKur();
     modelKartlariniKur();
+    galeriyiKur();
     kaydirmaBelirmesiniKur();
 }
 
