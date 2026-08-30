@@ -48,34 +48,10 @@
   },
   "nodes": [
     {
-      "label": "idIleRenkBul()",
-      "file_type": "code",
-      "source_file": "js/data/colors.js",
-      "source_location": "L156",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "idilerenkbul()",
-      "id": "js_data_colors_idilerenkbul"
-    },
-    {
-      "label": "idIleModelBul()",
-      "file_type": "code",
-      "source_file": "js/data/models.js",
-      "source_location": "L58",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "idilemodelbul()",
-      "id": "js_data_models_idilemodelbul"
-    },
-    {
       "label": "idIleOrtamBul()",
       "file_type": "code",
       "source_file": "js/data/ortamlar.js",
-      "source_location": "L42",
+      "source_location": "L69",
       "_callable": true,
       "_origin": "ast",
       "community": 0,
@@ -84,448 +60,352 @@
       "id": "js_data_ortamlar_idileortambul"
     },
     {
-      "label": "acilirPaneliKur()",
+      "label": "varsayilanOrtami()",
       "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L402",
+      "source_file": "js/data/ortamlar.js",
+      "source_location": "L65",
       "_callable": true,
       "_origin": "ast",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "acilirpanelikur()",
-      "id": "js_ui_acilirpanelikur"
+      "norm_label": "varsayilanortami()",
+      "id": "js_data_ortamlar_varsayilanortami"
     },
     {
       "label": "aralikEtiketiniGuncelle()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L325",
+      "source_location": "L306",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_araliketiketiniguncelle",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "araliketiketiniguncelle()",
-      "id": "js_ui_araliketiketiniguncelle"
+      "norm_label": "araliketiketiniguncelle()"
     },
     {
       "label": "arayuzuBaslat()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L656",
+      "source_location": "L539",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_arayuzubaslat",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "arayuzubaslat()",
-      "id": "js_ui_arayuzubaslat"
+      "norm_label": "arayuzubaslat()"
     },
     {
-      "label": "boyutPaneliniKur()",
+      "label": "bildir()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L431",
+      "source_location": "L89",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_bildir",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "boyutpanelinikur()",
-      "id": "js_ui_boyutpanelinikur"
-    },
-    {
-      "label": "digerSeciciPanelleriniKapat()",
-      "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L500",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "digersecicipanellerinikapat()",
-      "id": "js_ui_digersecicipanellerinikapat"
-    },
-    {
-      "label": "dikeyKaydirmayiPlanla()",
-      "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L647",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "dikeykaydirmayiplanla()",
-      "id": "js_ui_dikeykaydirmayiplanla"
-    },
-    {
-      "label": "dikeyKaydirmayiUygula()",
-      "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L634",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "dikeykaydirmayiuygula()",
-      "id": "js_ui_dikeykaydirmayiuygula"
+      "norm_label": "bildir()"
     },
     {
       "label": "goruntuGuncellemesiPlanla()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L61",
+      "source_location": "L43",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_goruntuguncellemesiplanla",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "goruntuguncellemesiplanla()",
-      "id": "js_ui_goruntuguncellemesiplanla"
-    },
-    {
-      "label": "guncellemeyiUygula()",
-      "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L29",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "guncellemeyiuygula()",
-      "id": "js_ui_guncellemeyiuygula"
+      "norm_label": "goruntuguncellemesiplanla()"
     },
     {
       "label": "hexMetni()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L78",
+      "source_location": "L60",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_hexmetni",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "hexmetni()",
-      "id": "js_ui_hexmetni"
+      "norm_label": "hexmetni()"
     },
     {
       "label": "indirButonunuKur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L577",
+      "source_location": "L490",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_indirbutonunukur",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "indirbutonunukur()",
-      "id": "js_ui_indirbutonunukur"
+      "norm_label": "indirbutonunukur()"
     },
     {
       "label": "isikPaneliniAcKapa()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L511",
+      "source_location": "L434",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_isikpaneliniackapa",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "isikpaneliniackapa()",
-      "id": "js_ui_isikpaneliniackapa"
+      "norm_label": "isikpaneliniackapa()"
     },
     {
       "label": "isikPaneliniKur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L522",
+      "source_location": "L444",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_isikpanelinikur",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "isikpanelinikur()",
-      "id": "js_ui_isikpanelinikur"
+      "norm_label": "isikpanelinikur()"
     },
     {
       "label": "isikSatiriDurumunuGuncelle()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L447",
+      "source_location": "L388",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_isiksatiridurumunuguncelle",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "isiksatiridurumunuguncelle()",
-      "id": "js_ui_isiksatiridurumunuguncelle"
+      "norm_label": "isiksatiridurumunuguncelle()"
     },
     {
       "label": "isikSatiriOlustur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L475",
+      "source_location": "L415",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_isiksatiriolustur",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "isiksatiriolustur()",
-      "id": "js_ui_isiksatiriolustur"
-    },
-    {
-      "label": "isikSeciciMetniniGuncelle()",
-      "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L441",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "isiksecicimetniniguncelle()",
-      "id": "js_ui_isiksecicimetniniguncelle"
+      "norm_label": "isiksatiriolustur()"
     },
     {
       "label": "isikSecildi()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L459",
+      "source_location": "L400",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_isiksecildi",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "isiksecildi()",
-      "id": "js_ui_isiksecildi"
+      "norm_label": "isiksecildi()"
     },
     {
       "label": "kalinlikAlanininGorunurlugunuGuncelle()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L313",
+      "source_location": "L294",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_kalinlikalaniningorunurlugunuguncelle",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "kalinlikalaniningorunurlugunuguncelle()",
-      "id": "js_ui_kalinlikalaniningorunurlugunuguncelle"
+      "norm_label": "kalinlikalaniningorunurlugunuguncelle()"
     },
     {
       "label": "kaydiriciDolgusunuGuncelle()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L319",
+      "source_location": "L300",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_kaydiricidolgusunuguncelle",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "kaydiricidolgusunuguncelle()",
-      "id": "js_ui_kaydiricidolgusunuguncelle"
+      "norm_label": "kaydiricidolgusunuguncelle()"
     },
     {
       "label": "modelGaleriKartiOlustur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L145",
+      "source_location": "L127",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_modelgalerikartiolustur",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "modelgalerikartiolustur()",
-      "id": "js_ui_modelgalerikartiolustur"
+      "norm_label": "modelgalerikartiolustur()"
     },
     {
       "label": "modelGalerisiniAc()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L196",
+      "source_location": "L177",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_modelgalerisiniac",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "modelgalerisiniac()",
-      "id": "js_ui_modelgalerisiniac"
+      "norm_label": "modelgalerisiniac()"
     },
     {
       "label": "modelGalerisiniCiz()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L178",
+      "source_location": "L159",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_modelgalerisiniciz",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "modelgalerisiniciz()",
-      "id": "js_ui_modelgalerisiniciz"
+      "norm_label": "modelgalerisiniciz()"
     },
     {
       "label": "modelGalerisiniKapat()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L204",
+      "source_location": "L185",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_modelgalerisinikapat",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "modelgalerisinikapat()",
-      "id": "js_ui_modelgalerisinikapat"
+      "norm_label": "modelgalerisinikapat()"
     },
     {
       "label": "modelSeciciMetniniGuncelle()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L139",
+      "source_location": "L121",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_modelsecicimetniniguncelle",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "modelsecicimetniniguncelle()",
-      "id": "js_ui_modelsecicimetniniguncelle"
+      "norm_label": "modelsecicimetniniguncelle()"
     },
     {
       "label": "modelSeciciyiKur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L209",
+      "source_location": "L190",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_modelseciciyikur",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "modelseciciyikur()",
-      "id": "js_ui_modelseciciyikur"
+      "norm_label": "modelseciciyikur()"
     },
     {
       "label": "olcuKontrolleriniKur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L367",
+      "source_location": "L336",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_olcukontrollerinikur",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "olcukontrollerinikur()",
-      "id": "js_ui_olcukontrollerinikur"
+      "norm_label": "olcukontrollerinikur()"
     },
     {
       "label": "olculeriModelLimitlerineSabitle()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L342",
+      "source_location": "L311",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_olculerimodellimitlerinesabitle",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "olculerimodellimitlerinesabitle()",
-      "id": "js_ui_olculerimodellimitlerinesabitle"
+      "norm_label": "olculerimodellimitlerinesabitle()"
     },
     {
-      "label": "olculeriVarsayilanaSifirla()",
+      "label": "paylasButonunuKur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L336",
+      "source_location": "L98",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_paylasbutonunukur",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "olculerivarsayilanasifirla()",
-      "id": "js_ui_olculerivarsayilanasifirla"
+      "norm_label": "paylasbutonunukur()"
+    },
+    {
+      "label": "rayiKur()",
+      "file_type": "code",
+      "source_file": "js/ui.js",
+      "source_location": "L368",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_ui_rayikur",
+      "community": 0,
+      "community_name": "ui.js",
+      "norm_label": "rayikur()"
     },
     {
       "label": "renkButonuOlustur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L251",
+      "source_location": "L232",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_renkbutonuolustur",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "renkbutonuolustur()",
-      "id": "js_ui_renkbutonuolustur"
-    },
-    {
-      "label": "renkPaneliniKur()",
-      "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L430",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "renkpanelinikur()",
-      "id": "js_ui_renkpanelinikur"
+      "norm_label": "renkbutonuolustur()"
     },
     {
       "label": "renkSecildi()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L272",
+      "source_location": "L253",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_renksecildi",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "renksecildi()",
-      "id": "js_ui_renksecildi"
+      "norm_label": "renksecildi()"
     },
     {
       "label": "sifirlaButonuKur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L572",
+      "source_location": "L485",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_sifirlabutonukur",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "sifirlabutonukur()",
-      "id": "js_ui_sifirlabutonukur"
+      "norm_label": "sifirlabutonukur()"
     },
     {
       "label": "tamEkranButonuKur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L614",
+      "source_location": "L525",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_tamekranbutonukur",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "tamekranbutonukur()",
-      "id": "js_ui_tamekranbutonukur"
-    },
-    {
-      "label": "urldenDurumuYukle()",
-      "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L93",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "urldendurumuyukle()",
-      "id": "js_ui_urldendurumuyukle"
+      "norm_label": "tamekranbutonukur()"
     },
     {
       "label": "urliDurumaEsitle()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L86",
+      "source_location": "L68",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_urlidurumaesitle",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "urlidurumaesitle()",
-      "id": "js_ui_urlidurumaesitle"
-    },
-    {
-      "label": "ortamiDegistir()",
-      "file_type": "code",
-      "source_file": "js/viewer.js",
-      "source_location": "L226",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "js_viewer_ortamidegistir",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "ortamidegistir()"
-    },
-    {
-      "label": "ortamYukle()",
-      "file_type": "code",
-      "source_file": "js/viewer.js",
-      "source_location": "L204",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "js_viewer_ortamyukle",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "ortamyukle()"
+      "norm_label": "urlidurumaesitle()"
     },
     {
       "label": "durumuSorguyaKodla()",
@@ -586,30 +466,6 @@
       "community_name": "paylasim.test.js",
       "norm_label": "sorgudandurumcoz()",
       "id": "js_paylasim_sorgudandurumcoz"
-    },
-    {
-      "label": "bildir()",
-      "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L107",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "paylasim.test.js",
-      "norm_label": "bildir()",
-      "id": "js_ui_bildir"
-    },
-    {
-      "label": "paylasButonunuKur()",
-      "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L116",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "paylasim.test.js",
-      "norm_label": "paylasbutonunukur()",
-      "id": "js_ui_paylasbutonunukur"
     },
     {
       "label": "anasayfayiBaslat()",
@@ -696,40 +552,64 @@
       "id": "js_anasayfa_modelkartlarinikur"
     },
     {
-      "label": "varsayilanOrtami()",
+      "label": "idIleRenkBul()",
       "file_type": "code",
-      "source_file": "js/data/ortamlar.js",
-      "source_location": "L38",
+      "source_file": "js/data/colors.js",
+      "source_location": "L156",
       "_callable": true,
       "_origin": "ast",
       "community": 12,
       "community_name": "anasayfa.js",
-      "norm_label": "varsayilanortami()",
-      "id": "js_data_ortamlar_varsayilanortami"
+      "norm_label": "idilerenkbul()",
+      "id": "js_data_colors_idilerenkbul"
     },
     {
-      "label": "donguyuBaslat()",
+      "label": "idIleModelBul()",
       "file_type": "code",
-      "source_file": "js/viewer.js",
-      "source_location": "L146",
+      "source_file": "js/data/models.js",
+      "source_location": "L53",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_viewer_donguyubaslat",
       "community": 12,
       "community_name": "anasayfa.js",
-      "norm_label": "donguyubaslat()"
+      "norm_label": "idilemodelbul()",
+      "id": "js_data_models_idilemodelbul"
     },
     {
-      "label": "sahneyiBaslat()",
+      "label": "guncellemeyiUygula()",
       "file_type": "code",
-      "source_file": "js/viewer.js",
-      "source_location": "L22",
+      "source_file": "js/ui.js",
+      "source_location": "L21",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_viewer_sahneyibaslat",
+      "id": "js_ui_guncellemeyiuygula",
       "community": 12,
       "community_name": "anasayfa.js",
-      "norm_label": "sahneyibaslat()"
+      "norm_label": "guncellemeyiuygula()"
+    },
+    {
+      "label": "urldenDurumuYukle()",
+      "file_type": "code",
+      "source_file": "js/ui.js",
+      "source_location": "L75",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_ui_urldendurumuyukle",
+      "community": 12,
+      "community_name": "anasayfa.js",
+      "norm_label": "urldendurumuyukle()"
+    },
+    {
+      "label": "kapagiGuncelle()",
+      "file_type": "code",
+      "source_file": "js/viewer.js",
+      "source_location": "L169",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "anasayfa.js",
+      "norm_label": "kapagiguncelle()",
+      "id": "js_viewer_kapagiguncelle"
     },
     {
       "label": "citaliKapakGrubuOlustur()",
@@ -864,76 +744,100 @@
       "id": "js_materials_tohumdanrastgeleuretici"
     },
     {
+      "label": "donguyuBaslat()",
+      "file_type": "code",
+      "source_file": "js/viewer.js",
+      "source_location": "L132",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "viewer.js",
+      "norm_label": "donguyubaslat()",
+      "id": "js_viewer_donguyubaslat"
+    },
+    {
       "label": "goruntuyuSifirla()",
       "file_type": "code",
       "source_file": "js/viewer.js",
-      "source_location": "L240",
+      "source_location": "L226",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_viewer_goruntuyusifirla",
       "community": 2,
       "community_name": "viewer.js",
-      "norm_label": "goruntuyusifirla()"
+      "norm_label": "goruntuyusifirla()",
+      "id": "js_viewer_goruntuyusifirla"
     },
     {
-      "label": "kapagiGuncelle()",
+      "label": "ortamiDegistir()",
       "file_type": "code",
       "source_file": "js/viewer.js",
-      "source_location": "L183",
+      "source_location": "L212",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_viewer_kapagiguncelle",
       "community": 2,
       "community_name": "viewer.js",
-      "norm_label": "kapagiguncelle()"
+      "norm_label": "ortamidegistir()",
+      "id": "js_viewer_ortamidegistir"
     },
     {
-      "label": "kareyiDikeyKaydir()",
+      "label": "ortamYukle()",
       "file_type": "code",
       "source_file": "js/viewer.js",
-      "source_location": "L260",
+      "source_location": "L190",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_viewer_kareyidikeykaydir",
       "community": 2,
       "community_name": "viewer.js",
-      "norm_label": "kareyidikeykaydir()"
+      "norm_label": "ortamyukle()",
+      "id": "js_viewer_ortamyukle"
     },
     {
       "label": "pencereBoyutlandi()",
       "file_type": "code",
       "source_file": "js/viewer.js",
-      "source_location": "L127",
+      "source_location": "L113",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_viewer_pencereboyutlandi",
       "community": 2,
       "community_name": "viewer.js",
-      "norm_label": "pencereboyutlandi()"
+      "norm_label": "pencereboyutlandi()",
+      "id": "js_viewer_pencereboyutlandi"
     },
     {
       "label": "renderIste()",
       "file_type": "code",
       "source_file": "js/viewer.js",
-      "source_location": "L138",
+      "source_location": "L124",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_viewer_renderiste",
       "community": 2,
       "community_name": "viewer.js",
-      "norm_label": "renderiste()"
+      "norm_label": "renderiste()",
+      "id": "js_viewer_renderiste"
+    },
+    {
+      "label": "sahneyiBaslat()",
+      "file_type": "code",
+      "source_file": "js/viewer.js",
+      "source_location": "L22",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "viewer.js",
+      "norm_label": "sahneyibaslat()",
+      "id": "js_viewer_sahneyibaslat"
     },
     {
       "label": "yeniGrubuSahneyeUygula()",
       "file_type": "code",
       "source_file": "js/viewer.js",
-      "source_location": "L158",
+      "source_location": "L144",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_viewer_yenigrubusahneyeuygula",
       "community": 2,
       "community_name": "viewer.js",
-      "norm_label": "yenigrubusahneyeuygula()"
+      "norm_label": "yenigrubusahneyeuygula()",
+      "id": "js_viewer_yenigrubusahneyeuygula"
     },
     {
       "label": "doluTonAileleri()",
@@ -1023,25 +927,47 @@
       "label": "renkIzgarasiniCiz()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L282",
+      "source_location": "L263",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_renkizgarasiniciz",
       "community": 3,
       "community_name": "colors.js",
-      "norm_label": "renkizgarasiniciz()",
-      "id": "js_ui_renkizgarasiniciz"
+      "norm_label": "renkizgarasiniciz()"
     },
     {
       "label": "tonAileleriniKur()",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L226",
+      "source_location": "L207",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_ui_tonailelerinikur",
       "community": 3,
       "community_name": "colors.js",
-      "norm_label": "tonailelerinikur()",
-      "id": "js_ui_tonailelerinikur"
+      "norm_label": "tonailelerinikur()"
+    },
+    {
+      "label": "ortamlar.js",
+      "file_type": "code",
+      "source_file": "js/data/ortamlar.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "norm_label": "ortamlar.js",
+      "id": "js_data_ortamlar"
+    },
+    {
+      "label": "ORTAM_SECENEKLERI",
+      "file_type": "code",
+      "source_file": "js/data/ortamlar.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "norm_label": "ortam_secenekleri",
+      "id": "js_data_ortamlar_ortam_secenekleri"
     },
     {
       "label": "main.js",
@@ -1060,32 +986,21 @@
       "source_file": "js/ui.js",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "js_ui",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "ui.js",
-      "id": "js_ui"
-    },
-    {
-      "label": "baslangicModel",
-      "file_type": "code",
-      "source_file": "js/ui.js",
-      "source_location": "L13",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "norm_label": "baslangicmodel",
-      "id": "js_ui_baslangicmodel"
+      "norm_label": "ui.js"
     },
     {
       "label": "durum",
       "file_type": "code",
       "source_file": "js/ui.js",
-      "source_location": "L15",
+      "source_location": "L7",
       "_origin": "ast",
+      "id": "js_ui_durum",
       "community": 0,
       "community_name": "ui.js",
-      "norm_label": "durum",
-      "id": "js_ui_durum"
+      "norm_label": "durum"
     },
     {
       "label": "paylasim.js",
@@ -1484,28 +1399,6 @@
       "id": "js_data_models_test_urlseti"
     },
     {
-      "label": "ortamlar.js",
-      "file_type": "code",
-      "source_file": "js/data/ortamlar.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "anasayfa.js",
-      "norm_label": "ortamlar.js",
-      "id": "js_data_ortamlar"
-    },
-    {
-      "label": "ORTAM_SECENEKLERI",
-      "file_type": "code",
-      "source_file": "js/data/ortamlar.js",
-      "source_location": "L19",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "anasayfa.js",
-      "norm_label": "ortam_secenekleri",
-      "id": "js_data_ortamlar_ortam_secenekleri"
-    },
-    {
       "label": "doorGeometry.js",
       "file_type": "code",
       "source_file": "js/doorGeometry.js",
@@ -1577,32 +1470,32 @@
       "source_file": "js/viewer.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "js_viewer",
       "community": 2,
       "community_name": "viewer.js",
-      "norm_label": "viewer.js"
+      "norm_label": "viewer.js",
+      "id": "js_viewer"
     },
     {
       "label": "ortamOnbellek",
       "file_type": "code",
       "source_file": "js/viewer.js",
-      "source_location": "L202",
+      "source_location": "L188",
       "_origin": "ast",
-      "id": "js_viewer_ortamonbellek",
       "community": 2,
       "community_name": "viewer.js",
-      "norm_label": "ortamonbellek"
+      "norm_label": "ortamonbellek",
+      "id": "js_viewer_ortamonbellek"
     },
     {
       "label": "rgbeYukleyici",
       "file_type": "code",
       "source_file": "js/viewer.js",
-      "source_location": "L201",
+      "source_location": "L187",
       "_origin": "ast",
-      "id": "js_viewer_rgbeyukleyici",
       "community": 2,
       "community_name": "viewer.js",
-      "norm_label": "rgbeyukleyici"
+      "norm_label": "rgbeyukleyici",
+      "id": "js_viewer_rgbeyukleyici"
     },
     {
       "label": "colors.js",
@@ -3363,24 +3256,12 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L409",
+      "source_location": "L542",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_acilirpanelikur",
-      "target": "js_ui_digersecicipanellerinikapat"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L659",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_urldendurumuyukle"
+      "target": "js_ui_urldendurumuyukle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3388,7 +3269,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L661",
+      "source_location": "L544",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_arayuzubaslat",
@@ -3399,336 +3280,120 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L663",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_modelseciciyikur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L664",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_tonailelerinikur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L665",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_renkizgarasiniciz"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L666",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_olcukontrollerinikur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L667",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_renkpanelinikur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L668",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_boyutpanelinikur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L669",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_isikpanelinikur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L670",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_sifirlabutonukur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L671",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_paylasbutonunukur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L672",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_indirbutonunukur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L673",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_tamekranbutonukur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L675",
+      "source_location": "L546",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_arayuzubaslat",
-      "target": "js_data_models_idilemodelbul"
+      "target": "js_ui_rayikur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L676",
+      "source_location": "L547",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_kalinlikalaniningorunurlugunuguncelle"
+      "target": "js_ui_modelseciciyikur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L677",
+      "source_location": "L548",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_olculerimodellimitlerinesabitle"
+      "target": "js_ui_tonailelerinikur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L678",
+      "source_location": "L549",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_guncellemeyiuygula"
+      "target": "js_ui_renkizgarasiniciz",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L431",
+      "source_location": "L550",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_boyutpanelinikur",
-      "target": "js_ui_acilirpanelikur"
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_olcukontrollerinikur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L643",
+      "source_location": "L551",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_dikeykaydirmayiuygula",
-      "target": "js_viewer_kareyidikeykaydir"
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_isikpanelinikur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L69",
+      "source_location": "L552",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_goruntuguncellemesiplanla",
-      "target": "js_ui_guncellemeyiuygula"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L30",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_ui_guncellemeyiuygula",
-      "target": "js_data_models_idilemodelbul"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L31",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_ui_guncellemeyiuygula",
-      "target": "js_data_colors_idilerenkbul"
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_sifirlabutonukur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L33",
+      "source_location": "L553",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_guncellemeyiuygula",
-      "target": "js_viewer_kapagiguncelle"
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_paylasbutonunukur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L45",
+      "source_location": "L554",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_guncellemeyiuygula",
-      "target": "js_ui_hexmetni"
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_indirbutonunukur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L57",
+      "source_location": "L555",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_guncellemeyiuygula",
-      "target": "js_ui_urlidurumaesitle"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L585",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_ui_indirbutonunukur",
-      "target": "js_data_colors_idilerenkbul"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L586",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_ui_indirbutonunukur",
-      "target": "js_data_models_idilemodelbul"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L516",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_isikpaneliniackapa",
-      "target": "js_ui_digersecicipanellerinikapat"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L534",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_isikpanelinikur",
-      "target": "js_ui_isiksatiriolustur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L542",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_isikpanelinikur",
-      "target": "js_ui_isikpaneliniackapa"
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_tamekranbutonukur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3737,6 +3402,162 @@
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
       "source_location": "L557",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_data_models_idilemodelbul"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/ui.js",
+      "source_location": "L558",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_kalinlikalaniningorunurlugunuguncelle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/ui.js",
+      "source_location": "L559",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_olculerimodellimitlerinesabitle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/ui.js",
+      "source_location": "L560",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_guncellemeyiuygula",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/ui.js",
+      "source_location": "L51",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_goruntuguncellemesiplanla",
+      "target": "js_ui_guncellemeyiuygula",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_guncellemeyiuygula",
+      "target": "js_data_models_idilemodelbul"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_guncellemeyiuygula",
+      "target": "js_data_colors_idilerenkbul"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_guncellemeyiuygula",
+      "target": "js_viewer_kapagiguncelle"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/ui.js",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_guncellemeyiuygula",
+      "target": "js_ui_hexmetni",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/ui.js",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_guncellemeyiuygula",
+      "target": "js_ui_urlidurumaesitle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L498",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_indirbutonunukur",
+      "target": "js_data_colors_idilerenkbul"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/ui.js",
+      "source_location": "L448",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_isikpanelinikur",
+      "target": "js_ui_isiksatiriolustur",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/ui.js",
+      "source_location": "L456",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_isikpanelinikur",
+      "target": "js_ui_isikpaneliniackapa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L471",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_isikpanelinikur",
@@ -3748,7 +3569,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L557",
+      "source_location": "L471",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_isikpanelinikur",
@@ -3759,22 +3580,22 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L559",
+      "source_location": "L473",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_isikpanelinikur",
-      "target": "js_ui_isiksatiridurumunuguncelle"
+      "target": "js_ui_isiksatiridurumunuguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L560",
+      "source_location": "L474",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_isikpanelinikur",
       "target": "js_viewer_ortamidegistir"
     },
@@ -3783,82 +3604,58 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L567",
+      "source_location": "L481",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_isikpanelinikur",
-      "target": "js_ui_isiksecicimetniniguncelle"
+      "target": "js_ui_urlidurumaesitle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L568",
+      "source_location": "L429",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_isikpanelinikur",
-      "target": "js_ui_urlidurumaesitle"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L489",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_isiksatiriolustur",
-      "target": "js_ui_isiksatiridurumunuguncelle"
+      "target": "js_ui_isiksatiridurumunuguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L490",
+      "source_location": "L430",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_isiksatiriolustur",
-      "target": "js_ui_isiksecildi"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L442",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_ui_isiksecicimetniniguncelle",
-      "target": "js_data_ortamlar_idileortambul"
+      "target": "js_ui_isiksecildi",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L461",
+      "source_location": "L402",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_isiksecildi",
-      "target": "js_ui_isiksatiridurumunuguncelle"
+      "target": "js_ui_isiksatiridurumunuguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L462",
+      "source_location": "L403",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_isiksecildi",
       "target": "js_viewer_ortamidegistir"
     },
@@ -3867,24 +3664,12 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L470",
+      "source_location": "L411",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_isiksecildi",
-      "target": "js_ui_isiksecicimetniniguncelle"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L471",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_isiksecildi",
-      "target": "js_ui_urlidurumaesitle"
+      "target": "js_ui_urlidurumaesitle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3892,7 +3677,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L166",
+      "source_location": "L148",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_modelgalerikartiolustur",
@@ -3903,96 +3688,84 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L167",
+      "source_location": "L149",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_olculerivarsayilanasifirla"
+      "target": "js_ui_kalinlikalaniningorunurlugunuguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L168",
+      "source_location": "L150",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_kalinlikalaniningorunurlugunuguncelle"
+      "target": "js_ui_olculerimodellimitlerinesabitle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L169",
+      "source_location": "L151",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_olculerimodellimitlerinesabitle"
+      "target": "js_ui_modelsecicimetniniguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L170",
+      "source_location": "L152",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_modelsecicimetniniguncelle"
+      "target": "js_ui_goruntuguncellemesiplanla",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L171",
+      "source_location": "L154",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_goruntuguncellemesiplanla"
+      "target": "js_ui_modelgalerisinikapat",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L173",
+      "source_location": "L179",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_modelgalerisinikapat"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L198",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_modelgalerisiniac",
-      "target": "js_ui_modelgalerisiniciz"
+      "target": "js_ui_modelgalerisiniciz",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L193",
+      "source_location": "L174",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_modelgalerisiniciz",
-      "target": "js_ui_modelgalerikartiolustur"
+      "target": "js_ui_modelgalerikartiolustur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4000,7 +3773,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L140",
+      "source_location": "L122",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_modelsecicimetniniguncelle",
@@ -4011,72 +3784,72 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L210",
+      "source_location": "L191",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_modelseciciyikur",
-      "target": "js_ui_modelsecicimetniniguncelle"
+      "target": "js_ui_modelsecicimetniniguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L213",
+      "source_location": "L194",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_modelseciciyikur",
-      "target": "js_ui_modelgalerisiniciz"
+      "target": "js_ui_modelgalerisiniciz",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L379",
+      "source_location": "L348",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_olcukontrollerinikur",
-      "target": "js_ui_kaydiricidolgusunuguncelle"
+      "target": "js_ui_kaydiricidolgusunuguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L380",
+      "source_location": "L349",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_olcukontrollerinikur",
-      "target": "js_ui_goruntuguncellemesiplanla"
+      "target": "js_ui_goruntuguncellemesiplanla",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L352",
+      "source_location": "L321",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_olculerimodellimitlerinesabitle",
-      "target": "js_ui_kaydiricidolgusunuguncelle"
+      "target": "js_ui_kaydiricidolgusunuguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L354",
+      "source_location": "L323",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_olculerimodellimitlerinesabitle",
-      "target": "js_ui_araliketiketiniguncelle"
+      "target": "js_ui_araliketiketiniguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4084,7 +3857,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L120",
+      "source_location": "L102",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_paylasbutonunukur",
@@ -4095,24 +3868,48 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L124",
+      "source_location": "L106",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_paylasbutonunukur",
-      "target": "js_ui_bildir"
+      "target": "js_ui_bildir",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L261",
+      "source_location": "L242",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_renkbutonuolustur",
-      "target": "js_ui_hexmetni"
+      "target": "js_ui_hexmetni",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/ui.js",
+      "source_location": "L249",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_renkbutonuolustur",
+      "target": "js_ui_renksecildi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L265",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_ui_renkizgarasiniciz",
+      "target": "js_data_colors_tonailesindekirenkler"
     },
     {
       "relation": "calls",
@@ -4122,33 +3919,9 @@
       "source_location": "L268",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_renkbutonuolustur",
-      "target": "js_ui_renksecildi"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L284",
-      "weight": 1.0,
-      "_origin": "ast",
       "source": "js_ui_renkizgarasiniciz",
-      "target": "js_data_colors_tonailesindekirenkler"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L287",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_renkizgarasiniciz",
-      "target": "js_ui_renkbutonuolustur"
+      "target": "js_ui_renkbutonuolustur",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4156,7 +3929,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L294",
+      "source_location": "L275",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_renkizgarasiniciz",
@@ -4167,24 +3940,12 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L430",
+      "source_location": "L260",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui_renkpanelinikur",
-      "target": "js_ui_acilirpanelikur"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L279",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_renksecildi",
-      "target": "js_ui_goruntuguncellemesiplanla"
+      "target": "js_ui_goruntuguncellemesiplanla",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4192,7 +3953,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L229",
+      "source_location": "L210",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_tonailelerinikur",
@@ -4204,7 +3965,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L230",
+      "source_location": "L211",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_tonailelerinikur",
@@ -4215,12 +3976,12 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L245",
+      "source_location": "L226",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui_tonailelerinikur",
-      "target": "js_ui_renkizgarasiniciz"
+      "target": "js_ui_renkizgarasiniciz",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4228,7 +3989,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L94",
+      "source_location": "L76",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_urldendurumuyukle",
@@ -4240,7 +4001,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L95",
+      "source_location": "L77",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_urldendurumuyukle",
@@ -4252,7 +4013,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L96",
+      "source_location": "L78",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_urldendurumuyukle",
@@ -4264,7 +4025,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L97",
+      "source_location": "L79",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_urldendurumuyukle",
@@ -4276,7 +4037,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L87",
+      "source_location": "L69",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_urlidurumaesitle",
@@ -4287,12 +4048,12 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L246",
+      "source_location": "L231",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer_goruntuyusifirla",
-      "target": "js_viewer_renderiste",
-      "confidence_score": 1.0
+      "target": "js_viewer_renderiste"
     },
     {
       "relation": "calls",
@@ -4300,7 +4061,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L187",
+      "source_location": "L173",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_viewer_kapagiguncelle",
@@ -4311,12 +4072,12 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L188",
+      "source_location": "L174",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer_kapagiguncelle",
-      "target": "js_viewer_yenigrubusahneyeuygula",
-      "confidence_score": 1.0
+      "target": "js_viewer_yenigrubusahneyeuygula"
     },
     {
       "relation": "calls",
@@ -4324,7 +4085,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L193",
+      "source_location": "L179",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_viewer_kapagiguncelle",
@@ -4335,72 +4096,60 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L275",
+      "source_location": "L214",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "js_viewer_kareyidikeykaydir",
-      "target": "js_viewer_renderiste",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/viewer.js",
-      "source_location": "L228",
-      "weight": 1.0,
-      "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer_ortamidegistir",
-      "target": "js_viewer_ortamyukle",
-      "confidence_score": 1.0
+      "target": "js_viewer_ortamyukle"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L235",
+      "source_location": "L221",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer_ortamidegistir",
-      "target": "js_viewer_renderiste",
-      "confidence_score": 1.0
+      "target": "js_viewer_renderiste"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L135",
+      "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer_pencereboyutlandi",
-      "target": "js_viewer_renderiste",
-      "confidence_score": 1.0
+      "target": "js_viewer_renderiste"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L117",
+      "source_location": "L103",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer_sahneyibaslat",
-      "target": "js_viewer_renderiste",
-      "confidence_score": 1.0
+      "target": "js_viewer_renderiste"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L123",
+      "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer_sahneyibaslat",
-      "target": "js_viewer_donguyubaslat",
-      "confidence_score": 1.0
+      "target": "js_viewer_donguyubaslat"
     },
     {
       "relation": "calls",
@@ -4408,7 +4157,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L162",
+      "source_location": "L148",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_viewer_yenigrubusahneyeuygula",
@@ -4420,7 +4169,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L174",
+      "source_location": "L160",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_viewer_yenigrubusahneyeuygula",
@@ -4432,7 +4181,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L175",
+      "source_location": "L161",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_viewer_yenigrubusahneyeuygula",
@@ -4443,12 +4192,12 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L178",
+      "source_location": "L164",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer_yenigrubusahneyeuygula",
-      "target": "js_viewer_renderiste",
-      "confidence_score": 1.0
+      "target": "js_viewer_renderiste"
     },
     {
       "relation": "imports",
@@ -4698,9 +4447,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_colors_dolutonaileleri"
+      "target": "js_data_colors_dolutonaileleri",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4710,9 +4459,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_colors_idilerenkbul"
+      "target": "js_data_colors_idilerenkbul",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4722,9 +4471,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_colors_tonailesindekirenkler"
+      "target": "js_data_colors_tonailesindekirenkler",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4734,9 +4483,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_models_idilemodelbul"
+      "target": "js_data_models_idilemodelbul",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4746,9 +4495,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_models_kapak_modelleri"
+      "target": "js_data_models_kapak_modelleri",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4758,9 +4507,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_ortamlar_idileortambul"
+      "target": "js_data_ortamlar_idileortambul",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4770,9 +4519,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_ortamlar_ortam_secenekleri"
+      "target": "js_data_ortamlar_ortam_secenekleri",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4782,9 +4531,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_ortamlar_varsayilanortami"
+      "target": "js_data_ortamlar_varsayilanortami",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4794,9 +4543,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_viewer_goruntuyusifirla"
+      "target": "js_viewer_goruntuyusifirla",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4806,9 +4555,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_viewer_kapagiguncelle"
+      "target": "js_viewer_kapagiguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4818,9 +4567,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_viewer_kareyidikeykaydir"
+      "target": "js_viewer_ortamidegistir",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4830,21 +4579,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_viewer_ortamidegistir"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui",
-      "target": "js_viewer_sahneyibaslat"
+      "target": "js_viewer_sahneyibaslat",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4854,9 +4591,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_paylasim_durumusorguyakodla"
+      "target": "js_paylasim_durumusorguyakodla",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4866,9 +4603,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_paylasim_paylasimadresiolustur"
+      "target": "js_paylasim_paylasimadresiolustur",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4878,20 +4615,8 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_paylasim_sorgudandurumcoz"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "js/viewer.js",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_viewer",
-      "target": "js_doorgeometry_kapakgeometrisitemizle",
+      "target": "js_paylasim_sorgudandurumcoz",
       "confidence_score": 1.0
     },
     {
@@ -4902,9 +4627,21 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_doorgeometry_kapakgrubuolustur",
-      "confidence_score": 1.0
+      "target": "js_doorgeometry_kapakgeometrisitemizle"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "js/viewer.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "js_viewer",
+      "target": "js_doorgeometry_kapakgrubuolustur"
     },
     {
       "relation": "imports",
@@ -4914,9 +4651,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_materials_malzemeuygula",
-      "confidence_score": 1.0
+      "target": "js_materials_malzemeuygula"
     },
     {
       "relation": "imports",
@@ -4926,9 +4663,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_materials_renkverisindenmalzemeolustur",
-      "confidence_score": 1.0
+      "target": "js_materials_renkverisindenmalzemeolustur"
     },
     {
       "relation": "imports",
@@ -4938,9 +4675,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_glbyukleyici_glbkapakgrubuolustur",
-      "confidence_score": 1.0
+      "target": "js_glbyukleyici_glbkapakgrubuolustur"
     },
     {
       "relation": "imports_from",
@@ -5046,9 +4783,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_colors"
+      "target": "js_data_colors",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -5058,9 +4795,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_models"
+      "target": "js_data_models",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -5070,9 +4807,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_data_ortamlar"
+      "target": "js_data_ortamlar",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -5082,9 +4819,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_viewer"
+      "target": "js_viewer",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -5094,9 +4831,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_paylasim"
+      "target": "js_paylasim",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -5106,9 +4843,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_doorgeometry",
-      "confidence_score": 1.0
+      "target": "js_doorgeometry"
     },
     {
       "relation": "imports_from",
@@ -5118,9 +4855,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_materials",
-      "confidence_score": 1.0
+      "target": "js_materials"
     },
     {
       "relation": "imports_from",
@@ -5130,9 +4867,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_glbyukleyici",
-      "confidence_score": 1.0
+      "target": "js_glbyukleyici"
     },
     {
       "relation": "contains",
@@ -5666,7 +5403,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/data/models.js",
-      "source_location": "L58",
+      "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast",
       "confidence_score": 1.0,
@@ -5721,7 +5458,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/data/ortamlar.js",
-      "source_location": "L19",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "confidence_score": 1.0,
@@ -5732,7 +5469,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/data/ortamlar.js",
-      "source_location": "L38",
+      "source_location": "L65",
       "weight": 1.0,
       "_origin": "ast",
       "confidence_score": 1.0,
@@ -5743,7 +5480,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/data/ortamlar.js",
-      "source_location": "L42",
+      "source_location": "L69",
       "weight": 1.0,
       "_origin": "ast",
       "confidence_score": 1.0,
@@ -6040,199 +5777,166 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L107",
+      "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_bildir"
+      "target": "js_ui_modelsecicimetniniguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L116",
+      "source_location": "L127",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_paylasbutonunukur"
+      "target": "js_ui_modelgalerikartiolustur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L13",
+      "source_location": "L159",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_baslangicmodel"
+      "target": "js_ui_modelgalerisiniciz",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L139",
+      "source_location": "L177",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_modelsecicimetniniguncelle"
+      "target": "js_ui_modelgalerisiniac",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L145",
+      "source_location": "L185",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_modelgalerikartiolustur"
+      "target": "js_ui_modelgalerisinikapat",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L15",
+      "source_location": "L190",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_durum"
+      "target": "js_ui_modelseciciyikur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L178",
+      "source_location": "L207",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_modelgalerisiniciz"
+      "target": "js_ui_tonailelerinikur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L196",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_modelgalerisiniac"
+      "target": "js_ui_guncellemeyiuygula",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L204",
+      "source_location": "L232",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_modelgalerisinikapat"
+      "target": "js_ui_renkbutonuolustur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L209",
+      "source_location": "L253",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_modelseciciyikur"
+      "target": "js_ui_renksecildi",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L226",
+      "source_location": "L263",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_tonailelerinikur"
+      "target": "js_ui_renkizgarasiniciz",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L251",
+      "source_location": "L294",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_renkbutonuolustur"
+      "target": "js_ui_kalinlikalaniningorunurlugunuguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L272",
+      "source_location": "L300",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_renksecildi"
+      "target": "js_ui_kaydiricidolgusunuguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L282",
+      "source_location": "L306",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_renkizgarasiniciz"
+      "target": "js_ui_araliketiketiniguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L29",
+      "source_location": "L311",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_guncellemeyiuygula"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L313",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui",
-      "target": "js_ui_kalinlikalaniningorunurlugunuguncelle"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L319",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui",
-      "target": "js_ui_kaydiricidolgusunuguncelle"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L325",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui",
-      "target": "js_ui_araliketiketiniguncelle"
+      "target": "js_ui_olculerimodellimitlerinesabitle",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6241,339 +5945,295 @@
       "source_location": "L336",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_olculerivarsayilanasifirla"
+      "target": "js_ui_olcukontrollerinikur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L342",
+      "source_location": "L368",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_olculerimodellimitlerinesabitle"
+      "target": "js_ui_rayikur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L367",
+      "source_location": "L388",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_olcukontrollerinikur"
+      "target": "js_ui_isiksatiridurumunuguncelle",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L402",
+      "source_location": "L400",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_acilirpanelikur"
+      "target": "js_ui_isiksecildi",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L430",
+      "source_location": "L415",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_renkpanelinikur"
+      "target": "js_ui_isiksatiriolustur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L431",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_boyutpanelinikur"
+      "target": "js_ui_goruntuguncellemesiplanla",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L441",
+      "source_location": "L434",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_isiksecicimetniniguncelle"
+      "target": "js_ui_isikpaneliniackapa",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L447",
+      "source_location": "L444",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_isiksatiridurumunuguncelle"
+      "target": "js_ui_isikpanelinikur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L459",
+      "source_location": "L485",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_isiksecildi"
+      "target": "js_ui_sifirlabutonukur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L475",
+      "source_location": "L490",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_isiksatiriolustur"
+      "target": "js_ui_indirbutonunukur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L500",
+      "source_location": "L525",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_digersecicipanellerinikapat"
+      "target": "js_ui_tamekranbutonukur",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L511",
+      "source_location": "L539",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_isikpaneliniackapa"
+      "target": "js_ui_arayuzubaslat",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L522",
+      "source_location": "L60",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_isikpanelinikur"
+      "target": "js_ui_hexmetni",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L572",
+      "source_location": "L68",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_sifirlabutonukur"
+      "target": "js_ui_urlidurumaesitle",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L577",
+      "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_indirbutonunukur"
+      "target": "js_ui_durum",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L61",
+      "source_location": "L75",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_goruntuguncellemesiplanla"
+      "target": "js_ui_urldendurumuyukle",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L614",
+      "source_location": "L89",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_tamekranbutonukur"
+      "target": "js_ui_bildir",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/ui.js",
-      "source_location": "L634",
+      "source_location": "L98",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_ui",
-      "target": "js_ui_dikeykaydirmayiuygula"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L647",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui",
-      "target": "js_ui_dikeykaydirmayiplanla"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L656",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui",
-      "target": "js_ui_arayuzubaslat"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L78",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui",
-      "target": "js_ui_hexmetni"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L86",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui",
-      "target": "js_ui_urlidurumaesitle"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/ui.js",
-      "source_location": "L93",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_ui",
-      "target": "js_ui_urldendurumuyukle"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/viewer.js",
-      "source_location": "L127",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_viewer",
-      "target": "js_viewer_pencereboyutlandi",
+      "target": "js_ui_paylasbutonunukur",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L138",
+      "source_location": "L113",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_viewer_renderiste",
-      "confidence_score": 1.0
+      "target": "js_viewer_pencereboyutlandi"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L146",
+      "source_location": "L124",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_viewer_donguyubaslat",
-      "confidence_score": 1.0
+      "target": "js_viewer_renderiste"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L158",
+      "source_location": "L132",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_viewer_yenigrubusahneyeuygula",
-      "confidence_score": 1.0
+      "target": "js_viewer_donguyubaslat"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L183",
+      "source_location": "L144",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_viewer_kapagiguncelle",
-      "confidence_score": 1.0
+      "target": "js_viewer_yenigrubusahneyeuygula"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L201",
+      "source_location": "L169",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_viewer_rgbeyukleyici",
-      "confidence_score": 1.0
+      "target": "js_viewer_kapagiguncelle"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L202",
+      "source_location": "L187",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_viewer_ortamonbellek",
-      "confidence_score": 1.0
+      "target": "js_viewer_rgbeyukleyici"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/viewer.js",
-      "source_location": "L204",
+      "source_location": "L188",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_viewer_ortamyukle",
-      "confidence_score": 1.0
+      "target": "js_viewer_ortamonbellek"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/viewer.js",
+      "source_location": "L190",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "js_viewer",
+      "target": "js_viewer_ortamyukle"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/viewer.js",
+      "source_location": "L212",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "js_viewer",
+      "target": "js_viewer_ortamidegistir"
     },
     {
       "relation": "contains",
@@ -6582,9 +6242,9 @@
       "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_viewer_sahneyibaslat",
-      "confidence_score": 1.0
+      "target": "js_viewer_sahneyibaslat"
     },
     {
       "relation": "contains",
@@ -6593,31 +6253,9 @@
       "source_location": "L226",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_viewer",
-      "target": "js_viewer_ortamidegistir",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/viewer.js",
-      "source_location": "L240",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_viewer",
-      "target": "js_viewer_goruntuyusifirla",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/viewer.js",
-      "source_location": "L260",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_viewer",
-      "target": "js_viewer_kareyidikeykaydir",
-      "confidence_score": 1.0
+      "target": "js_viewer_goruntuyusifirla"
     },
     {
       "relation": "contains",
@@ -6738,60 +6376,36 @@
       "context": "argument",
       "confidence": "INFERRED",
       "source_file": "js/ui.js",
-      "source_location": "L683",
+      "source_location": "L192",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 0.5,
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_dikeykaydirmayiplanla"
-    },
-    {
-      "relation": "indirect_call",
-      "context": "argument",
-      "confidence": "INFERRED",
-      "source_file": "js/ui.js",
-      "source_location": "L651",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 0.5,
-      "source": "js_ui_dikeykaydirmayiplanla",
-      "target": "js_ui_dikeykaydirmayiuygula"
-    },
-    {
-      "relation": "indirect_call",
-      "context": "argument",
-      "confidence": "INFERRED",
-      "source_file": "js/ui.js",
-      "source_location": "L211",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 0.5,
       "source": "js_ui_modelseciciyikur",
-      "target": "js_ui_modelgalerisiniac"
+      "target": "js_ui_modelgalerisiniac",
+      "confidence_score": 0.5
     },
     {
       "relation": "indirect_call",
       "context": "argument",
       "confidence": "INFERRED",
       "source_file": "js/ui.js",
-      "source_location": "L212",
+      "source_location": "L193",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 0.5,
       "source": "js_ui_modelseciciyikur",
-      "target": "js_ui_modelgalerisinikapat"
+      "target": "js_ui_modelgalerisinikapat",
+      "confidence_score": 0.5
     },
     {
       "relation": "indirect_call",
       "context": "argument",
       "confidence": "INFERRED",
       "source_file": "js/viewer.js",
-      "source_location": "L119",
+      "source_location": "L105",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 0.5,
       "source": "js_viewer_sahneyibaslat",
-      "target": "js_viewer_pencereboyutlandi",
-      "confidence_score": 0.5
+      "target": "js_viewer_pencereboyutlandi"
     },
     {
       "relation": "indirect_call",
@@ -6811,7 +6425,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "js/ui.js",
-      "source_location": "L574",
+      "source_location": "L487",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_ui_sifirlabutonukur",
@@ -8027,5 +7641,5 @@
       "source_file": "docs/superpowers/plans/2026-08-06-kapak-konfiguratoru.md"
     }
   ],
-  "built_at_commit": "4bf8fd0de11ffcf65a3332917ddd0f9992aa02da"
+  "built_at_commit": "a61b4a0c8302bcd68734cf26508488c3ed310881"
 }

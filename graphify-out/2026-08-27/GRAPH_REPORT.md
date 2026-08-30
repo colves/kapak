@@ -1,7 +1,7 @@
 # Graph Report - Kapak  (2026-08-27)
 
 ## Corpus Check
-- 24 files · ~28,880 words
+- 24 files · ~28,799 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4bf8fd0d`
+- Built from commit: `a41011bb`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -32,13 +32,13 @@
 1. `arayuzuBaslat()` - 20 edges
 2. `idIleModelBul()` - 11 edges
 3. `isikPaneliniKur()` - 10 edges
-4. `idIleRenkBul()` - 9 edges
-5. `modelGaleriKartiOlustur()` - 9 edges
+4. `modelGaleriKartiOlustur()` - 9 edges
+5. `idIleRenkBul()` - 9 edges
 6. `Task 6: 3D Görüntüleyici` - 9 edges
-7. `sahneyiBaslat()` - 8 edges
-8. `kapagiGuncelle()` - 8 edges
-9. `ortamiDegistir()` - 8 edges
-10. `guncellemeyiUygula()` - 8 edges
+7. `guncellemeyiUygula()` - 8 edges
+8. `sahneyiBaslat()` - 8 edges
+9. `kapagiGuncelle()` - 8 edges
+10. `ortamiDegistir()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `scripts/dev-server.mjs` --semantically_similar_to--> `Global Kısıtlar`  [INFERRED] [semantically similar]
@@ -117,7 +117,7 @@ Nodes (17): anasayfayiBaslat(), HERO_RENK_SIRASI, heroKapagiGuncelle(), heroRenk
   index.html · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **57 isolated node(s):** `rgbeYukleyici`, `ortamOnbellek`, `baslangicModel`, `durum`, `ANAHTARLAR` (+52 more)
+- **57 isolated node(s):** `baslangicModel`, `durum`, `rgbeYukleyici`, `ortamOnbellek`, `ANAHTARLAR` (+52 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 
 ## Suggested Questions
@@ -133,7 +133,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `arayuzuBaslat()` (e.g. with `main.js` and `dikeyKaydirmayiPlanla()`) actually correct?**
   _`arayuzuBaslat()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `rgbeYukleyici`, `ortamOnbellek`, `baslangicModel` to the rest of the system?**
+- **What connects `baslangicModel`, `durum`, `rgbeYukleyici` to the rest of the system?**
   _57 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `ui.js` be split into smaller, more focused modules?**
   _Cohesion score 0.11416490486257928 - nodes in this community are weakly interconnected._

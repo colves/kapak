@@ -1,169 +1,169 @@
 {
   ".claude/launch.json": {
     "mtime": 1786012376.294641,
-    "seen": 1787843136.9936252,
+    "seen": 1787841972.7553613,
     "ast_hash": "f582d834e8508b19e7a4cc0b1f486406",
     "semantic_hash": "f582d834e8508b19e7a4cc0b1f486406"
   },
   ".claude/settings.local.json": {
     "mtime": 1786701782.3451643,
-    "seen": 1787843136.9936292,
+    "seen": 1787841972.7553658,
     "ast_hash": "e88ee5e9ffb53c2301668578e847a060",
     "semantic_hash": "e88ee5e9ffb53c2301668578e847a060"
   },
   "js/data/colors.js": {
     "mtime": 1787576289.794935,
-    "seen": 1787843136.9936333,
+    "seen": 1787841972.75537,
     "ast_hash": "83471858870cf346f25d8fe04e157930",
     "semantic_hash": ""
   },
   "js/data/colors.test.js": {
     "mtime": 1787571548.8410225,
-    "seen": 1787843136.9936342,
+    "seen": 1787841972.7553713,
     "ast_hash": "d66677c6558f7988a8417a73001ecaf4",
     "semantic_hash": ""
   },
   "js/data/models.js": {
     "mtime": 1787838103.6917553,
-    "seen": 1787843136.9936352,
+    "seen": 1787841972.755372,
     "ast_hash": "a12fc458a4f29a9348ccf55206f8ace6",
     "semantic_hash": ""
   },
   "js/data/models.test.js": {
     "mtime": 1786712585.8369837,
-    "seen": 1787843136.993636,
+    "seen": 1787841972.755373,
     "ast_hash": "33c5abf9f91a53da5177d553069f487c",
     "semantic_hash": "33c5abf9f91a53da5177d553069f487c"
   },
   "js/data/ortamlar.js": {
     "mtime": 1787670295.286168,
-    "seen": 1787843136.9936368,
+    "seen": 1787841972.7553742,
     "ast_hash": "2dd7bfc790df5bee991db629ec47627b",
     "semantic_hash": ""
   },
   "js/doorGeometry.js": {
     "mtime": 1786107590.741814,
-    "seen": 1787843136.9936378,
+    "seen": 1787841972.755375,
     "ast_hash": "8e87b128a1ae1490ae7f2ad3fc0bc652",
     "semantic_hash": "8e87b128a1ae1490ae7f2ad3fc0bc652"
   },
   "js/glbYukleyici.js": {
     "mtime": 1786193056.1001668,
-    "seen": 1787843136.993639,
+    "seen": 1787841972.7553756,
     "ast_hash": "dff9e29351133510d45be32a76e8a46e",
     "semantic_hash": "dff9e29351133510d45be32a76e8a46e"
   },
   "js/main.js": {
     "mtime": 1786012336.1542277,
-    "seen": 1787843136.9936397,
+    "seen": 1787841972.7553763,
     "ast_hash": "3313dc7a811629214b5c50003f20e0a6",
     "semantic_hash": "3313dc7a811629214b5c50003f20e0a6"
   },
   "js/materials.js": {
     "mtime": 1786012297.2530482,
-    "seen": 1787843136.9936435,
+    "seen": 1787841972.7553773,
     "ast_hash": "c9ac6e9d550d7a5feb3f14f8124e5bf5",
     "semantic_hash": "c9ac6e9d550d7a5feb3f14f8124e5bf5"
   },
   "js/ui.js": {
     "mtime": 1787841824.361961,
-    "seen": 1787843136.9936464,
+    "seen": 1787841972.7553802,
     "ast_hash": "44091c266d249a5914141c0dac82cd9b",
     "semantic_hash": ""
   },
   "js/viewer.js": {
-    "mtime": 1787843099.9892368,
-    "seen": 1787843136.993647,
-    "ast_hash": "d521be914ed806ad57be1a6ab16222a6",
+    "mtime": 1787841874.822848,
+    "seen": 1787841972.7553813,
+    "ast_hash": "90662cee411e99c3160f46e94b425b14",
     "semantic_hash": ""
   },
   "package.json": {
     "mtime": 1786012204.1800635,
-    "seen": 1787843136.993648,
+    "seen": 1787841972.755382,
     "ast_hash": "cd6adb1652ca3a63dd7f9f2e49d14d22",
     "semantic_hash": "cd6adb1652ca3a63dd7f9f2e49d14d22"
   },
   "scripts/dev-server.mjs": {
     "mtime": 1786112102.2672758,
-    "seen": 1787843136.993649,
+    "seen": 1787841972.7553828,
     "ast_hash": "43e598299c0c294c9134cb067ca4df30",
     "semantic_hash": "43e598299c0c294c9134cb067ca4df30"
   },
   "skills-lock.json": {
     "mtime": 1786701926.895397,
-    "seen": 1787843136.99365,
+    "seen": 1787841972.7553837,
     "ast_hash": "ded955d23537e5c42b47b089f50607f0",
     "semantic_hash": "ded955d23537e5c42b47b089f50607f0"
   },
   "README.md": {
     "mtime": 1786895937.937359,
-    "seen": 1787843136.9936507,
+    "seen": 1787841972.7553847,
     "ast_hash": "1e1e8b04fdaaddabddecefa71c506589",
     "semantic_hash": "1e1e8b04fdaaddabddecefa71c506589"
   },
   "docs/superpowers/plans/2026-08-06-kapak-konfiguratoru.md": {
     "mtime": 1786013933.144605,
-    "seen": 1787843136.9936526,
+    "seen": 1787841972.7553864,
     "ast_hash": "96cfb1172127aed523cc98ebc3eb9803",
     "semantic_hash": "96cfb1172127aed523cc98ebc3eb9803"
   },
   "docs/superpowers/specs/2026-08-06-kapak-konfiguratoru-design.md": {
     "mtime": 1786011381.8431613,
-    "seen": 1787843136.9936543,
+    "seen": 1787841972.7553885,
     "ast_hash": "c9eb07d071bf8f4a5e0aae17807ea608",
     "semantic_hash": "c9eb07d071bf8f4a5e0aae17807ea608"
   },
   "index.html": {
     "mtime": 1787595874.214265,
-    "seen": 1787843136.9936564,
+    "seen": 1787841972.7553902,
     "ast_hash": "d61b7168431e7b60e51509fe2a63983a",
     "semantic_hash": ""
   },
   "assets/logo.png": {
     "mtime": 1781774911.8041885,
-    "seen": 1787843136.993657,
+    "seen": 1787841972.755391,
     "ast_hash": "0780451d6b98ac123280c049a804c926",
     "semantic_hash": "0780451d6b98ac123280c049a804c926"
   },
   "assets/mini-logo.png": {
     "mtime": 1785929264.7102187,
-    "seen": 1787843136.993658,
+    "seen": 1787841972.755392,
     "ast_hash": "0d60feb8fb428ad7fc709159e2a768a3",
     "semantic_hash": "0d60feb8fb428ad7fc709159e2a768a3"
   },
   "docs/superpowers/specs/2026-08-16-renk-donguslu-anasayfa-design.md": {
     "mtime": 1786916302.8728254,
-    "seen": 1787843136.9936552,
+    "seen": 1787841972.7553892,
     "ast_hash": "c9d991086a48b27f83bda89b9c53281e",
     "semantic_hash": ""
   },
   "js/anasayfa.js": {
     "mtime": 1787599753.9321127,
-    "seen": 1787843136.9936316,
+    "seen": 1787841972.7553685,
     "ast_hash": "8c3fb96d337e5846292ae9202b3f6476",
     "semantic_hash": ""
   },
   "configurator.html": {
     "mtime": 1787841316.753284,
-    "seen": 1787843136.9936514,
+    "seen": 1787841972.7553856,
     "ast_hash": "fea26c745def6f99cfd463946b7a7b31",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-08-22-konfigurator-arayuz-yenileme.md": {
     "mtime": 1787347419.109383,
-    "seen": 1787843136.9936535,
+    "seen": 1787841972.7553873,
     "ast_hash": "54bedcbf7fd359d5590b7a6bbc6b7564",
     "semantic_hash": ""
   },
   "js/paylasim.js": {
     "mtime": 1787595302.967745,
-    "seen": 1787843136.9936445,
+    "seen": 1787841972.7553785,
     "ast_hash": "8ba3295fb272f2d39679e63121e87aaf",
     "semantic_hash": ""
   },
   "js/paylasim.test.js": {
     "mtime": 1787595325.91911,
-    "seen": 1787843136.9936454,
+    "seen": 1787841972.7553794,
     "ast_hash": "63eef5c2a052294f2723bfb4dd7e8adb",
     "semantic_hash": ""
   }
