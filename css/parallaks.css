@@ -1,61 +1,68 @@
 /* ---------------------------------------------------------------------------
-   3D PARALLAX UNFURLING GALLERY — ana sayfanın TAMAMI
+   3D PARALLAX GALERİ — ana sayfanın tamamı
 
-   21st.dev bileşeninin (React + framer-motion) birebir karşılığı, saf CSS +
-   JS ile. Bileşendeki her sayısal değer korundu; hangi Tailwind sınıfından
-   geldiği ilgili kuralın yanında yazılı.
+   21st.dev bileşeninin hareket mantığı korundu, görsel kabuğu sadeleştirildi:
+   beyaz zemin, çerçeve/kutu yok, görseller ekranın ortasında.
 
-   Sayfa bilinçli olarak KENDİ İÇİNDE kapalı: tema.css/base.css yüklenmiyor.
-   Sebep: base.css konfigüratör için html/body'ye overflow:hidden veriyor,
-   bu sayfa ise 600vh boyunca kaydırılmak zorunda — iki dosyayı çakıştırıp
-   sonra ezmek yerine bu sayfanın kendi sıfırlaması burada.
+   Sayfa bilinçli olarak KENDİ İÇİNDE kapalı (tema.css/base.css yüklenmiyor):
+   base.css konfigüratör için html/body'ye overflow:hidden veriyor, bu sayfa
+   ise 600vh boyunca kaydırılmak zorunda.
 
-   Animasyonu JS sürüyor; buradaki --pu-* değişkenleri onun yazdığı değerleri
-   okur (bkz. js/parallaks.js). Değişkenlerin varsayılanları "kaydırma
-   başlangıcı" durumudur, böylece JS çalışmadan önce de sayfa doğru görünür.
+   !! html/body'ye overflow-x:hidden KONULMAZ !!
+   Konulduğunda tarayıcı body'yi bir kaydırma konteyneri hâline getiriyor ve
+   içerideki position:sticky viewport'a tutunamıyor — sahne yapışmayıp sayfayla
+   birlikte akıp gidiyordu. Yatay taşma zaten .pu-yapiskan ve .pu-pano
+   üzerindeki overflow:hidden ile kesiliyor, ayrıca gerek yok.
+
+   Animasyonu JS sürüyor; --pu-* değişkenleri onun yazdığı değerleri okur
+   (bkz. js/parallaks.js). Varsayılanları "kaydırma başlangıcı" durumudur.
 --------------------------------------------------------------------------- */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
-    background: #050505;               /* bg-[#050505] */
-    /* Yatay taşma kesin kapalı: matris 120vw genişliğinde ve döndürülmüş. */
-    overflow-x: hidden;
+    background: #FFFFFF;
+    height: 100%;
 }
 body {
     font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-    color: #FFFFFF;
+    color: #1C1A17;
     -webkit-font-smoothing: antialiased;
 }
 
-::selection { background: #FFFFFF; color: #000000; }   /* selection:bg-white selection:text-black */
+::selection { background: #1C1A17; color: #FFFFFF; }
 
 :root {
-    /* Kaydırma başlangıcı (ilerleme = 0) */
-    --pu-pano-g: 90vw;      /* 90vw  -> 100vw */
-    --pu-pano-y: 80vh;      /* 80vh  -> 100vh */
-    --pu-pano-r: 48px;      /* 48px  -> 0     */
-    --pu-pano-k: 4px;       /* 4px   -> 0     */
-    --pu-rx: 25deg;         /* 25    -> 4     */
-    --pu-ry: -45deg;        /* -45   -> -8    */
-    --pu-rz: 15deg;         /* 15    -> 2     */
-    --pu-tz: -800px;        /* -800  -> 0     */
-    --pu-y1: 0%;            /*   0%  -> -40%  */
-    --pu-y2: -40%;          /* -40%  ->  10%  */
-    --pu-y3: 0%;            /*   0%  -> -40%  */
-    --pu-y4: -30%;          /* -30%  ->  20%  */
+    /* Kaydırma başlangıcı (ilerleme = 0).
+       Bileşenin özgün değerleri (-45deg / -800px) görselleri ekranın kenarına
+       itip ortada büyük bir boşluk bırakıyordu; açı ve derinlik, kare baştan
+       ortada ve dolu görünsün diye yumuşatıldı. */
+    /* 3B donus, kareyi ekranda saga kaydiriyor (rotateY + rotateZ +
+       perspektif birlikte). translateX bunu telafi ediyor: donusum
+       listesinde EN SOLDA durdugu icin donuslerden SONRA, duz ekran
+       uzayinda uygulaniyor — yani kareyi egmeden yatayda kaydiriyor.
+       vw biriminde cunku kayma miktari ekran genisligiyle olcekleniyor. */
+    --pu-tx: -16.5vw;       /* -16.5vw -> -1.5vw (olcumle ayarlandi) */
+    --pu-rx: 20deg;         /*  20  ->  4 */
+    --pu-ry: -30deg;        /* -30  -> -8 */
+    --pu-rz: 10deg;         /*  10  ->  2 */
+    --pu-tz: -500px;        /* -500 ->  0 */
+    --pu-y1: 0%;            /*   0% -> -40% */
+    --pu-y2: -40%;          /* -40% ->  10% */
+    --pu-y3: 0%;            /*   0% -> -40% */
+    --pu-y4: -30%;          /* -30% ->  20% */
 }
 
 /* 600vh'lik kaydırma alanı: içindeki yapışkan sahne bu yükseklik boyunca
-   ekranda kalır, ilerleme de bu mesafeye göre hesaplanır (h-[600vh]). */
+   ekranda kalır, ilerleme de bu mesafeye göre hesaplanır. */
 .pu-sahne {
     position: relative;
     width: 100%;
     height: 600vh;
-    background: #050505;
+    background: #FFFFFF;
 }
 
-.pu-yapiskan {                                  /* sticky top-0 h-screen */
+.pu-yapiskan {
     position: sticky;
     top: 0;
     height: 100vh;
@@ -67,23 +74,19 @@ body {
     overflow: hidden;
 }
 
-/* "Açılan" pano: kaydırmanın ilk %15'inde 90vw×80vh yuvarlak çerçeveli bir
-   karttan tam ekran, köşesiz bir yüzeye dönüşür. */
+/* Kutu kaldırıldı: çerçeve, yuvarlak köşe ve koyu zemin yok. Yalnızca
+   matrisi kırpan tam ekran bir sahne olarak duruyor.
+   Genişlik 100vw DEĞİL 100%: 100vw dikey kaydırma çubuğunu da sayıp
+   sayfayı yatayda birkaç piksel taşırıyor. */
 .pu-pano {
     position: relative;
-    width: var(--pu-pano-g);
-    height: var(--pu-pano-y);
-    max-width: 1920px;
-    margin: 0 auto;
-    border-radius: var(--pu-pano-r);
-    border: var(--pu-pano-k) solid #2C2738;
-    background: #000000;
+    width: 100%;
+    height: 100%;
+    background: transparent;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    will-change: width, height, border-radius;
-    backface-visibility: hidden;
 }
 
 .pu-perspektif {
@@ -96,8 +99,9 @@ body {
     pointer-events: none;
 }
 
-/* Kenar maskeleri: görsellerin ÜSTÜNDE duran içe vuran gölgeler, matrisin
-   kenarlarını karanlığa gömüp panoya derinlik veriyor. */
+/* Kenar maskeleri: görsellerin ÜSTÜNDE duran içe vuran BEYAZ gölgeler —
+   kartlar ekran kenarlarında sert bitmek yerine beyaz zemine eriyor.
+   (Özgün bileşende siyahtı; zemin beyaza döndüğü için rengi de döndü.) */
 .pu-vinyet {
     position: absolute;
     inset: 0;
@@ -105,27 +109,29 @@ body {
     pointer-events: none;
 }
 .pu-vinyet-dikey {
-    box-shadow: inset 0 100px 150px -50px rgba(0, 0, 0, 1),
-                inset 0 -100px 150px -50px rgba(0, 0, 0, 1);
+    box-shadow: inset 0 110px 150px -60px #FFFFFF,
+                inset 0 -110px 150px -60px #FFFFFF;
 }
 .pu-vinyet-yatay {
-    box-shadow: inset 150px 0 150px -50px rgba(0, 0, 0, 1),
-                inset -150px 0 150px -50px rgba(0, 0, 0, 1);
+    box-shadow: inset 150px 0 160px -60px #FFFFFF,
+                inset -150px 0 160px -60px #FFFFFF;
 }
 
-/* 3B matris: dört sütunun tamamı tek bir düzlem olarak döndürülüyor. */
+/* 3B matris: dört sütunun tamamı tek bir düzlem olarak döndürülüyor.
+   Genişlik 120vw'den 100%'e indirildi — sütunlar ekranın ortasında toplansın
+   diye (özgün genişlikte kare kenara kayıyordu). */
 .pu-matris {
     position: relative;
     z-index: 10;
     display: flex;
-    gap: 16px;                                  /* gap-4 */
+    gap: 16px;
     align-items: center;
     justify-content: center;
-    width: 120vw;
+    width: 100%;
     height: 150vh;
     transform-origin: center;
     transform-style: preserve-3d;
-    transform: rotateX(var(--pu-rx)) rotateY(var(--pu-ry)) rotateZ(var(--pu-rz)) translateZ(var(--pu-tz));
+    transform: translateX(var(--pu-tx)) rotateX(var(--pu-rx)) rotateY(var(--pu-ry)) rotateZ(var(--pu-rz)) translateZ(var(--pu-tz));
     will-change: transform;
     backface-visibility: hidden;
 }
@@ -133,7 +139,7 @@ body {
 .pu-sutun {
     display: flex;
     flex-direction: column;
-    gap: 16px;                                  /* gap-4 */
+    gap: 16px;
     width: 22vw;
     min-width: 200px;
     pointer-events: auto;
@@ -148,9 +154,9 @@ body {
 .pu-kart {
     position: relative;
     width: 100%;
-    height: 200px;                              /* h-[200px] */
+    height: 200px;
     flex-shrink: 0;
-    background: #111111;                        /* bg-[#111] */
+    background: #F1EFE8;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -164,13 +170,13 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    opacity: 0.8;
+    opacity: 0.88;
     transition: opacity 0.3s ease;
 }
 .pu-kart:hover img { opacity: 1; }
 
-@media (min-width: 640px) { .pu-kart { height: 300px; } }   /* sm:h-[300px] */
-@media (min-width: 768px) {                                  /* md:h-[400px], md:gap-6 */
+@media (min-width: 640px) { .pu-kart { height: 300px; } }
+@media (min-width: 768px) {
     .pu-kart { height: 400px; }
     .pu-matris, .pu-sutun { gap: 24px; }
 }
@@ -178,13 +184,12 @@ body {
 /* Dokunmatikte hover "takılı" kalabiliyor — kapatıldı. */
 @media (pointer: coarse) {
     .pu-kart:hover { transform: none; }
-    .pu-kart:hover img { opacity: 0.8; }
+    .pu-kart:hover img { opacity: 0.88; }
 }
 
 /* Hareket hassasiyeti: 600vh boyunca dönen 3B bir düzlem tam olarak
    rahatsızlık yaratan hareket türü. Bu tercihte sahne tek ekrana iner,
-   matris düz ve sabit durur, sayfa sıradan bir ızgara gibi kaydırılır.
-   (JS de bu tercihi görüp animasyonu hiç başlatmıyor.) */
+   matris düz ve sabit durur. (JS de animasyonu hiç başlatmıyor.) */
 @media (prefers-reduced-motion: reduce) {
     .pu-sahne { height: 100vh; height: 100dvh; }
     .pu-kart { transition: none; }

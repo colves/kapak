@@ -96,28 +96,23 @@ function matrisiKur() {
 
 const kis = (d, alt, ust) => Math.min(Math.max(d, alt), ust);
 const karistir = (a, b, t) => a + (b - a) * t;
-// framer-motion useTransform'un varsayılanı gibi: aralık dışında KIRPILIR.
-const aralik = (p, bas, son) => kis((p - bas) / (son - bas), 0, 1);
 
 function donusumleriYaz(p) {
     const kok = document.documentElement.style;
-    // Panonun açılması: ilerlemenin ilk %15'i
-    const a = aralik(p, 0, 0.15);
-    kok.setProperty('--pu-pano-g', `${karistir(90, 100, a).toFixed(2)}vw`);
-    kok.setProperty('--pu-pano-y', `${karistir(80, 100, a).toFixed(2)}vh`);
-    kok.setProperty('--pu-pano-r', `${karistir(48, 0, a).toFixed(1)}px`);
-    kok.setProperty('--pu-pano-k', `${karistir(4, 0, a).toFixed(2)}px`);
-
-    // Matrisin düzleşmesi ve sütun kayması: kalan %85
-    const b = aralik(p, 0.15, 1);
-    kok.setProperty('--pu-rx', `${karistir(25, 4, b).toFixed(2)}deg`);
-    kok.setProperty('--pu-ry', `${karistir(-45, -8, b).toFixed(2)}deg`);
-    kok.setProperty('--pu-rz', `${karistir(15, 2, b).toFixed(2)}deg`);
-    kok.setProperty('--pu-tz', `${karistir(-800, 0, b).toFixed(1)}px`);
-    kok.setProperty('--pu-y1', `${karistir(0, -40, b).toFixed(2)}%`);
-    kok.setProperty('--pu-y2', `${karistir(-40, 10, b).toFixed(2)}%`);
-    kok.setProperty('--pu-y3', `${karistir(0, -40, b).toFixed(2)}%`);
-    kok.setProperty('--pu-y4', `${karistir(-30, 20, b).toFixed(2)}%`);
+    // Kutu kaldirildigi icin ayri bir "acilma" evresi yok: matris ve sutunlar
+    // kaydirmanin TAMAMINA (0 -> 1) yayiliyor, boylece ilk %15 bos gecmiyor.
+    // Yay hedefi hafifce asabilir; kirpilmazsa aci/derinlik sinirlarin disina
+    // tasar (ornegin rotateY -30'un otesine gider) ve sicrama gorunur.
+    const t = kis(p, 0, 1);
+    kok.setProperty('--pu-tx', `${karistir(-16.5, -1.5, t).toFixed(2)}vw`);
+    kok.setProperty('--pu-rx', `${karistir(20, 4, t).toFixed(2)}deg`);
+    kok.setProperty('--pu-ry', `${karistir(-30, -8, t).toFixed(2)}deg`);
+    kok.setProperty('--pu-rz', `${karistir(10, 2, t).toFixed(2)}deg`);
+    kok.setProperty('--pu-tz', `${karistir(-500, 0, t).toFixed(1)}px`);
+    kok.setProperty('--pu-y1', `${karistir(0, -40, t).toFixed(2)}%`);
+    kok.setProperty('--pu-y2', `${karistir(-40, 10, t).toFixed(2)}%`);
+    kok.setProperty('--pu-y3', `${karistir(0, -40, t).toFixed(2)}%`);
+    kok.setProperty('--pu-y4', `${karistir(-30, 20, t).toFixed(2)}%`);
 }
 
 function hamIlerleme(sahne) {
