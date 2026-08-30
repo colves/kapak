@@ -1,0 +1,685 @@
+import { idIleRenkBul, tonAilesindekiRenkler, doluTonAileleri } from './data/colors.js';
+import { KAPAK_MODELLERI, idIleModelBul } from './data/models.js';
+import { ORTAM_SECENEKLERI, varsayilanOrtami, idIleOrtamBul } from './data/ortamlar.js';
+import { sahneyiBaslat, kapagiGuncelle, goruntuyuSifirla, ortamiDegistir, kareyiDikeyKaydir } from './viewer.js';
+import { durumuSorguyaKodla, sorgudanDurumCoz, paylasimAdresiOlustur } from './paylasim.js';
+
+// Başlangıç ölçüleri sabit sayı olarak DEĞİL, modelin kendi varsayılanından
+// türetiliyor — tek kaynak models.js'teki varsayilan alanı. Önceden burada
+// bağımsız bir 480×717 sabiti vardı ve models.js'in 450×720 varsayılanıyla
+// hiç eşleşmiyordu (model değiştirince de düzelmiyordu — bkz. aşağıdaki
+// olculeriVarsayilanaSifirla).
+const BASLANGIC_MODEL_ID = 'hk-012-001';
+const baslangicModel = idIleModelBul(BASLANGIC_MODEL_ID);
+
+const durum = {
+    modelId: BASLANGIC_MODEL_ID,
+    genislik: baslangicModel.varsayilan.genislik,
+    yukseklik: baslangicModel.varsayilan.yukseklik,
+    kalinlik: baslangicModel.varsayilan.kalinlik,
+    renkId: 'lake-ral-9016',
+    tonAilesi: 'tumu',
+    ortamId: null
+};
+
+let guncellemeBekliyor = false;
+
+/* ---------------- Sahneyi durumla eşitle ---------------- */
+
+function guncellemeyiUygula() {
+    const model = idIleModelBul(durum.modelId);
+    const renk = idIleRenkBul(durum.renkId);
+    const efektifKalinlik = model.kalinlikAyarlanabilir ? durum.kalinlik : 18;
+    kapagiGuncelle(durum.modelId, durum.genislik, durum.yukseklik, efektifKalinlik, renk, model.gltfUrl, model.glbIcerikDonusu);
+
+    const olcuEl = document.getElementById('boyut-metni');
+    if (olcuEl) olcuEl.textContent = `${durum.genislik} × ${durum.yukseklik} mm`;
+
+    const modelEl = document.getElementById('secim-model');
+    if (modelEl) modelEl.textContent = model.isim;
+
+    const renkMetinEl = document.getElementById('secim-renk-metin');
+    if (renkMetinEl) renkMetinEl.textContent = `${renk.isim} · ${renk.kod}`;
+
+    const renkNoktaEl = document.getElementById('secim-renk-nokta');
+    if (renkNoktaEl) renkNoktaEl.style.background = hexMetni(renk);
+
+    // Renk/Boyut tuşlarının kendi üzerlerindeki değer — durum çubuğuyla AYNI
+    // kaynaktan, tek yerden güncelleniyor (bkz. yukarıdaki durum çubuğu
+    // satırları), her iki durum değişikliğinde de otomatik senkron kalır.
+    const renkSeciciAdEl = document.getElementById('renk-secici-ad');
+    if (renkSeciciAdEl) renkSeciciAdEl.textContent = renk.kod;
+    const renkSeciciNoktaEl = document.getElementById('renk-secici-nokta');
+    if (renkSeciciNoktaEl) renkSeciciNoktaEl.style.background = hexMetni(renk);
+    const boyutSeciciAdEl = document.getElementById('boyut-secici-ad');
+    if (boyutSeciciAdEl) boyutSeciciAdEl.textContent = `${durum.genislik}×${durum.yukseklik}`;
+
+    urliDurumaEsitle();
+}
+
+// Slider sürüklemesi gibi hızlı ardışık olayları tek bir kareye toplar.
+function goruntuGuncellemesiPlanla() {
+    if (guncellemeBekliyor) return;
+    guncellemeBekliyor = true;
+    let calisti = false;
+    const calistir = () => {
+        if (calisti) return;
+        calisti = true;
+        guncellemeBekliyor = false;
+        guncellemeyiUygula();
+    };
+    requestAnimationFrame(calistir);
+    // requestAnimationFrame sekme arka plandayken hiç tetiklenmeyebilir — bu
+    // durumda guncellemeBekliyor sonsuza dek true kalıp TÜM değişiklikleri
+    // kilitler. Güvenlik amaçlı yedek zamanlayıcı.
+    setTimeout(calistir, 200);
+}
+
+function hexMetni(renk) {
+    return `#${renk.hex.toString(16).padStart(6, '0')}`;
+}
+
+/* ---------------- URL ile paylaşım ----------------
+   Konfigürasyon adres çubuğunda yaşar: müşteri linki kopyalayıp satıcıya
+   gönderebilir, sayfayı yenilese de seçimi kaybolmaz. */
+
+function urliDurumaEsitle() {
+    const sorgu = durumuSorguyaKodla(durum);
+    // replaceState: her slider hareketinde tarayıcı geçmişine yeni kayıt
+    // eklenmesin, geri tuşu konfigüratörde tıkanmasın.
+    window.history.replaceState(null, '', `${window.location.pathname}${sorgu}`);
+}
+
+function urldenDurumuYukle() {
+    const cozulen = sorgudanDurumCoz(window.location.search, {
+        modelGecerliMi: (id) => Boolean(idIleModelBul(id)),
+        renkGecerliMi: (id) => Boolean(idIleRenkBul(id)),
+        ortamGecerliMi: (id) => Boolean(idIleOrtamBul(id))
+    });
+    Object.assign(durum, cozulen);
+
+    // Linkten gelen renk hangi ailedeyse süzgeç de o aileyle açılsın —
+    // müşteri paylaşılan rengi ızgarada seçili hâlde görsün.
+    const renk = idIleRenkBul(durum.renkId);
+    if (cozulen.renkId && renk) durum.tonAilesi = renk.tonAilesi;
+}
+
+function bildir(mesaj) {
+    const el = document.getElementById('bildirim');
+    if (!el) return;
+    el.textContent = mesaj;
+    el.classList.add('gorunur');
+    clearTimeout(bildir._zamanlayici);
+    bildir._zamanlayici = setTimeout(() => el.classList.remove('gorunur'), 2600);
+}
+
+function paylasButonunuKur() {
+    const btn = document.getElementById('btn-paylas');
+    if (!btn) return;
+    btn.addEventListener('click', async () => {
+        const adres = paylasimAdresiOlustur(
+            `${window.location.origin}${window.location.pathname}`, durum);
+        try {
+            await navigator.clipboard.writeText(adres);
+            bildir('Konfigürasyon linki kopyalandı');
+        } catch {
+            // Pano izni yoksa/güvenli bağlam değilse: link zaten adres
+            // çubuğunda duruyor, kullanıcıyı oraya yönlendir.
+            bildir('Link adres çubuğunda — kopyalamak için oradan seçin');
+        }
+    });
+}
+
+/* ---------------- Model seçici (sahnenin üstünde, ayrı bölge) ----------------
+   Yatay bir şerit YOK: modeller çoğaldıkça (kullanıcı talebi: "ilerde 10larca
+   kapak eklenince orası çok gereksiz dolar") sabit boyutlu tek bir buton +
+   aranabilir galeri modalı kullanılıyor. Buton her zaman aynı yeri kaplar,
+   model sayısı 3 de olsa 300 de olsa. */
+
+function modelSeciciMetniniGuncelle() {
+    const model = idIleModelBul(durum.modelId);
+    const el = document.getElementById('model-secici-ad');
+    if (el) el.textContent = model.kisaIsim || model.isim;
+}
+
+function modelGaleriKartiOlustur(model) {
+    const kart = document.createElement('button');
+    kart.type = 'button';
+    const secili = model.id === durum.modelId;
+    kart.className = 'model-galeri-kart' + (secili ? ' aktif' : '');
+    kart.setAttribute('aria-pressed', String(secili));
+    kart.dataset.modelId = model.id;
+
+    const gorselHtml = model.gorselUrl
+        ? `<img src="${model.gorselUrl}" alt="${model.isim}" class="model-galeri-kart-gorsel">`
+        : `<div class="model-galeri-kart-yer-tutucu" aria-hidden="true">
+               <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                   <rect x="4" y="2" width="16" height="20" rx="1.5"></rect>
+                   <rect x="7" y="5" width="10" height="14" rx="0.8"></rect>
+               </svg>
+           </div>`;
+
+    kart.innerHTML = `${gorselHtml}<span class="model-galeri-kart-ad">${model.isim}</span>`;
+    kart.addEventListener('click', () => {
+        if (durum.modelId !== model.id) {
+            durum.modelId = model.id;
+            const m = idIleModelBul(model.id);
+            olculeriVarsayilanaSifirla(m);
+            kalinlikAlanininGorunurlugunuGuncelle(m);
+            olculeriModelLimitlerineSabitle(m);
+            modelSeciciMetniniGuncelle();
+            goruntuGuncellemesiPlanla();
+        }
+        modelGalerisiniKapat();
+    });
+    return kart;
+}
+
+function modelGalerisiniCiz(arama) {
+    const izgara = document.getElementById('model-galeri-izgara');
+    izgara.innerHTML = '';
+    const s = (arama || '').trim().toLocaleLowerCase('tr');
+    const sonuclar = s
+        ? KAPAK_MODELLERI.filter(m => m.isim.toLocaleLowerCase('tr').includes(s) || (m.kisaIsim || '').toLocaleLowerCase('tr').includes(s))
+        : KAPAK_MODELLERI;
+
+    if (sonuclar.length === 0) {
+        const bos = document.createElement('p');
+        bos.className = 'model-galeri-bos';
+        bos.textContent = `"${arama}" ile eşleşen model yok.`;
+        izgara.appendChild(bos);
+        return;
+    }
+    sonuclar.forEach(model => izgara.appendChild(modelGaleriKartiOlustur(model)));
+}
+
+function modelGalerisiniAc() {
+    document.getElementById('model-galerisi').classList.remove('gizli');
+    modelGalerisiniCiz('');
+    const arama = document.getElementById('model-galeri-arama');
+    arama.value = '';
+    arama.focus();
+}
+
+function modelGalerisiniKapat() {
+    document.getElementById('model-galerisi').classList.add('gizli');
+    document.getElementById('model-secici').focus();
+}
+
+function modelSeciciyiKur() {
+    modelSeciciMetniniGuncelle();
+    document.getElementById('model-secici').addEventListener('click', modelGalerisiniAc);
+    document.getElementById('model-galeri-kapat').addEventListener('click', modelGalerisiniKapat);
+    document.getElementById('model-galeri-arama').addEventListener('input', (e) => modelGalerisiniCiz(e.target.value));
+    const katman = document.getElementById('model-galerisi');
+    katman.addEventListener('click', (e) => { if (e.target === katman) modelGalerisiniKapat(); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !katman.classList.contains('gizli')) modelGalerisiniKapat();
+    });
+}
+
+/* ---------------- Renk: ton ailesi süzgeci + ızgara ----------------
+   Eskiden Açık/Koyu diye iki kaba grup + ayrı bir "tüm renkler" modalı vardı.
+   77 renkte bu yetersiz kaldı; artık RAL'in kendi ton aileleri süzgeç,
+   ızgara da doğrudan rayda kaydırılabilir — modal round-trip'i kalktı. */
+
+function tonAileleriniKur() {
+    const kapsayici = document.getElementById('ton-aileleri');
+    kapsayici.innerHTML = '';
+    doluTonAileleri().forEach(aile => {
+        const adet = tonAilesindekiRenkler(aile.anahtar).length;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        const aktif = aile.anahtar === durum.tonAilesi;
+        btn.className = 'ton-cip' + (aktif ? ' aktif' : '');
+        btn.setAttribute('aria-pressed', String(aktif));
+        btn.dataset.aile = aile.anahtar;
+        btn.innerHTML = `${aile.etiket}<span class="ton-cip-sayi">${adet}</span>`;
+        btn.addEventListener('click', () => {
+            durum.tonAilesi = aile.anahtar;
+            kapsayici.querySelectorAll('.ton-cip').forEach(b => {
+                const a = b === btn;
+                b.classList.toggle('aktif', a);
+                b.setAttribute('aria-pressed', String(a));
+            });
+            renkIzgarasiniCiz();
+        });
+        kapsayici.appendChild(btn);
+    });
+}
+
+function renkButonuOlustur(renk) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    const secili = renk.id === durum.renkId;
+    btn.className = 'renk-btn' + (secili ? ' aktif' : '');
+    btn.setAttribute('aria-label', `${renk.isim}, ${renk.kod}`);
+    btn.setAttribute('aria-pressed', String(secili));
+    btn.setAttribute('title', `${renk.isim} · ${renk.kod}`);
+    btn.dataset.renkId = renk.id;
+    btn.innerHTML = `
+        <span class="renk-yuzey" style="background:${hexMetni(renk)}">
+            <span class="renk-onay" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+        </span>
+        <span class="renk-kod">${renk.kod}</span>
+    `;
+    btn.addEventListener('click', () => renkSecildi(renk));
+    return btn;
+}
+
+function renkSecildi(renk) {
+    durum.renkId = renk.id;
+    document.querySelectorAll('.renk-btn').forEach(b => {
+        const aktif = b.dataset.renkId === renk.id;
+        b.classList.toggle('aktif', aktif);
+        b.setAttribute('aria-pressed', String(aktif));
+    });
+    goruntuGuncellemesiPlanla();
+}
+
+function renkIzgarasiniCiz() {
+    const izgara = document.getElementById('renk-izgara');
+    const renkler = tonAilesindekiRenkler(durum.tonAilesi);
+    izgara.innerHTML = '';
+    renkler.forEach((renk, i) => {
+        const btn = renkButonuOlustur(renk);
+        // Süzgeç değişince kartlar kademeli belirsin diye (bkz. base.css
+        // .renk-btn animasyonu) — her karta kendi sırasını yazıyoruz.
+        btn.style.setProperty('--i', i);
+        izgara.appendChild(btn);
+    });
+
+    const aile = doluTonAileleri().find(a => a.anahtar === durum.tonAilesi);
+
+    const sayiEl = document.getElementById('renk-sayisi');
+    if (sayiEl) {
+        const aileAdi = aile && aile.anahtar !== 'tumu' ? ` · ${aile.etiket}` : '';
+        sayiEl.textContent = `${renkler.length} ton${aileAdi}`;
+    }
+
+    // Bölüm başlığındaki meta: seçili aile RAL'in kendi serisiyle etiketlensin
+    // — müşteri katalogdan biliyorsa "1000 serisi" gibi bir ibareyi tanır ve
+    // Lake/RAL'e baktığını anında görür (kullanıcı talebi).
+    const metaEl = document.getElementById('renk-bolum-meta');
+    if (metaEl) {
+        metaEl.textContent = (aile && aile.seri) ? `Lake · RAL ${aile.seri} Serisi` : 'Lake · RAL';
+    }
+}
+
+/* ---------------- Ölçü kontrolleri ---------------- */
+
+function kalinlikAlanininGorunurlugunuGuncelle(model) {
+    const alan = document.getElementById('kalinlik-alani');
+    if (alan) alan.style.display = model.kalinlikAyarlanabilir ? '' : 'none';
+}
+
+// Kaydırıcının dolu kısmını marka renginde göstermek için yüzdeyi CSS'e taşır.
+function kaydiriciDolgusunuGuncelle(slider) {
+    const min = Number(slider.min), max = Number(slider.max), deger = Number(slider.value);
+    const oran = max > min ? ((deger - min) / (max - min)) * 100 : 0;
+    slider.style.setProperty('--dolgu', `${oran}%`);
+}
+
+function aralikEtiketiniGuncelle(id, slider) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = `<span>${slider.min}</span><span>${slider.max}</span>`;
+}
+
+// Model değiştirilirken (galeriden yeni bir kapak seçilirken) çağrılır:
+// önceki modeldeki ölçüyü yeni modelin sınırına KIRPMAK yerine, yeni modelin
+// KENDİ varsayılanına döner — "her kapağı açtığında otomatik 450×720 default
+// olsun" isteği. Sayfa ilk açılışında (URL'den paylaşılan bir ölçü gelmiş
+// olabilir) bu ÇAĞRILMAZ; durum zaten yukarıda ilk modelin varsayılanıyla
+// kuruluyor ve urldenDurumuYukle onu gerekirse ezer.
+function olculeriVarsayilanaSifirla(model) {
+    durum.genislik = model.varsayilan.genislik;
+    durum.yukseklik = model.varsayilan.yukseklik;
+    durum.kalinlik = model.varsayilan.kalinlik;
+}
+
+function olculeriModelLimitlerineSabitle(model) {
+    const g = document.getElementById('slider-genislik');
+    const y = document.getElementById('slider-yukseklik');
+    g.min = model.limitler.genislik.min; g.max = model.limitler.genislik.max;
+    y.min = model.limitler.yukseklik.min; y.max = model.limitler.yukseklik.max;
+    durum.genislik = Math.min(Math.max(durum.genislik, model.limitler.genislik.min), model.limitler.genislik.max);
+    durum.yukseklik = Math.min(Math.max(durum.yukseklik, model.limitler.yukseklik.min), model.limitler.yukseklik.max);
+    g.value = durum.genislik; y.value = durum.yukseklik;
+    document.getElementById('girdi-genislik').value = durum.genislik;
+    document.getElementById('girdi-yukseklik').value = durum.yukseklik;
+    kaydiriciDolgusunuGuncelle(g);
+    kaydiriciDolgusunuGuncelle(y);
+    aralikEtiketiniGuncelle('genislik-aralik', g);
+    aralikEtiketiniGuncelle('yukseklik-aralik', y);
+
+    if (model.kalinlikAyarlanabilir && model.limitler.kalinlik) {
+        const k = document.getElementById('slider-kalinlik');
+        k.min = model.limitler.kalinlik.min; k.max = model.limitler.kalinlik.max;
+        durum.kalinlik = Math.min(Math.max(durum.kalinlik, model.limitler.kalinlik.min), model.limitler.kalinlik.max);
+        k.value = durum.kalinlik;
+        document.getElementById('girdi-kalinlik').value = durum.kalinlik;
+        kaydiriciDolgusunuGuncelle(k);
+    }
+}
+
+function olcuKontrolleriniKur() {
+    const eslesmeler = [
+        ['slider-genislik', 'girdi-genislik', 'genislik'],
+        ['slider-yukseklik', 'girdi-yukseklik', 'yukseklik'],
+        ['slider-kalinlik', 'girdi-kalinlik', 'kalinlik']
+    ];
+    eslesmeler.forEach(([sliderId, girdiId, alan]) => {
+        const slider = document.getElementById(sliderId);
+        const girdi = document.getElementById(girdiId);
+        slider.addEventListener('input', () => {
+            durum[alan] = Number(slider.value);
+            girdi.value = slider.value;
+            kaydiriciDolgusunuGuncelle(slider);
+            goruntuGuncellemesiPlanla();
+        });
+        girdi.addEventListener('change', () => {
+            let deger = Number(girdi.value);
+            const min = Number(slider.min), max = Number(slider.max);
+            if (!Number.isFinite(deger)) deger = durum[alan];
+            deger = Math.min(Math.max(deger, min), max);
+            girdi.value = deger;
+            slider.value = deger;
+            durum[alan] = deger;
+            kaydiriciDolgusunuGuncelle(slider);
+            goruntuGuncellemesiPlanla();
+        });
+        kaydiriciDolgusunuGuncelle(slider);
+    });
+}
+
+/* ---------------- Renk / Boyut panelleri aç-kapa ----------------
+   Işık tuşuyla AYNI desen (kendi tuşu, panel tuşun üstünde açılır, dışına
+   tıklayınca/Esc'te kapanır) — Renk ve Boyut artık birbirinden ve Işık'tan
+   tamamen BAĞIMSIZ iki ayrı kontrol, eskiden ortak tek bir rayda birleşikti. */
+
+function acilirPaneliKur(btnId, panelId) {
+    const btn = document.getElementById(btnId);
+    const panel = document.getElementById(panelId);
+    if (!btn || !panel) return;
+
+    const acKapa = (ac) => {
+        const acilacak = ac === undefined ? panel.classList.contains('gizli') : ac;
+        if (acilacak) digerSeciciPanelleriniKapat(btnId);
+        panel.classList.toggle('gizli', !acilacak);
+        btn.classList.toggle('acik', acilacak);
+        btn.setAttribute('aria-expanded', String(acilacak));
+    };
+
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        acKapa();
+    });
+    // Panelin İÇİNE tıklamak onu kapatmamalı.
+    panel.addEventListener('click', (e) => e.stopPropagation());
+    document.addEventListener('click', () => acKapa(false));
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !panel.classList.contains('gizli')) {
+            acKapa(false);
+            btn.focus();
+        }
+    });
+}
+
+function renkPaneliniKur() { acilirPaneliKur('btn-renk', 'renk-panel'); }
+function boyutPaneliniKur() { acilirPaneliKur('btn-boyut', 'boyut-panel'); }
+
+/* ---------------- Işık (stüdyo HDR) ----------------
+   Sahne araç çubuğundaki kendi tuşundan açılan bir panel. Eskiden ayar rayının
+   EN ALTINDAYDI ve 77 rengin + 3 kaydırıcının arkasında kaldığı için pratikte
+   bulunamıyordu (ölçüldü: panelin görünür alanı 1000px'te biterken Işık
+   940px'te başlıyordu). Modal değil açılır panel: sahne görünür kalmalı ki
+   10 ortam canlı karşılaştırılabilsin. Seçim URL'e de yazılır (paylasim.js
+   'o' parametresi). */
+
+function isikSeciciMetniniGuncelle() {
+    const ortam = idIleOrtamBul(durum.ortamId);
+    const el = document.getElementById('isik-secici-ad');
+    if (el && ortam) el.textContent = ortam.isim;
+}
+
+function isikSatiriDurumunuGuncelle(satir, durumMetni) {
+    const el = satir.querySelector('.isik-durum');
+    if (!el) return;
+    if (durumMetni === 'yukleniyor') {
+        el.innerHTML = '<span class="isik-donen" aria-hidden="true"></span>';
+    } else if (durumMetni === 'aktif') {
+        el.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+    } else {
+        el.innerHTML = '';
+    }
+}
+
+function isikSecildi(ortam, satir) {
+    if (durum.ortamId === ortam.id) return;
+    isikSatiriDurumunuGuncelle(satir, 'yukleniyor');
+    ortamiDegistir(ortam.dosya).then(() => {
+        durum.ortamId = ortam.id;
+        document.querySelectorAll('.isik-satir').forEach(s => {
+            const aktif = s === satir;
+            s.classList.toggle('aktif', aktif);
+            s.setAttribute('aria-pressed', String(aktif));
+            isikSatiriDurumunuGuncelle(s, aktif ? 'aktif' : '');
+        });
+        isikSeciciMetniniGuncelle();
+        urliDurumaEsitle();
+    });
+}
+
+function isikSatiriOlustur(ortam) {
+    const satir = document.createElement('button');
+    satir.type = 'button';
+    const aktif = ortam.id === durum.ortamId;
+    satir.className = 'isik-satir' + (aktif ? ' aktif' : '');
+    satir.setAttribute('aria-pressed', String(aktif));
+    satir.dataset.ortamId = ortam.id;
+    satir.innerHTML = `
+        <span class="isik-metin">
+            <span class="isik-ad">${ortam.isim}</span>
+            <span class="isik-aciklama">${ortam.aciklama}</span>
+        </span>
+        <span class="isik-durum"></span>
+    `;
+    isikSatiriDurumunuGuncelle(satir, aktif ? 'aktif' : '');
+    satir.addEventListener('click', () => isikSecildi(ortam, satir));
+    return satir;
+}
+
+// Renk/Boyut/Işık artık üç BAĞIMSIZ tuş+panel — ama aynı anda ikisi açık
+// kalırsa (biri açıkken diğerine tıklanınca) sahne dağınık görünür. Biri
+// açılırken ötekiler kendiliğinden kapansın diye ortak bir liste üzerinden
+// birbirlerini kapatıyorlar. Tuşun kendi tıklaması stopPropagation ile
+// document'e ULAŞMADIĞI için "dışına tıklayınca kapan" mekanizması burada
+// işe yaramaz — açılış anında AÇIKÇA çağrılması gerekiyor.
+function digerSeciciPanelleriniKapat(haricBtnId) {
+    [['btn-isik', 'isik-panel'], ['btn-renk', 'renk-panel'], ['btn-boyut', 'boyut-panel']].forEach(([bId, pId]) => {
+        if (bId === haricBtnId) return;
+        const b = document.getElementById(bId), p = document.getElementById(pId);
+        if (!b || !p || p.classList.contains('gizli')) return;
+        p.classList.add('gizli');
+        b.classList.remove('acik');
+        b.setAttribute('aria-expanded', 'false');
+    });
+}
+
+function isikPaneliniAcKapa(ac) {
+    const panel = document.getElementById('isik-panel');
+    const btn = document.getElementById('btn-isik');
+    if (!panel || !btn) return;
+    const acilacak = ac === undefined ? panel.classList.contains('gizli') : ac;
+    if (acilacak) digerSeciciPanelleriniKapat('btn-isik');
+    panel.classList.toggle('gizli', !acilacak);
+    btn.classList.toggle('acik', acilacak);
+    btn.setAttribute('aria-expanded', String(acilacak));
+}
+
+function isikPaneliniKur() {
+    // Tek ortam kaldığında seçici anlamsız: tek seçenekli bir açılır liste
+    // sadece görsel gürültü. Kod SİLİNMİYOR — ortamlar.js'e yeniden HDR
+    // eklendiği anda tuş kendiliğinden geri gelir. Işık yine de yükleniyor,
+    // yalnızca seçim arayüzü gizli.
+    const tekOrtam = ORTAM_SECENEKLERI.length <= 1;
+    const sarmal = document.querySelector('.isik-sarmal');
+    if (tekOrtam && sarmal) sarmal.style.display = 'none';
+
+    const liste = document.getElementById('isik-listesi');
+    if (!tekOrtam && liste) {
+        liste.innerHTML = '';
+        ORTAM_SECENEKLERI.forEach(ortam => liste.appendChild(isikSatiriOlustur(ortam)));
+    }
+
+    const btn = document.getElementById('btn-isik');
+    const panel = document.getElementById('isik-panel');
+    if (!tekOrtam && btn && panel) {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            isikPaneliniAcKapa();
+        });
+        // Panelin İÇİNE tıklamak onu kapatmamalı (ortam seçmek panelde kalır,
+        // müşteri sırayla deneyip karşılaştırabilsin).
+        panel.addEventListener('click', (e) => e.stopPropagation());
+        document.addEventListener('click', () => isikPaneliniAcKapa(false));
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !panel.classList.contains('gizli')) {
+                isikPaneliniAcKapa(false);
+                btn.focus();
+            }
+        });
+    }
+
+    // Açılışta: URL'den geçerli bir ortam geldiyse onu, yoksa varsayılanı yükle.
+    const hedef = (durum.ortamId && idIleOrtamBul(durum.ortamId)) || varsayilanOrtami();
+    const satir = liste ? liste.querySelector(`[data-ortam-id="${hedef.id}"]`) : null;
+    if (satir) isikSatiriDurumunuGuncelle(satir, 'yukleniyor');
+    ortamiDegistir(hedef.dosya).then(() => {
+        durum.ortamId = hedef.id;
+        if (satir) {
+            satir.classList.add('aktif');
+            satir.setAttribute('aria-pressed', 'true');
+            isikSatiriDurumunuGuncelle(satir, 'aktif');
+        }
+        isikSeciciMetniniGuncelle();
+        urliDurumaEsitle();
+    });
+}
+
+function sifirlaButonuKur() {
+    const btn = document.getElementById('btn-sifirla');
+    if (btn) btn.addEventListener('click', goruntuyuSifirla);
+}
+
+function indirButonunuKur() {
+    const btn = document.getElementById('btn-indir');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+        const canvas = document.querySelector('#canvas-kapsayici canvas');
+        if (!canvas) return;
+        canvas.toBlob(async (blob) => {
+            if (!blob) return;
+            const renk = idIleRenkBul(durum.renkId);
+            const model = idIleModelBul(durum.modelId);
+            const modelAdi = (model ? model.kisaIsim : durum.modelId).replace(/\s+/g, '');
+            const dosyaAdi = `sahinkaya-kapak-${modelAdi}-${renk.kod.replace(/\s+/g, '')}-${durum.genislik}x${durum.yukseklik}.png`;
+
+            if (navigator.canShare) {
+                const dosya = new File([blob], dosyaAdi, { type: 'image/png' });
+                if (navigator.canShare({ files: [dosya] })) {
+                    try {
+                        await navigator.share({ files: [dosya], title: 'Şahinkaya Kapak Konfigürasyonu' });
+                        return;
+                    } catch {
+                        // Kullanıcı paylaşımı iptal etti veya desteklenmiyor — indirmeye düş.
+                    }
+                }
+            }
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = dosyaAdi;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+        }, 'image/png');
+    });
+}
+
+function tamEkranButonuKur() {
+    const btn = document.getElementById('btn-tam-ekran');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+            document.exitFullscreen();
+        }
+    });
+}
+
+/* ---------------- Kapağın dikey çerçevelemesi ----------------
+   Sahnenin üstünde (Model tuşu) ve altında (Renk/Boyut/Işık/Sıfırla + durum
+   çubuğu) yüzen UI, iki taraftan FARKLI kalınlıkta boşluk kaplıyor — kapak
+   canvas'ın tam ortasında kalırsa ekranda simetrik durmuyor (ölçüldü: alt
+   küme üstteki tek düğmeden belirgin daha kalın, özellikle dar ekranda araç
+   satırı iki satıra kırılınca). Kapağın kendisi değil, kameranın baktığı
+   nokta kaydırılıyor (bkz. viewer.js kareyiDikeyKaydir) — bu yüzden gereken
+   piksel miktarı burada, gerçek DOM ölçülerinden hesaplanıyor. */
+function dikeyKaydirmayiUygula() {
+    const canvas = document.querySelector('#canvas-kapsayici canvas');
+    const ustSinir = document.getElementById('model-secici');
+    const altSinir = document.querySelector('.sahne-araclari');
+    if (!canvas || !ustSinir || !altSinir) return;
+    const c = canvas.getBoundingClientRect();
+    if (!c.height) return;
+    const canvasMerkezi = (c.top + c.bottom) / 2;
+    const kullanilabilirMerkez = (ustSinir.getBoundingClientRect().bottom + altSinir.getBoundingClientRect().top) / 2;
+    kareyiDikeyKaydir(canvasMerkezi - kullanilabilirMerkez);
+}
+
+let dikeyKaydirmaZamanlayici = null;
+function dikeyKaydirmayiPlanla() {
+    clearTimeout(dikeyKaydirmaZamanlayici);
+    // requestAnimationFrame değil setTimeout: CSS geçişleri (rayın/panelin
+    // açılıp kapanması) bittikten sonra son, DOĞRU boyutları ölçmesi gerekiyor.
+    dikeyKaydirmaZamanlayici = setTimeout(dikeyKaydirmayiUygula, 150);
+}
+
+/* ---------------- Başlangıç ---------------- */
+
+export function arayuzuBaslat() {
+    // Paylaşılan link varsa önce onu uygula — sahne ve tüm kontroller doğrudan
+    // o durumla kurulsun, açılıştan sonra ikinci bir güncellemeye gerek kalmasın.
+    urldenDurumuYukle();
+
+    sahneyiBaslat('canvas-kapsayici');
+
+    modelSeciciyiKur();
+    tonAileleriniKur();
+    renkIzgarasiniCiz();
+    olcuKontrolleriniKur();
+    renkPaneliniKur();
+    boyutPaneliniKur();
+    isikPaneliniKur();
+    sifirlaButonuKur();
+    paylasButonunuKur();
+    indirButonunuKur();
+    tamEkranButonuKur();
+
+    const model = idIleModelBul(durum.modelId);
+    kalinlikAlanininGorunurlugunuGuncelle(model);
+    olculeriModelLimitlerineSabitle(model);
+    guncellemeyiUygula();
+
+    // İlk ölçüm bir kare sonraya bırakılıyor — sahne az önce kuruldu, canvas
+    // henüz gerçek boyutuna oturmamış olabilir (bkz. viewer.js'teki
+    // ResizeObserver notu: konteyner ilk yüklemede kısa süre 0x0 kalabiliyor).
+    requestAnimationFrame(dikeyKaydirmayiPlanla);
+    window.addEventListener('resize', dikeyKaydirmayiPlanla);
+}

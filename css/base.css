@@ -1,0 +1,868 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ---- Tasarım tokenları ----
+   Konfigüratör kabuğunun tüm boşluk/köşe/katman/tipografi değerleri bu
+   ölçeklerden gelir — dağınık, birbirinden bağımsız px değerleri yerine. */
+:root {
+    /* Boşluk: 4pt ritmi */
+    --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
+    --s-5: 20px; --s-6: 24px; --s-7: 32px; --s-8: 48px;
+    /* Köşe yarıçapı */
+    --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-full: 999px;
+    /* Katman (z-index) ölçeği */
+    --z-sahne: 10; --z-dock: 20; --z-ustbar: 30; --z-modal: 50;
+    /* Tip ölçeği — 12px altı yok */
+    --fs-xs: 0.75rem;     /* 12px — etiket/meta */
+    --fs-sm: 0.8125rem;   /* 13px — ikincil metin */
+    --fs-base: 0.9375rem; /* 15px — gövde */
+    --fs-md: 1.0625rem;   /* 17px — vurgulu değer */
+    --fs-lg: 1.375rem;    /* 22px — büyük başlık */
+    --ustbar-h: 76px;
+}
+
+html, body {
+    height: 100%;
+    height: 100dvh;
+    font-family: var(--govde-font);
+    background: var(--arkaplan);
+    color: var(--metin);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Klavye ile gezinirken her etkileşimli kontrolde görünür bir odak halkası. */
+:focus-visible {
+    outline: 2px solid var(--marka-koyu);
+    outline-offset: 2px;
+    border-radius: var(--r-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===================== Üst bar ===================== */
+
+.ustbar {
+    height: var(--ustbar-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--s-6);
+    background: var(--yuzey);
+    border-bottom: 1px solid var(--kenarlik);
+    position: relative;
+    z-index: var(--z-ustbar);
+}
+/* Logonun turuncusunu markanın imzası olarak üst barın altına ince bir
+   çizgi hâlinde taşıyoruz — dekoratif değil, marka rengini arayüze
+   bağlayan tek sürekli öge. */
+.ustbar::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--marka);
+}
+
+/* Logo kasıtlı olarak kenardan içeri çekilmiş — üst barın sol boşluğu
+   (padding) tek başına yetersizdi, marka nefes alacak ekstra pay verildi. */
+.marka-link {
+    display: inline-flex; align-items: center;
+    border-radius: var(--r-sm);
+    margin-left: var(--s-4);
+}
+.marka-logo { max-height: 44px; min-height: 32px; width: auto; max-width: 210px; object-fit: contain; display: block; }
+
+.ustbar-sag { display: flex; align-items: center; gap: var(--s-2); }
+
+/* Araç düğmeleri: önceden şeffaf zeminli, çok soluk bir çerçeve — vurgu
+   rengiyle hiç konuşmuyordu. Artık marka tonunda dolu bir zemin + belirgin
+   bir hover sıçraması var; site genelinde "canlı" his buradan geliyor. */
+.araci-dugme {
+    display: flex; align-items: center; gap: var(--s-2);
+    background: var(--marka-sis);
+    border: 1px solid transparent;
+    color: var(--marka-koyu);
+    padding: 9px var(--s-4);
+    border-radius: var(--r-sm);
+    font-size: var(--fs-sm);
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+.araci-dugme:hover {
+    background: var(--marka);
+    color: var(--metin);
+    transform: translateY(-1px);
+    box-shadow: var(--golge-yumusak);
+}
+.araci-dugme:active { transform: translateY(0); }
+.araci-simge { display: inline-flex; width: 16px; height: 16px; }
+.araci-simge svg { width: 100%; height: 100%; }
+
+/* ===================== Genel yerleşim ===================== */
+
+.konfigurator {
+    display: flex;
+    height: calc(100% - var(--ustbar-h));
+    height: calc(100dvh - var(--ustbar-h));
+    /* Kapalı ayar rayı negatif margin ile buranın dışına kayıyor — kırpılsın. */
+    overflow: hidden;
+}
+
+.goruntuleyici {
+    flex: 1;
+    position: relative;
+    min-width: 0;
+    background:
+        radial-gradient(ellipse 70% 60% at 50% 42%, #FFFFFF 0%, var(--yuzey-2) 45%, var(--arkaplan) 100%);
+    overflow: hidden;
+}
+
+.canvas-kapsayici { width: 100%; height: 100%; cursor: grab; touch-action: none; }
+.canvas-kapsayici:active { cursor: grabbing; }
+
+/* ---- Model seçici: sahnenin ÜSTÜNDE, ortada, TEK kompakt buton ----
+   Renk/boyut rayından bilinçli olarak ayrı bir bölgede duruyor. Yatay bir
+   şerit değil — düzine model eklendiğinde bir şerit taşıp kaydırma
+   gerektirirdi; bu buton model sayısından bağımsız hep aynı boyutta kalır,
+   tıklanınca aranabilir bir galeri (aşağıda .model-galeri-*) açılır. */
+.model-secici {
+    position: absolute;
+    top: var(--s-5);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex; align-items: center; gap: var(--s-3);
+    background: color-mix(in srgb, var(--yuzey) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-full);
+    padding: var(--s-2) var(--s-4) var(--s-2) var(--s-5);
+    box-shadow: var(--golge-yumusak);
+    z-index: var(--z-sahne);
+    max-width: calc(100% - var(--s-8));
+    color: var(--metin);
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.18s ease;
+}
+.model-secici:hover { border-color: var(--kenarlik-guclu); }
+.model-secici-etiket {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    flex-shrink: 0;
+}
+.model-secici-ad {
+    font-family: var(--veri-font);
+    font-size: var(--fs-sm);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 220px;
+}
+.model-secici svg { color: var(--metin-soluk); flex-shrink: 0; }
+
+/* ---- Model galerisi (modal) ---- */
+.model-modal-kutu { max-width: 640px; max-height: 74vh; }
+.model-galeri-arama-satiri {
+    display: flex; align-items: center; gap: var(--s-3);
+    padding: var(--s-4) var(--s-6) 0;
+    color: var(--metin-soluk);
+    flex-shrink: 0;
+}
+.model-galeri-arama-satiri input {
+    flex: 1;
+    border: 1px solid var(--kenarlik);
+    background: var(--yuzey-2);
+    border-radius: var(--r-sm);
+    padding: 9px var(--s-3);
+    font-family: inherit;
+    font-size: var(--fs-base);
+    color: var(--metin);
+    outline: none;
+    transition: border-color 0.16s ease;
+}
+.model-galeri-arama-satiri input:focus-visible { border-color: var(--marka-koyu); }
+
+.model-galeri-izgara {
+    padding: var(--s-5) var(--s-6) var(--s-6);
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--s-3);
+}
+.model-galeri-bos {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--metin-soluk);
+    font-size: var(--fs-sm);
+    padding: var(--s-6) 0;
+}
+.model-galeri-kart {
+    display: flex; flex-direction: column;
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-md);
+    background: var(--yuzey-2);
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+    transition: border-color 0.16s ease;
+}
+.model-galeri-kart:hover { border-color: var(--kenarlik-guclu); }
+.model-galeri-kart.aktif { border-color: var(--marka-koyu); box-shadow: 0 0 0 1px var(--marka-koyu); }
+.model-galeri-kart-gorsel {
+    width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+}
+.model-galeri-kart-yer-tutucu {
+    width: 100%; aspect-ratio: 4 / 3;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(160deg, color-mix(in srgb, var(--marka) 14%, var(--yuzey-2)) 0%, var(--yuzey-2) 100%);
+    color: var(--marka-koyu);
+}
+.model-galeri-kart-ad {
+    padding: 10px 12px;
+    font-family: var(--veri-font);
+    font-size: 0.78rem;
+    color: var(--metin);
+    line-height: 1.3;
+}
+.model-galeri-kart.aktif .model-galeri-kart-ad { color: var(--marka-koyu); font-weight: 500; }
+
+/* ---- Sahne araçları: sağ alt ---- */
+/* Renk/Boyut/Işık/Sıfırla dördü tek satıra sığmayabilir (özellikle dar
+   ekranda) — konumları elle iki satıra bölmek yerine flex-wrap'e bırakılıyor:
+   satır dolunca kendiliğinden ikiye kırılır. wrap-reverse + max-width ile
+   TAŞAN satır YUKARI eklenir (konteynerin alt kenarı sabit kalır, üste doğru
+   büyür); justify-content:flex-end her satırı sağa yaslar, böylece kırılma
+   olsa da sağ kenar hep hizalı görünür. */
+.sahne-araclari {
+    position: absolute;
+    right: var(--s-5); bottom: var(--s-5);
+    display: flex; align-items: flex-end; justify-content: flex-end;
+    flex-wrap: wrap-reverse;
+    gap: var(--s-3);
+    max-width: calc(100vw - 2 * var(--s-5));
+    z-index: var(--z-sahne);
+}
+.simge-dugme {
+    width: 40px; height: 40px; border-radius: var(--r-sm);
+    border: 1px solid var(--kenarlik);
+    background: color-mix(in srgb, var(--yuzey) 92%, transparent);
+    backdrop-filter: blur(10px);
+    color: var(--marka-koyu);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+}
+.simge-dugme:hover {
+    color: var(--metin);
+    border-color: var(--marka-koyu);
+    background: var(--marka-sis);
+    transform: translateY(-1px);
+}
+
+/* ---- Durum çubuğu: sol alt ---- */
+.durum-cubugu {
+    position: absolute; bottom: var(--s-5); left: var(--s-5);
+    display: flex; gap: var(--s-3); align-items: center;
+    background: color-mix(in srgb, var(--yuzey) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--kenarlik);
+    padding: 10px var(--s-4);
+    border-radius: var(--r-md);
+    font-size: var(--fs-sm);
+    color: var(--metin);
+    pointer-events: none;
+    z-index: var(--z-sahne);
+    /* Sağ alttaki sahne araçlarıyla çakışmasın: dar sahnede ikisi arasında
+       her zaman gerçek bir boşluk kalacak şekilde sınırlı. */
+    max-width: min(44%, 460px);
+    box-shadow: var(--golge-yumusak);
+}
+.durum-ayrac { width: 1px; height: 14px; background: var(--kenarlik); flex-shrink: 0; }
+.durum-model { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.durum-renk { display: flex; align-items: center; gap: var(--s-2); min-width: 0; }
+.durum-renk-nokta {
+    width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
+}
+#secim-renk-metin { color: var(--metin-orta); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.durum-olcu {
+    font-family: var(--veri-font);
+    font-variant-numeric: tabular-nums;
+    color: var(--metin-orta);
+    white-space: nowrap;
+}
+
+/* ===================== Renk ve Boyut — İKİ AYRI tuş+panel =====================
+   Eskiden "Renk ve Ölçü" tek bir ortak rayda birleşikti; ayrı ayrı açılıp
+   kapanan iki bağımsız şey olsun istendi. Işık'la AYNI kanıtlanmış desen:
+   sahne aracı çubuğunda kendi tuşu, panel tuşun ÜSTÜNDE açılır, sahne her
+   zaman görünür kalır. Üç tuş (Renk/Boyut/Işık) aşağıdaki ortak kurallarla
+   aynı görünür; yalnızca panel gövdesinin içeriği ve genişliği farklı. */
+.renk-secici, .boyut-secici {
+    display: flex; align-items: center; gap: var(--s-2);
+    background: color-mix(in srgb, var(--yuzey) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-full);
+    padding: var(--s-2) var(--s-4);
+    box-shadow: var(--golge-yumusak);
+    color: var(--metin);
+    font-family: inherit;
+    cursor: pointer;
+    max-width: 100%;
+    transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+.renk-secici:hover, .boyut-secici:hover { border-color: var(--kenarlik-guclu); }
+.renk-secici-etiket, .boyut-secici-etiket {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    flex-shrink: 0;
+}
+.renk-secici-ad, .boyut-secici-ad {
+    font-family: var(--veri-font);
+    font-size: var(--fs-sm);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 160px;
+}
+.renk-secici > svg:last-child, .boyut-secici > svg:last-child { color: var(--metin-soluk); flex-shrink: 0; }
+/* Seçili rengi tuşun üzerinde küçük bir örnek olarak da göster — durum
+   çubuğundaki noktayla aynı fikir, ama burada asıl tetikleyicinin üzerinde. */
+.renk-secici-nokta {
+    width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
+}
+.renk-secici.acik, .boyut-secici.acik { background: var(--metin); border-color: var(--metin); color: var(--yuzey); }
+.renk-secici.acik .renk-secici-etiket, .renk-secici.acik > svg:last-child,
+.boyut-secici.acik .boyut-secici-etiket, .boyut-secici.acik > svg:last-child { color: color-mix(in srgb, var(--yuzey) 70%, transparent); }
+
+.renk-sarmal, .boyut-sarmal { position: relative; display: flex; }
+
+.renk-panel, .boyut-panel {
+    position: absolute;
+    bottom: calc(100% + var(--s-2));
+    right: 0;
+    max-height: min(64vh, 560px);
+    display: flex;
+    flex-direction: column;
+    background: var(--yuzey);
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-lg);
+    box-shadow: var(--golge);
+    overflow: hidden;
+    z-index: var(--z-dock);
+}
+.renk-panel { width: 340px; }
+.boyut-panel { width: 300px; }
+.renk-panel.gizli, .boyut-panel.gizli { display: none; }
+
+.renk-panel-basi, .boyut-panel-basi {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: var(--s-3);
+    padding: var(--s-4) var(--s-5) var(--s-3);
+    border-bottom: 1px solid var(--kenarlik);
+    flex-shrink: 0;
+}
+.renk-panel-basi h3, .boyut-panel-basi h3 { font-size: var(--fs-md); font-weight: 600; }
+.renk-panel-meta, .boyut-panel-meta {
+    font-family: var(--veri-font);
+    font-size: var(--fs-xs);
+    color: var(--metin-soluk);
+}
+.renk-panel-govde, .boyut-panel-govde {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: var(--s-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+}
+
+/* ---- Ton ailesi süzgeci (RAL'in kendi numara grupları) ---- */
+.ton-aileleri {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.ton-cip {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid var(--kenarlik);
+    background: var(--yuzey);
+    color: var(--metin-orta);
+    font-family: inherit;
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    padding: 6px 11px;
+    border-radius: var(--r-full);
+    cursor: pointer;
+    transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+}
+.ton-cip:hover { border-color: var(--kenarlik-guclu); background: var(--yuzey-2); }
+.ton-cip.aktif {
+    background: var(--metin);
+    border-color: var(--metin);
+    color: var(--yuzey);
+}
+.ton-cip-sayi {
+    font-family: var(--veri-font);
+    font-size: 0.68rem;
+    color: var(--metin-soluk);
+    font-variant-numeric: tabular-nums;
+}
+.ton-cip.aktif .ton-cip-sayi { color: color-mix(in srgb, var(--yuzey) 62%, transparent); }
+
+/* ---- Renk ızgarası ---- */
+.renk-izgara-sarmal {
+    max-height: 316px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    margin: 0 calc(var(--s-1) * -1);
+    padding: var(--s-1);
+}
+.renk-izgara {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-3) var(--s-2);
+}
+/* Kod artık kısaltılmadan "RAL 9016" tam gösteriliyor (kısa "9016" müşterinin
+   Lake/RAL'e mi baktığını anlamasını zorlaştırıyordu) — 3 sütun bu genişlikte
+   4'ten daha rahat sığıyor. */
+.renk-btn {
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    /* Süzgeç değişince ızgara yeniden çizilir — kartlar tek seferde ortaya
+       çıkmak yerine hafifçe, kısa bir gecikme kademesiyle belirir. JS her
+       kartın index'ini --i olarak yazıyor; 24'ten sonra gecikme sabitleniyor
+       (77 renkte "Tümü" açıkken son kartların saniyelerce beklememesi için). */
+    animation: renk-belir 0.32s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation-delay: calc(min(var(--i, 0), 24) * 10ms);
+}
+@keyframes renk-belir {
+    from { opacity: 0; transform: translateY(5px) scale(0.94); }
+    to { opacity: 1; transform: none; }
+}
+.renk-yuzey {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--r-md);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(28, 24, 20, 0.06);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+/* İnce bir cila/parlaklık izlenimi — Lake zaten cilalı bir boya, kutunun
+   düz dijital bir kare değil boyanmış bir numune gibi okunmasını sağlıyor. */
+.renk-yuzey::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(152deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0) 42%, rgba(0, 0, 0, 0.05) 100%);
+    pointer-events: none;
+}
+.renk-btn:hover .renk-yuzey {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16), 0 0 0 2px var(--kenarlik-guclu), 0 4px 10px rgba(28, 24, 20, 0.1);
+    transform: translateY(-2px);
+}
+/* Seçili ton: marka renginde halka + onay işareti. İşaret bilerek var —
+   durum yalnızca renkle anlatılırsa renk körü kullanıcı için kaybolur
+   (ve bir renk paletinde "seçili renk" zaten renkle ayırt edilemez). */
+.renk-btn.aktif .renk-yuzey {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16),
+                0 0 0 2px var(--yuzey),
+                0 0 0 4px var(--marka-koyu),
+                0 4px 10px rgba(28, 24, 20, 0.12);
+}
+.renk-onay {
+    position: absolute;
+    right: 4px; bottom: 4px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--marka-koyu);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center; justify-content: center;
+    opacity: 0;
+    transform: scale(0.4);
+    /* Hafif "zıplayan" giriş — seçim değişimi göze çarpsın, ama abartısız. */
+    transition: opacity 0.16s ease, transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.renk-btn.aktif .renk-onay { opacity: 1; transform: scale(1); }
+.renk-kod {
+    font-family: var(--veri-font);
+    font-size: 0.66rem;
+    color: var(--metin-soluk);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    transition: color 0.16s ease;
+}
+.renk-btn.aktif .renk-kod { color: var(--marka-koyu); font-weight: 500; }
+
+.renk-not {
+    font-size: var(--fs-xs);
+    line-height: 1.5;
+    color: var(--metin-soluk);
+}
+.renk-sayisi {
+    display: block;
+    font-family: var(--veri-font);
+    color: var(--metin-orta);
+    margin-bottom: 3px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---- Ölçü kontrolleri ---- */
+.olcu-alani { display: flex; flex-direction: column; gap: var(--s-2); }
+.olcu-satiri { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); }
+.olcu-satiri label { font-size: var(--fs-base); font-weight: 500; }
+.olcu-girdi {
+    display: flex; align-items: baseline; gap: 5px;
+    background: var(--yuzey-2);
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-sm);
+    padding: 5px 10px;
+    transition: border-color 0.16s ease;
+}
+.olcu-girdi:focus-within { border-color: var(--marka-koyu); }
+.olcu-girdi input {
+    width: 54px;
+    border: none; background: transparent;
+    color: var(--metin);
+    text-align: right;
+    font-family: var(--veri-font);
+    font-size: var(--fs-md);
+    font-variant-numeric: tabular-nums;
+    outline: none;
+}
+/* Sayı girdisinin tarayıcı oklarını gizle — değer zaten kaydırıcıdan gelir. */
+.olcu-girdi input::-webkit-outer-spin-button,
+.olcu-girdi input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.olcu-girdi input[type=number] { -moz-appearance: textfield; }
+.olcu-birim { font-size: var(--fs-xs); color: var(--metin-soluk); font-family: var(--veri-font); }
+
+.olcu-aralik {
+    display: flex; justify-content: space-between;
+    font-family: var(--veri-font);
+    font-size: 0.68rem;
+    color: var(--metin-soluk);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Kaydırıcının dolu kısmı marka turuncusu — --dolgu yüzdesi JS'ten gelir. */
+.kaydirici {
+    --dolgu: 0%;
+    width: 100%;
+    -webkit-appearance: none; appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to right,
+        var(--marka) 0%, var(--marka) var(--dolgu),
+        var(--yuzey-3) var(--dolgu), var(--yuzey-3) 100%);
+    outline: none;
+    cursor: pointer;
+}
+.kaydirici::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--yuzey);
+    border: 2px solid var(--metin);
+    box-shadow: var(--golge-yumusak);
+    cursor: pointer;
+}
+.kaydirici::-moz-range-thumb {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--yuzey);
+    border: 2px solid var(--metin);
+    box-shadow: var(--golge-yumusak);
+    cursor: pointer;
+}
+
+/* ---- Işık: sahne aracı tuşu + açılır panel ----
+   Modal değil: sahne görünür kalmalı ki 10 ortam canlı karşılaştırılabilsin.
+   Panel tuşun ÜSTÜNDE açılıyor (tuş sağ altta, aşağıda yer yok). */
+.isik-sarmal { position: relative; display: flex; }
+
+/* Işık seçici: model seçiciyle AYNI desen (etiket + seçili değer + ok).
+   Önce ikon-only bir daireydi ve sıfırla tuşundan ayırt edilemiyordu. */
+.isik-secici {
+    display: flex; align-items: center; gap: var(--s-2);
+    background: color-mix(in srgb, var(--yuzey) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-full);
+    padding: var(--s-2) var(--s-4);
+    box-shadow: var(--golge-yumusak);
+    color: var(--metin);
+    font-family: inherit;
+    cursor: pointer;
+    max-width: 100%;
+    transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+.isik-secici:hover { border-color: var(--kenarlik-guclu); }
+.isik-secici-ikon { display: inline-flex; color: var(--marka-koyu); flex-shrink: 0; }
+.isik-secici-etiket {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    flex-shrink: 0;
+}
+.isik-secici-ad {
+    font-family: var(--veri-font);
+    font-size: var(--fs-sm);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 160px;
+}
+.isik-secici > svg:last-child { color: var(--metin-soluk); flex-shrink: 0; }
+/* Panel açıkken tuş da açık görünsün */
+.isik-secici.acik { background: var(--metin); border-color: var(--metin); color: var(--yuzey); }
+.isik-secici.acik .isik-secici-etiket,
+.isik-secici.acik > svg:last-child { color: color-mix(in srgb, var(--yuzey) 70%, transparent); }
+.isik-secici.acik .isik-secici-ikon { color: var(--marka); }
+
+.isik-panel {
+    position: absolute;
+    bottom: calc(100% + var(--s-2));
+    right: 0;
+    width: 320px;
+    max-height: min(58vh, 460px);
+    display: flex;
+    flex-direction: column;
+    background: var(--yuzey);
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-lg);
+    box-shadow: var(--golge);
+    overflow: hidden;
+    z-index: var(--z-dock);
+}
+.isik-panel.gizli { display: none; }
+.isik-panel-basi {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: var(--s-3);
+    padding: var(--s-4) var(--s-5) var(--s-3);
+    border-bottom: 1px solid var(--kenarlik);
+    flex-shrink: 0;
+}
+.isik-panel-basi h3 { font-size: var(--fs-md); font-weight: 600; }
+.isik-panel-meta {
+    font-family: var(--veri-font);
+    font-size: var(--fs-xs);
+    color: var(--metin-soluk);
+}
+.isik-panel .isik-listesi {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: var(--s-3) var(--s-4) var(--s-4);
+}
+
+/* ---- Işık (stüdyo HDR) listesi ----
+   Renk/boyut gibi modal değil, dikey bir liste — canvas her zaman görünür
+   kalsın diye (10 ortamı sırayla deneyip canlı karşılaştırmak için şart). */
+.isik-listesi { display: flex; flex-direction: column; gap: var(--s-2); }
+.isik-satir {
+    display: flex; align-items: center; gap: var(--s-3);
+    width: 100%;
+    text-align: left;
+    border: 1px solid var(--kenarlik);
+    background: var(--yuzey-2);
+    border-radius: var(--r-md);
+    padding: 10px var(--s-4);
+    cursor: pointer;
+    transition: border-color 0.16s ease, background-color 0.16s ease;
+}
+.isik-satir:hover { border-color: var(--kenarlik-guclu); }
+.isik-satir.aktif { border-color: var(--marka-koyu); background: color-mix(in srgb, var(--marka) 7%, var(--yuzey-2)); }
+.isik-metin { flex: 1; min-width: 0; }
+.isik-ad {
+    display: block;
+    font-size: var(--fs-base);
+    font-weight: 500;
+    color: var(--metin);
+}
+.isik-satir.aktif .isik-ad { color: var(--marka-koyu); }
+.isik-aciklama {
+    display: block;
+    font-size: 0.74rem;
+    color: var(--metin-soluk);
+    line-height: 1.35;
+    margin-top: 2px;
+}
+.isik-durum {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--marka-koyu);
+}
+.isik-durum svg { width: 100%; height: 100%; }
+/* Yükleniyor: ince bir dönen halka — Poly Haven'dan indirilen 2K dosya
+   (~6MB) yavaş bağlantıda gözle görülür sürebilir, sessiz kalmasın. */
+.isik-donen {
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    border: 2px solid var(--kenarlik-guclu);
+    border-top-color: var(--marka-koyu);
+    animation: isik-don 0.7s linear infinite;
+}
+@keyframes isik-don { to { transform: rotate(360deg); } }
+
+/* ===================== Modal iskeleti (yalnızca Model Galerisi kullanıyor) ===================== */
+.modal-katman {
+    position: fixed; inset: 0;
+    background: rgba(20, 18, 15, 0.5);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--s-6);
+    z-index: var(--z-modal);
+}
+.modal-katman.gizli { display: none; }
+.modal-kutu {
+    width: 100%;
+    background: var(--yuzey);
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-lg);
+    box-shadow: var(--golge);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+}
+.modal-baslik-satiri {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--s-5) var(--s-6);
+    border-bottom: 1px solid var(--kenarlik);
+    flex-shrink: 0;
+}
+.modal-baslik-satiri h3 { font-family: inherit; font-weight: 600; font-size: var(--fs-lg); }
+
+/* ===================== Bildirim (link kopyalandı vb.) ===================== */
+.bildirim {
+    position: fixed;
+    left: 50%; bottom: var(--s-7);
+    transform: translate(-50%, 12px);
+    background: var(--metin);
+    color: var(--yuzey);
+    font-size: var(--fs-sm);
+    padding: 10px var(--s-5);
+    border-radius: var(--r-full);
+    box-shadow: var(--golge);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: var(--z-modal);
+}
+.bildirim.gorunur { opacity: 1; transform: translate(-50%, 0); }
+
+/* ===================== Dar ekran ve dokunmatik ===================== */
+
+/* ---- Dokunmatik hedefler ----
+   Ölçüt bilerek EKRAN GENİŞLİĞİ değil, işaretçi türü: 44px'lik minimum
+   dokunma hedefi kuralı parmak içindir, dar bir masaüstü penceresi için
+   değil. Dokunmatik ekranlı bir dizüstünde de doğru davranır. */
+@media (pointer: coarse) {
+    .araci-dugme { min-height: 44px; min-width: 44px; justify-content: center; }
+    .simge-dugme { width: 44px; height: 44px; }
+    .model-secici { min-height: 44px; }
+    .ton-cip { min-height: 44px; padding: 10px 15px; }
+    .isik-satir { min-height: 52px; }
+    .renk-secici, .boyut-secici { min-height: 44px; }
+    .olcu-girdi { min-height: 44px; padding: 0 12px; }
+    /* Girdinin KENDİSİ tam yüksekliği kaplasın — sarmalı 44px olsa da
+       parmak asıl input'a değmezse alan odaklanmıyordu (input 22px'ti). */
+    .olcu-girdi input { font-size: var(--fs-md); padding: 11px 0; }
+    .marka-link { min-height: 44px; }
+
+    /* Kaydırıcı: görsel olarak ince kalsın ama dokunma alanı 44px olsun.
+       Arka plan yalnızca ortada 4px'lik bir şerit boyayacak şekilde
+       sınırlandırılıyor; input'un kendisi tam yükseklikte kalıyor. */
+    .kaydirici {
+        height: 44px;
+        background-repeat: no-repeat;
+        background-size: 100% 4px;
+        background-position: center;
+    }
+
+    /* iOS Safari, odaklanılan bir metin girdisinin font-size'ı 16px'in
+       ALTINDAysa sayfayı otomatik yakınlaştırır ve geri çıkmaz — arama
+       kutusu 15px'ti, 16px'e çekildi. */
+    .model-galeri-arama-satiri input { font-size: 16px; min-height: 44px; }
+
+    /* Dokunmada hover yok; hover'a bağlı kaldırma efektleri parmakla
+       "takılı" kalabiliyor, kapatıldı. */
+    .renk-btn:hover .renk-yuzey { transform: none; }
+    .model-galeri-kart:hover { transform: none; }
+}
+
+/* ---- Telefon (dikey VE yatay — tek blok) ----
+   Renk/Boyut/Işık üçü de sahne aracı çubuğunda kendi tuş+açılır panelleri
+   olarak kalıyor (bkz. yukarıdaki Işık ve Renk/Boyut kuralları) — mobilde
+   TEK bir ortak alt levha YOK, üçü birbirinden bağımsız açılıp kapanıyor.
+   Sahne bu yüzden hep tam ekran yükseklikte; hiçbir panel onu küçültmüyor. */
+@media (max-width: 760px) {
+    :root {
+        --ustbar-h: 64px;
+    }
+
+    /* Renk ızgarası mobilde SINIRSIZ açılıyordu: 77 renk 3578px'lik tek bir
+       blok oluşturup panelin geri kalanını pratikte ulaşılamaz yapıyordu.
+       Kendi içinde kaydırılan sınırlı bir yüksekliğe alındı. */
+    .renk-izgara-sarmal { max-height: 232px; overflow-y: auto; }
+
+    /* Panelin butonu, ARAÇLAR satırı taşıp ikiye kırıldığında hangi satırda
+       kalacağını CSS'ten önceden bilemiyor (bkz. .sahne-araclari flex-wrap) —
+       bu yüzden sabit "sahne yüksekliği − araç ofseti" formülü yerine ekran
+       yüksekliğine ORANLI, güvenli bir tavan kullanılıyor; taşan içerik zaten
+       panelin kendi iç kaydırmasında kalıyor. */
+    .isik-panel, .renk-panel, .boyut-panel {
+        width: min(320px, calc(100vw - var(--s-6)));
+        max-height: min(60dvh, 480px);
+    }
+
+    .model-secici { top: var(--s-3); padding-left: var(--s-4); gap: var(--s-2); }
+    .model-secici-etiket { display: none; }
+    .model-secici-ad { max-width: 130px; }
+    .model-galeri-izgara { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+
+    .durum-cubugu {
+        left: var(--s-3); right: var(--s-3);
+        font-size: var(--fs-xs); padding: 8px var(--s-3);
+        max-width: none;
+    }
+    /* Sahne araçları, tam genişlikteki durum çubuğunun ÜZERİNE biner —
+       durum çubuğunun kendi yüksekliği ~33px (8px dolgu*2 + ~17px metin),
+       + boşluk. Araçlar 1 veya 2 satıra kırılsa da (bkz. flex-wrap) bu
+       ofset sabit kalır: satır sayısı arttıkça araçlar sadece YUKARI doğru
+       büyür, durum çubuğuyla arasındaki boşluk hiç değişmez. */
+    .sahne-araclari {
+        right: var(--s-3);
+        bottom: calc(var(--s-3) + 33px + var(--s-2));
+        max-width: calc(100vw - 2 * var(--s-3));
+    }
+    .isik-secici-etiket, .renk-secici-etiket, .boyut-secici-etiket { display: none; }
+    .isik-secici-ad { max-width: 118px; }
+    .renk-secici-ad, .boyut-secici-ad { max-width: 90px; }
+    .marka-logo { max-height: 34px; }
+    .marka-link { margin-left: var(--s-2); }
+    /* Konfigüratördeki ikonlar (indir/tam ekran/paylaş) kendi başlarına
+       anlaşılır olduğu için etiketleri gizlenebilir. Ana sayfadaki tek CTA
+       için bu YAPILMAZ — bkz. anasayfa.css. */
+    .araci-etiket { display: none; }
+    .araci-dugme { padding: 9px 11px; }
+    .ustbar { padding: 0 var(--s-4); }
+}

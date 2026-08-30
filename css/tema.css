@@ -1,0 +1,48 @@
+/* ---------------------------------------------------------------------------
+   Marka paleti — doğrudan assets/logo.png'den örneklenmiştir.
+   Logonun baskın turuncusu #F29200 (dosyadaki en sık geçen opak piksel değeri),
+   ikincil rengi nötr gri metin. Palet bu iki gerçek değerin üstüne kurulu:
+   tek sıcak renk markanın turuncusu, geri kalan her yüzey nötr gri.
+
+   Bilinçli olarak KAÇINILAN: sıcak krem zemin + serif başlık + terracotta vurgu
+   üçlüsü (projede daha önce vardı) — bu kombinasyon jenerik "AI tasarımı"
+   imzalarından biri ve markanın kendi turuncusuyla da ilgisi yok.
+--------------------------------------------------------------------------- */
+:root {
+    /* --- Marka --- */
+    --marka: #F29200;              /* saf logo turuncusu: dolgu, ince marka çizgisi */
+    --marka-koyu: #8A5200;         /* metin/kenarlık güvenli türev — beyaz üstünde 6.4:1 */
+    --marka-sis: rgba(242, 146, 0, 0.13);
+
+    /* --- Yüzeyler: turuncuya doğru çok hafif sıcak eğilimli nötr griler --- */
+    --arkaplan: #E9E8E4;
+    --yuzey: #FFFFFF;
+    --yuzey-2: #F5F4F1;
+    --yuzey-3: #EDECE8;
+
+    /* --- Metin --- */
+    --metin: #1C1A17;
+    --metin-orta: #4A463F;
+    --metin-soluk: #67635A;        /* arkaplan üstünde 4.9:1 */
+
+    /* --- Çizgiler --- */
+    --kenarlik: #DAD7D0;
+    --kenarlik-guclu: #C3BFB6;
+
+    --golge: 0 10px 34px rgba(28, 26, 23, 0.13);
+    --golge-yumusak: 0 2px 10px rgba(28, 26, 23, 0.07);
+
+    /* --- Tipografi ---
+       Archivo: endüstriyel grotesk — logonun geniş, geometrik, köşeli harf
+       yapısıyla aynı dilde konuşur. Inter/Space Grotesk bilinçli olarak
+       kullanılmadı (ikisi de "varsayılan AI yazı tipi" hâline geldi).
+       IBM Plex Mono: RAL kodları ve mm ölçüleri gibi teknik veriler için —
+       sabit genişlik, rakamlar sütun hâlinde hizalanıyor.
+       Fraunces yalnızca ana sayfanın editoryal başlığında kalır; konfigüratör
+       bir ARAÇ olduğu için orada serif kullanılmaz. */
+    --baslik-font: 'Fraunces', Georgia, serif;
+    --govde-font: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+    --veri-font: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+    --sahne-parlaklik: 0.55;
+}

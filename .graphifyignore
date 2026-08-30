@@ -1,0 +1,4 @@
+# Üçüncü taraf/vendored skill dosyaları — git'te tutuluyor ama bunlar bizim
+# proje kodumuz değil, graphify bunları tarayıp knowledge graph'ı şişirmesin.
+.claude/skills/
+.agents/skills/

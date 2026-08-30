@@ -1,0 +1,16 @@
+# graphify (machine-specific, auto-regenerated)
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+# graphify hook'un curated grafiği ezmeden önce aldığı tarihli yedekler
+# (her rebuild'de yeni bir klasör olusabilir, sürüm kontrolüne gerek yok)
+graphify-out/20[0-9][0-9]-*/
+graphify-out/*.sig
+
+# superpowers brainstorming companion (session-local)
+.superpowers/
+
+# Claude Code araç/beceri kurulumları — bu makineye özel, site koduyla ilgisi
+# yok (marketplace'ten kurulan beceriler, yerel izin ayarları vb.)
+.claude/
+.agents/
+skills-lock.json
