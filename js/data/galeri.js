@@ -24,14 +24,6 @@
 // yüzden dosya adları model ve RAL kodunu zaten taşıyor.
 export const GALERI_FOTOGRAFLARI = [
     {
-        // Galeri açısı tuşuyla çekilen İLK görsel (22° yatay / 8° dikey):
-        // kalınlık ve panel profili görünüyor, kapak artık düz durmuyor.
-        dosya: 'assets/galeri/sahinkaya-kapak-HK_012_001-RAL5020-450x720.png',
-        modelId: 'hk-012-001',
-        renkKodu: '5020',
-        baslik: 'HK_012_001 — Okyanus Mavisi, RAL 5020'
-    },
-    {
         dosya: 'assets/galeri/sahinkaya-kapak-HK_012_001-RAL7044-450x720.png',
         modelId: 'hk-012-001',
         renkKodu: '7044',
