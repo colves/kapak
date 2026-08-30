@@ -179,6 +179,14 @@ body {
     display: block;
     opacity: 0.88;
     transition: opacity 0.3s ease;
+    /* Fotoğraflar konfigüratör ekran görüntüsü: kapak geniş bir tuvalin
+       ortasında duruyor ve kartta küçük kalıyordu. Kart overflow:hidden
+       olduğu için buradaki ölçek doğrudan "yakınlaştırma" işlevi görüyor.
+       1.25 bilinçli bir üst sınır: kaynak 2479x1074, kart 2x ekranda
+       564x800 aygıt pikseli — bu ölçekte kullanılan kaynak alanı ~561x796,
+       yani hâlâ 1:1'in üstünde, büyütme bulanıklık yapmıyor. */
+    transform: scale(1.25);
+    transform-origin: center;
 }
 .pu-kart:hover img { opacity: 1; }
 
