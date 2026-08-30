@@ -22,6 +22,7 @@ import { durumuSorguyaKodla } from './paylasim.js';
 
 // Bileşendeki 14 görsele yakın bir sayı; sütun başına 4 kart, katlanınca 8.
 const KART_SAYISI = 16;
+const SUTUN_SAYISI = 4;
 
 const azHareket = typeof window !== 'undefined'
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -76,10 +77,20 @@ function gorselListesiOlustur() {
     }
 
     // Fotoğraf sayısı 16'dan azsa liste başa sarılarak tekrarlanır — böylece
-    // tek bir fotoğrafla bile galeri dolu görünür. Kartlar sütunlara i%4 ile
-    // dağıldığı için (bkz. matrisiKur) 3 fotoğraf 4 sütuna dengeli yayılıyor.
+    // tek bir fotoğrafla bile galeri dolu görünür.
+    //
+    // İndise sütun numarası ekleniyor. Sebebi: dağıtım sütun-öncelikli
+    // (bkz. matrisiKur), yani bir sütunun kartları listede ardışık geliyor —
+    // bu zaten sütun İÇİNDE tekrarı engelliyor. Ek kaydırma sütunlar ARASINDA
+    // da diziyi kaydırıyor; yoksa dört sütun da aynı sırayla başlıyor ve
+    // (parallaks 1. ve 3. sütunu başlangıçta aynı hizada tuttuğu için)
+    // yan yana aynı desen görünüyordu.
+    const sutunBasinaKart = Math.ceil(KART_SAYISI / SUTUN_SAYISI);
     const liste = [];
-    for (let i = 0; i < KART_SAYISI; i++) liste.push(gercekler[i % gercekler.length]);
+    for (let i = 0; i < KART_SAYISI; i++) {
+        const sutun = Math.floor(i / sutunBasinaKart);
+        liste.push(gercekler[(i + sutun) % gercekler.length]);
+    }
     return liste;
 }
 
@@ -116,9 +127,16 @@ function matrisiKur() {
     if (!matris) return;
     const liste = gorselListesiOlustur();
 
-    // i % 4 ile dört sütuna dağıt, sonra her sütunu kendi içinde katla.
-    const sutunlar = [[], [], [], []];
-    liste.forEach((g, i) => sutunlar[i % 4].push(g));
+    // Dağıtım SÜTUN-ÖNCELİKLİ: ilk 4 kart 1. sütuna, sonraki 4 kart 2. sütuna...
+    // Satır-öncelikli (i % SUTUN_SAYISI) dağıtım BOZUKTU: liste de `i % n` ile
+    // döndüğü için iki modulo hizalanabiliyor ve her sütun tek bir fotoğraftan
+    // oluşuyordu (4 fotoğrafla ölçüldü: 1. sütunun sekiz kartı da aynıydı).
+    // Sütun-öncelikli dağıtımda bir sütunun kartları listede ARDIŞIK gelir,
+    // yani fotoğraf sayısı ne olursa olsun (1 hariç, ki orada zaten seçenek
+    // yok) sütun içinde tekrar oluşmaz.
+    const sutunBasinaKart = Math.ceil(KART_SAYISI / SUTUN_SAYISI);
+    const sutunlar = Array.from({ length: SUTUN_SAYISI }, () => []);
+    liste.forEach((g, i) => sutunlar[Math.floor(i / sutunBasinaKart)].push(g));
 
     matris.innerHTML = '';
     sutunlar.forEach((sutunGorselleri) => {
