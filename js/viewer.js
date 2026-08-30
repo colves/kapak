@@ -237,6 +237,54 @@ export function ortamiDegistir(url) {
     });
 }
 
+/* ---------------- Galeri açısı (ürün fotoğrafı pozu) ----------------
+   Kapaklar tam karşıdan bakıldığında düz görünüyor: 18mm kalınlık hiç
+   görünmüyor ve ışık yüzeye dik geldiği için profildeki kabartma gölge
+   vermiyor. Bu poz onu tek ve TEKRARLANABİLİR bir açıyla çözüyor —
+   elle sürüklemek her fotoğrafı farklı açıda bırakır, galeride yan yana
+   duran kapaklar tutarsız görünürdü.
+
+   22° yatay: kenar kartta ~4.5px görünür hâle geliyor ("bu bir cisim"
+   demeye yetiyor) ama ön yüz yalnızca %7 daralıyor, yani desen dürüst
+   okunmaya devam ediyor. 30°'yi geçince daralma %13'e çıkıp kapağın kendi
+   oranını yanıltıcı biçimde bozuyordu.
+   8° dikey: kenar olarak neredeyse hiçbir şey katmıyor (~1.6px) ama asıl
+   işi o yapıyor — ışığın yüzeye geliş açısını değiştirip profildeki
+   oyukları gölgelendiriyor. 3B hissini veren esas ipucu bu. */
+const GALERI_YATAY_ACI = 22;
+const GALERI_DIKEY_ACI = 8;
+
+export function galeriAcisinaGec() {
+    if (!kontroller || !kamera) return;
+    const yatay = THREE.MathUtils.degToRad(GALERI_YATAY_ACI);
+    const dikey = THREE.MathUtils.degToRad(GALERI_DIKEY_ACI);
+    const mesafe = baslangicKameraMesafesi;
+
+    // Sönümleme (damping) açıkken sürüklemeden ARTAKALAN atalet, kamerayı elle
+    // yerleştirsek bile bir sonraki update()'te pozun üstüne ekleniyor ve açıyı
+    // kaydırıyor (ölçüldü: sürükledikten sonra 22°/8° yerine 25.6°/6.5°
+    // çıkıyordu). Bu yüzden önce sönümleme kapatılıp bir update() ile artık
+    // atalet tüketilip sıfırlanıyor; poz ondan SONRA yazılıyor.
+    const sonumlemeAcikti = kontroller.enableDamping;
+    kontroller.enableDamping = false;
+    kontroller.update();
+
+    // Hedef, sıfırlamayla aynı yerde kalıyor: dikey çerçeveleme düzeltmesi
+    // (bkz. kareyiDikeyKaydir) bu pozda da korunmalı.
+    kontroller.target.set(0, -dikeyDunyaOfseti, 0);
+    kamera.position.set(
+        mesafe * Math.cos(dikey) * Math.sin(yatay),
+        -dikeyDunyaOfseti + mesafe * Math.sin(dikey),
+        mesafe * Math.cos(dikey) * Math.cos(yatay)
+    );
+    // OrbitControls küresel koordinatlarını kamera konumundan yeniden türetir;
+    // lookAt'i de o yapıyor, ayrıca çağırmaya gerek yok.
+    kontroller.update();
+
+    kontroller.enableDamping = sonumlemeAcikti;
+    renderIste();
+}
+
 export function goruntuyuSifirla() {
     if (!kontroller || !kamera) return;
     kontroller.reset();

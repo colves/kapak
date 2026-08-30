@@ -161,6 +161,13 @@
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
                 </button>
             </div>
+            <!-- Galeri açısı: kapağı ürün fotoğrafı için sabit, TEKRARLANABİLİR
+                 bir 3B poza getirir (22° yatay / 8° dikey — bkz. viewer.js
+                 galeriAcisinaGec). Elle sürüklemek her çekimi farklı açıda
+                 bırakır; galeride yan yana duran kapaklar tutarsız görünür. -->
+            <button id="btn-galeri-acisi" class="simge-dugme" type="button" aria-label="Galeri açısı" title="Galeri açısı — ürün fotoğrafı için sabit 3B görünüm">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.6l8 4.2v10.4l-8 4.2-8-4.2V6.8z"/><path d="M4 6.8l8 4.2 8-4.2"/><path d="M12 11v10.4"/></svg>
+            </button>
             <button id="btn-sifirla" class="simge-dugme" type="button" aria-label="Görünümü sıfırla" title="Görünümü sıfırla">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.8-6.3"/><path d="M3.5 4v5h5"/></svg>
             </button>
