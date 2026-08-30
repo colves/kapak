@@ -17,7 +17,7 @@ const durum = {
     genislik: baslangicModel.varsayilan.genislik,
     yukseklik: baslangicModel.varsayilan.yukseklik,
     kalinlik: baslangicModel.varsayilan.kalinlik,
-    renkId: 'lake-ral-9016',
+    renkId: 'lake-ral-7044',
     tonAilesi: 'tumu',
     ortamId: null
 };

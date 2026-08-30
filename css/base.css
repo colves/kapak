@@ -75,9 +75,12 @@ html, body {
 .marka-link {
     display: inline-flex; align-items: center;
     border-radius: var(--r-sm);
-    margin-left: var(--s-4);
+    margin-left: var(--s-6);
 }
-.marka-logo { max-height: 44px; min-height: 32px; width: auto; max-width: 210px; object-fit: contain; display: block; }
+/* max-height büyütülüyor ama .ustbar'ın kendi yüksekliği (--ustbar-h) SABİT
+   kalıyor — align-items:center sayesinde logo barın içinde büyür, barın
+   kendisi büyümez. */
+.marka-logo { max-height: 60px; min-height: 32px; width: auto; max-width: 210px; object-fit: contain; display: block; }
 
 .ustbar-sag { display: flex; align-items: center; gap: var(--s-2); }
 
@@ -352,23 +355,31 @@ html, body {
 
 .renk-sarmal, .boyut-sarmal { position: relative; display: flex; }
 
+/* Renk ve Boyut, Işık'ın aksine tuşun ÜSTÜNDE açılan küçük bir kutu değil,
+   ekranın sağından kayarak açılan tam boylu bir çekmece — "sağ taraftan
+   açılabilir" isteği. position:fixed olduğu için sahneyi (canvas) daraltmaz,
+   üzerine biner; kapanışta transform: translateX ile kayarak kaybolur (kapı
+   .gizli olunca display:none YAPILMIYOR, yoksa geçiş animasyonu çalışmaz). */
 .renk-panel, .boyut-panel {
-    position: absolute;
-    bottom: calc(100% + var(--s-2));
+    position: fixed;
+    top: var(--ustbar-h);
     right: 0;
-    max-height: min(64vh, 560px);
+    bottom: 0;
+    max-height: none;
     display: flex;
     flex-direction: column;
     background: var(--yuzey);
-    border: 1px solid var(--kenarlik);
-    border-radius: var(--r-lg);
-    box-shadow: var(--golge);
+    border-left: 1px solid var(--kenarlik);
+    box-shadow: -14px 0 34px rgba(28, 24, 20, 0.16);
     overflow: hidden;
     z-index: var(--z-dock);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .renk-panel { width: 340px; }
 .boyut-panel { width: 300px; }
-.renk-panel.gizli, .boyut-panel.gizli { display: none; }
+.renk-panel:not(.gizli), .boyut-panel:not(.gizli) { transform: translateX(0); }
+.renk-panel.gizli, .boyut-panel.gizli { pointer-events: none; }
 
 .renk-panel-basi, .boyut-panel-basi {
     display: flex; align-items: baseline; justify-content: space-between;
@@ -384,6 +395,11 @@ html, body {
     color: var(--metin-soluk);
 }
 .renk-panel-govde, .boyut-panel-govde {
+    /* flex:1 + min-height:0: çekmece artık sabit yükseklikli (top/bottom
+       fixed) olduğu için gövde kalan boşluğu doldurup KENDİ İÇİNDE kaysın —
+       min-height:0 olmadan flex öğeleri içeriğe göre taşabilirdi. */
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: var(--s-5);
@@ -824,14 +840,19 @@ html, body {
        Kendi içinde kaydırılan sınırlı bir yüksekliğe alındı. */
     .renk-izgara-sarmal { max-height: 232px; overflow-y: auto; }
 
-    /* Panelin butonu, ARAÇLAR satırı taşıp ikiye kırıldığında hangi satırda
-       kalacağını CSS'ten önceden bilemiyor (bkz. .sahne-araclari flex-wrap) —
-       bu yüzden sabit "sahne yüksekliği − araç ofseti" formülü yerine ekran
-       yüksekliğine ORANLI, güvenli bir tavan kullanılıyor; taşan içerik zaten
-       panelin kendi iç kaydırmasında kalıyor. */
-    .isik-panel, .renk-panel, .boyut-panel {
+    /* Işık panelinin butonu, ARAÇLAR satırı taşıp ikiye kırıldığında hangi
+       satırda kalacağını CSS'ten önceden bilemiyor (bkz. .sahne-araclari
+       flex-wrap) — bu yüzden sabit "sahne yüksekliği − araç ofseti" formülü
+       yerine ekran yüksekliğine ORANLI, güvenli bir tavan kullanılıyor; taşan
+       içerik zaten panelin kendi iç kaydırmasında kalıyor. */
+    .isik-panel {
         width: min(320px, calc(100vw - var(--s-6)));
         max-height: min(60dvh, 480px);
+    }
+    /* Renk/Boyut çekmeceleri mobilde de tam boylu kalıyor, sadece genişlik
+       dar ekrana sığdırılıyor. */
+    .renk-panel, .boyut-panel {
+        width: min(320px, calc(100vw - var(--s-6)));
     }
 
     .model-secici { top: var(--s-3); padding-left: var(--s-4); gap: var(--s-2); }
@@ -857,8 +878,8 @@ html, body {
     .isik-secici-etiket, .renk-secici-etiket, .boyut-secici-etiket { display: none; }
     .isik-secici-ad { max-width: 118px; }
     .renk-secici-ad, .boyut-secici-ad { max-width: 90px; }
-    .marka-logo { max-height: 34px; }
-    .marka-link { margin-left: var(--s-2); }
+    .marka-logo { max-height: 42px; }
+    .marka-link { margin-left: var(--s-3); }
     /* Konfigüratördeki ikonlar (indir/tam ekran/paylaş) kendi başlarına
        anlaşılır olduğu için etiketleri gizlenebilir. Ana sayfadaki tek CTA
        için bu YAPILMAZ — bkz. anasayfa.css. */
