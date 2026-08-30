@@ -2,25 +2,25 @@
 // gerektirmez, https://polyhaven.com/license). Kapağın üzerine gerçekçi,
 // fotoğraflanmış bir stüdyo ışığı/yansıması düşürür.
 //
-// Kullanıcı 10 açık/parlak stüdyo ortamını karşılaştırdı; "Klasik Stüdyo"
-// (Poly Haven: photo_studio_01) bir süre varsayılandı, sonradan tamamen
-// kaldırıldı — geriye tek seçenek olarak "Studio Small 09" kaldı.
+// Kullanıcı 10 açık/parlak stüdyo ortamını karşılaştırdı ve "Klasik Stüdyo"yu
+// (Poly Haven: photo_studio_01) varsayılan seçti. Karşılaştırma için ikinci
+// bir seçenek olarak bir süre "Studio Small 09" bulunuyordu; sonradan
+// kaldırıldı — geriye tek seçenek olarak Klasik Stüdyo kaldı.
 //
-// ÇÖZÜNÜRLÜK: 1k (1024×512, 1.5 MB) bilinçli tercih. 2k/4k/8k/16k sürümleri
-// de var ama bu HDR ortam ışığı (IBL) olarak kullanılıyor: three.js onu
-// PMREM'e çevirirken malzemenin pürüzlülüğüne göre bulanıklaştırıyor. Kapak
-// malzemesi roughness 0.35 (yarı mat lake) olduğu için yansımalar zaten
-// yumuşak — daha yüksek çözünürlük bu yüzeyde görünür fark yaratmaz, yalnızca
-// indirme boyutunu katlar. Bu dosya HER ziyaretçide, hem ana sayfada hem
-// konfigüratörde indirildiği için ağırlık doğrudan ilk açılış süresine
-// yansıyor. (Parlak/düşük roughness bir malzemeye geçilirse yeniden
-// değerlendirilmeli.)
+// ÇÖZÜNÜRLÜK: 2k (2048×1024, 6.1 MB) bilinçli tercih. 4k, 8k ve 16k sürümleri
+// de var (25 / 96 / 372 MB) ama bu HDR ortam ışığı (IBL) olarak kullanılıyor:
+// three.js onu PMREM'e çevirirken malzemenin pürüzlülüğüne göre
+// bulanıklaştırıyor. Kapak malzemesi roughness 0.35 (yarı mat lake) olduğu
+// için yansımalar zaten yumuşak — daha yüksek çözünürlük bu yüzeyde görünür
+// fark yaratmaz, yalnızca indirme boyutunu katlar. Bu dosya HER ziyaretçide,
+// hem ana sayfada hem konfigüratörde indirildiği için ağırlık doğrudan ilk
+// açılış süresine yansıyor.
 export const ORTAM_SECENEKLERI = [
     {
-        id: 'studio-small-09',
-        isim: 'Studio Small 09',
-        aciklama: 'Nötr, dengeli stüdyo ışığı — sıkı/odaklı bir aydınlatma.',
-        dosya: 'assets/hdr/studio_small_09_1k.hdr',
+        id: 'photo-studio-01',
+        isim: 'Klasik Stüdyo',
+        aciklama: 'Serin floresan stüdyo aydınlatması, yumuşak beyaz — en klasik/tanıdık stüdyo hissi.',
+        dosya: 'assets/hdr/photo_studio_01_2k.hdr',
         varsayilan: true
     }
 ];
