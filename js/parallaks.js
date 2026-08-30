@@ -9,11 +9,16 @@
 //   3. Görsellerin 4 sütuna i%4 ile dağıtılıp her sütunun kendi içinde
 //      İKİYE katlanması (sütun kaydıkça alt/üst boşalmasın diye).
 //
-// Görseller js/data/galeri.js'ten geliyor: `dosya` alanı dolu kayıtlar gerçek
-// fotoğraf, boş olanların yerine kapak görseli üretiliyor (aşağıya bkz.).
-// Fotoğraf eklendikçe galeri kendiliğinden gerçek fotoğrafları kullanır.
+// Görseller js/data/galeri.js'ten geliyor. Liste 16 kartı doldurmaya yetmezse
+// başa sarılarak tekrarlanır; liste tamamen boşsa markanın RAL Lake
+// paletinden kapak görselleri üretilir. `modelId` verilmiş kartlar tıklanınca
+// konfigüratörü o model (ve varsa o renk) seçili olarak açar.
 import { GALERI_FOTOGRAFLARI } from './data/galeri.js';
-import { tumRenkleriDuzListeOlarakAl } from './data/colors.js';
+import { tumRenkleriDuzListeOlarakAl, idIleRenkBul } from './data/colors.js';
+import { idIleModelBul } from './data/models.js';
+// Konfigüratör bağlantısının sorgu dizesi elle kurulmuyor: 'm'/'r' anahtarlarını
+// bilen tek yer paylasim.js olsun (paylaşım linkiyle aynı biçim).
+import { durumuSorguyaKodla } from './paylasim.js';
 
 // Bileşendeki 14 görsele yakın bir sayı; sütun başına 4 kart, katlanınca 8.
 const KART_SAYISI = 16;
@@ -45,24 +50,58 @@ function kapakGorseliUret(renk) {
 function gorselListesiOlustur() {
     const gercekler = GALERI_FOTOGRAFLARI
         .filter((f) => f && f.dosya)
-        .map((f) => ({ src: f.dosya, alt: f.baslik || 'Galeri fotoğrafı' }));
+        .map((f) => ({
+            src: f.dosya,
+            alt: f.baslik || 'Kapak görseli',
+            modelId: f.modelId || null,
+            renkKodu: f.renkKodu || null
+        }));
 
-    if (gercekler.length >= KART_SAYISI) return gercekler.slice(0, KART_SAYISI);
-
-    const renkler = tumRenkleriDuzListeOlarakAl();
-    const liste = gercekler.slice();
-    // 7'şer atlayarak seçiliyor: paletin ardışık tonları birbirine çok yakın,
-    // yan yana gelen kartlar tek renk bir duvar gibi görünmesin.
-    for (let i = 0; liste.length < KART_SAYISI; i++) {
-        const renk = renkler[(i * 7) % renkler.length];
-        liste.push({ src: kapakGorseliUret(renk), alt: `${renk.isim} · ${renk.kod} kapak örneği` });
+    // Hiç fotoğraf girilmemişse: markanın kendi RAL Lake paletinden kapak
+    // görselleri üretilir. 7'şer atlanıyor çünkü paletin ardışık tonları
+    // birbirine çok yakın; yan yana kartlar tek renk bir duvar gibi durmasın.
+    if (gercekler.length === 0) {
+        const renkler = tumRenkleriDuzListeOlarakAl();
+        const uretilen = [];
+        for (let i = 0; i < KART_SAYISI; i++) {
+            const renk = renkler[(i * 7) % renkler.length];
+            uretilen.push({
+                src: kapakGorseliUret(renk),
+                alt: `${renk.isim} · ${renk.kod} kapak örneği`,
+                modelId: null,
+                renkKodu: null
+            });
+        }
+        return uretilen;
     }
+
+    // Fotoğraf sayısı 16'dan azsa liste başa sarılarak tekrarlanır — böylece
+    // tek bir fotoğrafla bile galeri dolu görünür. Kartlar sütunlara i%4 ile
+    // dağıldığı için (bkz. matrisiKur) 3 fotoğraf 4 sütuna dengeli yayılıyor.
+    const liste = [];
+    for (let i = 0; i < KART_SAYISI; i++) liste.push(gercekler[i % gercekler.length]);
     return liste;
 }
 
 function kartOlustur(gorsel) {
-    const kart = document.createElement('div');
+    // Modeli bilinen fotoğraf TIKLANABİLİR olur: konfigüratör o model (ve
+    // varsa o renk) seçili hâlde açılır. Model id'si models.js'te yoksa kart
+    // düz bir kutu olarak kalır — bozuk bağlantı üretmektense bağlantısız.
+    const model = gorsel.modelId ? idIleModelBul(gorsel.modelId) : null;
+    const renk = gorsel.renkKodu ? idIleRenkBul(`lake-ral-${gorsel.renkKodu}`) : null;
+
+    const kart = document.createElement(model ? 'a' : 'div');
     kart.className = 'pu-kart';
+
+    if (model) {
+        const sorgu = durumuSorguyaKodla({
+            modelId: model.id,
+            renkId: renk ? renk.id : undefined
+        });
+        kart.href = `configurator.html${sorgu}`;
+        kart.setAttribute('aria-label', `${gorsel.alt} — konfigüratörde aç`);
+    }
+
     const img = document.createElement('img');
     img.src = gorsel.src;
     img.alt = gorsel.alt;
