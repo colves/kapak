@@ -1,7 +1,7 @@
 import { idIleRenkBul, tonAilesindekiRenkler, doluTonAileleri } from './data/colors.js';
 import { KAPAK_MODELLERI, idIleModelBul } from './data/models.js';
 import { ORTAM_SECENEKLERI, varsayilanOrtami, idIleOrtamBul } from './data/ortamlar.js';
-import { sahneyiBaslat, kapagiGuncelle, goruntuyuSifirla, ortamiDegistir, kareyiDikeyKaydir, galeriAcisinaGec } from './viewer.js';
+import { sahneyiBaslat, kapagiGuncelle, goruntuyuSifirla, ortamiDegistir, kareyiDikeyKaydir } from './viewer.js';
 import { durumuSorguyaKodla, sorgudanDurumCoz, paylasimAdresiOlustur } from './paylasim.js';
 
 // Başlangıç ölçüleri sabit sayı olarak DEĞİL, modelin kendi varsayılanından
@@ -574,12 +574,6 @@ function sifirlaButonuKur() {
     if (btn) btn.addEventListener('click', goruntuyuSifirla);
 }
 
-// Ürün fotoğrafı için sabit 3B poz (bkz. viewer.js galeriAcisinaGec).
-function galeriAcisiButonunuKur() {
-    const btn = document.getElementById('btn-galeri-acisi');
-    if (btn) btn.addEventListener('click', galeriAcisinaGec);
-}
-
 function indirButonunuKur() {
     const btn = document.getElementById('btn-indir');
     if (!btn) return;
@@ -674,7 +668,6 @@ export function arayuzuBaslat() {
     boyutPaneliniKur();
     isikPaneliniKur();
     sifirlaButonuKur();
-    galeriAcisiButonunuKur();
     paylasButonunuKur();
     indirButonunuKur();
     tamEkranButonuKur();
