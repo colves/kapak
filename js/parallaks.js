@@ -97,11 +97,6 @@ function matrisiKur() {
 const kis = (d, alt, ust) => Math.min(Math.max(d, alt), ust);
 const karistir = (a, b, t) => a + (b - a) * t;
 
-// Giris katmani; baslat() dolduruyor. Sonuk haldeyken galerinin uzerini
-// kapatmasin diye gorunurlugu de burada kapatiliyor (opacity:0 bir katman
-// hala fare olaylarini yakalayabiliyor).
-let girisKatmani = null;
-
 function donusumleriYaz(p) {
     const kok = document.documentElement.style;
     // Kutu kaldirildigi icin ayri bir "acilma" evresi yok: matris ve sutunlar
@@ -118,14 +113,6 @@ function donusumleriYaz(p) {
     kok.setProperty('--pu-y2', `${karistir(-40, 10, t).toFixed(2)}%`);
     kok.setProperty('--pu-y3', `${karistir(0, -40, t).toFixed(2)}%`);
     kok.setProperty('--pu-y4', `${karistir(-30, 20, t).toFixed(2)}%`);
-
-    // Giris yazisi kaydirmanin ilk %18'inde soner: ziyaretci once nerede
-    // oldugunu okur, sonra ekran tamamen galeriye kalir.
-    const girisOpaklik = 1 - kis(t / 0.18, 0, 1);
-    kok.setProperty('--pu-giris-op', girisOpaklik.toFixed(3));
-    if (girisKatmani) {
-        girisKatmani.style.visibility = girisOpaklik < 0.02 ? 'hidden' : 'visible';
-    }
 }
 
 function hamIlerleme(sahne) {
@@ -188,7 +175,6 @@ function animasyonuKur(sahne) {
 
 function baslat() {
     matrisiKur();
-    girisKatmani = document.getElementById('pu-giris');
     const sahne = document.getElementById('pu-sahne');
     if (!sahne) return;
 
