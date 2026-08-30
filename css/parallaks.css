@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap');
+
 /* ---------------------------------------------------------------------------
    3D PARALLAX GALERİ — ana sayfanın tamamı
 
@@ -22,7 +24,6 @@
 
 html, body {
     background: #FFFFFF;
-    height: 100%;
 }
 body {
     font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
@@ -194,4 +195,192 @@ body {
     .pu-sahne { height: 100vh; height: 100dvh; }
     .pu-kart { transition: none; }
     .pu-kart:hover { transform: none; }
+}
+
+/* =========================================================================
+   SAYFA KABUĞU — üst bar, giriş yazısı, kapanış ve footer
+
+   Galeri tek başına ziyaretçiye ne olduğunu anlatmıyor ve konfigüratöre
+   giden bir yol bırakmıyordu; bu bölüm onu gerçek bir ana sayfa yapıyor.
+   Marka renkleri tema.css'ten DEĞİL buradan geliyor (bu sayfa bilinçli
+   olarak tema.css/base.css yüklemiyor) — değerler tema.css ile birebir aynı.
+   ========================================================================= */
+
+:root {
+    --marka: #F29200;
+    --marka-koyu: #8A5200;
+    --metin: #1C1A17;
+    --metin-orta: #4A463F;
+    --metin-soluk: #67635A;
+    --kenarlik: #DAD7D0;
+    --yuzey-2: #F5F4F1;
+    --bar-y: 72px;
+}
+
+/* ---- Üst bar: galeri kaydırılırken de görünür kalır ---- */
+.ana-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--bar-y);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 clamp(16px, 3vw, 40px);
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--kenarlik);
+}
+/* Logonun turuncusunu barın altına ince bir imza çizgisi olarak taşıyoruz. */
+.ana-bar::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--marka);
+}
+.ana-marka { display: inline-flex; align-items: center; }
+.ana-marka img { max-height: 46px; width: auto; display: block; }
+
+.ana-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--metin);
+    background: transparent;
+    border: 1px solid var(--kenarlik);
+    white-space: nowrap;
+    transition: background-color 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+.ana-btn:hover { transform: translateY(-1px); border-color: var(--marka-koyu); }
+.ana-btn-birincil { background: var(--marka); border-color: var(--marka); font-weight: 700; }
+.ana-btn-birincil:hover { background: color-mix(in srgb, var(--marka) 85%, #FFFFFF); }
+.ana-btn-buyuk { padding: 15px 30px; font-size: 1rem; }
+.ana-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ---- Giriş yazısı: galerinin üstünde, kaydırınca sönen katman ----
+   Opaklığı JS yazıyor (--pu-giris-op). Katmanın kendisi tıklamayı
+   geçirmiyor; yalnızca içindeki buton tıklanabilir — sönükken bile
+   galerinin üzerini kapatmasın diye. */
+.pu-giris {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 18px;
+    padding: calc(var(--bar-y) + 24px) clamp(20px, 6vw, 64px) 40px;
+    pointer-events: none;
+    opacity: var(--pu-giris-op, 1);
+    /* Yazının görsellerin üzerinde okunur kalması için yumuşak beyaz hâle. */
+    background: radial-gradient(ellipse 70% 62% at 50% 48%,
+        rgba(255, 255, 255, 0.94) 0%,
+        rgba(255, 255, 255, 0.80) 46%,
+        rgba(255, 255, 255, 0) 78%);
+}
+.pu-giris a { pointer-events: auto; }
+.pu-giris-ust {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--marka-koyu);
+}
+.pu-giris h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 4.4vw + 0.8rem, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: var(--metin);
+}
+.pu-giris h1 em { font-style: normal; color: var(--marka-koyu); }
+.pu-giris-metin {
+    max-width: 52ch;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: var(--metin-orta);
+}
+.pu-kaydir {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 0.8125rem;
+    color: var(--metin-soluk);
+}
+.pu-kaydir svg { width: 15px; height: 15px; }
+
+/* ---- Kapanış: 600vh galeri bittikten sonra bir sonraki adım ---- */
+.ana-kapanis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    padding: clamp(72px, 9vw, 132px) clamp(20px, 5vw, 64px);
+    background: var(--yuzey-2);
+    border-top: 1px solid var(--kenarlik);
+}
+.ana-kapanis h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 2.4vw + 0.9rem, 2.5rem);
+    line-height: 1.15;
+    color: var(--metin);
+}
+.ana-kapanis p { max-width: 54ch; color: var(--metin-orta); line-height: 1.6; }
+.ana-kapanis .ana-btn { margin-top: 10px; }
+
+/* ---- Footer ---- */
+.ana-footer {
+    background: var(--metin);
+    color: #FFFFFF;
+    padding: clamp(28px, 4vw, 44px) clamp(20px, 5vw, 64px);
+}
+.ana-footer-ic {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+.ana-footer-logo { height: 34px; width: auto; opacity: 0.9; }
+.ana-footer-metin { display: flex; flex-direction: column; gap: 3px; }
+.ana-footer-metin strong { font-size: 0.9375rem; font-weight: 600; }
+.ana-footer-metin span { font-size: 0.8125rem; color: rgba(255, 255, 255, 0.62); }
+.ana-footer-link {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    color: var(--marka);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+.ana-footer-link:hover { border-bottom-color: var(--marka); }
+
+@media (max-width: 620px) {
+    :root { --bar-y: 62px; }
+    .ana-marka img { max-height: 36px; }
+    .ana-bar .ana-btn { padding: 10px 14px; font-size: 0.8125rem; }
+    .ana-bar .ana-btn svg { display: none; }
+    .pu-giris { gap: 14px; }
+    .ana-footer-link { margin-left: 0; }
+}
+
+@media (pointer: coarse) {
+    .ana-btn:hover { transform: none; }
+    .ana-btn { min-height: 46px; }
 }
