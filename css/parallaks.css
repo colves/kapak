@@ -100,30 +100,11 @@ body {
     pointer-events: none;
 }
 
-/* Kenar maskeleri: görsellerin ÜSTÜNDE duran içe vuran BEYAZ gölgeler —
-   kartlar ekran kenarlarında sert bitmek yerine beyaz zemine eriyor.
-   (Özgün bileşende siyahtı; zemin beyaza döndüğü için rengi de döndü.) */
-.pu-vinyet {
-    position: absolute;
-    inset: 0;
-    z-index: 20;
-    pointer-events: none;
-}
-.pu-vinyet-dikey {
-    box-shadow: inset 0 110px 150px -60px #FFFFFF,
-                inset 0 -110px 150px -60px #FFFFFF;
-}
-.pu-vinyet-yatay {
-    box-shadow: inset 150px 0 160px -60px #FFFFFF,
-                inset -150px 0 160px -60px #FFFFFF;
-}
-
 /* 3B matris: dört sütunun tamamı tek bir düzlem olarak döndürülüyor.
    Genişlik 120vw'den 100%'e indirildi — sütunlar ekranın ortasında toplansın
    diye (özgün genişlikte kare kenara kayıyordu). */
 .pu-matris {
     position: relative;
-    z-index: 10;
     display: flex;
     gap: 16px;
     align-items: center;
