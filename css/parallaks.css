@@ -167,7 +167,9 @@ body {
        kart her boyutta kapak biçiminde kalsın. */
     aspect-ratio: 450 / 720;
     flex-shrink: 0;
-    background: #F1EFE8;
+    /* Görsel kartı tamamen kapladığı için zemin görünmüyor; yüklenirken de
+       sayfadan ayrışmasın diye saydam bırakıldı. */
+    background: transparent;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -181,18 +183,13 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    opacity: 0.88;
-    transition: opacity 0.3s ease;
-    /* Fotoğraflar konfigüratör ekran görüntüsü: kapak geniş bir tuvalin
-       ortasında duruyor ve kartta küçük kalıyordu. Kart overflow:hidden
-       olduğu için buradaki ölçek doğrudan "yakınlaştırma" işlevi görüyor.
-       1.25 bilinçli bir üst sınır: kaynak 2479x1074, kart 2x ekranda
-       564x800 aygıt pikseli — bu ölçekte kullanılan kaynak alanı ~561x796,
-       yani hâlâ 1:1'in üstünde, büyütme bulanıklık yapmıyor. */
-    transform: scale(1.25);
-    transform-origin: center;
+    /* Opaklık AZALTILMIYOR (özgün bileşende 0.88'di, koyu tema içindi).
+       Kapak artık kartı tamamen kapladığı için 0.88 beyaz zeminin rengi
+       soldurması anlamına gelirdi; bu bir RAL renk kataloğunda kabul
+       edilemez — ziyaretçi gerçek tonu görmeli. Etkileşim ipucu olarak
+       kartın kendi hover büyümesi (scale 1.02) yeterli. */
+    opacity: 1;
 }
-.pu-kart:hover img { opacity: 1; }
 
 /* Kart yüksekliği artık aspect-ratio'dan türüyor; kırılma noktalarında
    yalnızca sütunlar arası boşluk büyüyor. */
@@ -203,7 +200,6 @@ body {
 /* Dokunmatikte hover "takılı" kalabiliyor — kapatıldı. */
 @media (pointer: coarse) {
     .pu-kart:hover { transform: none; }
-    .pu-kart:hover img { opacity: 0.88; }
 }
 
 /* Hareket hassasiyeti: 600vh boyunca dönen 3B bir düzlem tam olarak
