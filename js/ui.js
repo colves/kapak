@@ -631,13 +631,28 @@ function tamEkranButonuKur() {
    satırı iki satıra kırılınca). Kapağın kendisi değil, kameranın baktığı
    nokta kaydırılıyor (bkz. viewer.js kareyiDikeyKaydir) — bu yüzden gereken
    piksel miktarı burada, gerçek DOM ölçülerinden hesaplanıyor. */
+// Ölçüm yapılamadığında kaç kez yeniden denendiği. Sınırsız denemek,
+// eleman gerçekten hiç gelmezse sonsuz zamanlayıcı zinciri kurardı.
+let dikeyKaydirmaDeneme = 0;
+const DIKEY_KAYDIRMA_AZAMI_DENEME = 20;
+
 function dikeyKaydirmayiUygula() {
     const canvas = document.querySelector('#canvas-kapsayici canvas');
     const ustSinir = document.getElementById('model-secici');
     const altSinir = document.querySelector('.sahne-araclari');
-    if (!canvas || !ustSinir || !altSinir) return;
-    const c = canvas.getBoundingClientRect();
-    if (!c.height) return;
+    const c = canvas ? canvas.getBoundingClientRect() : null;
+
+    // Canvas ilk yüklemede kısa süre 0x0 kalabiliyor (bkz. viewer.js
+    // ResizeObserver notu). Önceden burada sessizce VAZGEÇİLİYORDU: yavaş
+    // bir yüklemede dikey ortalama hiç uygulanmıyor, ancak kullanıcı pencereyi
+    // yeniden boyutlandırırsa düzeliyordu. Artık ölçüm hazır olana kadar
+    // yeniden deneniyor.
+    if (!canvas || !ustSinir || !altSinir || !c.height) {
+        if (dikeyKaydirmaDeneme++ < DIKEY_KAYDIRMA_AZAMI_DENEME) dikeyKaydirmayiPlanla();
+        return;
+    }
+
+    dikeyKaydirmaDeneme = 0;
     const canvasMerkezi = (c.top + c.bottom) / 2;
     const kullanilabilirMerkez = (ustSinir.getBoundingClientRect().bottom + altSinir.getBoundingClientRect().top) / 2;
     kareyiDikeyKaydir(canvasMerkezi - kullanilabilirMerkez);
@@ -649,6 +664,65 @@ function dikeyKaydirmayiPlanla() {
     // requestAnimationFrame değil setTimeout: CSS geçişleri (rayın/panelin
     // açılıp kapanması) bittikten sonra son, DOĞRU boyutları ölçmesi gerekiyor.
     dikeyKaydirmaZamanlayici = setTimeout(dikeyKaydirmayiUygula, 150);
+}
+
+/* ---------------- Sahne zemini denemesi (geçici karar aracı) ----------------
+   Konfigüratörün arka planı için altı seçenek karşılaştırılıyor. Seçici
+   YALNIZCA adres satırında ?zemin=N varken açılıyor; parametre yoksa hiçbir
+   şey eklenmiyor ve ziyaretçi varsayılan zemini görüyor. Karar verilince bu
+   fonksiyon, base.css'teki body[data-zemin] kuralları ve seçicinin stilleri
+   tek seferde silinecek — kalıcı bir özellik değil. */
+
+const ZEMIN_SECENEKLERI = [
+    { no: '1', ad: 'Açık radyal (mevcut)', ornek: 'radial-gradient(circle at 40% 35%, #FFFFFF, #E9E8E4)' },
+    { no: '2', ad: 'Nötr orta gri — renk yargılamak için referans', ornek: '#BFBFBF' },
+    { no: '3', ad: 'Koyu vitrin (kömür)', ornek: 'radial-gradient(circle at 40% 35%, #3A3F46, #14171A)' },
+    { no: '4', ad: 'Krem (marka paleti)', ornek: 'radial-gradient(circle at 40% 35%, #F6F0E4, #DCCFB8)' },
+    { no: '5', ad: 'Lacivert (marka paleti)', ornek: 'radial-gradient(circle at 40% 35%, #2A3568, #0B102F)' },
+    { no: '6', ad: 'Teknik ızgara', ornek: 'repeating-linear-gradient(0deg, #C3BFB6 0 1px, #F5F4F1 1px 8px)' }
+];
+
+function zeminSeciciyiKur() {
+    const istenen = new URLSearchParams(window.location.search).get('zemin');
+    if (!istenen) return;
+
+    const uygula = (no) => {
+        document.body.dataset.zemin = no;
+        kutu.querySelectorAll('.zemin-dugme').forEach((b) => {
+            const aktif = b.dataset.zemin === no;
+            b.classList.toggle('aktif', aktif);
+            b.setAttribute('aria-pressed', String(aktif));
+        });
+        // Adres satırı seçimi taşısın: karşılaştırmayı sayfayı yenileyerek
+        // veya linki paylaşarak sürdürebilmek için.
+        const p = new URLSearchParams(window.location.search);
+        p.set('zemin', no);
+        window.history.replaceState(null, '', `${window.location.pathname}?${p.toString()}`);
+    };
+
+    const kutu = document.createElement('div');
+    kutu.className = 'zemin-secici';
+    const etiket = document.createElement('span');
+    etiket.className = 'zemin-secici-etiket';
+    etiket.textContent = 'Zemin';
+    kutu.appendChild(etiket);
+
+    ZEMIN_SECENEKLERI.forEach((z) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'zemin-dugme';
+        b.dataset.zemin = z.no;
+        b.style.background = z.ornek;
+        b.title = `${z.no} — ${z.ad}`;
+        b.setAttribute('aria-label', `Zemin ${z.no}: ${z.ad}`);
+        b.textContent = z.no;
+        b.addEventListener('click', () => uygula(z.no));
+        kutu.appendChild(b);
+    });
+
+    document.body.appendChild(kutu);
+    // Geçersiz bir değer gelirse (?zemin=abc) ilk seçeneğe düş.
+    uygula(ZEMIN_SECENEKLERI.some((z) => z.no === istenen) ? istenen : '1');
 }
 
 /* ---------------- Başlangıç ---------------- */
@@ -671,6 +745,7 @@ export function arayuzuBaslat() {
     paylasButonunuKur();
     indirButonunuKur();
     tamEkranButonuKur();
+    zeminSeciciyiKur();
 
     const model = idIleModelBul(durum.modelId);
     kalinlikAlanininGorunurlugunuGuncelle(model);

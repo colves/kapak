@@ -125,10 +125,84 @@ html, body {
     flex: 1;
     position: relative;
     min-width: 0;
-    background:
-        radial-gradient(ellipse 70% 60% at 50% 42%, #FFFFFF 0%, var(--yuzey-2) 45%, var(--arkaplan) 100%);
+    background: var(--sahne-zemin,
+        radial-gradient(ellipse 70% 60% at 50% 42%, #FFFFFF 0%, var(--yuzey-2) 45%, var(--arkaplan) 100%));
     overflow: hidden;
 }
+
+/* ---- Sahne zemini denemeleri ----
+   Karar vermek için altı seçenek. Yalnızca adres satırında ?zemin=N varken
+   devreye giriyor (bkz. ui.js zeminSeciciyiKur) — normal ziyaretçi hiçbirini
+   görmez, varsayılan yukarıdaki açık radyal zemindir.
+
+   NOT: bu bir RENK konfigüratörü. Zemin, üstündeki rengin ALGISINI değiştirir
+   (eşzamanlı kontrast); bu yüzden seçenekler nötrden doyguna doğru sıralı ve
+   2 numara bilinçli olarak nötr orta gri — fotoğraf/boya sektöründe rengi
+   yargılamak için kullanılan referans zemin budur. */
+body[data-zemin="1"] { --sahne-zemin: radial-gradient(ellipse 70% 60% at 50% 42%, #FFFFFF 0%, #F5F4F1 45%, #E9E8E4 100%); }
+body[data-zemin="2"] { --sahne-zemin: #BFBFBF; }
+body[data-zemin="3"] { --sahne-zemin: radial-gradient(ellipse 80% 70% at 50% 45%, #3A3F46 0%, #23272C 55%, #14171A 100%); }
+body[data-zemin="4"] { --sahne-zemin: radial-gradient(ellipse 75% 65% at 50% 44%, #F6F0E4 0%, #EAE0CF 55%, #DCCFB8 100%); }
+body[data-zemin="5"] { --sahne-zemin: radial-gradient(ellipse 80% 70% at 50% 44%, #2A3568 0%, #111844 55%, #0B102F 100%); }
+body[data-zemin="6"] {
+    --sahne-zemin:
+        linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
+        repeating-linear-gradient(0deg, #C3BFB6 0 1px, transparent 1px 40px),
+        repeating-linear-gradient(90deg, #C3BFB6 0 1px, transparent 1px 40px),
+        #F5F4F1;
+}
+
+/* Koyu zeminlerde üstteki yüzen kontroller okunur kalsın diye durum çubuğu
+   ve model seçicinin kendi zemini de koyulaşıyor. */
+body[data-zemin="3"] .durum-cubugu, body[data-zemin="5"] .durum-cubugu,
+body[data-zemin="3"] .model-secici, body[data-zemin="5"] .model-secici {
+    background: rgba(20, 23, 26, 0.72);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #FFFFFF;
+}
+body[data-zemin="3"] .model-secici-etiket, body[data-zemin="5"] .model-secici-etiket,
+body[data-zemin="3"] #secim-renk-metin, body[data-zemin="5"] #secim-renk-metin,
+body[data-zemin="3"] .durum-olcu, body[data-zemin="5"] .durum-olcu,
+body[data-zemin="3"] .model-secici svg, body[data-zemin="5"] .model-secici svg {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+/* Zemin seçici: yalnızca ?zemin ile açılır, sol altta durur. */
+.zemin-secici {
+    position: fixed;
+    left: 16px; bottom: 16px;
+    z-index: var(--z-modal);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-full);
+    box-shadow: var(--golge);
+}
+.zemin-secici-etiket {
+    font-family: var(--veri-font);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--metin-soluk);
+    padding: 0 4px;
+}
+.zemin-dugme {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--kenarlik-guclu);
+    cursor: pointer;
+    padding: 0;
+    font-family: var(--veri-font);
+    font-size: 11px;
+    color: transparent;
+    transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.zemin-dugme:hover { transform: translateY(-2px); }
+.zemin-dugme.aktif { box-shadow: 0 0 0 2px var(--yuzey), 0 0 0 4px var(--marka-koyu); }
 
 .canvas-kapsayici { width: 100%; height: 100%; cursor: grab; touch-action: none; }
 .canvas-kapsayici:active { cursor: grabbing; }
