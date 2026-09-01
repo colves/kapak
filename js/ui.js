@@ -29,10 +29,9 @@ let guncellemeBekliyor = false;
 function guncellemeyiUygula() {
     const model = idIleModelBul(durum.modelId);
     const renk = idIleRenkBul(durum.renkId);
-    const efektifKalinlik = model.kalinlikAyarlanabilir ? durum.kalinlik : 18;
     // Model dosyası yüklenemezse sahne boş kalır; kullanıcı nedenini
     // bilmediği bir boşluğa bakmasın diye durum kendisine bildiriliyor.
-    Promise.resolve(kapagiGuncelle(durum.modelId, durum.genislik, durum.yukseklik, efektifKalinlik, renk, model.gltfUrl, model.glbIcerikDonusu))
+    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu))
         .catch((hata) => {
             console.error('Model yüklenemedi:', model.gltfUrl, hata);
             bildir('Model yüklenemedi — bağlantınızı kontrol edip sayfayı yenileyin');

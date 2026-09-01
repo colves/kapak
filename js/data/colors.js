@@ -139,7 +139,7 @@ function laketonuUret(t) {
     return {
         id: `lake-ral-${t.ral}`, kategori: 'lake', kod: `RAL ${t.ral}`, isim: t.isim, hex: t.hex,
         grup: t.grup, tonAilesi: tonAilesiBelirle(t),
-        roughness: 0.35, metalness: 0.0, clearcoat: 0.5, dokuTipi: 'duz'
+        roughness: 0.35, metalness: 0.0, clearcoat: 0.5
     };
 }
 

@@ -7,7 +7,6 @@ import {
 function renkGecerliMi(renk) {
     assert.ok(renk.id && renk.kategori && renk.kod && renk.isim, `Eksik alan: ${JSON.stringify(renk)}`);
     assert.ok(Number.isInteger(renk.hex) && renk.hex >= 0 && renk.hex <= 0xFFFFFF, `Geçersiz hex: ${renk.kod}`);
-    assert.ok(['duz', 'ahsap'].includes(renk.dokuTipi), `Geçersiz dokuTipi: ${renk.kod}`);
     assert.ok(renk.roughness >= 0 && renk.roughness <= 1, `Geçersiz roughness: ${renk.kod}`);
     assert.ok(renk.clearcoat >= 0 && renk.clearcoat <= 1, `Geçersiz clearcoat: ${renk.kod}`);
     assert.ok(['acik', 'koyu'].includes(renk.grup), `Geçersiz grup: ${renk.kod}`);

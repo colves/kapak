@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
-import { kapakGrubuOlustur, kapakGeometrisiTemizle } from './doorGeometry.js';
 import { renkVerisindenMalzemeOlustur, malzemeUygula } from './materials.js';
 import { glbKapakGrubuOlustur } from './glbYukleyici.js';
 
@@ -155,6 +154,18 @@ function donguyuBaslat() {
 
 let istekSirasi = 0;
 
+// Sahneden çıkarılan grubun geometrilerini serbest bırakır.
+// .glb'den yüklenip önbelleğe alınmış geometriler PAYLAŞILIR (bkz.
+// glbYukleyici.js); bunları dispose etmek aynı modelin bir sonraki seçiminde
+// bozuk/boş görünmesine yol açar, o yüzden işaretli olanlar atlanıyor.
+function kapakGeometrisiTemizle(nesne) {
+    if (!nesne) return;
+    if (nesne.geometry && !nesne.userData?.paylasilanGeometri) nesne.geometry.dispose();
+    if (nesne.children && nesne.children.length) {
+        nesne.children.forEach(kapakGeometrisiTemizle);
+    }
+}
+
 function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek) {
     // Kullanıcı yükleme bitmeden başka bir model/renk seçmiş olabilir — o
     // durumda bu (artık eski) sonucu sahneye koymadan temizleyip at.
@@ -180,21 +191,22 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek) {
 
 // glbUrl verilmişse (gerçek 3ds Max'ten aktarılmış model), procedural geometri
 // yerine o dosya asenkron olarak yüklenip kullanılır.
-export function kapagiGuncelle(modelId, genislikMM, yukseklikMM, kalinlikMM, renkVerisi, glbUrl, glbIcerikDonusu) {
+export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu) {
     const buIstek = ++istekSirasi;
 
-    if (glbUrl) {
-        // Söz ÇAĞIRANA DÖNDÜRÜLÜYOR. Önceden hata yalnızca konsola yazılıyordu:
-        // model dosyası yüklenemediğinde (zayıf bağlantıda 1,3 MB'lık .glb için
-        // gerçekçi) kullanıcı bomboş bir sahne görüp neden olduğunu anlamıyordu.
-        // Artık ui.js hatayı yakalayıp kullanıcıya bildirebiliyor.
-        return glbKapakGrubuOlustur(glbUrl, genislikMM, yukseklikMM, glbIcerikDonusu || 0)
-            .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek));
+    // Her modelin bir .glb dosyası var (üretim yalnızca bu modellerden yapılıyor).
+    // Eskiden burada, dosyası olmayan modeller için prosedürel bir kapak üreten
+    // ikinci bir yol vardı; hiçbir zaman çalışmadığı için kaldırıldı. Yine de
+    // sessizce hiçbir şey yapmak yerine açık bir hata veriliyor: gltfUrl'i
+    // unutulmuş bir model eklenirse fark edilsin.
+    if (!glbUrl) {
+        return Promise.reject(new Error('Modelin gltfUrl alanı yok; kapak çizilemiyor.'));
     }
 
-    const grup = kapakGrubuOlustur(modelId, genislikMM, yukseklikMM, kalinlikMM);
-    yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek);
-    return Promise.resolve();
+    // Söz ÇAĞIRANA DÖNDÜRÜLÜYOR: model dosyası yüklenemediğinde ui.js hatayı
+    // yakalayıp kullanıcıya bildiriyor (yoksa boş bir sahneye bakıp kalıyordu).
+    return glbKapakGrubuOlustur(glbUrl, genislikMM, yukseklikMM, glbIcerikDonusu || 0)
+        .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek));
 }
 
 // ---------------- Stüdyo HDR ortam ışığı (gerçek fotoğraflanmış ışıklandırma) ----------------
