@@ -141,6 +141,10 @@ function ornekKapagiKur() {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'renk-secenek';
+        // Başlangıç durumu burada yazılıyor: uygula() yalnızca O ANDA var olan
+        // düğmeleri güncelliyor, ilk çağrıda henüz oluşturulmamış düğmeler
+        // aria-pressed'siz kalıyordu.
+        btn.setAttribute('aria-pressed', 'false');
         btn.style.background = hexMetni(renk);
         btn.setAttribute('aria-label', `${renk.isim}, ${renk.kod}`);
         btn.title = `${renk.isim} · ${renk.kod}`;

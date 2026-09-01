@@ -18,7 +18,10 @@ const durum = {
     yukseklik: baslangicModel.varsayilan.yukseklik,
     kalinlik: baslangicModel.varsayilan.kalinlik,
     renkId: 'lake-ral-7044',
-    ortamId: null
+    ortamId: null,
+    // Sahne zemini de paylaşılan durumun parçası: seçim yenilemede kaybolmasın
+    // ve gönderilen link kapağı aynı zeminde açsın.
+    zemin: '1'
 };
 
 let guncellemeBekliyor = false;
@@ -77,12 +80,57 @@ function hexMetni(renk) {
     return `#${renk.hex.toString(16).padStart(6, '0')}`;
 }
 
+/* ---------------- Sahne zemini ----------------
+   Kapağın arkasındaki yüzey. Eskiden bu yalnızca adres satırında ?zemin=N
+   varken beliren GEÇİCİ bir karar aracıydı; artık sahne araç çubuğundaki
+   kendi tuşundan açılan kalıcı bir ayar.
+
+   NOT: bu bir RENK konfigüratörü. Zemin, üstündeki rengin ALGISINI değiştirir
+   (eşzamanlı kontrast) — bu yüzden liste nötrden doyguna doğru sıralı ve 2
+   numara bilinçli olarak nötr orta gri: fotoğraf ve boya sektöründe rengi
+   yargılamak için kullanılan referans zemin budur. */
+
+const ZEMIN_SECENEKLERI = [
+    { no: '1', ad: 'Açık radyal', aciklama: 'Varsayılan — nötr, aydınlık', ornek: 'radial-gradient(circle at 40% 35%, #FFFFFF, #E9E8E4)' },
+    { no: '6', ad: 'Teknik ızgara', aciklama: 'Ölçü hissi veren milimetrik zemin', ornek: 'repeating-linear-gradient(0deg, #C3BFB6 0 1px, #F5F4F1 1px 8px)' }
+];
+
+const VARSAYILAN_ZEMIN = '1';
+
+function zeminiUygula(no) {
+    document.body.dataset.zemin = no;
+    const secenek = ZEMIN_SECENEKLERI.find((z) => z.no === no);
+
+    document.querySelectorAll('.zemin-dugme').forEach((b) => {
+        const aktif = b.dataset.zemin === no;
+        b.classList.toggle('aktif', aktif);
+        b.setAttribute('aria-pressed', String(aktif));
+    });
+
+    const ad = document.getElementById('zemin-secici-ad');
+    if (ad && secenek) ad.textContent = secenek.ad;
+
+    // Adres satırı seçimi taşısın. Adres BAŞKA bir yerden değil, tek elden
+    // (urliDurumaEsitle) yazılıyor — iki ayrı yazıcı olduğunda biri diğerinin
+    // parametresini siliyordu.
+    durum.zemin = no;
+    urliDurumaEsitle();
+}
+
 /* ---------------- URL ile paylaşım ----------------
    Konfigürasyon adres çubuğunda yaşar: müşteri linki kopyalayıp satıcıya
    gönderebilir, sayfayı yenilese de seçimi kaybolmaz. */
 
 function urliDurumaEsitle() {
-    const sorgu = durumuSorguyaKodla(durum);
+    // Varsayılan zemin adrese yazılmıyor: paylaşılan link gereksiz yere
+    // kirlenmesin. (Bir zamanlar zemin durumun parçası DEĞİLDİ ve bu fonksiyon
+    // adres çubuğunu her güncellemede baştan yazdığı için ?zemin=N'i siliyordu
+    // — ölçüldü: ?zemin=6 ile açılan sayfa daha ilk karede parametreyi
+    // kaybediyordu, dolayısıyla yenileme ve paylaşım zemin seçimini taşımıyordu.)
+    const sorgu = durumuSorguyaKodla({
+        ...durum,
+        zemin: durum.zemin === VARSAYILAN_ZEMIN ? undefined : durum.zemin
+    });
     // replaceState: her slider hareketinde tarayıcı geçmişine yeni kayıt
     // eklenmesin, geri tuşu konfigüratörde tıkanmasın.
     window.history.replaceState(null, '', `${window.location.pathname}${sorgu}`);
@@ -92,13 +140,10 @@ function urldenDurumuYukle() {
     const cozulen = sorgudanDurumCoz(window.location.search, {
         modelGecerliMi: (id) => Boolean(idIleModelBul(id)),
         renkGecerliMi: (id) => Boolean(idIleRenkBul(id)),
-        ortamGecerliMi: (id) => Boolean(idIleOrtamBul(id))
+        ortamGecerliMi: (id) => Boolean(idIleOrtamBul(id)),
+        zeminGecerliMi: (no) => ZEMIN_SECENEKLERI.some((z) => z.no === no)
     });
     Object.assign(durum, cozulen);
-
-    // Linkten gelen renk hangi ailedeyse süzgeç de o aileyle açılsın —
-    // müşteri paylaşılan rengi ızgarada seçili hâlde görsün.
-    const renk = idIleRenkBul(durum.renkId);
 }
 
 function bildir(mesaj) {
@@ -426,7 +471,7 @@ function isikSecildi(ortam, satir) {
     if (durum.ortamId === ortam.id) return;
     isikSatiriDurumunuGuncelle(satir, 'yukleniyor');
     ortamiDegistir(ortam.dosya).catch((hata) => {
-        // HDR dosyası büyük (6,2 MB); zayıf bağlantıda kopması gerçekçi.
+        // HDR dosyası (1,6 MB) zayıf bağlantıda kopabilir.
         // Sahne yine de görünür kalır (açılıştaki procedural ışık devrede),
         // bu yüzden hata ölümcül değil — ama sessiz de kalmamalı.
         console.error('Stüdyo ışığı yüklenemedi:', ortam.dosya, hata);
@@ -602,7 +647,9 @@ function indirButonunuKur() {
             document.body.appendChild(a);
             a.click();
             a.remove();
-            URL.revokeObjectURL(url);
+            // Hemen serbest bırakmak bazı tarayıcılarda indirme daha
+            // başlamadan bağlantıyı geçersiz kılıyor; bir sonraki tura bırak.
+            setTimeout(() => URL.revokeObjectURL(url), 0);
         }, 'image/png');
     });
 }
@@ -662,45 +709,6 @@ function dikeyKaydirmayiPlanla() {
     dikeyKaydirmaZamanlayici = setTimeout(dikeyKaydirmayiUygula, 150);
 }
 
-/* ---------------- Sahne zemini ----------------
-   Kapağın arkasındaki yüzey. Eskiden bu yalnızca adres satırında ?zemin=N
-   varken beliren GEÇİCİ bir karar aracıydı; artık sahne araç çubuğundaki
-   kendi tuşundan açılan kalıcı bir ayar.
-
-   NOT: bu bir RENK konfigüratörü. Zemin, üstündeki rengin ALGISINI değiştirir
-   (eşzamanlı kontrast) — bu yüzden liste nötrden doyguna doğru sıralı ve 2
-   numara bilinçli olarak nötr orta gri: fotoğraf ve boya sektöründe rengi
-   yargılamak için kullanılan referans zemin budur. */
-
-const ZEMIN_SECENEKLERI = [
-    { no: '1', ad: 'Açık radyal', aciklama: 'Varsayılan — nötr, aydınlık', ornek: 'radial-gradient(circle at 40% 35%, #FFFFFF, #E9E8E4)' },
-    { no: '6', ad: 'Teknik ızgara', aciklama: 'Ölçü hissi veren milimetrik zemin', ornek: 'repeating-linear-gradient(0deg, #C3BFB6 0 1px, #F5F4F1 1px 8px)' }
-];
-
-const VARSAYILAN_ZEMIN = '1';
-
-function zeminiUygula(no) {
-    document.body.dataset.zemin = no;
-    const secenek = ZEMIN_SECENEKLERI.find((z) => z.no === no);
-
-    document.querySelectorAll('.zemin-dugme').forEach((b) => {
-        const aktif = b.dataset.zemin === no;
-        b.classList.toggle('aktif', aktif);
-        b.setAttribute('aria-pressed', String(aktif));
-    });
-
-    const ad = document.getElementById('zemin-secici-ad');
-    if (ad && secenek) ad.textContent = secenek.ad;
-
-    // Adres satırı seçimi taşısın: yenilenince kaybolmasın, paylaşılan linkte
-    // de aynı zemin açılsın. Varsayılan zeminde parametre yazılmıyor —
-    // paylaşılan link gereksiz yere kirlenmesin.
-    const p = new URLSearchParams(window.location.search);
-    if (no === VARSAYILAN_ZEMIN) p.delete('zemin'); else p.set('zemin', no);
-    const sorgu = p.toString();
-    window.history.replaceState(null, '', sorgu ? `${window.location.pathname}?${sorgu}` : window.location.pathname);
-}
-
 function zeminSeciciyiKur() {
     const izgara = document.getElementById('zemin-izgara');
     const btn = document.getElementById('btn-zemin');
@@ -741,9 +749,8 @@ function zeminSeciciyiKur() {
         if (e.key === 'Escape' && !panel.classList.contains('gizli')) { acKapa(false); btn.focus(); }
     });
 
-    // Adresten gelen zemin varsa onunla aç; geçersizse varsayılana düş.
-    const istenen = new URLSearchParams(window.location.search).get('zemin');
-    zeminiUygula(ZEMIN_SECENEKLERI.some((z) => z.no === istenen) ? istenen : VARSAYILAN_ZEMIN);
+    // Durum zaten adresten çözülmüş olabilir (bkz. urldenDurumuYukle).
+    zeminiUygula(ZEMIN_SECENEKLERI.some((z) => z.no === durum.zemin) ? durum.zemin : VARSAYILAN_ZEMIN);
 }
 
 /* ---------------- Başlangıç ---------------- */

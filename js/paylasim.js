@@ -8,8 +8,9 @@
 // Bu dosya bilerek THREE/DOM bağımsızdır — Node'da doğrudan test edilebilir.
 
 // Kısa ve okunabilir anahtarlar: link elle bakıldığında da anlaşılsın.
-//   m = model, r = RAL kodu, g = genişlik, y = yükseklik, k = kalınlık, o = ortam (HDR ışık)
-const ANAHTARLAR = { model: 'm', ral: 'r', genislik: 'g', yukseklik: 'y', kalinlik: 'k', ortam: 'o' };
+//   m = model, r = RAL kodu, g = genişlik, y = yükseklik, k = kalınlık,
+//   o = ortam (HDR ışık), z = sahne zemini
+const ANAHTARLAR = { model: 'm', ral: 'r', genislik: 'g', yukseklik: 'y', kalinlik: 'k', ortam: 'o', zemin: 'z' };
 
 // 'lake-ral-9016' -> '9016'
 export function renkIdSindenRalKodu(renkId) {
@@ -33,6 +34,7 @@ export function durumuSorguyaKodla(durum) {
     if (Number.isFinite(durum.yukseklik)) p.set(ANAHTARLAR.yukseklik, String(Math.round(durum.yukseklik)));
     if (Number.isFinite(durum.kalinlik)) p.set(ANAHTARLAR.kalinlik, String(Math.round(durum.kalinlik)));
     if (durum.ortamId) p.set(ANAHTARLAR.ortam, durum.ortamId);
+    if (durum.zemin) p.set(ANAHTARLAR.zemin, String(durum.zemin));
     const dize = p.toString();
     return dize ? `?${dize}` : '';
 }
@@ -41,7 +43,7 @@ export function durumuSorguyaKodla(durum) {
 // yüklemle yapılır (modelGecerliMi / renkGecerliMi) — böylece bu modül veri
 // katmanına bağımlı kalmaz. Tanınmayan/bozuk değerler sessizce atlanır:
 // elle kurcalanmış bir link uygulamayı kırmak yerine varsayılana düşmeli.
-export function sorgudanDurumCoz(sorgu, { modelGecerliMi, renkGecerliMi, ortamGecerliMi } = {}) {
+export function sorgudanDurumCoz(sorgu, { modelGecerliMi, renkGecerliMi, ortamGecerliMi, zeminGecerliMi } = {}) {
     const sonuc = {};
     if (typeof sorgu !== 'string' || sorgu.length === 0) return sonuc;
 
@@ -55,6 +57,9 @@ export function sorgudanDurumCoz(sorgu, { modelGecerliMi, renkGecerliMi, ortamGe
 
     const ortamId = p.get(ANAHTARLAR.ortam);
     if (ortamId && (!ortamGecerliMi || ortamGecerliMi(ortamId))) sonuc.ortamId = ortamId;
+
+    const zemin = p.get(ANAHTARLAR.zemin);
+    if (zemin && (!zeminGecerliMi || zeminGecerliMi(zemin))) sonuc.zemin = zemin;
 
     for (const alan of ['genislik', 'yukseklik', 'kalinlik']) {
         const ham = p.get(ANAHTARLAR[alan]);

@@ -232,6 +232,11 @@ function ortamYukle(url) {
         );
     });
 
+    // Başarısız yükleme önbellekte kalmamalı — bkz. glbYukleyici.js'teki aynı
+    // not: aksi hâlde tek bir ağ kesintisi HDR'ı o oturum boyunca kalıcı
+    // olarak devre dışı bırakıyor.
+    soz.catch(() => ortamOnbellek.delete(url));
+
     ortamOnbellek.set(url, soz);
     return soz;
 }

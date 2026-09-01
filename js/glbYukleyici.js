@@ -98,6 +98,11 @@ function glbSablonunuYukle(url, icerikDonusuZ) {
         );
     });
 
+    // Başarısız yükleme önbellekte KALMAMALI: geçici bir ağ kesintisinde
+    // reddedilmiş söz sonsuza dek saklanırsa, bağlantı düzelse bile o model
+    // bir daha hiç açılmıyor — her denemede aynı eski hata dönüyor.
+    soz.catch(() => onbellek.delete(anahtar));
+
     onbellek.set(anahtar, soz);
     return soz;
 }

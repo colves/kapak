@@ -52,8 +52,9 @@
        kullanılmadı (ikisi de "varsayılan AI yazı tipi" hâline geldi).
        IBM Plex Mono: RAL kodları ve mm ölçüleri gibi teknik veriler için —
        sabit genişlik, rakamlar sütun hâlinde hizalanıyor.
-       Konfigüratör bir ARAÇ olduğu için burada serif kullanılmaz. */
-    --baslik-font: 'Fraunces', Georgia, serif;
+       Konfigüratör bir ARAÇ olduğu için burada serif kullanılmaz — bu yüzden
+       bir başlık serifi tanımlı değil (Fraunces tanımlıydı, hiçbir kural onu
+       kullanmıyordu ama dosya yine de indiriliyordu). */
     --govde-font: 'Archivo', 'Segoe UI', system-ui, sans-serif;
     --veri-font: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
 
