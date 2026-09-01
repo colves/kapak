@@ -30,7 +30,13 @@ function guncellemeyiUygula() {
     const model = idIleModelBul(durum.modelId);
     const renk = idIleRenkBul(durum.renkId);
     const efektifKalinlik = model.kalinlikAyarlanabilir ? durum.kalinlik : 18;
-    kapagiGuncelle(durum.modelId, durum.genislik, durum.yukseklik, efektifKalinlik, renk, model.gltfUrl, model.glbIcerikDonusu);
+    // Model dosyası yüklenemezse sahne boş kalır; kullanıcı nedenini
+    // bilmediği bir boşluğa bakmasın diye durum kendisine bildiriliyor.
+    Promise.resolve(kapagiGuncelle(durum.modelId, durum.genislik, durum.yukseklik, efektifKalinlik, renk, model.gltfUrl, model.glbIcerikDonusu))
+        .catch((hata) => {
+            console.error('Model yüklenemedi:', model.gltfUrl, hata);
+            bildir('Model yüklenemedi — bağlantınızı kontrol edip sayfayı yenileyin');
+        });
 
     const olcuEl = document.getElementById('boyut-metni');
     if (olcuEl) olcuEl.textContent = `${durum.genislik} × ${durum.yukseklik} mm`;
@@ -361,6 +367,16 @@ function olculeriModelLimitlerineSabitle(model) {
         k.value = durum.kalinlik;
         document.getElementById('girdi-kalinlik').value = durum.kalinlik;
         kaydiriciDolgusunuGuncelle(k);
+    } else {
+        // Kalınlık bu modelde ayarlanamıyor. Durum yine de modelin kendi
+        // değerine ÇEKİLMELİ: aksi hâlde adresten gelen uydurma bir kalınlık
+        // (ör. ?k=999) hiçbir yerde kırpılmadan durumda kalıyor ve
+        // urliDurumaEsitle onu adrese geri yazıyordu — ekranda 18 mm, 3B'de
+        // 18 mm görünürken PAYLAŞILAN LİNK 999 mm diyordu (ölçüldü).
+        // Müşterinin satıcıya gönderdiği link yanlış ölçü taşıyamaz.
+        durum.kalinlik = model.varsayilan.kalinlik;
+        const girdi = document.getElementById('girdi-kalinlik');
+        if (girdi) girdi.value = durum.kalinlik;
     }
 }
 
@@ -459,7 +475,16 @@ function isikSatiriDurumunuGuncelle(satir, durumMetni) {
 function isikSecildi(ortam, satir) {
     if (durum.ortamId === ortam.id) return;
     isikSatiriDurumunuGuncelle(satir, 'yukleniyor');
-    ortamiDegistir(ortam.dosya).then(() => {
+    ortamiDegistir(ortam.dosya).catch((hata) => {
+        // HDR dosyası büyük (6,2 MB); zayıf bağlantıda kopması gerçekçi.
+        // Sahne yine de görünür kalır (açılıştaki procedural ışık devrede),
+        // bu yüzden hata ölümcül değil — ama sessiz de kalmamalı.
+        console.error('Stüdyo ışığı yüklenemedi:', ortam.dosya, hata);
+        bildir('Stüdyo ışığı yüklenemedi — mevcut ışık korunuyor');
+        isikSatiriDurumunuGuncelle(satir, '');
+        return null;
+    }).then((sonuc) => {
+        if (sonuc === null) return;
         durum.ortamId = ortam.id;
         document.querySelectorAll('.isik-satir').forEach(s => {
             const aktif = s === satir;
@@ -557,7 +582,12 @@ function isikPaneliniKur() {
     const hedef = (durum.ortamId && idIleOrtamBul(durum.ortamId)) || varsayilanOrtami();
     const satir = liste ? liste.querySelector(`[data-ortam-id="${hedef.id}"]`) : null;
     if (satir) isikSatiriDurumunuGuncelle(satir, 'yukleniyor');
-    ortamiDegistir(hedef.dosya).then(() => {
+    ortamiDegistir(hedef.dosya).catch((hata) => {
+        console.error('Stüdyo ışığı yüklenemedi:', hedef.dosya, hata);
+        if (satir) isikSatiriDurumunuGuncelle(satir, '');
+        return null;
+    }).then((sonuc) => {
+        if (sonuc === null) return;
         durum.ortamId = hedef.id;
         if (satir) {
             satir.classList.add('aktif');

@@ -184,14 +184,17 @@ export function kapagiGuncelle(modelId, genislikMM, yukseklikMM, kalinlikMM, ren
     const buIstek = ++istekSirasi;
 
     if (glbUrl) {
-        glbKapakGrubuOlustur(glbUrl, genislikMM, yukseklikMM, glbIcerikDonusu || 0)
-            .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek))
-            .catch((hata) => console.error('Model yüklenemedi:', glbUrl, hata));
-        return;
+        // Söz ÇAĞIRANA DÖNDÜRÜLÜYOR. Önceden hata yalnızca konsola yazılıyordu:
+        // model dosyası yüklenemediğinde (zayıf bağlantıda 1,3 MB'lık .glb için
+        // gerçekçi) kullanıcı bomboş bir sahne görüp neden olduğunu anlamıyordu.
+        // Artık ui.js hatayı yakalayıp kullanıcıya bildirebiliyor.
+        return glbKapakGrubuOlustur(glbUrl, genislikMM, yukseklikMM, glbIcerikDonusu || 0)
+            .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek));
     }
 
     const grup = kapakGrubuOlustur(modelId, genislikMM, yukseklikMM, kalinlikMM);
     yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek);
+    return Promise.resolve();
 }
 
 // ---------------- Stüdyo HDR ortam ışığı (gerçek fotoğraflanmış ışıklandırma) ----------------
@@ -224,7 +227,7 @@ function ortamYukle(url) {
 // Verilen HDR dosyasına geçiş yapar; yüklenene kadar mevcut ışıklandırma
 // (procedural veya önceki HDR) sahnede kalmaya devam eder, ansızın kararmaz.
 export function ortamiDegistir(url) {
-    if (!url) return null;
+    if (!url) return Promise.resolve(false);
     return ortamYukle(url).then((pmrem) => {
         sahne.environment = pmrem;
         // Gerçek HDR kendi başına tam ışıklandırma sağlıyor — procedural ortam
