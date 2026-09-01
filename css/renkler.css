@@ -1,0 +1,256 @@
+/* ---------------------------------------------------------------------------
+   RENK KARTELASI
+
+   Palet, tipografi, üst bar ve butonlar anasayfa.css'ten geliyor; burada
+   yalnızca kartelaya özel olanlar var.
+
+   Düzen ralcolorchart.com'dan alındı: solda seri listesi (sayılarıyla), sağda
+   seri seri ızgara, üstte arama. İçerik ise BİZİM kataloğumuz — RAL
+   Classic'in 216 rengi değil, gerçekten lake yapılan 77 ton. Var olmayan bir
+   rengi listelemek müşteriye yanlış söz vermek olurdu.
+--------------------------------------------------------------------------- */
+
+.ic-sayfa { background: var(--kagit); }
+.ic-sayfa .menu a.etkin { border-bottom: 1px solid var(--lacivert); }
+/* Üst bar sabit (position: fixed) — içerik onun altından başlasın. */
+.ic-sayfa main { padding-top: var(--bar-y); }
+
+/* ===================== Sayfa başı ===================== */
+.kartela-basi {
+    padding-top: clamp(40px, 5vw, 76px);
+    padding-bottom: clamp(20px, 2.5vw, 32px);
+}
+.kartela-basi h1 {
+    margin: 12px 0 16px;
+    font-size: clamp(40px, 7vw, 96px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+}
+.kartela-basi p {
+    margin: 0;
+    max-width: 60ch;
+    font-size: clamp(14px, 1.4vw, 17px);
+    line-height: 1.6;
+    color: rgba(21, 21, 21, 0.68);
+}
+
+/* Arama + sayaç aynı satırda. */
+.kartela-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: clamp(22px, 3vw, 34px);
+    padding-top: 20px;
+    border-top: 1px solid var(--cizgi);
+}
+.ara-kutu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1 1 260px;
+    max-width: 380px;
+    padding: 11px 14px;
+    background: #FFFFFF;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+.ara-kutu:focus-within { border-color: var(--indigo); }
+.ara-kutu svg { color: var(--celik); flex-shrink: 0; }
+.ara-kutu input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--murekkep);
+}
+#toplam-ton {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    white-space: nowrap;
+}
+
+/* ===================== İki sütun: seri listesi + kartela ===================== */
+.kartela-duzen {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+    padding-bottom: clamp(60px, 8vw, 120px);
+}
+
+/* Sol liste sayfayla birlikte kaymıyor: uzun kartelada müşteri her an başka
+   bir seriye atlayabilsin. */
+.seri-menu {
+    position: sticky;
+    top: calc(var(--bar-y) + 20px);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #FFFFFF;
+}
+.seri-bag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--cizgi);
+    font-size: 13px;
+    transition: background-color 0.16s ease;
+}
+.seri-bag:last-child { border-bottom: 0; }
+.seri-bag:hover { background: var(--krem); }
+/* Bulunulan seri: yalnızca renkle değil, kalın yazı ve sol şeritle de
+   belirtiliyor. */
+.seri-bag.etkin {
+    background: var(--krem);
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 var(--lacivert);
+}
+.seri-nokta {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 1px rgba(17, 24, 68, 0.25);
+}
+.seri-bag-ad { flex: 1; }
+.seri-bag-sayi {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--celik);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ===================== Seri bölümleri ===================== */
+.seri-bolum { margin-bottom: clamp(36px, 4vw, 56px); }
+.seri-bolum:last-child { margin-bottom: 0; }
+.seri-bolum[hidden] { display: none; }
+.seri-bolum-bas {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cizgi);
+    /* Uzun bir ızgarada kaydırırken hangi seride olunduğu kaybolmasın. */
+    position: sticky;
+    top: var(--bar-y);
+    background: var(--kagit);
+    z-index: 1;
+    padding-top: 12px;
+}
+.seri-bolum-bas h2 {
+    margin: 0;
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: clamp(14px, 1.5vw, 17px);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+}
+.seri-bolum-bas h2 span {
+    font-family: Manrope, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--celik);
+    margin-left: 8px;
+}
+.seri-bolum-adet {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--celik);
+    white-space: nowrap;
+}
+
+/* ===================== Ton kutuları ===================== */
+.ton-izgara {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+}
+.ton {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2px;
+    min-height: 92px;
+    padding: 12px 14px;
+    border-radius: 6px;
+    /* Rengin kendi sınırı: açık tonlar beyaz zeminde kaybolmasın. */
+    box-shadow: inset 0 0 0 1px rgba(17, 24, 68, 0.14);
+    transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.ton[hidden] { display: none; }
+.ton:hover {
+    transform: translateY(-3px);
+    box-shadow: inset 0 0 0 1px rgba(17, 24, 68, 0.14), 0 8px 18px rgba(17, 24, 68, 0.18);
+}
+.ton-kod {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 14px;
+    font-weight: 500;
+}
+.ton-isim {
+    font-size: 12px;
+    opacity: 0.82;
+}
+
+#sonuc-yok {
+    margin: 0;
+    padding: 40px 0;
+    font-size: 15px;
+    color: rgba(21, 21, 21, 0.6);
+}
+#sonuc-yok[hidden] { display: none; }
+
+/* ===================== Kapanış ===================== */
+.kartela-kapanis {
+    background: var(--lacivert);
+    color: #F6F0E6;
+    text-align: center;
+}
+.kartela-kapanis h2 {
+    margin: 14px auto 18px;
+    max-width: 22ch;
+    font-size: clamp(26px, 4vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    text-wrap: balance;
+}
+.kartela-kapanis p {
+    max-width: 56ch;
+    margin: 0 auto 30px;
+    font-size: clamp(14px, 1.4vw, 17px);
+    line-height: 1.65;
+    color: rgba(246, 240, 230, 0.76);
+}
+
+@media (max-width: 860px) {
+    /* Dar ekranda sol liste yatay bir şeride iniyor: kaydırılabilir ama
+       kartelanın üstünde kalıyor, seriler yine tek dokunuşla erişilebilir. */
+    .kartela-duzen { grid-template-columns: 1fr; gap: 20px; }
+    .seri-menu {
+        position: static;
+        flex-direction: row;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+    }
+    .seri-bag {
+        border-bottom: 0;
+        border-right: 1px solid var(--cizgi);
+        white-space: nowrap;
+    }
+    .seri-bag.etkin { box-shadow: inset 0 -3px 0 var(--lacivert); }
+    .seri-bag-sayi { display: none; }
+    .ton-izgara { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); }
+}

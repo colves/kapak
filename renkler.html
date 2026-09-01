@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Renk Kartelası — Şahinkaya Ahşap</title>
+<meta name="description" content="Şahinkaya Ahşap lake kapak renk kartelası. 77 RAL Classic tonu, serilerine ayrılmış hâlde. Bir renge tıklayın, konfigüratörde kapağınızın üzerinde görün.">
+<link rel="icon" href="assets/mini-logo.png">
+<link rel="apple-touch-icon" href="assets/mini-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Palet, tipografi, üst bar ve butonlar ana sayfayla ORTAK —
+     renkler.css yalnızca kartelaya özel olanları tanımlıyor. -->
+<link rel="stylesheet" href="css/anasayfa.css">
+<link rel="stylesheet" href="css/renkler.css">
+</head>
+<body class="ic-sayfa">
+
+<header class="ust" id="ust">
+    <div class="ust-bar">
+        <a class="marka" href="index.html" aria-label="Şahinkaya Ahşap — ana sayfa">
+            <img src="assets/logo.png" alt="Şahinkaya Ahşap">
+        </a>
+        <nav class="menu" id="menu">
+            <a class="etkin" href="renkler.html" aria-current="page">Renkler</a>
+            <a class="one-cikan" href="modeller.html">Modeller</a>
+            <a href="iletisim.html">İletişim</a>
+        </nav>
+        <div class="ust-araclar">
+            <a class="konfig-link" href="configurator.html">Konfigüratör</a>
+            <button class="menu-dugmesi" id="menu-dugmesi" type="button" aria-label="Menü" aria-expanded="false" aria-controls="menu">☰</button>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <section class="bolum kartela-basi">
+        <span class="etiket">Renk Kartelası</span>
+        <h1>Lake renkleri</h1>
+        <p>Ürettiğimiz tonların tamamı, RAL Classic serilerine ayrılmış hâlde. Bir renge tıklayın; konfigüratör o rengi doğrudan kapağın üzerinde açsın.</p>
+
+        <div class="kartela-arac">
+            <label class="ara-kutu">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                <input type="search" id="renk-ara" placeholder="RAL kodu veya renk adı ara…" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" aria-label="RAL kodu veya renk adı ara">
+            </label>
+            <span id="toplam-ton"></span>
+        </div>
+    </section>
+
+    <!-- Sol liste ve kartela js/renkler.js tarafından colors.js'ten üretiliyor:
+         kataloğa yeni bir ton eklendiğinde bu sayfa kendiliğinden büyür. -->
+    <section class="bolum kartela-duzen">
+        <nav class="seri-menu" id="seri-menu" aria-label="RAL serileri"></nav>
+        <div>
+            <div id="kartela"></div>
+            <p id="sonuc-yok" hidden></p>
+        </div>
+    </section>
+
+    <section class="bolum kartela-kapanis">
+        <span class="etiket etiket-acik">Ekran rengi yaklaşıktır</span>
+        <h2>Kesin ton için numune isteyin.</h2>
+        <p>Buradaki kutular RAL kartelasının ekran karşılığıdır; ekranların renk ayarı birbirinden farklı olduğu için birebir eşleşme garanti edilmez. Kararınızı vermeden önce fiziksel numune isteyin — ücretsiz gönderiyoruz.</p>
+        <a class="dugme acik" href="https://wa.me/905336639714?text=Merhaba%2C%20lake%20kapak%20i%C3%A7in%20renk%20numunesi%20istiyorum." target="_blank" rel="noopener">WhatsApp'tan Numune İste</a>
+    </section>
+
+</main>
+
+<footer class="alt">
+    <div class="alt-ic">
+        <div class="alt-ust">
+            <div class="alt-marka">
+                <img src="assets/logo.png" alt="Şahinkaya Ahşap">
+                <p>Modern yaşam alanları için hassas üretilmiş lake kapaklar.</p>
+            </div>
+            <div>
+                <h3>Keşfet</h3>
+                <a href="modeller.html">Modeller</a>
+                <a href="renkler.html">Renkler</a>
+                <a href="configurator.html">Konfigüratör</a>
+            </div>
+            <div>
+                <h3>Kurumsal</h3>
+                <a href="iletisim.html">İletişim</a>
+                <a href="https://sahinkayamobilya.com" target="_blank" rel="noopener">sahinkayamobilya.com</a>
+            </div>
+            <div>
+                <h3>İletişim</h3>
+                <a href="tel:+905336639714">+90 533 663 97 14</a>
+                <a href="mailto:sahinkaya@gmail.com">sahinkaya@gmail.com</a>
+                <a href="https://wa.me/905336639714" target="_blank" rel="noopener">WhatsApp</a>
+                <span class="alt-adres">Adapazarı, Sakarya</span>
+            </div>
+        </div>
+        <div class="alt-taban">
+            <span>© 2026 Şahinkaya Ahşap Mobilya. Tüm hakları saklıdır.</span>
+            <span>Mobilya · İç Mimari · Tasarım</span>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="js/renkler.js"></script>
+</body>
+</html>
