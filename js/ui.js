@@ -31,7 +31,7 @@ function guncellemeyiUygula() {
     const renk = idIleRenkBul(durum.renkId);
     // Model dosyası yüklenemezse sahne boş kalır; kullanıcı nedenini
     // bilmediği bir boşluğa bakmasın diye durum kendisine bildiriliyor.
-    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu))
+    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi))
         .catch((hata) => {
             console.error('Model yüklenemedi:', model.gltfUrl, hata);
             bildir('Model yüklenemedi — bağlantınızı kontrol edip sayfayı yenileyin');

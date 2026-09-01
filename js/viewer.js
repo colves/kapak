@@ -191,7 +191,7 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek) {
 
 // glbUrl verilmişse (gerçek 3ds Max'ten aktarılmış model), procedural geometri
 // yerine o dosya asenkron olarak yüklenip kullanılır.
-export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu) {
+export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu, kenarPayi) {
     const buIstek = ++istekSirasi;
 
     // Her modelin bir .glb dosyası var (üretim yalnızca bu modellerden yapılıyor).
@@ -205,7 +205,7 @@ export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbI
 
     // Söz ÇAĞIRANA DÖNDÜRÜLÜYOR: model dosyası yüklenemediğinde ui.js hatayı
     // yakalayıp kullanıcıya bildiriyor (yoksa boş bir sahneye bakıp kalıyordu).
-    return glbKapakGrubuOlustur(glbUrl, genislikMM, yukseklikMM, glbIcerikDonusu || 0)
+    return glbKapakGrubuOlustur(glbUrl, genislikMM, yukseklikMM, glbIcerikDonusu || 0, kenarPayi || null)
         .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek));
 }
 
