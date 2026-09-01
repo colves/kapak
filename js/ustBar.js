@@ -5,7 +5,23 @@
 // three.js'i (ve dolayısıyla ~600 KB'ı) içeri alıyor, 3B'si olmayan bir
 // sayfanın bunu indirmesi için hiçbir neden yok.
 
+// Ana sayfa kaydırılabilir, konfigüratör değil — yani ana sayfada dikey bir
+// kaydırma çubuğu var, orada yok. Bu, iki sayfanın kullanılabilir genişliğini
+// (Windows'ta ~15px) farklılaştırıyor ve sağ üstteki Konfigüratör tuşu,
+// konfigüratördeki "Görseli İndir" tuşuyla tam hizalanmıyordu.
+//
+// Çubuğun gerçek kalınlığı işletim sistemine ve tarayıcıya göre değişiyor
+// (macOS'ta 0), o yüzden sabit bir sayı yazılmıyor: bir kez ölçülüp CSS'e
+// değişken olarak veriliyor.
+function kaydirmaCubuguPayiniOlc() {
+    const pay = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+    document.documentElement.style.setProperty('--kaydirma-cubugu', `${pay}px`);
+}
+
 export function ustBariKur() {
+    kaydirmaCubuguPayiniOlc();
+    window.addEventListener('resize', kaydirmaCubuguPayiniOlc);
+
     const ust = document.getElementById('ust');
     if (!ust) return;
 

@@ -22,7 +22,16 @@
     --kagit: #F9F8F5;
     --cizgi: rgba(17, 24, 68, 0.14);
     --en: 1440px;
-    --bar-y: 76px;
+    /* Konfigüratörün üst barıyla EŞİT yükseklik (bkz. base.css --ustbar-h).
+       18px dolgu + 54px logo + 18px dolgu = 90px. */
+    --bar-y: 90px;
+    /* Konfigüratördeki "Görseli İndir" tuşunun ölçüleri — Konfigüratör
+       tuşu onunla AYNI boyutta ve tam onun hizasında duruyor, iki sayfa
+       arasında geçerken üst bar yerinde sabit kalsın diye. Ölçüldü
+       (1440px genişlikte): tuş 131px geniş, sağ kenarı ekranın sağından
+       153px içeride (24px kenar boşluğu + 121px Tam Ekran + 8px aralık). */
+    --araci-en: 131px;
+    --araci-sag: 153px;
 }
 
 * { box-sizing: border-box; }
@@ -59,7 +68,8 @@ img { display: block; max-width: 100%; }
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 30;
-    padding: 18px 32px;
+    /* Yatay dolgu konfigüratörle aynı (base.css .ustbar: 0 var(--s-6) = 24px). */
+    padding: 18px 24px;
     color: #FFFFFF;
     /* Hero görselinin üstünde okunurluk için ince bir karartma. */
     background: linear-gradient(rgba(17, 24, 68, 0.42), transparent);
@@ -74,24 +84,42 @@ img { display: block; max-width: 100%; }
     color: var(--lacivert);
 }
 .ust-bar {
-    max-width: var(--en);
-    margin: auto;
+    /* Bilinçli olarak ortalanmış bir kolona SIĞDIRILMIYOR: konfigüratörün üst
+       barı tam genişlikte, ikisi aynı görünsün diye bu da öyle. */
+    max-width: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
 }
-.marka img { max-height: 40px; width: auto; }
+/* Logo konfigüratörle birebir aynı kurallarla ölçekleniyor (base.css
+   .marka-logo) — iki sayfada aynı boyda çıksın. Soldaki 24px ek boşluk
+   da oradaki .marka-link'in karşılığı: logo iki sayfada da soldan 48px. */
+.marka { margin-left: 24px; }
+.marka img { max-height: 60px; min-height: 32px; width: auto; max-width: 210px; object-fit: contain; }
 
-.menu { display: flex; gap: 26px; font-size: 12px; }
+.menu { display: flex; align-items: baseline; gap: 26px; font-size: 12px; }
+/* Modeller katalogun ana girişi — diğer ikisinden bir tık büyük yazılıyor. */
+.menu a.one-cikan { font-size: 14px; font-weight: 600; }
 .menu a { opacity: 0.86; transition: opacity 0.2s ease; }
 .menu a:hover { opacity: 1; }
 
-.ust-araclar { display: flex; align-items: center; gap: 14px; font-size: 12px; }
+/* Sağ kenardan uzaklık, Konfigüratör tuşunun merkezi konfigüratördeki
+   "Görseli İndir" tuşunun merkeziyle çakışsın diye ayarlı. */
+.ust-araclar { display: flex; align-items: center; gap: 14px; font-size: 12px;
+    margin-right: calc(var(--araci-sag) - 24px - var(--kaydirma-cubugu, 0px)); }
+/* Konfigüratördeki araç tuşlarıyla AYNI ölçüler: 131px genişlik, 9px dikey
+   dolgu, 13px/600 yazı, 6px köşe. */
 .konfig-link {
-    padding: 9px 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--araci-en);
+    padding: 9px 16px;
     border: 1px solid currentColor;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 .ust.kaydirildi .konfig-link:hover { background: var(--lacivert); color: #FFFFFF; }

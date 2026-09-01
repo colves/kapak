@@ -19,7 +19,12 @@
     --fs-base: 0.9375rem; /* 15px — gövde */
     --fs-md: 1.0625rem;   /* 17px — vurgulu değer */
     --fs-lg: 1.375rem;    /* 22px — büyük başlık */
-    --ustbar-h: 76px;
+    --ayar-en: 340px;
+    /* 90px: ana sayfanın üst barıyla EŞİTLENDİ. İki sayfa arasında geçerken
+       logo ve üst bar aynı yerde kalsın diye ikisi de aynı yüksekliğe
+       getirildi; eşitleme büyüterek yapıldı (76 -> 90), hiçbir taraf
+       küçültülmedi. Ana sayfada bu değer anasayfa.css'te --bar-y. */
+    --ustbar-h: 90px;
 }
 
 html, body {
@@ -151,6 +156,24 @@ body[data-zemin="6"] {
         repeating-linear-gradient(90deg, #C3BFB6 0 1px, transparent 1px 40px),
         #F5F4F1;
 }
+/* 7 — Stüdyo siklorama: gerçek bir fotoğraf stüdyosunda arka fon kâğıdının
+   yere kavisle indiği yüzeyin karşılığı. Ürün fotoğrafçılığının varsayılan
+   kurulumu olduğu için mobilya/ürün konfigüratörlerinde en sık görülen zemin;
+   yumuşak ufuk çizgisi kapağa bir "yere basma" hissi veriyor. */
+body[data-zemin="7"] {
+    --sahne-zemin:
+        linear-gradient(#FBFAF8 0%, #F2F0EC 52%, #E4E1DB 66%, #D6D2CA 100%);
+}
+/* 8 — Showroom greige: düz, hafif sıcak nötr duvar. Mutfak/mobilya
+   showroom'larının gerçek duvar rengine en yakın olan; kapağın müşterinin
+   evinde nasıl duracağına dair en dürüst önizleme. */
+body[data-zemin="8"] { --sahne-zemin: #D6CFC3; }
+/* 9 — Mimari soğuk gri-mavi: CAD/render sunumlarının klasik zemini. Serin
+   olduğu için sıcak lake tonlarını (bej, kum, kahve) belirginleştirir —
+   ısınmış bir zeminde birbirine karışan tonlar burada ayrışır. */
+body[data-zemin="9"] {
+    --sahne-zemin: radial-gradient(ellipse 78% 68% at 50% 44%, #EDF1F5 0%, #DDE4EC 55%, #C9D3DE 100%);
+}
 
 /* Koyu zeminlerde üstteki yüzen kontroller okunur kalsın diye durum çubuğu
    ve model seçicinin kendi zemini de koyulaşıyor. */
@@ -167,44 +190,78 @@ body[data-zemin="3"] .model-secici svg, body[data-zemin="5"] .model-secici svg {
     color: rgba(255, 255, 255, 0.72);
 }
 
-/* Zemin seçici: yalnızca ?zemin ile açılır, sol altta durur. */
-.zemin-secici {
-    position: fixed;
-    left: 16px; bottom: 16px;
-    z-index: var(--z-modal);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 10px;
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(10px);
+/* ---- Zemin seçici ----
+   Eskiden yalnızca adres satırında ?zemin=N varken beliren geçici bir karar
+   aracıydı; artık sahne araç çubuğundaki kendi tuşundan açılan kalıcı bir
+   ayar. Işık tuşuyla aynı desen: panel tuşun ÜSTÜNDE açılır, sahne görünür
+   kalır (zemin karşılaştırması ancak kapak ekrandayken yapılabilir). */
+.zemin-sarmal { position: relative; display: flex; }
+.zemin-panel {
+    position: absolute;
+    right: 0; bottom: calc(100% + var(--s-3));
+    width: min(300px, calc(100vw - var(--s-6)));
+    padding: var(--s-4);
+    background: var(--yuzey);
     border: 1px solid var(--kenarlik);
-    border-radius: var(--r-full);
+    border-radius: var(--r-md);
     box-shadow: var(--golge);
+    z-index: var(--z-dock);
 }
-.zemin-secici-etiket {
-    font-family: var(--veri-font);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--metin-soluk);
-    padding: 0 4px;
+.zemin-panel.gizli { display: none; }
+.zemin-panel-basi {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: var(--s-3);
+    margin-bottom: var(--s-3);
+}
+.zemin-panel-basi h3 { font-size: var(--fs-md); font-weight: 600; }
+.zemin-panel-meta { font-family: var(--veri-font); font-size: var(--fs-xs); color: var(--metin-soluk); }
+.zemin-izgara {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-3) var(--s-2);
 }
 .zemin-dugme {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    border: 1px solid var(--kenarlik-guclu);
-    cursor: pointer;
-    padding: 0;
-    font-family: var(--veri-font);
-    font-size: 11px;
-    color: transparent;
-    transition: transform 0.14s ease, box-shadow 0.14s ease;
+    display: flex; flex-direction: column; gap: 5px;
+    padding: 0; border: none; background: none; cursor: pointer; text-align: left;
 }
-.zemin-dugme:hover { transform: translateY(-2px); }
-.zemin-dugme.aktif { box-shadow: 0 0 0 2px var(--yuzey), 0 0 0 4px var(--marka-koyu); }
+.zemin-ornek {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--r-sm);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+    transition: box-shadow 0.16s ease, transform 0.16s ease;
+}
+.zemin-dugme:hover .zemin-ornek { transform: translateY(-2px); }
+/* Seçili zemin halka + kalın kodla belli olsun: yalnızca renkle anlatılırsa
+   birbirine yakın iki nötr zemin ayırt edilemez. */
+.zemin-dugme.aktif .zemin-ornek {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14), 0 0 0 2px var(--yuzey), 0 0 0 4px var(--marka-koyu);
+}
+.zemin-ad {
+    font-size: var(--fs-xs);
+    line-height: 1.3;
+    color: var(--metin-soluk);
+}
+.zemin-dugme.aktif .zemin-ad { color: var(--marka-koyu); font-weight: 500; }
 
-.canvas-kapsayici { width: 100%; height: 100%; cursor: grab; touch-action: none; }
+/* Sahne, aydınlatma OTURANA KADAR gösterilmiyor.
+   Sebep: viewer.js önce hafif bir procedural ortam (RoomEnvironment) +
+   iki dolgu ışığıyla çiziyor, gerçek stüdyo HDR'ı geldiğinde ortam
+   değişip dolgu ışıkları sönüyor. İkisi aynı ışık değil — procedural
+   olan daha sıcak ve parlak — bu yüzden kapak ilk saniyede krem, sonra
+   gerçek renginde görünüyordu. Renk konfigüratöründe bu kabul edilemez:
+   müşterinin gördüğü ilk renk yanlış renk oluyordu.
+   Çözüm, ilk kareyi ışık kesinleşene kadar tutmak (bkz. ui.js
+   sahneyiAcigaCikar) — geç kalırsa yine de açılıyor, boş kalmıyor. */
+.canvas-kapsayici {
+    width: 100%; height: 100%; cursor: grab; touch-action: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+body.sahne-hazir .canvas-kapsayici { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+    .canvas-kapsayici { transition: none; }
+}
 .canvas-kapsayici:active { cursor: grabbing; }
 
 /* ---- Model seçici: sahnenin ÜSTÜNDE, ortada, TEK kompakt buton ----
@@ -381,97 +438,33 @@ body[data-zemin="3"] .model-secici svg, body[data-zemin="5"] .model-secici svg {
     white-space: nowrap;
 }
 
-/* ===================== Renk ve Boyut — İKİ AYRI tuş+panel =====================
-   Eskiden "Renk ve Ölçü" tek bir ortak rayda birleşikti; ayrı ayrı açılıp
-   kapanan iki bağımsız şey olsun istendi. Işık'la AYNI kanıtlanmış desen:
-   sahne aracı çubuğunda kendi tuşu, panel tuşun ÜSTÜNDE açılır, sahne her
-   zaman görünür kalır. Üç tuş (Renk/Boyut/Işık) aşağıdaki ortak kurallarla
-   aynı görünür; yalnızca panel gövdesinin içeriği ve genişliği farklı. */
-.renk-secici, .boyut-secici {
-    display: flex; align-items: center; gap: var(--s-2);
-    background: color-mix(in srgb, var(--yuzey) 92%, transparent);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--kenarlik);
-    border-radius: var(--r-full);
-    padding: var(--s-2) var(--s-4);
-    box-shadow: var(--golge-yumusak);
-    color: var(--metin);
-    font-family: inherit;
-    cursor: pointer;
-    max-width: 100%;
-    transition: border-color 0.18s ease, background-color 0.18s ease;
-}
-.renk-secici:hover, .boyut-secici:hover { border-color: var(--kenarlik-guclu); }
-.renk-secici-etiket, .boyut-secici-etiket {
-    font-size: var(--fs-xs);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--metin-soluk);
-    flex-shrink: 0;
-}
-.renk-secici-ad, .boyut-secici-ad {
-    font-family: var(--veri-font);
-    font-size: var(--fs-sm);
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    max-width: 160px;
-}
-.renk-secici > svg:last-child, .boyut-secici > svg:last-child { color: var(--metin-soluk); flex-shrink: 0; }
-/* Seçili rengi tuşun üzerinde küçük bir örnek olarak da göster — durum
-   çubuğundaki noktayla aynı fikir, ama burada asıl tetikleyicinin üzerinde. */
-.renk-secici-nokta {
-    width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
-}
-.renk-secici.acik, .boyut-secici.acik { background: var(--metin); border-color: var(--metin); color: var(--yuzey); }
-.renk-secici.acik .renk-secici-etiket, .renk-secici.acik > svg:last-child,
-.boyut-secici.acik .boyut-secici-etiket, .boyut-secici.acik > svg:last-child { color: color-mix(in srgb, var(--yuzey) 70%, transparent); }
+/* ===================== Ayar paneli (sağ, kalıcı) =====================
+   Renk ve ölçü eskiden sahne araç çubuğundaki iki ayrı açılır çekmecedeydi.
+   İkisi de KARŞILAŞTIRARAK verilen kararlar — müşteri 77 tonu gezerken ya da
+   ölçüyü ararken kapağın ve listenin aynı anda ekranda kalması gerekiyor —
+   bu yüzden sahnenin yanında sürekli açık bir sütuna taşındılar.
 
-.renk-sarmal, .boyut-sarmal { position: relative; display: flex; }
+   Panel sahnenin ÜZERİNE binmiyor, yanında yer kaplıyor (.konfigurator bir
+   flex satırı): kapak böyle daha dar bir alana sığıyor ama hiçbir zaman
+   panelin altında kalmıyor.
 
-/* Renk ve Boyut, Işık'ın aksine tuşun ÜSTÜNDE açılan küçük bir kutu değil,
-   ekranın sağından kayarak açılan tam boylu bir çekmece — "sağ taraftan
-   açılabilir" isteği. position:fixed olduğu için sahneyi (canvas) daraltmaz,
-   üzerine biner; kapanışta transform: translateX ile kayarak kaybolur (kapı
-   .gizli olunca display:none YAPILMIYOR, yoksa geçiş animasyonu çalışmaz). */
-.renk-panel, .boyut-panel {
-    position: fixed;
-    top: var(--ustbar-h);
-    right: 0;
-    bottom: 0;
-    max-height: none;
+   Model ve ışık bilinçli olarak burada DEĞİL: model "hangi ürüne bakıyorum",
+   ışık ise bir sahne ayarı — ikisi de kendi yerinde kaldı. */
+.ayar-paneli {
+    flex: 0 0 var(--ayar-en, 340px);
     display: flex;
     flex-direction: column;
+    min-height: 0;
     background: var(--yuzey);
     border-left: 1px solid var(--kenarlik);
-    box-shadow: -14px 0 34px rgba(28, 24, 20, 0.16);
-    overflow: hidden;
     z-index: var(--z-dock);
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.renk-panel { width: 340px; }
-.boyut-panel { width: 300px; }
-.renk-panel:not(.gizli), .boyut-panel:not(.gizli) { transform: translateX(0); }
-.renk-panel.gizli, .boyut-panel.gizli { pointer-events: none; }
 
-.renk-panel-basi, .boyut-panel-basi {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: var(--s-3);
-    padding: var(--s-4) var(--s-5) var(--s-3);
-    border-bottom: 1px solid var(--kenarlik);
-    flex-shrink: 0;
-}
-.renk-panel-basi h3, .boyut-panel-basi h3 { font-size: var(--fs-md); font-weight: 600; }
-.renk-panel-meta, .boyut-panel-meta {
-    font-family: var(--veri-font);
-    font-size: var(--fs-xs);
-    color: var(--metin-soluk);
-}
-.renk-panel-govde, .boyut-panel-govde {
-    /* flex:1 + min-height:0: çekmece artık sabit yükseklikli (top/bottom
-       fixed) olduğu için gövde kalan boşluğu doldurup KENDİ İÇİNDE kaysın —
-       min-height:0 olmadan flex öğeleri içeriğe göre taşabilirdi. */
+/* Tutamak yalnızca mobilde görünür (panel aşağıya indiğinde açıp kapatır);
+   masaüstünde panel zaten hep açık. */
+.ayar-tutamak { display: none; }
+
+.ayar-govde {
     flex: 1;
     min-height: 0;
     overflow-y: auto;
@@ -479,50 +472,37 @@ body[data-zemin="3"] .model-secici svg, body[data-zemin="5"] .model-secici svg {
     padding: var(--s-5);
     display: flex;
     flex-direction: column;
-    gap: var(--s-5);
+    gap: var(--s-6);
 }
 
-/* ---- Ton ailesi süzgeci (RAL'in kendi numara grupları) ---- */
-.ton-aileleri {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-.ton-cip {
-    display: inline-flex; align-items: center; gap: 6px;
-    border: 1px solid var(--kenarlik);
-    background: var(--yuzey);
-    color: var(--metin-orta);
-    font-family: inherit;
-    font-size: var(--fs-xs);
-    font-weight: 500;
-    padding: 6px 11px;
-    border-radius: var(--r-full);
-    cursor: pointer;
-    transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
-}
-.ton-cip:hover { border-color: var(--kenarlik-guclu); background: var(--yuzey-2); }
-.ton-cip.aktif {
-    background: var(--metin);
-    border-color: var(--metin);
-    color: var(--yuzey);
-}
-.ton-cip-sayi {
+.ayar-bolum { display: flex; flex-direction: column; gap: var(--s-3); }
+/* Numaralı üst yazı: müşteriye "önce şunu, sonra şunu" diye bir sıra veriyor.
+   Numara gerçekten sırayı taşıdığı için dekor değil — panelde iki karar var
+   ve ikisi bu sırayla veriliyor. */
+.ayar-no {
     font-family: var(--veri-font);
-    font-size: 0.68rem;
+    font-size: var(--fs-xs);
+    letter-spacing: 0.14em;
     color: var(--metin-soluk);
-    font-variant-numeric: tabular-nums;
 }
-.ton-cip.aktif .ton-cip-sayi { color: color-mix(in srgb, var(--yuzey) 62%, transparent); }
+.ayar-no span { color: var(--metin-orta); }
+.ayar-bolum-basi {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: var(--s-3);
+    padding-bottom: var(--s-3);
+    border-bottom: 1px solid var(--kenarlik);
+}
+.ayar-baslik { font-size: var(--fs-md); font-weight: 600; }
+.ayar-secili {
+    font-family: var(--veri-font);
+    font-size: var(--fs-xs);
+    color: var(--metin-soluk);
+}
 
-/* ---- Renk ızgarası ---- */
-.renk-izgara-sarmal {
-    max-height: 316px;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    margin: 0 calc(var(--s-1) * -1);
-    padding: var(--s-1);
-}
+/* ---- Renk ızgarası ----
+   Ton ailesi süzgeci kaldırıldı (RAL numaralandırması zaten aileye göre
+   kümelenmiş), ızgara doğrudan RAL koduna göre sıralı 77 tonu gösteriyor ve
+   panelin kendi kaydırmasında akıyor — ayrı bir iç kaydırma kutusu yok. */
 .renk-izgara {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -869,9 +849,7 @@ body[data-zemin="3"] .model-secici svg, body[data-zemin="5"] .model-secici svg {
     .araci-dugme { min-height: 44px; min-width: 44px; justify-content: center; }
     .simge-dugme { width: 44px; height: 44px; }
     .model-secici { min-height: 44px; }
-    .ton-cip { min-height: 44px; padding: 10px 15px; }
     .isik-satir { min-height: 52px; }
-    .renk-secici, .boyut-secici { min-height: 44px; }
     .olcu-girdi { min-height: 44px; padding: 0 12px; }
     /* Girdinin KENDİSİ tam yüksekliği kaplasın — sarmalı 44px olsa da
        parmak asıl input'a değmezse alan odaklanmıyordu (input 22px'ti). */
@@ -912,7 +890,6 @@ body[data-zemin="3"] .model-secici svg, body[data-zemin="5"] .model-secici svg {
     /* Renk ızgarası mobilde SINIRSIZ açılıyordu: 77 renk 3578px'lik tek bir
        blok oluşturup panelin geri kalanını pratikte ulaşılamaz yapıyordu.
        Kendi içinde kaydırılan sınırlı bir yüksekliğe alındı. */
-    .renk-izgara-sarmal { max-height: 232px; overflow-y: auto; }
 
     /* Işık panelinin butonu, ARAÇLAR satırı taşıp ikiye kırıldığında hangi
        satırda kalacağını CSS'ten önceden bilemiyor (bkz. .sahne-araclari
@@ -923,10 +900,47 @@ body[data-zemin="3"] .model-secici svg, body[data-zemin="5"] .model-secici svg {
         width: min(320px, calc(100vw - var(--s-6)));
         max-height: min(60dvh, 480px);
     }
-    /* Renk/Boyut çekmeceleri mobilde de tam boylu kalıyor, sadece genişlik
-       dar ekrana sığdırılıyor. */
-    .renk-panel, .boyut-panel {
-        width: min(320px, calc(100vw - var(--s-6)));
+    /* Dar ekranda sağda sütun için yer yok: panel aşağıya iniyor ve
+       tutamaktan açılıp kapanıyor. Kapalıyken bile tutamakta seçili renk ve
+       ölçü yazılı, yani panel açılmadan da durum okunuyor. */
+    .konfigurator { flex-direction: column; }
+    .ayar-paneli {
+        flex: 0 0 auto;
+        border-left: none;
+        border-top: 1px solid var(--kenarlik);
+        box-shadow: 0 -10px 28px rgba(28, 24, 20, 0.12);
+    }
+    .ayar-tutamak {
+        display: flex; align-items: center; gap: var(--s-3);
+        width: 100%;
+        min-height: 52px;
+        padding: 0 var(--s-5);
+        border: none;
+        background: var(--yuzey);
+        color: var(--metin);
+        font-family: inherit;
+        text-align: left;
+    }
+    .ayar-tutamak-nokta {
+        width: 16px; height: 16px; border-radius: 5px; flex-shrink: 0;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
+    }
+    .ayar-tutamak-metin {
+        flex: 1;
+        font-family: var(--veri-font);
+        font-size: var(--fs-sm);
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .ayar-tutamak > svg { color: var(--metin-soluk); transition: transform 0.22s ease; }
+    .ayar-paneli.acik .ayar-tutamak > svg { transform: rotate(180deg); }
+    /* Kapalı: gövde tamamen kapalı. Açık: ekranın yarısına kadar, kendi
+       içinde kaydırılabilir — kapak her hâlde görünür kalsın. */
+    .ayar-govde { max-height: 0; padding-top: 0; padding-bottom: 0; overflow: hidden; }
+    .ayar-paneli.acik .ayar-govde {
+        max-height: 52dvh;
+        overflow-y: auto;
+        padding-top: var(--s-5);
+        padding-bottom: var(--s-5);
     }
 
     .model-secici { top: var(--s-3); padding-left: var(--s-4); gap: var(--s-2); }
@@ -949,9 +963,10 @@ body[data-zemin="3"] .model-secici svg, body[data-zemin="5"] .model-secici svg {
         bottom: calc(var(--s-3) + 33px + var(--s-2));
         max-width: calc(100vw - 2 * var(--s-3));
     }
-    .isik-secici-etiket, .renk-secici-etiket, .boyut-secici-etiket { display: none; }
+    /* Işık tuşunun ikonu tek başına anlaşılır; dar ekranda etiketi gizlenip
+       yalnızca seçili ortamın adı bırakılıyor. */
+    .isik-secici-etiket { display: none; }
     .isik-secici-ad { max-width: 118px; }
-    .renk-secici-ad, .boyut-secici-ad { max-width: 90px; }
     .marka-logo { max-height: 42px; }
     .marka-link { margin-left: var(--s-3); }
     /* Konfigüratördeki ikonlar (indir/tam ekran/paylaş) kendi başlarına

@@ -1,4 +1,4 @@
-import { idIleRenkBul, tonAilesindekiRenkler, doluTonAileleri } from './data/colors.js';
+import { idIleRenkBul, ralSirasindakiRenkler } from './data/colors.js';
 import { KAPAK_MODELLERI, idIleModelBul } from './data/models.js';
 import { ORTAM_SECENEKLERI, varsayilanOrtami, idIleOrtamBul } from './data/ortamlar.js';
 import { sahneyiBaslat, kapagiGuncelle, goruntuyuSifirla, ortamiDegistir, kareyiDikeyKaydir } from './viewer.js';
@@ -18,7 +18,6 @@ const durum = {
     yukseklik: baslangicModel.varsayilan.yukseklik,
     kalinlik: baslangicModel.varsayilan.kalinlik,
     renkId: 'lake-ral-7044',
-    tonAilesi: 'tumu',
     ortamId: null
 };
 
@@ -49,15 +48,9 @@ function guncellemeyiUygula() {
     const renkNoktaEl = document.getElementById('secim-renk-nokta');
     if (renkNoktaEl) renkNoktaEl.style.background = hexMetni(renk);
 
-    // Renk/Boyut tuşlarının kendi üzerlerindeki değer — durum çubuğuyla AYNI
-    // kaynaktan, tek yerden güncelleniyor (bkz. yukarıdaki durum çubuğu
-    // satırları), her iki durum değişikliğinde de otomatik senkron kalır.
-    const renkSeciciAdEl = document.getElementById('renk-secici-ad');
-    if (renkSeciciAdEl) renkSeciciAdEl.textContent = renk.kod;
-    const renkSeciciNoktaEl = document.getElementById('renk-secici-nokta');
-    if (renkSeciciNoktaEl) renkSeciciNoktaEl.style.background = hexMetni(renk);
-    const boyutSeciciAdEl = document.getElementById('boyut-secici-ad');
-    if (boyutSeciciAdEl) boyutSeciciAdEl.textContent = `${durum.genislik}×${durum.yukseklik}`;
+    // Ayar panelinin kendi özetleri — durum çubuğuyla AYNI kaynaktan, tek
+    // yerden güncelleniyor, her durum değişikliğinde otomatik senkron kalır.
+    ayarOzetiniGuncelle(renk, model);
 
     urliDurumaEsitle();
 }
@@ -106,7 +99,6 @@ function urldenDurumuYukle() {
     // Linkten gelen renk hangi ailedeyse süzgeç de o aileyle açılsın —
     // müşteri paylaşılan rengi ızgarada seçili hâlde görsün.
     const renk = idIleRenkBul(durum.renkId);
-    if (cozulen.renkId && renk) durum.tonAilesi = renk.tonAilesi;
 }
 
 function bildir(mesaj) {
@@ -223,35 +215,13 @@ function modelSeciciyiKur() {
     });
 }
 
-/* ---------------- Renk: ton ailesi süzgeci + ızgara ----------------
-   Eskiden Açık/Koyu diye iki kaba grup + ayrı bir "tüm renkler" modalı vardı.
-   77 renkte bu yetersiz kaldı; artık RAL'in kendi ton aileleri süzgeç,
-   ızgara da doğrudan rayda kaydırılabilir — modal round-trip'i kalktı. */
-
-function tonAileleriniKur() {
-    const kapsayici = document.getElementById('ton-aileleri');
-    kapsayici.innerHTML = '';
-    doluTonAileleri().forEach(aile => {
-        const adet = tonAilesindekiRenkler(aile.anahtar).length;
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        const aktif = aile.anahtar === durum.tonAilesi;
-        btn.className = 'ton-cip' + (aktif ? ' aktif' : '');
-        btn.setAttribute('aria-pressed', String(aktif));
-        btn.dataset.aile = aile.anahtar;
-        btn.innerHTML = `${aile.etiket}<span class="ton-cip-sayi">${adet}</span>`;
-        btn.addEventListener('click', () => {
-            durum.tonAilesi = aile.anahtar;
-            kapsayici.querySelectorAll('.ton-cip').forEach(b => {
-                const a = b === btn;
-                b.classList.toggle('aktif', a);
-                b.setAttribute('aria-pressed', String(a));
-            });
-            renkIzgarasiniCiz();
-        });
-        kapsayici.appendChild(btn);
-    });
-}
+/* ---------------- Renk ızgarası ----------------
+   Ton ailesi süzgeci (Griler / Maviler / …) KALDIRILDI. RAL Classic
+   numaralandırması zaten renk ailesine göre kümelenmiş (1xxx sarılar, 3xxx
+   kırmızılar, 5xxx maviler, 6xxx yeşiller, 7xxx griler, 8xxx kahveler, 9xxx
+   beyaz/siyah), yani doğrudan koda göre sıralı tek bir liste ayrıca
+   gruplamaya gerek kalmadan gruplu okunuyor — ve kartelasından kod bilen
+   müşteri aradığını süzgeçle uğraşmadan buluyor. */
 
 function renkButonuOlustur(renk) {
     const btn = document.createElement('button');
@@ -286,31 +256,19 @@ function renkSecildi(renk) {
 
 function renkIzgarasiniCiz() {
     const izgara = document.getElementById('renk-izgara');
-    const renkler = tonAilesindekiRenkler(durum.tonAilesi);
+    if (!izgara) return;
+    const renkler = ralSirasindakiRenkler();
     izgara.innerHTML = '';
     renkler.forEach((renk, i) => {
         const btn = renkButonuOlustur(renk);
-        // Süzgeç değişince kartlar kademeli belirsin diye (bkz. base.css
-        // .renk-btn animasyonu) — her karta kendi sırasını yazıyoruz.
+        // Kartlar kademeli belirsin diye (bkz. base.css .renk-btn animasyonu)
+        // her karta kendi sırası yazılıyor.
         btn.style.setProperty('--i', i);
         izgara.appendChild(btn);
     });
 
-    const aile = doluTonAileleri().find(a => a.anahtar === durum.tonAilesi);
-
     const sayiEl = document.getElementById('renk-sayisi');
-    if (sayiEl) {
-        const aileAdi = aile && aile.anahtar !== 'tumu' ? ` · ${aile.etiket}` : '';
-        sayiEl.textContent = `${renkler.length} ton${aileAdi}`;
-    }
-
-    // Bölüm başlığındaki meta: seçili aile RAL'in kendi serisiyle etiketlensin
-    // — müşteri katalogdan biliyorsa "1000 serisi" gibi bir ibareyi tanır ve
-    // Lake/RAL'e baktığını anında görür (kullanıcı talebi).
-    const metaEl = document.getElementById('renk-bolum-meta');
-    if (metaEl) {
-        metaEl.textContent = (aile && aile.seri) ? `Lake · RAL ${aile.seri} Serisi` : 'Lake · RAL';
-    }
+    if (sayiEl) sayiEl.textContent = `${renkler.length} RAL tonu`;
 }
 
 /* ---------------- Ölçü kontrolleri ---------------- */
@@ -409,41 +367,34 @@ function olcuKontrolleriniKur() {
     });
 }
 
-/* ---------------- Renk / Boyut panelleri aç-kapa ----------------
-   Işık tuşuyla AYNI desen (kendi tuşu, panel tuşun üstünde açılır, dışına
-   tıklayınca/Esc'te kapanır) — Renk ve Boyut artık birbirinden ve Işık'tan
-   tamamen BAĞIMSIZ iki ayrı kontrol, eskiden ortak tek bir rayda birleşikti. */
+/* ---------------- Ayar paneli (sağ, kalıcı) ----------------
+   Renk ve ölçü eskiden sahne araç çubuğundaki iki ayrı açılır panelde
+   duruyordu. İkisi de karşılaştırarak verilen kararlar — kapak değişirken
+   listenin ekranda kalması gerekiyor — bu yüzden sahnenin yanında sürekli
+   açık bir panele taşındılar. Mobilde sağda yer yok: panel aşağıya iniyor ve
+   bu tutamaktan açılıp kapanıyor, kapalıyken bile seçili renk/ölçü okunuyor. */
 
-function acilirPaneliKur(btnId, panelId) {
-    const btn = document.getElementById(btnId);
-    const panel = document.getElementById(panelId);
-    if (!btn || !panel) return;
+function ayarPaneliniKur() {
+    const panel = document.getElementById('ayar-paneli');
+    const tutamak = document.getElementById('ayar-tutamak');
+    if (!panel || !tutamak) return;
 
-    const acKapa = (ac) => {
-        const acilacak = ac === undefined ? panel.classList.contains('gizli') : ac;
-        if (acilacak) digerSeciciPanelleriniKapat(btnId);
-        panel.classList.toggle('gizli', !acilacak);
-        btn.classList.toggle('acik', acilacak);
-        btn.setAttribute('aria-expanded', String(acilacak));
-    };
-
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        acKapa();
-    });
-    // Panelin İÇİNE tıklamak onu kapatmamalı.
-    panel.addEventListener('click', (e) => e.stopPropagation());
-    document.addEventListener('click', () => acKapa(false));
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !panel.classList.contains('gizli')) {
-            acKapa(false);
-            btn.focus();
-        }
+    tutamak.addEventListener('click', () => {
+        const acik = panel.classList.toggle('acik');
+        tutamak.setAttribute('aria-expanded', String(acik));
     });
 }
 
-function renkPaneliniKur() { acilirPaneliKur('btn-renk', 'renk-panel'); }
-function boyutPaneliniKur() { acilirPaneliKur('btn-boyut', 'boyut-panel'); }
+// Tutamaktaki özet, panel kapalıyken tek bilgi kaynağı olduğu için her
+// güncellemede yeniden yazılıyor.
+function ayarOzetiniGuncelle(renk, model) {
+    const metin = document.getElementById('ayar-tutamak-metin');
+    if (metin) metin.textContent = `${renk.kod} · ${durum.genislik}×${durum.yukseklik} mm`;
+    const nokta = document.getElementById('ayar-tutamak-nokta');
+    if (nokta) nokta.style.background = hexMetni(renk);
+    const secili = document.getElementById('renk-secili-ad');
+    if (secili) secili.textContent = renk.kod;
+}
 
 /* ---------------- Işık (stüdyo HDR) ----------------
    Sahne araç çubuğundaki kendi tuşundan açılan bir panel. Eskiden ayar rayının
@@ -522,7 +473,9 @@ function isikSatiriOlustur(ortam) {
 // document'e ULAŞMADIĞI için "dışına tıklayınca kapan" mekanizması burada
 // işe yaramaz — açılış anında AÇIKÇA çağrılması gerekiyor.
 function digerSeciciPanelleriniKapat(haricBtnId) {
-    [['btn-isik', 'isik-panel'], ['btn-renk', 'renk-panel'], ['btn-boyut', 'boyut-panel']].forEach(([bId, pId]) => {
+    // Renk ve boyut artık kalıcı panelde; burada yalnızca sahne araç
+    // çubuğundaki açılır paneller var — ikisi aynı anda açık kalmasın.
+    [['btn-isik', 'isik-panel'], ['btn-zemin', 'zemin-panel']].forEach(([bId, pId]) => {
         if (bId === haricBtnId) return;
         const b = document.getElementById(bId), p = document.getElementById(pId);
         if (!b || !p || p.classList.contains('gizli')) return;
@@ -543,11 +496,22 @@ function isikPaneliniAcKapa(ac) {
     btn.setAttribute('aria-expanded', String(acilacak));
 }
 
+// Sahne yalnızca bir kez açılır: ya HDR yerleştiğinde ya da zaman aşımında.
+// Zaman aşımı şart — yavaş bir bağlantıda ya da HDR hiç gelmezse müşteri boş
+// bir kutuya bakmasın; o durumda procedural ışıkla açılıyor.
+let sahneAcildi = false;
+function sahneyiAcigaCikar() {
+    if (sahneAcildi) return;
+    sahneAcildi = true;
+    document.body.classList.add('sahne-hazir');
+}
+
 function isikPaneliniKur() {
     // Tek ortam kaldığında seçici anlamsız: tek seçenekli bir açılır liste
     // sadece görsel gürültü. Kod SİLİNMİYOR — ortamlar.js'e yeniden HDR
     // eklendiği anda tuş kendiliğinden geri gelir. Işık yine de yükleniyor,
     // yalnızca seçim arayüzü gizli.
+    if (ORTAM_SECENEKLERI.length === 0) { sahneyiAcigaCikar(); return; }
     const tekOrtam = ORTAM_SECENEKLERI.length <= 1;
     const sarmal = document.querySelector('.isik-sarmal');
     if (tekOrtam && sarmal) sarmal.style.display = 'none';
@@ -581,7 +545,10 @@ function isikPaneliniKur() {
     const hedef = (durum.ortamId && idIleOrtamBul(durum.ortamId)) || varsayilanOrtami();
     const satir = liste ? liste.querySelector(`[data-ortam-id="${hedef.id}"]`) : null;
     if (satir) isikSatiriDurumunuGuncelle(satir, 'yukleniyor');
-    ortamiDegistir(hedef.dosya).catch((hata) => {
+    // 2.5 sn: bu süreyi aşan bir HDR beklemesinde sahneyi açmak, doğru renkte
+    // ama geç görünmekten iyidir.
+    setTimeout(sahneyiAcigaCikar, 2500);
+    ortamiDegistir(hedef.dosya).finally(sahneyiAcigaCikar).catch((hata) => {
         console.error('Stüdyo ışığı yüklenemedi:', hedef.dosya, hata);
         if (satir) isikSatiriDurumunuGuncelle(satir, '');
         return null;
@@ -695,63 +662,95 @@ function dikeyKaydirmayiPlanla() {
     dikeyKaydirmaZamanlayici = setTimeout(dikeyKaydirmayiUygula, 150);
 }
 
-/* ---------------- Sahne zemini denemesi (geçici karar aracı) ----------------
-   Konfigüratörün arka planı için altı seçenek karşılaştırılıyor. Seçici
-   YALNIZCA adres satırında ?zemin=N varken açılıyor; parametre yoksa hiçbir
-   şey eklenmiyor ve ziyaretçi varsayılan zemini görüyor. Karar verilince bu
-   fonksiyon, base.css'teki body[data-zemin] kuralları ve seçicinin stilleri
-   tek seferde silinecek — kalıcı bir özellik değil. */
+/* ---------------- Sahne zemini ----------------
+   Kapağın arkasındaki yüzey. Eskiden bu yalnızca adres satırında ?zemin=N
+   varken beliren GEÇİCİ bir karar aracıydı; artık sahne araç çubuğundaki
+   kendi tuşundan açılan kalıcı bir ayar.
+
+   NOT: bu bir RENK konfigüratörü. Zemin, üstündeki rengin ALGISINI değiştirir
+   (eşzamanlı kontrast) — bu yüzden liste nötrden doyguna doğru sıralı ve 2
+   numara bilinçli olarak nötr orta gri: fotoğraf ve boya sektöründe rengi
+   yargılamak için kullanılan referans zemin budur. */
 
 const ZEMIN_SECENEKLERI = [
-    { no: '1', ad: 'Açık radyal (mevcut)', ornek: 'radial-gradient(circle at 40% 35%, #FFFFFF, #E9E8E4)' },
-    { no: '2', ad: 'Nötr orta gri — renk yargılamak için referans', ornek: '#BFBFBF' },
-    { no: '3', ad: 'Koyu vitrin (kömür)', ornek: 'radial-gradient(circle at 40% 35%, #3A3F46, #14171A)' },
-    { no: '4', ad: 'Krem (marka paleti)', ornek: 'radial-gradient(circle at 40% 35%, #F6F0E4, #DCCFB8)' },
-    { no: '5', ad: 'Lacivert (marka paleti)', ornek: 'radial-gradient(circle at 40% 35%, #2A3568, #0B102F)' },
-    { no: '6', ad: 'Teknik ızgara', ornek: 'repeating-linear-gradient(0deg, #C3BFB6 0 1px, #F5F4F1 1px 8px)' }
+    { no: '1', ad: 'Açık radyal', aciklama: 'Varsayılan — nötr, aydınlık', ornek: 'radial-gradient(circle at 40% 35%, #FFFFFF, #E9E8E4)' },
+    { no: '2', ad: 'Nötr gri', aciklama: 'Rengi yargılamak için referans zemin', ornek: '#BFBFBF' },
+    { no: '7', ad: 'Stüdyo fonu', aciklama: 'Ürün fotoğrafçılığının siklorama kurulumu', ornek: 'linear-gradient(#FBFAF8 0%, #F2F0EC 52%, #E4E1DB 66%, #D6D2CA 100%)' },
+    { no: '8', ad: 'Showroom greige', aciklama: 'Mutfak showroom duvarına en yakın ton', ornek: '#D6CFC3' },
+    { no: '9', ad: 'Mimari gri-mavi', aciklama: 'Serin zemin, sıcak tonları belirginleştirir', ornek: 'radial-gradient(circle at 40% 35%, #EDF1F5, #C9D3DE)' },
+    { no: '4', ad: 'Krem', aciklama: 'Site paletinin sıcak ucu', ornek: 'radial-gradient(circle at 40% 35%, #F6F0E4, #DCCFB8)' },
+    { no: '6', ad: 'Teknik ızgara', aciklama: 'Ölçü hissi veren milimetrik zemin', ornek: 'repeating-linear-gradient(0deg, #C3BFB6 0 1px, #F5F4F1 1px 8px)' },
+    { no: '3', ad: 'Koyu vitrin', aciklama: 'Açık tonları öne çıkarır', ornek: 'radial-gradient(circle at 40% 35%, #3A3F46, #14171A)' },
+    { no: '5', ad: 'Lacivert', aciklama: 'Site paletinin koyu ucu', ornek: 'radial-gradient(circle at 40% 35%, #2A3568, #0B102F)' }
 ];
 
+const VARSAYILAN_ZEMIN = '1';
+
+function zeminiUygula(no) {
+    document.body.dataset.zemin = no;
+    const secenek = ZEMIN_SECENEKLERI.find((z) => z.no === no);
+
+    document.querySelectorAll('.zemin-dugme').forEach((b) => {
+        const aktif = b.dataset.zemin === no;
+        b.classList.toggle('aktif', aktif);
+        b.setAttribute('aria-pressed', String(aktif));
+    });
+
+    const ad = document.getElementById('zemin-secici-ad');
+    if (ad && secenek) ad.textContent = secenek.ad;
+
+    // Adres satırı seçimi taşısın: yenilenince kaybolmasın, paylaşılan linkte
+    // de aynı zemin açılsın. Varsayılan zeminde parametre yazılmıyor —
+    // paylaşılan link gereksiz yere kirlenmesin.
+    const p = new URLSearchParams(window.location.search);
+    if (no === VARSAYILAN_ZEMIN) p.delete('zemin'); else p.set('zemin', no);
+    const sorgu = p.toString();
+    window.history.replaceState(null, '', sorgu ? `${window.location.pathname}?${sorgu}` : window.location.pathname);
+}
+
 function zeminSeciciyiKur() {
-    const istenen = new URLSearchParams(window.location.search).get('zemin');
-    if (!istenen) return;
+    const izgara = document.getElementById('zemin-izgara');
+    const btn = document.getElementById('btn-zemin');
+    const panel = document.getElementById('zemin-panel');
+    if (!izgara || !btn || !panel) return;
 
-    const uygula = (no) => {
-        document.body.dataset.zemin = no;
-        kutu.querySelectorAll('.zemin-dugme').forEach((b) => {
-            const aktif = b.dataset.zemin === no;
-            b.classList.toggle('aktif', aktif);
-            b.setAttribute('aria-pressed', String(aktif));
-        });
-        // Adres satırı seçimi taşısın: karşılaştırmayı sayfayı yenileyerek
-        // veya linki paylaşarak sürdürebilmek için.
-        const p = new URLSearchParams(window.location.search);
-        p.set('zemin', no);
-        window.history.replaceState(null, '', `${window.location.pathname}?${p.toString()}`);
-    };
-
-    const kutu = document.createElement('div');
-    kutu.className = 'zemin-secici';
-    const etiket = document.createElement('span');
-    etiket.className = 'zemin-secici-etiket';
-    etiket.textContent = 'Zemin';
-    kutu.appendChild(etiket);
-
+    izgara.innerHTML = '';
     ZEMIN_SECENEKLERI.forEach((z) => {
         const b = document.createElement('button');
         b.type = 'button';
         b.className = 'zemin-dugme';
         b.dataset.zemin = z.no;
-        b.style.background = z.ornek;
-        b.title = `${z.no} — ${z.ad}`;
-        b.setAttribute('aria-label', `Zemin ${z.no}: ${z.ad}`);
-        b.textContent = z.no;
-        b.addEventListener('click', () => uygula(z.no));
-        kutu.appendChild(b);
+        b.title = z.aciklama;
+        b.setAttribute('aria-label', `${z.ad} — ${z.aciklama}`);
+        const ornek = document.createElement('span');
+        ornek.className = 'zemin-ornek';
+        ornek.style.background = z.ornek;
+        const ad = document.createElement('span');
+        ad.className = 'zemin-ad';
+        ad.textContent = z.ad;
+        b.append(ornek, ad);
+        // Panel açık kalsın: müşteri zeminleri sırayla deneyip karşılaştırsın.
+        b.addEventListener('click', () => zeminiUygula(z.no));
+        izgara.appendChild(b);
     });
 
-    document.body.appendChild(kutu);
-    // Geçersiz bir değer gelirse (?zemin=abc) ilk seçeneğe düş.
-    uygula(ZEMIN_SECENEKLERI.some((z) => z.no === istenen) ? istenen : '1');
+    const acKapa = (ac) => {
+        const acilacak = ac === undefined ? panel.classList.contains('gizli') : ac;
+        if (acilacak) digerSeciciPanelleriniKapat('btn-zemin');
+        panel.classList.toggle('gizli', !acilacak);
+        btn.classList.toggle('acik', acilacak);
+        btn.setAttribute('aria-expanded', String(acilacak));
+    };
+    btn.addEventListener('click', (e) => { e.stopPropagation(); acKapa(); });
+    panel.addEventListener('click', (e) => e.stopPropagation());
+    document.addEventListener('click', () => acKapa(false));
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !panel.classList.contains('gizli')) { acKapa(false); btn.focus(); }
+    });
+
+    // Adresten gelen zemin varsa onunla aç; geçersizse varsayılana düş.
+    const istenen = new URLSearchParams(window.location.search).get('zemin');
+    zeminiUygula(ZEMIN_SECENEKLERI.some((z) => z.no === istenen) ? istenen : VARSAYILAN_ZEMIN);
 }
 
 /* ---------------- Başlangıç ---------------- */
@@ -764,11 +763,9 @@ export function arayuzuBaslat() {
     sahneyiBaslat('canvas-kapsayici');
 
     modelSeciciyiKur();
-    tonAileleriniKur();
     renkIzgarasiniCiz();
     olcuKontrolleriniKur();
-    renkPaneliniKur();
-    boyutPaneliniKur();
+    ayarPaneliniKur();
     isikPaneliniKur();
     sifirlaButonuKur();
     paylasButonunuKur();

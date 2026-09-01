@@ -1,36 +1,50 @@
 /* ---------------------------------------------------------------------------
-   Marka paleti — doğrudan assets/logo.png'den örneklenmiştir.
-   Logonun baskın turuncusu #F29200 (dosyadaki en sık geçen opak piksel değeri),
-   ikincil rengi nötr gri metin. Palet bu iki gerçek değerin üstüne kurulu:
-   tek sıcak renk markanın turuncusu, geri kalan her yüzey nötr gri.
+   Konfigüratör paleti — sitenin resmî dört rengi üzerine kurulu:
+     #111844 lacivert · #4B5694 indigo · #7288AE çelik mavi · #EAE0CF krem
 
-   Bilinçli olarak KAÇINILAN: sıcak krem zemin + serif başlık + terracotta vurgu
-   üçlüsü (projede daha önce vardı) — bu kombinasyon jenerik "AI tasarımı"
-   imzalarından biri ve markanın kendi turuncusuyla da ilgisi yok.
+   Aynı palet ana sayfada ve iletişim sayfasında da kullanılıyor (bkz.
+   css/anasayfa.css); konfigüratör artık siteden kopuk bir araç gibi durmuyor.
+   Önceden burada logodan örneklenmiş turuncu (#F29200) + sıcak nötr griler
+   vardı.
+
+   ÖNEMLİ SINIR: bu bir RENK konfigüratörü. Palet yalnızca ARAYÜZE uygulanıyor
+   — düğmeler, metin, kenarlıklar, paneller. Kapağın arkasındaki sahne zemini
+   ve renk kartelasının oturduğu yüzey bilinçli olarak NÖTR bırakıldı (--yuzey
+   saf beyaz, sahne zemini ayrı bir değişken): renkli bir zemin, üstündeki
+   lake tonunun algılanan rengini kaydırır (eşzamanlı kontrast) ve müşteri
+   ekranda gördüğü rengi yanlış hatırlar.
+
+   Kontrast değerleri ölçüldü (WCAG bağıl parlaklık): --metin 16.96:1,
+   --metin-orta 9.12:1, --metin-soluk 6.13:1 (beyaz üstünde); --metin-soluk
+   en koyu yüzey olan --arkaplan üstünde de 4.69:1 ile eşiği geçiyor.
 --------------------------------------------------------------------------- */
 :root {
-    /* --- Marka --- */
-    --marka: #F29200;              /* saf logo turuncusu: dolgu, ince marka çizgisi */
-    --marka-koyu: #8A5200;         /* metin/kenarlık güvenli türev — beyaz üstünde 6.4:1 */
-    --marka-sis: rgba(242, 146, 0, 0.13);
+    /* --- Marka / vurgu ---
+       Vurgu artık indigo. --marka-koyu metin ve kenarlık için kullanılan,
+       beyaz üstünde 16.96:1 veren lacivert. */
+    --marka: #4B5694;
+    --marka-koyu: #111844;
+    --marka-sis: rgba(75, 86, 148, 0.13);
 
-    /* --- Yüzeyler: turuncuya doğru çok hafif sıcak eğilimli nötr griler --- */
-    --arkaplan: #E9E8E4;
+    /* --- Yüzeyler ---
+       --yuzey NÖTR beyaz kalıyor (yukarıdaki sınır); --yuzey-2/3 ve
+       --arkaplan paletin kremine doğru ısınıyor. */
+    --arkaplan: #EAE0CF;
     --yuzey: #FFFFFF;
-    --yuzey-2: #F5F4F1;
-    --yuzey-3: #EDECE8;
+    --yuzey-2: #F6F2EA;
+    --yuzey-3: #EFE8DA;
 
     /* --- Metin --- */
-    --metin: #1C1A17;
-    --metin-orta: #4A463F;
-    --metin-soluk: #67635A;        /* arkaplan üstünde 4.9:1 */
+    --metin: #111844;
+    --metin-orta: #3B4577;
+    --metin-soluk: #55608A;
 
     /* --- Çizgiler --- */
-    --kenarlik: #DAD7D0;
-    --kenarlik-guclu: #C3BFB6;
+    --kenarlik: #DCD5C6;
+    --kenarlik-guclu: #C1B8A4;
 
-    --golge: 0 10px 34px rgba(28, 26, 23, 0.13);
-    --golge-yumusak: 0 2px 10px rgba(28, 26, 23, 0.07);
+    --golge: 0 10px 34px rgba(17, 24, 68, 0.14);
+    --golge-yumusak: 0 2px 10px rgba(17, 24, 68, 0.08);
 
     /* --- Tipografi ---
        Archivo: endüstriyel grotesk — logonun geniş, geometrik, köşeli harf
@@ -38,8 +52,7 @@
        kullanılmadı (ikisi de "varsayılan AI yazı tipi" hâline geldi).
        IBM Plex Mono: RAL kodları ve mm ölçüleri gibi teknik veriler için —
        sabit genişlik, rakamlar sütun hâlinde hizalanıyor.
-       Fraunces yalnızca ana sayfanın editoryal başlığında kalır; konfigüratör
-       bir ARAÇ olduğu için orada serif kullanılmaz. */
+       Konfigüratör bir ARAÇ olduğu için burada serif kullanılmaz. */
     --baslik-font: 'Fraunces', Georgia, serif;
     --govde-font: 'Archivo', 'Segoe UI', system-ui, sans-serif;
     --veri-font: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;

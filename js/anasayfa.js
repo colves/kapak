@@ -16,7 +16,8 @@ import { ustBariKur } from './ustBar.js';
 // aynı görünmesini garanti ediyor (aynı geometri, aynı malzeme, aynı kenar
 // korumalı ölçekleme). viewer.js tekil bir sahne tutuyor — ana sayfada tek
 // bir 3B alan olduğu için bu bir sorun değil.
-import { sahneyiBaslat, kapagiGuncelle } from './viewer.js';
+import { sahneyiBaslat, kapagiGuncelle, ortamiDegistir } from './viewer.js';
+import { varsayilanOrtami } from './data/ortamlar.js';
 
 /* ---------------- Yardımcılar ---------------- */
 
@@ -143,7 +144,10 @@ function ornekKapagiKur() {
 
     // Paletle uyumlu, birbirinden belirgin farklı üç gerçek RAL tonu.
     const tumRenkler = tonAilesindekiRenkler('tumu');
-    const secimler = ['5011', '9016', '7016']
+    // Yesil bir ton, ardindan konfiguratorun varsayilani Ipek Grisi ve en
+    // koyu ucta Antrasit: acik/orta/koyu bir ilerleme. Ucu de gercek
+    // katalog rengi (kodlar colors.js'ten dogrulaniyor).
+    const secimler = ['6011', '7044', '7016']
         .map((kod) => tumRenkler.find((r) => r.kod === `RAL ${kod}`))
         .filter(Boolean);
 
@@ -208,6 +212,15 @@ function ornekKapagiKur() {
         // dikeyden çerçeveliyor) her ekran genişliğinde aynı duruyor.
         sahneyiBaslat('ornek-kapak', { kameraMesafesi: 1500 });
         kapagiCiz();
+        // Konfiguratorle AYNI studyo isigi (Klasik Studyo HDR) — kapak iki
+        // sayfada da ayni isikta gorunsun. Sayfa acilisinda indirilmiyor:
+        // bu blok zaten yalnizca bolum gorunume girdiginde calisiyor.
+        // Yuklenemezse sahne procedural ortamla surer, bos kalmaz.
+        const ortam = varsayilanOrtami();
+        if (ortam) {
+            Promise.resolve(ortamiDegistir(ortam.dosya))
+                .catch((h) => console.warn('Studyo isigi yuklenemedi, procedural ortam suruyor:', h));
+        }
     };
 
     if (typeof IntersectionObserver === 'function') {

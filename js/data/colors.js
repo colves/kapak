@@ -165,6 +165,20 @@ export function tonAilesindekiRenkler(aileAnahtari) {
     return LAKE_TUMU.filter(r => r.tonAilesi === aileAnahtari);
 }
 
+// Konfigüratörün renk listesi: ton ailesi süzgeci OLMADAN, doğrudan RAL
+// numarasına göre sıralı. Süzgeç kaldırıldı çünkü RAL Classic numaralandırması
+// zaten renk ailesine göre kümelenmiş — 1xxx sarılar, 3xxx kırmızılar, 5xxx
+// maviler, 6xxx yeşiller, 7xxx griler, 8xxx kahveler, 9xxx beyaz/siyah — yani
+// sıralı düz liste ayrıca gruplamaya gerek kalmadan gruplu okunuyor ve
+// kartelasından kod bilen müşteri aradığını doğrudan bulabiliyor.
+//
+// LAKE_TUMU'nun kendi sırası elle yazılmış (önce açık, sonra koyu tonlar), o
+// yüzden burada açıkça sıralanıyor; kaynak dizinin sırası bozulmasın diye
+// kopya üzerinde.
+export function ralSirasindakiRenkler() {
+    return [...LAKE_TUMU].sort((a, b) => Number(a.kod.slice(4)) - Number(b.kod.slice(4)));
+}
+
 // Kataloğun gerçekten renk içeren aileleri — boş filtre düğmesi çizilmesin diye.
 export function doluTonAileleri() {
     return TON_AILELERI.filter(a => tonAilesindekiRenkler(a.anahtar).length > 0);
