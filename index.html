@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Şahinkaya Ahşap — Yüzeyden fazlası.</title>
+<meta name="description" content="Modern yaşam alanları için hassas üretilmiş lake kapaklar. 77 RAL Lake rengi, kendi ölçünüzde, 3B konfigüratörle.">
+<link rel="icon" href="assets/mini-logo.png">
+<link rel="apple-touch-icon" href="assets/mini-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/anasayfa.css">
+</head>
+<body>
+
+<!-- Üst bar: hero üzerinde saydam başlar, sayfa kaydırılınca opak hâle
+     geçer (bkz. js/anasayfa.js basligiKur). Menü bağlantıları sayfa İÇİ
+     bölümlere gidiyor — proje şu an tek sayfa, var olmayan alt sayfalara
+     link verilmiyor. -->
+<header class="ust" id="ust">
+    <div class="ust-bar">
+        <a class="marka" href="#tepe" aria-label="Şahinkaya Ahşap — sayfa başı">
+            <img src="assets/logo.png" alt="Şahinkaya Ahşap">
+        </a>
+        <nav class="menu" id="menu">
+            <a href="#modeller">Modeller</a>
+            <a href="#renkler">Renkler &amp; Yüzeyler</a>
+            <a href="#uretim">Üretim</a>
+            <a href="#ilham">İlham</a>
+            <a href="#iletisim">İletişim</a>
+        </nav>
+        <div class="ust-araclar">
+            <a class="konfig-link" href="configurator.html">Konfigüratör</a>
+            <button class="menu-dugmesi" id="menu-dugmesi" type="button" aria-label="Menü" aria-expanded="false" aria-controls="menu">☰</button>
+        </div>
+    </div>
+</header>
+
+<main id="tepe">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+        <div class="hero-gorsel" aria-hidden="true"></div>
+        <div class="hero-icerik">
+            <span class="etiket etiket-acik">Sakarya / Türkiye</span>
+            <h1>Mekânın karakterini<br>detaylar belirler.</h1>
+            <p>Modern yaşam alanları için hassas üretilmiş lake kapaklar.</p>
+            <div class="eylemler">
+                <a class="dugme" href="configurator.html">Konfigüratörü Aç</a>
+                <a class="dugme hayalet" href="#modeller">Modelleri Gör</a>
+            </div>
+        </div>
+        <span class="kaydir-ipucu" aria-hidden="true">Keşfet</span>
+    </section>
+
+    <!-- ===== Yaklaşım ===== -->
+    <section class="bolum bildirim">
+        <span class="etiket">Yaklaşım</span>
+        <h2>Sade görünen her yüzeyin arkasında hassasiyet vardır.</h2>
+        <p>3ds Max ortamından aktarılan gerçek kapak modelleri, özenle seçilmiş lake yüzeyler ve 20 yılı aşkın atölye deneyimiyle yaşam alanlarına karakter kazandıran kapaklar üretiyoruz.</p>
+    </section>
+
+    <!-- ===== Modeller ===== -->
+    <section class="bolum" id="modeller">
+        <div class="bolum-basi">
+            <div>
+                <span class="etiket">Modeller</span>
+                <h2>Formun farklı ifadeleri.</h2>
+            </div>
+            <a class="metin-link" href="configurator.html">Konfigüratörde tümü</a>
+        </div>
+        <!-- Kartlar js/anasayfa.js tarafından models.js'ten üretiliyor:
+             model listesi tek kaynaktan gelsin, elle kopyalanmasın. -->
+        <div class="modeller" id="model-izgara"></div>
+    </section>
+
+    <!-- ===== Konfigüratör tanıtımı ===== -->
+    <section class="konfig-serit">
+        <div class="bolum konfig">
+            <div class="kapak-sahne">
+                <div class="kapak" id="ornek-kapak"></div>
+                <div class="kapak-kontrol" id="renk-secenekleri" role="group" aria-label="Örnek renk seç"></div>
+            </div>
+            <div class="konfig-metin">
+                <span class="etiket">Kişiselleştir</span>
+                <h2>Kendi yüzeyini oluştur.</h2>
+                <p>Modeli, rengi ve ölçüyü seçin. Konfigüratör ilk karar anından teklife kadar sizinle — seçiminiz tek bir linke kodlanır, bize doğrudan gönderebilirsiniz.</p>
+                <a class="dugme" href="configurator.html">Konfigüratörü Aç</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Renkler & Yüzeyler ===== -->
+    <section class="bolum" id="renkler">
+        <div class="malzeme-duzen">
+            <div class="malzeme-baslik">
+                <div>
+                    <span class="etiket">Renkler &amp; Yüzeyler</span>
+                    <h2>Rengi seçmek başlangıçtır.<br>Yüzey karakteri tamamlar.</h2>
+                </div>
+                <a class="metin-link" href="configurator.html">Renk kütüphanesini keşfet</a>
+            </div>
+            <!-- Ton aileleri colors.js'ten geliyor — 77 rengin RAL Classic
+                 gruplaması zaten orada tanımlı, burada tekrarlanmıyor. -->
+            <div class="malzemeler" id="ton-izgara"></div>
+        </div>
+    </section>
+
+    <!-- ===== Üretim ===== -->
+    <section class="uretim" id="uretim">
+        <div class="bolum uretim-izgara">
+            <div class="uretim-gorsel" aria-hidden="true"></div>
+            <div class="uretim-metin">
+                <span class="etiket etiket-acik">Üretim &amp; Teknoloji</span>
+                <h2>Tasarım, hassasiyetle üretilir.</h2>
+                <dl class="sayilar">
+                    <div class="sayi"><dt>77</dt><dd>RAL Lake rengi</dd></div>
+                    <div class="sayi"><dt>18 mm</dt><dd>Standart kapak kalınlığı</dd></div>
+                    <div class="sayi"><dt>20+ yıl</dt><dd>Atölye deneyimi</dd></div>
+                </dl>
+                <a class="dugme acik" href="configurator.html">Kendi Kapağını Tasarla</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== İlham ===== -->
+    <section class="bolum" id="ilham">
+        <div class="bolum-basi">
+            <div>
+                <span class="etiket">İlham</span>
+                <h2>Yaşam alanlarına<br>yerleşen detaylar.</h2>
+            </div>
+            <a class="metin-link" href="configurator.html">Konfigüratörde dene</a>
+        </div>
+        <!-- Gerçek kapak görselleri js/data/galeri.js'ten; her kart
+             konfigüratörü o model ve renkle açıyor. -->
+        <div class="ilham-izgara" id="ilham-izgara"></div>
+    </section>
+
+    <!-- ===== Profesyoneller ===== -->
+    <section class="profesyonel">
+        <div class="profesyonel-ic">
+            <div>
+                <span class="etiket etiket-acik">Profesyoneller için</span>
+                <h2>Daha fazlası.</h2>
+            </div>
+            <div>
+                <p>Mimarlar, iç mimarlar ve mutfakçılar için projeye eşlik eden teknik ve ticari altyapı.</p>
+                <div class="profesyonel-liste">
+                    <div>Proje bazlı üretim</div>
+                    <div>Ölçüye özel kapak</div>
+                    <div>Numune desteği</div>
+                    <div>Hacim fiyatlandırması</div>
+                    <div>Paylaşılabilir konfigürasyon linki</div>
+                    <div>Doğrudan atölye iletişimi</div>
+                </div>
+                <a class="dugme acik" href="#iletisim">İletişime Geç</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Kapanış ===== -->
+    <section class="bolum kapanis">
+        <span class="etiket">Birlikte başlayalım</span>
+        <h2>Projeniz için doğru kapağı birlikte oluşturalım.</h2>
+        <div class="eylemler orta">
+            <a class="dugme" href="configurator.html">Konfigüratörü Aç</a>
+            <a class="dugme hayalet" href="tel:+905336639714">Bizi Arayın</a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="alt" id="iletisim">
+    <div class="alt-ic">
+        <div class="alt-ust">
+            <div class="alt-marka">
+                <img src="assets/logo.png" alt="Şahinkaya Ahşap">
+                <p>Modern yaşam alanları için hassas üretilmiş lake kapaklar.</p>
+            </div>
+            <div>
+                <h3>Keşfet</h3>
+                <a href="#modeller">Modeller</a>
+                <a href="#renkler">Renkler &amp; Yüzeyler</a>
+                <a href="configurator.html">Konfigüratör</a>
+            </div>
+            <div>
+                <h3>Kurumsal</h3>
+                <a href="#uretim">Üretim</a>
+                <a href="#ilham">İlham</a>
+                <a href="https://sahinkayamobilya.com" target="_blank" rel="noopener">sahinkayamobilya.com</a>
+            </div>
+            <div>
+                <h3>İletişim</h3>
+                <a href="tel:+905336639714">+90 533 663 97 14</a>
+                <a href="mailto:sahinkaya@gmail.com">sahinkaya@gmail.com</a>
+                <a href="https://wa.me/905336639714" target="_blank" rel="noopener">WhatsApp</a>
+                <span class="alt-adres">Adapazarı, Sakarya</span>
+            </div>
+        </div>
+        <div class="alt-taban">
+            <span>© 2026 Şahinkaya Ahşap Mobilya. Tüm hakları saklıdır.</span>
+            <span>Mobilya · İç Mimari · Tasarım</span>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="js/anasayfa.js"></script>
+</body>
+</html>
