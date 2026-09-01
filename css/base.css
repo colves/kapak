@@ -135,59 +135,20 @@ html, body {
     overflow: hidden;
 }
 
-/* ---- Sahne zemini denemeleri ----
-   Karar vermek için altı seçenek. Yalnızca adres satırında ?zemin=N varken
-   devreye giriyor (bkz. ui.js zeminSeciciyiKur) — normal ziyaretçi hiçbirini
-   görmez, varsayılan yukarıdaki açık radyal zemindir.
+/* ---- Sahne zemini ----
+   Kapağın arkasındaki yüzey. Dokuz aday denendi (nötr gri, stüdyo siklorama,
+   showroom greige, mimari gri-mavi, krem, koyu vitrin, lacivert…); kullanıcı
+   ikisini seçti ve kalanlar kaldırıldı.
 
    NOT: bu bir RENK konfigüratörü. Zemin, üstündeki rengin ALGISINI değiştirir
-   (eşzamanlı kontrast); bu yüzden seçenekler nötrden doyguna doğru sıralı ve
-   2 numara bilinçli olarak nötr orta gri — fotoğraf/boya sektöründe rengi
-   yargılamak için kullanılan referans zemin budur. */
+   (eşzamanlı kontrast); ikisinin de açık ve nötr kalması bilinçli. */
 body[data-zemin="1"] { --sahne-zemin: radial-gradient(ellipse 70% 60% at 50% 42%, #FFFFFF 0%, #F5F4F1 45%, #E9E8E4 100%); }
-body[data-zemin="2"] { --sahne-zemin: #BFBFBF; }
-body[data-zemin="3"] { --sahne-zemin: radial-gradient(ellipse 80% 70% at 50% 45%, #3A3F46 0%, #23272C 55%, #14171A 100%); }
-body[data-zemin="4"] { --sahne-zemin: radial-gradient(ellipse 75% 65% at 50% 44%, #F6F0E4 0%, #EAE0CF 55%, #DCCFB8 100%); }
-body[data-zemin="5"] { --sahne-zemin: radial-gradient(ellipse 80% 70% at 50% 44%, #2A3568 0%, #111844 55%, #0B102F 100%); }
 body[data-zemin="6"] {
     --sahne-zemin:
         linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
         repeating-linear-gradient(0deg, #C3BFB6 0 1px, transparent 1px 40px),
         repeating-linear-gradient(90deg, #C3BFB6 0 1px, transparent 1px 40px),
         #F5F4F1;
-}
-/* 7 — Stüdyo siklorama: gerçek bir fotoğraf stüdyosunda arka fon kâğıdının
-   yere kavisle indiği yüzeyin karşılığı. Ürün fotoğrafçılığının varsayılan
-   kurulumu olduğu için mobilya/ürün konfigüratörlerinde en sık görülen zemin;
-   yumuşak ufuk çizgisi kapağa bir "yere basma" hissi veriyor. */
-body[data-zemin="7"] {
-    --sahne-zemin:
-        linear-gradient(#FBFAF8 0%, #F2F0EC 52%, #E4E1DB 66%, #D6D2CA 100%);
-}
-/* 8 — Showroom greige: düz, hafif sıcak nötr duvar. Mutfak/mobilya
-   showroom'larının gerçek duvar rengine en yakın olan; kapağın müşterinin
-   evinde nasıl duracağına dair en dürüst önizleme. */
-body[data-zemin="8"] { --sahne-zemin: #D6CFC3; }
-/* 9 — Mimari soğuk gri-mavi: CAD/render sunumlarının klasik zemini. Serin
-   olduğu için sıcak lake tonlarını (bej, kum, kahve) belirginleştirir —
-   ısınmış bir zeminde birbirine karışan tonlar burada ayrışır. */
-body[data-zemin="9"] {
-    --sahne-zemin: radial-gradient(ellipse 78% 68% at 50% 44%, #EDF1F5 0%, #DDE4EC 55%, #C9D3DE 100%);
-}
-
-/* Koyu zeminlerde üstteki yüzen kontroller okunur kalsın diye durum çubuğu
-   ve model seçicinin kendi zemini de koyulaşıyor. */
-body[data-zemin="3"] .durum-cubugu, body[data-zemin="5"] .durum-cubugu,
-body[data-zemin="3"] .model-secici, body[data-zemin="5"] .model-secici {
-    background: rgba(20, 23, 26, 0.72);
-    border-color: rgba(255, 255, 255, 0.18);
-    color: #FFFFFF;
-}
-body[data-zemin="3"] .model-secici-etiket, body[data-zemin="5"] .model-secici-etiket,
-body[data-zemin="3"] #secim-renk-metin, body[data-zemin="5"] #secim-renk-metin,
-body[data-zemin="3"] .durum-olcu, body[data-zemin="5"] .durum-olcu,
-body[data-zemin="3"] .model-secici svg, body[data-zemin="5"] .model-secici svg {
-    color: rgba(255, 255, 255, 0.72);
 }
 
 /* ---- Zemin seçici ----
@@ -884,7 +845,9 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
    Sahne bu yüzden hep tam ekran yükseklikte; hiçbir panel onu küçültmüyor. */
 @media (max-width: 760px) {
     :root {
-        --ustbar-h: 64px;
+        /* Ana sayfanın mobil üst barıyla eşit (bkz. anasayfa.css --bar-y):
+           14px dolgu + 42px logo + 14px dolgu = 70px. */
+        --ustbar-h: 70px;
     }
 
     /* Renk ızgarası mobilde SINIRSIZ açılıyordu: 77 renk 3578px'lik tek bir

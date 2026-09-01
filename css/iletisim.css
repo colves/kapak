@@ -10,20 +10,19 @@
    kuruldu (lacivert zemin, krem başlık, çelik mavi ayrıntı).
 --------------------------------------------------------------------------- */
 
-/* Ana sayfada üst bar hero görselinin üzerinde saydam başlıyor. İç sayfalarda
-   arkasında görsel yok; ilk andan itibaren opak durmalı. */
+/* Üst bar her sayfada AYNI (bkz. anasayfa.css .ust) — burada rengine
+   dokunulmuyor. Yalnızca sayfanın kendi zemini ve menüdeki aktif sayfa
+   işareti tanımlanıyor. */
 .ic-sayfa { background: var(--lacivert); }
-.ic-sayfa .ust { background: var(--lacivert); border-bottom-color: rgba(234, 224, 207, 0.16); }
-.ic-sayfa .ust .menu a,
-.ic-sayfa .ust .konfig-link { color: #FFFFFF; }
-/* Bulunulan sayfa menüde belli olsun. */
-.ic-sayfa .menu a.etkin { color: var(--krem); border-bottom: 1px solid var(--krem); }
+.ic-sayfa .menu a.etkin { border-bottom: 1px solid var(--lacivert); }
+/* Üst bar sabit (position: fixed) — içerik onun altından başlasın. */
+.ic-sayfa main { padding-top: var(--bar-y); }
 
 /* ===================== Sayfa başı ===================== */
 .iletisim-basi {
     background: var(--lacivert);
     color: #F6F0E6;
-    padding-top: var(--bar-y);
+
 }
 .iletisim-basi h1 {
     margin: 14px 0 20px;

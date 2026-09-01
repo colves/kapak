@@ -674,14 +674,7 @@ function dikeyKaydirmayiPlanla() {
 
 const ZEMIN_SECENEKLERI = [
     { no: '1', ad: 'Açık radyal', aciklama: 'Varsayılan — nötr, aydınlık', ornek: 'radial-gradient(circle at 40% 35%, #FFFFFF, #E9E8E4)' },
-    { no: '2', ad: 'Nötr gri', aciklama: 'Rengi yargılamak için referans zemin', ornek: '#BFBFBF' },
-    { no: '7', ad: 'Stüdyo fonu', aciklama: 'Ürün fotoğrafçılığının siklorama kurulumu', ornek: 'linear-gradient(#FBFAF8 0%, #F2F0EC 52%, #E4E1DB 66%, #D6D2CA 100%)' },
-    { no: '8', ad: 'Showroom greige', aciklama: 'Mutfak showroom duvarına en yakın ton', ornek: '#D6CFC3' },
-    { no: '9', ad: 'Mimari gri-mavi', aciklama: 'Serin zemin, sıcak tonları belirginleştirir', ornek: 'radial-gradient(circle at 40% 35%, #EDF1F5, #C9D3DE)' },
-    { no: '4', ad: 'Krem', aciklama: 'Site paletinin sıcak ucu', ornek: 'radial-gradient(circle at 40% 35%, #F6F0E4, #DCCFB8)' },
-    { no: '6', ad: 'Teknik ızgara', aciklama: 'Ölçü hissi veren milimetrik zemin', ornek: 'repeating-linear-gradient(0deg, #C3BFB6 0 1px, #F5F4F1 1px 8px)' },
-    { no: '3', ad: 'Koyu vitrin', aciklama: 'Açık tonları öne çıkarır', ornek: 'radial-gradient(circle at 40% 35%, #3A3F46, #14171A)' },
-    { no: '5', ad: 'Lacivert', aciklama: 'Site paletinin koyu ucu', ornek: 'radial-gradient(circle at 40% 35%, #2A3568, #0B102F)' }
+    { no: '6', ad: 'Teknik ızgara', aciklama: 'Ölçü hissi veren milimetrik zemin', ornek: 'repeating-linear-gradient(0deg, #C3BFB6 0 1px, #F5F4F1 1px 8px)' }
 ];
 
 const VARSAYILAN_ZEMIN = '1';

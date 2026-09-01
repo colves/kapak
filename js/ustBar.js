@@ -1,5 +1,5 @@
-// Her sayfada ortak olan üst bar davranışı: kaydırınca opaklaşma ve
-// mobil menünün açılıp kapanması.
+// Her sayfada ortak olan üst bar davranışı: mobil menünün açılıp kapanması ve
+// kaydırma çubuğu payının ölçülmesi.
 //
 // Ayrı bir modül olmasının sebebi iletişim sayfası: ana sayfa modülü
 // three.js'i (ve dolayısıyla ~600 KB'ı) içeri alıyor, 3B'si olmayan bir
@@ -22,15 +22,9 @@ export function ustBariKur() {
     kaydirmaCubuguPayiniOlc();
     window.addEventListener('resize', kaydirmaCubuguPayiniOlc);
 
-    const ust = document.getElementById('ust');
-    if (!ust) return;
-
-    // Hero'nun üzerindeyken saydam, aşağı inince opak. Eşik 40px: barın
-    // kendi yüksekliğinden küçük, yani kullanıcı daha ilk hareketde geçişi
-    // görüyor, sonradan ani bir sıçrama olmuyor.
-    const durumuYaz = () => ust.classList.toggle('kaydirildi', window.scrollY > 40);
-    window.addEventListener('scroll', durumuYaz, { passive: true });
-    durumuYaz();
+    // Not: burada bir zamanlar sayfa kaydırılınca barı saydamdan opağa
+    // geçiren bir 'kaydirildi' sınıfı vardı. Üst bar artık her sayfada ve her
+    // durumda konfigüratörünkiyle aynı opak barla duruyor, o yüzden kalktı.
 
     const dugme = document.getElementById('menu-dugmesi');
     const menu = document.getElementById('menu');

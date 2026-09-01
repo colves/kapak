@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Modeller — Şahinkaya Ahşap</title>
+<meta name="description" content="Şahinkaya Ahşap lake kapak modelleri. Her model 77 RAL renginde ve kendi ölçünüzde; konfigüratörde 3B olarak görün.">
+<link rel="icon" href="assets/mini-logo.png">
+<link rel="apple-touch-icon" href="assets/mini-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Palet, tipografi, üst bar, altbilgi ve butonlar ana sayfayla ORTAK —
+     modeller.css yalnızca kataloğa özel ızgarayı ve kartları tanımlıyor. -->
+<link rel="stylesheet" href="css/anasayfa.css">
+<link rel="stylesheet" href="css/modeller.css">
+</head>
+<body class="ic-sayfa">
+
+<header class="ust" id="ust">
+    <div class="ust-bar">
+        <a class="marka" href="index.html" aria-label="Şahinkaya Ahşap — ana sayfa">
+            <img src="assets/logo.png" alt="Şahinkaya Ahşap">
+        </a>
+        <nav class="menu" id="menu">
+            <a href="index.html#renkler">Renkler</a>
+            <a class="one-cikan etkin" href="modeller.html" aria-current="page">Modeller</a>
+            <a href="iletisim.html">İletişim</a>
+        </nav>
+        <div class="ust-araclar">
+            <a class="konfig-link" href="configurator.html">Konfigüratör</a>
+            <button class="menu-dugmesi" id="menu-dugmesi" type="button" aria-label="Menü" aria-expanded="false" aria-controls="menu">☰</button>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <section class="bolum katalog-basi">
+        <span class="etiket">Katalog</span>
+        <h1>Modeller</h1>
+        <div class="katalog-alt-basi">
+            <p>Her model 77 RAL Lake renginde ve kendi ölçünüzde üretiliyor. Bir modele tıklayın, konfigüratörde 3B olarak çevirip inceleyin.</p>
+            <span id="katalog-sayi"></span>
+        </div>
+    </section>
+
+    <!-- Kartlar js/modeller.js tarafından models.js + galeri.js'ten üretiliyor:
+         konfigüratöre yeni bir model eklendiğinde katalog kendiliğinden büyür. -->
+    <section class="bolum">
+        <div class="katalog-izgara" id="katalog-izgara"></div>
+    </section>
+
+    <section class="bolum katalog-kapanis">
+        <span class="etiket etiket-acik">Aradığınız burada yoksa</span>
+        <h2>Elinizdeki modeli üretebiliriz.</h2>
+        <p>Katalogda göremediğiniz bir form için ölçü ve görselle bize ulaşın; kendi atölyemizde üretiyoruz.</p>
+        <a class="dugme acik" href="iletisim.html">İletişime Geç</a>
+    </section>
+
+</main>
+
+<footer class="alt">
+    <div class="alt-ic">
+        <div class="alt-ust">
+            <div class="alt-marka">
+                <img src="assets/logo.png" alt="Şahinkaya Ahşap">
+                <p>Modern yaşam alanları için hassas üretilmiş lake kapaklar.</p>
+            </div>
+            <div>
+                <h3>Keşfet</h3>
+                <a href="modeller.html">Modeller</a>
+                <a href="index.html#renkler">Renkler</a>
+                <a href="configurator.html">Konfigüratör</a>
+            </div>
+            <div>
+                <h3>Kurumsal</h3>
+                <a href="iletisim.html">İletişim</a>
+                <a href="https://sahinkayamobilya.com" target="_blank" rel="noopener">sahinkayamobilya.com</a>
+            </div>
+            <div>
+                <h3>İletişim</h3>
+                <a href="tel:+905336639714">+90 533 663 97 14</a>
+                <a href="mailto:sahinkaya@gmail.com">sahinkaya@gmail.com</a>
+                <a href="https://wa.me/905336639714" target="_blank" rel="noopener">WhatsApp</a>
+                <span class="alt-adres">Adapazarı, Sakarya</span>
+            </div>
+        </div>
+        <div class="alt-taban">
+            <span>© 2026 Şahinkaya Ahşap Mobilya. Tüm hakları saklıdır.</span>
+            <span>Mobilya · İç Mimari · Tasarım</span>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="js/modeller.js"></script>
+</body>
+</html>

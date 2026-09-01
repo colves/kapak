@@ -1,0 +1,176 @@
+/* ---------------------------------------------------------------------------
+   MODELLER KATALOĞU
+
+   Palet, tipografi, üst bar, altbilgi ve butonlar anasayfa.css'ten geliyor;
+   burada yalnızca kataloğa özel olanlar var.
+
+   Düzen referans alınan çalışmadaki katalog sayfasından: çok büyük bir başlık,
+   altında üç sütunlu ızgara, her kartın üstünde ince bir ayraç çizgisi, görsel
+   ve altında ad + ölçü + renk noktaları.
+
+   Referanstaki süzgeç çipleri (Tümü / Koleksiyon / Yüzey / Uygulama / Renk)
+   bilinçli olarak YOK — istenmedi, ve zaten süzülecek bir şey de yok: üretim
+   tek malzemede (lake) ve şu an üç model var. Model sayısı arttığında buraya
+   arama eklenebilir; çip süzgeci ancak gerçek bir ayrım (ör. desen ailesi)
+   ortaya çıkarsa anlamlı olur.
+--------------------------------------------------------------------------- */
+
+/* Üst bar her sayfada AYNI (bkz. anasayfa.css .ust) — burada rengine
+   dokunulmuyor. Yalnızca sayfanın kendi zemini ve menüdeki aktif sayfa
+   işareti tanımlanıyor. */
+.ic-sayfa { background: var(--kagit); }
+.ic-sayfa .menu a.etkin { border-bottom: 1px solid var(--lacivert); }
+/* Üst bar sabit (position: fixed) — içerik onun altından başlasın. */
+.ic-sayfa main { padding-top: var(--bar-y); }
+
+/* ===================== Sayfa başı ===================== */
+.katalog-basi {
+    padding-top: clamp(48px, 7vw, 104px);
+    padding-bottom: clamp(32px, 4vw, 56px);
+}
+.katalog-basi h1 {
+    margin: 12px 0 18px;
+    font-size: clamp(52px, 11vw, 148px);
+    line-height: 0.86;
+    letter-spacing: -0.045em;
+    font-weight: 600;
+}
+.katalog-alt-basi {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    max-width: 62ch;
+}
+.katalog-basi p {
+    margin: 0;
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.6;
+    color: rgba(21, 21, 21, 0.68);
+}
+#katalog-sayi {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    white-space: nowrap;
+}
+
+/* ===================== Izgara ===================== */
+.katalog-izgara {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Satır aralığı sütun aralığından belirgin şekilde geniş: kartlar satır
+       satır okunsun, tek bir gri blok gibi görünmesin. */
+    gap: clamp(48px, 6vw, 84px) clamp(16px, 2.4vw, 32px);
+    padding-bottom: clamp(80px, 10vw, 140px);
+}
+.katalog-kart {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* Referanstaki ince ayraç: her kart kendi üstünde bir çizgi taşıyor. */
+    border-top: 1px solid var(--cizgi);
+    padding-top: 18px;
+}
+
+.katalog-gorsel {
+    display: block;
+    position: relative;
+    /* Kapak dikey bir nesne; kutuyu ona göre kurup görseli kaplatıyoruz.
+       Fotoğraf gelmezse bu zemin görünür, kart boş bir delik olmaz. */
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: linear-gradient(150deg, var(--krem), #D9D0C2);
+}
+.katalog-gorsel img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.katalog-gorsel:hover img { transform: scale(1.045); }
+
+.katalog-alt { display: flex; flex-direction: column; gap: 10px; }
+.katalog-bas {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+}
+.katalog-bas h2 {
+    margin: 0;
+    font-size: clamp(19px, 2vw, 26px);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+}
+.katalog-olcu {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--celik);
+    white-space: nowrap;
+}
+.katalog-aciklama {
+    margin: 0;
+    font-size: 13px;
+    color: rgba(21, 21, 21, 0.62);
+}
+
+/* Renk noktaları: her biri konfigüratörü O RENKLE açan gerçek bir bağlantı,
+   dekor değil. */
+.katalog-noktalar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2px;
+}
+.katalog-nokta {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(17, 24, 68, 0.28);
+    transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.katalog-nokta:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 0 0 1px rgba(17, 24, 68, 0.28), 0 0 0 2px var(--kagit), 0 0 0 4px var(--indigo);
+}
+.katalog-tumu {
+    margin-left: 6px;
+    font-size: 12px;
+    color: var(--indigo);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.16s ease;
+}
+.katalog-tumu:hover { border-bottom-color: var(--indigo); }
+
+/* ===================== Kapanış ===================== */
+.katalog-kapanis {
+    background: var(--lacivert);
+    color: #F6F0E6;
+    text-align: center;
+}
+.katalog-kapanis h2 {
+    margin: 14px auto 18px;
+    max-width: 20ch;
+    font-size: clamp(28px, 4.4vw, 56px);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    text-wrap: balance;
+}
+.katalog-kapanis p {
+    max-width: 54ch;
+    margin: 0 auto 30px;
+    font-size: clamp(14px, 1.4vw, 17px);
+    line-height: 1.65;
+    color: rgba(246, 240, 230, 0.76);
+}
+
+@media (max-width: 980px) {
+    .katalog-izgara { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+    .katalog-izgara { grid-template-columns: 1fr; }
+}

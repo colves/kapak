@@ -1,15 +1,12 @@
 // Ana sayfa etkileşimleri ve veriden üretilen bölümler.
 //
-// Model listesi, renk paleti ve kapak fotoğrafları SAYFAYA ELLE YAZILMIYOR;
-// projenin kendi veri dosyalarından okunuyor (models.js, colors.js,
-// galeri.js). Böylece konfigüratöre yeni bir model veya renk eklendiğinde
-// ana sayfa kendiliğinden güncelleniyor, iki yerde ayrı liste tutulmuyor.
+// Ton aileleri ve vitrindeki 3B kapak SAYFAYA ELLE YAZILMIYOR; projenin kendi
+// veri dosyalarından okunuyor (models.js, colors.js). Böylece konfigüratöre
+// yeni bir model veya renk eklendiğinde ana sayfa kendiliğinden güncelleniyor.
+//
+// Model kartları artık burada değil: kendi sayfasına taşındı (js/modeller.js).
 import { KAPAK_MODELLERI } from './data/models.js';
 import { doluTonAileleri, tonAilesindekiRenkler } from './data/colors.js';
-import { GALERI_FOTOGRAFLARI } from './data/galeri.js';
-// Konfigüratör bağlantılarının sorgu dizesi elle kurulmuyor: 'm'/'r'
-// anahtarlarını bilen tek yer paylasim.js olsun (paylaşım linkiyle aynı biçim).
-import { durumuSorguyaKodla } from './paylasim.js';
 import { ustBariKur } from './ustBar.js';
 // 3B önizleme konfigüratörün görüntüleyicisini kullanıyor: ayrı bir sahne
 // kodu yazmak yerine aynı modülü çağırmak, kapağın iki sayfada da birebir
@@ -44,56 +41,8 @@ function okunurMetinRengi(hex) {
 }
 
 // Bir modele ait gerçek fotoğraf (varsa) — galeri.js'teki eşlemeden.
-function modelinFotografi(modelId) {
-    return GALERI_FOTOGRAFLARI.find((f) => f && f.dosya && f.modelId === modelId) || null;
-}
 
 // Konfigüratör bağlantısı. renkKodu verilirse o renk de seçili açılır.
-function konfiguratorAdresi(modelId, renkKodu) {
-    const sorgu = durumuSorguyaKodla({
-        modelId,
-        renkId: renkKodu ? `lake-ral-${renkKodu}` : undefined
-    });
-    return `configurator.html${sorgu}`;
-}
-
-/* ---------------- Modeller ---------------- */
-
-function modelleriKur() {
-    const kap = document.getElementById('model-izgara');
-    if (!kap) return;
-
-    KAPAK_MODELLERI.forEach((model) => {
-        const foto = modelinFotografi(model.id);
-        const a = document.createElement('a');
-        a.className = 'model-kart';
-        a.href = konfiguratorAdresi(model.id, foto ? foto.renkKodu : null);
-        a.setAttribute('aria-label', `${model.kisaIsim || model.isim} — konfigüratörde aç`);
-
-        // Fotoğrafı olmayan model boş bir kutu olarak kalmasın: kartın kendi
-        // zemini (çelik mavi) görünür, metin yine okunur.
-        if (foto) {
-            const img = document.createElement('img');
-            img.className = 'model-kart-gorsel';
-            img.src = foto.dosya;
-            img.alt = '';
-            img.loading = 'lazy';
-            img.decoding = 'async';
-            a.appendChild(img);
-        }
-
-        const metin = document.createElement('div');
-        metin.className = 'model-kart-metin';
-        const h3 = document.createElement('h3');
-        h3.textContent = model.kisaIsim || model.isim;
-        const p = document.createElement('p');
-        p.textContent = `${model.varsayilan.genislik} × ${model.varsayilan.yukseklik} mm · ${model.varsayilan.kalinlik} mm`;
-        metin.append(h3, p);
-        a.appendChild(metin);
-
-        kap.appendChild(a);
-    });
-}
 
 /* ---------------- Renkler & Yüzeyler ---------------- */
 
@@ -236,49 +185,12 @@ function ornekKapagiKur() {
     }
 }
 
-/* ---------------- İlham ---------------- */
-
-function ilhamiKur() {
-    const kap = document.getElementById('ilham-izgara');
-    if (!kap) return;
-
-    const fotograflar = GALERI_FOTOGRAFLARI.filter((f) => f && f.dosya);
-    fotograflar.forEach((foto) => {
-        const a = document.createElement('a');
-        a.className = 'ilham-kart';
-        a.href = konfiguratorAdresi(foto.modelId, foto.renkKodu);
-        a.setAttribute('aria-label', `${foto.baslik || 'Kapak'} — konfigüratörde aç`);
-
-        const img = document.createElement('img');
-        img.src = foto.dosya;
-        img.alt = '';
-        img.loading = 'lazy';
-        img.decoding = 'async';
-
-        const etiket = document.createElement('div');
-        etiket.className = 'ilham-etiket';
-        // baslik "MODEL — Renk, RAL xxxx" biçiminde; ikiye ayırıp
-        // model adını kalın, rengi altına küçük yazıyoruz.
-        const [ad, detay] = (foto.baslik || '').split('—').map((p) => p.trim());
-        const b = document.createElement('b');
-        b.textContent = ad || 'Kapak';
-        const s = document.createElement('span');
-        s.textContent = detay || '';
-        etiket.append(b, s);
-
-        a.append(img, etiket);
-        kap.appendChild(a);
-    });
-}
-
 /* ---------------- Başlangıç ---------------- */
 
 function baslat() {
     ustBariKur();
-    modelleriKur();
     tonlariKur();
     ornekKapagiKur();
-    ilhamiKur();
 }
 
 if (typeof document !== 'undefined') {

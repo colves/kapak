@@ -17,7 +17,7 @@
 </head>
 <body class="ic-sayfa">
 
-<header class="ust kaydirildi" id="ust">
+<header class="ust" id="ust">
     <div class="ust-bar">
         <a class="marka" href="index.html" aria-label="Şahinkaya Ahşap — ana sayfa">
             <img src="assets/logo.png" alt="Şahinkaya Ahşap">
@@ -25,7 +25,7 @@
         <nav class="menu" id="menu">
             <a href="index.html#renkler">Renkler</a>
             <a class="one-cikan" href="modeller.html">Modeller</a>
-            <a href="iletisim.html">İletişim</a>
+            <a class="etkin" href="iletisim.html" aria-current="page">İletişim</a>
         </nav>
         <div class="ust-araclar">
             <a class="konfig-link" href="configurator.html">Konfigüratör</a>
@@ -60,10 +60,14 @@
                 <div><dt>Telefon</dt><dd><a href="tel:+905336639714">+90 (533) 663 97 14</a></dd></div>
                 <div><dt>E-Posta</dt><dd><a href="mailto:sahinkaya@gmail.com">sahinkaya@gmail.com</a></dd></div>
             </dl>
-            <div class="harita" data-konum="Şahinkaya Ahşap Mobilya Adapazarı Sakarya">
-                <p class="harita-yedek">Harita yükleniyor…</p>
+            <!-- Konum TEK YERDE tanımlı: aşağıdaki düğmenin href'i. Harita
+                 gömülüsü JS tarafında ondan türetiliyor, yani adres değişince
+                 tek satır düzeltmek yetiyor. JS çalışmazsa harita yerine
+                 yedek metin kalır ama düğme yine doğru yere gider. -->
+            <div class="harita">
+                <p class="harita-yedek">Haritayı görmek için aşağıdaki düğmeyi kullanın.</p>
             </div>
-            <a class="dugme acik genis" href="#" data-harita-baglanti target="_blank" rel="noopener">Google Haritalar'da Aç</a>
+            <a class="dugme acik genis" href="https://www.google.com/maps/search/?api=1&amp;query=%C5%9Eahinkaya%20Ah%C5%9Fap%20Mobilya%20Adapazar%C4%B1%20Sakarya" data-harita-baglanti target="_blank" rel="noopener">Google Haritalar'da Aç</a>
         </article>
 
         <article class="konum-kart">
@@ -74,10 +78,14 @@
                 <div><dt>Telefon</dt><dd><a href="tel:+905336639714">+90 (533) 663 97 14</a></dd></div>
                 <div><dt>E-Posta</dt><dd><a href="mailto:sahinkaya@gmail.com">sahinkaya@gmail.com</a></dd></div>
             </dl>
-            <div class="harita" data-konum="Sakarya 1. Organize Sanayi Bölgesi Adapazarı">
-                <p class="harita-yedek">Harita yükleniyor…</p>
+            <!-- Konum TEK YERDE tanımlı: aşağıdaki düğmenin href'i. Harita
+                 gömülüsü JS tarafında ondan türetiliyor, yani adres değişince
+                 tek satır düzeltmek yetiyor. JS çalışmazsa harita yerine
+                 yedek metin kalır ama düğme yine doğru yere gider. -->
+            <div class="harita">
+                <p class="harita-yedek">Haritayı görmek için aşağıdaki düğmeyi kullanın.</p>
             </div>
-            <a class="dugme acik genis" href="#" data-harita-baglanti target="_blank" rel="noopener">Google Haritalar'da Aç</a>
+            <a class="dugme acik genis" href="https://www.google.com/maps/search/?api=1&amp;query=Sakarya%201.%20Organize%20Sanayi%20B%C3%B6lgesi%20Adapazar%C4%B1" data-harita-baglanti target="_blank" rel="noopener">Google Haritalar'da Aç</a>
         </article>
     </section>
 
