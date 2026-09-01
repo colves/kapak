@@ -252,15 +252,6 @@ img { display: block; max-width: 100%; }
     padding-bottom: 3px;
 }
 
-.bildirim { text-align: center; max-width: 940px; }
-.bildirim h2 {
-    font-size: clamp(32px, 5vw, 74px);
-    line-height: 1.04;
-    letter-spacing: -0.065em;
-    font-weight: 500;
-    margin: 14px auto 30px;
-}
-.bildirim p { max-width: 520px; margin: auto; color: #555555; line-height: 1.7; }
 
 /* ===================== Konfigüratör tanıtımı ===================== */
 .konfig-serit { background: var(--krem); }
