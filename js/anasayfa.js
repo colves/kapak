@@ -10,6 +10,7 @@ import { GALERI_FOTOGRAFLARI } from './data/galeri.js';
 // Konfigüratör bağlantılarının sorgu dizesi elle kurulmuyor: 'm'/'r'
 // anahtarlarını bilen tek yer paylasim.js olsun (paylaşım linkiyle aynı biçim).
 import { durumuSorguyaKodla } from './paylasim.js';
+import { ustBariKur } from './ustBar.js';
 // 3B önizleme konfigüratörün görüntüleyicisini kullanıyor: ayrı bir sahne
 // kodu yazmak yerine aynı modülü çağırmak, kapağın iki sayfada da birebir
 // aynı görünmesini garanti ediyor (aynı geometri, aynı malzeme, aynı kenar
@@ -53,38 +54,6 @@ function konfiguratorAdresi(modelId, renkKodu) {
         renkId: renkKodu ? `lake-ral-${renkKodu}` : undefined
     });
     return `configurator.html${sorgu}`;
-}
-
-/* ---------------- Üst bar ---------------- */
-
-function basligiKur() {
-    const ust = document.getElementById('ust');
-    if (!ust) return;
-
-    // Hero'nun üzerindeyken saydam, aşağı inince opak. Eşik 40px: barın
-    // kendi yüksekliğinden küçük, yani kullanıcı daha ilk hareketde geçişi
-    // görüyor, sonradan ani bir sıçrama olmuyor.
-    const durumuYaz = () => ust.classList.toggle('kaydirildi', window.scrollY > 40);
-    window.addEventListener('scroll', durumuYaz, { passive: true });
-    durumuYaz();
-
-    const dugme = document.getElementById('menu-dugmesi');
-    const menu = document.getElementById('menu');
-    if (!dugme || !menu) return;
-
-    const menuyuAyarla = (ac) => {
-        menu.classList.toggle('acik', ac);
-        dugme.setAttribute('aria-expanded', String(ac));
-    };
-    dugme.addEventListener('click', () => menuyuAyarla(!menu.classList.contains('acik')));
-    // Bir bağlantıya basılınca menü kapansın — aksi hâlde hedef bölümün
-    // üstünü kapatıp duruyor.
-    menu.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') menuyuAyarla(false);
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') menuyuAyarla(false);
-    });
 }
 
 /* ---------------- Modeller ---------------- */
@@ -292,7 +261,7 @@ function ilhamiKur() {
 /* ---------------- Başlangıç ---------------- */
 
 function baslat() {
-    basligiKur();
+    ustBariKur();
     modelleriKur();
     tonlariKur();
     ornekKapagiKur();
