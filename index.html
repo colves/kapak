@@ -11,6 +11,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/anasayfa.css">
+<!-- Konfigüratörle AYNI three.js sürümü: ana sayfadaki 3B önizleme
+     viewer.js'i kullanıyor, iki sayfa aynı kütüphaneyi paylaşsın. -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -61,25 +71,18 @@
         <p>3ds Max ortamından aktarılan gerçek kapak modelleri, özenle seçilmiş lake yüzeyler ve 20 yılı aşkın atölye deneyimiyle yaşam alanlarına karakter kazandıran kapaklar üretiyoruz.</p>
     </section>
 
-    <!-- ===== Modeller ===== -->
-    <section class="bolum" id="modeller">
-        <div class="bolum-basi">
-            <div>
-                <span class="etiket">Modeller</span>
-                <h2>Formun farklı ifadeleri.</h2>
-            </div>
-            <a class="metin-link" href="configurator.html">Konfigüratörde tümü</a>
-        </div>
-        <!-- Kartlar js/anasayfa.js tarafından models.js'ten üretiliyor:
-             model listesi tek kaynaktan gelsin, elle kopyalanmasın. -->
-        <div class="modeller" id="model-izgara"></div>
-    </section>
-
     <!-- ===== Konfigüratör tanıtımı ===== -->
     <section class="konfig-serit">
         <div class="bolum konfig">
+            <!-- Gerçek 3B önizleme. Konfigüratörün görüntüleyicisi (viewer.js)
+                 burada da kullanılıyor — ikinci bir sahne kodu yazılmadı, yani
+                 kapak ana sayfada da konfigüratördeki ile birebir aynı
+                 geometri, malzeme ve ölçeklemeyle görünüyor. Sahne ancak
+                 bölüm ekrana girince kuruluyor (bkz. anasayfa.js). -->
             <div class="kapak-sahne">
-                <div class="kapak" id="ornek-kapak"></div>
+                <div class="kapak-3b" id="ornek-kapak"></div>
+                <p class="kapak-yukleniyor" id="kapak-yukleniyor">Model yükleniyor…</p>
+                <span class="kapak-ipucu" aria-hidden="true">Sürükleyerek çevirin</span>
                 <div class="kapak-kontrol" id="renk-secenekleri" role="group" aria-label="Örnek renk seç"></div>
             </div>
             <div class="konfig-metin">
@@ -168,6 +171,20 @@
             <a class="dugme" href="configurator.html">Konfigüratörü Aç</a>
             <a class="dugme hayalet" href="tel:+905336639714">Bizi Arayın</a>
         </div>
+    </section>
+
+    <!-- ===== Modeller ===== -->
+    <section class="bolum" id="modeller">
+        <div class="bolum-basi">
+            <div>
+                <span class="etiket">Modeller</span>
+                <h2>Formun farklı ifadeleri.</h2>
+            </div>
+            <a class="metin-link" href="configurator.html">Konfigüratörde tümü</a>
+        </div>
+        <!-- Kartlar js/anasayfa.js tarafından models.js'ten üretiliyor:
+             model listesi tek kaynaktan gelsin, elle kopyalanmasın. -->
+        <div class="modeller" id="model-izgara"></div>
     </section>
 
 </main>

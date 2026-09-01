@@ -295,28 +295,49 @@ img { display: block; max-width: 100%; }
     border-radius: 50%;
     border: 1px solid rgba(17, 24, 68, 0.13);
 }
-/* Kapağın kendisi CSS ile çiziliyor: hafif çevrilmiş bir dikdörtgen,
-   içeride ince bir çerçeve. Rengi JS değiştiriyor (--kapak-renk). */
-.kapak {
+/* Kapak artık CSS ile ÇİZİLMİYOR: burada konfigüratörün gerçek 3B
+   görüntüleyicisi çalışıyor (viewer.js canvas'ı bu kaba ekliyor).
+   Ziyaretçi kapağı sürükleyip çevirebiliyor, o yüzden imleç de tutma
+   imlecine dönüyor. */
+.kapak-3b {
+    position: absolute;
+    inset: 0;
+    cursor: grab;
+    touch-action: none;
+}
+.kapak-3b:active { cursor: grabbing; }
+.kapak-3b canvas { display: block; }
+
+/* .glb ve WebGL bağlamı hazır olana kadarki ara durum; anasayfa.js
+   yükleme bitince gizliyor, hata olursa metni değiştiriyor. */
+.kapak-yukleniyor {
     position: relative;
-    width: 280px; height: 440px;
-    background: linear-gradient(110deg,
-        color-mix(in srgb, var(--kapak-renk, #111844) 72%, #FFFFFF) 0%,
-        var(--kapak-renk, #111844) 45%,
-        color-mix(in srgb, var(--kapak-renk, #111844) 82%, #000000) 70%,
-        color-mix(in srgb, var(--kapak-renk, #111844) 62%, #FFFFFF));
-    box-shadow: 35px 38px 35px rgba(17, 24, 68, 0.26),
-                inset 7px 0 10px rgba(255, 255, 255, 0.32);
-    transform: rotateY(-18deg) rotateX(3deg);
-    transition: background 0.45s ease;
+    margin: 0;
+    max-width: 62%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--lacivert) 62%, transparent);
+    pointer-events: none;
 }
-.kapak::after {
-    content: '';
-    position: absolute; inset: 17px;
-    border: 1px solid rgba(255, 255, 255, 0.23);
+.kapak-yukleniyor[hidden] { display: none; }
+
+/* Sürüklenebildiği kendiliğinden anlaşılmıyor — 3B alanın köşesinde
+   sessiz bir ipucu duruyor. */
+.kapak-ipucu {
+    position: absolute;
+    right: 22px; bottom: 30px;
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--lacivert) 52%, transparent);
+    pointer-events: none;
 }
+
 .kapak-kontrol {
     position: absolute;
+    /* Canvas tüm kabı kapladığı için renk düğmeleri onun üstünde kalmalı. */
+    z-index: 1;
     left: 22px; bottom: 22px;
     display: flex;
     gap: 10px;
@@ -534,7 +555,6 @@ img { display: block; max-width: 100%; }
 @media (max-width: 900px) {
     .konfig, .uretim-izgara, .malzeme-duzen, .profesyonel-ic { grid-template-columns: 1fr; }
     .kapak-sahne { height: 420px; }
-    .kapak { width: 210px; height: 330px; }
     .malzeme-baslik { min-height: 320px; }
     .uretim-gorsel { height: 380px; }
     .ilham-izgara { grid-template-columns: 1fr 1fr; }

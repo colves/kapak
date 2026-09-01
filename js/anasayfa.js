@@ -10,6 +10,12 @@ import { GALERI_FOTOGRAFLARI } from './data/galeri.js';
 // Konfigüratör bağlantılarının sorgu dizesi elle kurulmuyor: 'm'/'r'
 // anahtarlarını bilen tek yer paylasim.js olsun (paylaşım linkiyle aynı biçim).
 import { durumuSorguyaKodla } from './paylasim.js';
+// 3B önizleme konfigüratörün görüntüleyicisini kullanıyor: ayrı bir sahne
+// kodu yazmak yerine aynı modülü çağırmak, kapağın iki sayfada da birebir
+// aynı görünmesini garanti ediyor (aynı geometri, aynı malzeme, aynı kenar
+// korumalı ölçekleme). viewer.js tekil bir sahne tutuyor — ana sayfada tek
+// bir 3B alan olduğu için bu bir sorun değil.
+import { sahneyiBaslat, kapagiGuncelle } from './viewer.js';
 
 /* ---------------- Yardımcılar ---------------- */
 
@@ -161,27 +167,52 @@ function tonlariKur() {
 /* ---------------- Konfigüratör tanıtımı: örnek kapak ---------------- */
 
 function ornekKapagiKur() {
-    const kapak = document.getElementById('ornek-kapak');
     const kap = document.getElementById('renk-secenekleri');
-    if (!kapak || !kap) return;
+    const sahneKabi = document.getElementById('ornek-kapak');
+    const yukleniyor = document.getElementById('kapak-yukleniyor');
+    if (!kap || !sahneKabi) return;
 
     // Paletle uyumlu, birbirinden belirgin farklı üç gerçek RAL tonu.
+    const tumRenkler = tonAilesindekiRenkler('tumu');
     const secimler = ['5011', '9016', '7016']
-        .map((kod) => {
-            const aile = tonAilesindekiRenkler('tumu');
-            return aile.find((r) => r.kod === `RAL ${kod}`);
-        })
+        .map((kod) => tumRenkler.find((r) => r.kod === `RAL ${kod}`))
         .filter(Boolean);
 
-    if (secimler.length === 0) return;
+    // Vitrinde konfigüratörün ilk modeli duruyor; models.js'e yeni bir model
+    // eklenip başa alınırsa ana sayfa da kendiliğinden onu gösterir.
+    const model = KAPAK_MODELLERI[0];
+    if (secimler.length === 0 || !model) return;
+
+    let secili = secimler[0];
+    let sahneHazir = false;
+
+    const kapagiCiz = () => {
+        if (!sahneHazir) return;
+        Promise.resolve(kapagiGuncelle(
+            model.varsayilan.genislik,
+            model.varsayilan.yukseklik,
+            secili,
+            model.gltfUrl,
+            model.glbIcerikDonusu,
+            model.kenarPayi
+        ))
+            .then(() => { if (yukleniyor) yukleniyor.hidden = true; })
+            .catch((hata) => {
+                console.error('Ana sayfa 3B önizlemesi yüklenemedi:', hata);
+                // Sessiz boş bir kutu bırakma: ziyaretçi neden bir şey
+                // görmediğini bilsin, konfigüratöre gitmesi engellenmesin.
+                if (yukleniyor) yukleniyor.textContent = 'Önizleme yüklenemedi — konfigüratörde görüntüleyebilirsiniz.';
+            });
+    };
 
     const uygula = (renk, btn) => {
-        kapak.style.setProperty('--kapak-renk', hexMetni(renk));
+        secili = renk;
         kap.querySelectorAll('.renk-secenek').forEach((b) => {
             const aktif = b === btn;
             b.classList.toggle('aktif', aktif);
             b.setAttribute('aria-pressed', String(aktif));
         });
+        kapagiCiz();
     };
 
     secimler.forEach((renk, i) => {
@@ -195,6 +226,32 @@ function ornekKapagiKur() {
         kap.appendChild(btn);
         if (i === 0) uygula(renk, btn);
     });
+
+    // Sahne, bölüm ekrana YAKLAŞINCA kuruluyor. Ana sayfaya giren herkes
+    // aşağı inmiyor; WebGL bağlamını ve .glb dosyasını sayfa açılışında
+    // yüklemek ilk görüntülemeyi gereksiz yere ağırlaştırırdı.
+    const baslat = () => {
+        if (sahneHazir) return;
+        sahneHazir = true;
+        // 1500 mm: dikey FOV 40° olduğu için kameranın gördüğü yükseklik
+        // 2·d·tan(20°) = 0.728·d. 1500'de bu ~1092 mm eder, 720 mm'lik kapak
+        // çerçevenin ~%66'sını doldurur — kabın eni ne olursa olsun (kamera
+        // dikeyden çerçeveliyor) her ekran genişliğinde aynı duruyor.
+        sahneyiBaslat('ornek-kapak', { kameraMesafesi: 1500 });
+        kapagiCiz();
+    };
+
+    if (typeof IntersectionObserver === 'function') {
+        const gozlemci = new IntersectionObserver((girisler) => {
+            if (girisler.some((g) => g.isIntersecting)) {
+                gozlemci.disconnect();
+                baslat();
+            }
+        }, { rootMargin: '300px' });
+        gozlemci.observe(sahneKabi);
+    } else {
+        baslat();
+    }
 }
 
 /* ---------------- İlham ---------------- */
