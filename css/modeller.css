@@ -83,8 +83,9 @@
 }
 
 .katalog-gorsel {
-    display: grid;
-    place-items: center;
+    display: block;
+    /* Görsel MUTLAK konumlanıyor (aşağıya bak) — kapsayıcı referans olmalı. */
+    position: relative;
     /* Kutu, kapağın TAMAMI görünsün diye kurulu. Önceden object-fit:cover ve
        4/5 oran vardı: kapak fotoğrafları dar ve uzun (409x663) olduğu için
        yanlardan kırpılıyor, ekranda kapağın ortası dışında bir şey
@@ -94,18 +95,25 @@
        tamamı, adı ve renk noktaları dahil, tek ekranda okunabilsin. */
     aspect-ratio: 3 / 4;
     max-height: min(46vh, 440px);
-    padding: 16px;
     overflow: hidden;
     background: linear-gradient(150deg, var(--krem), #D9D0C2);
 }
 .katalog-gorsel img {
-    width: auto;
-    /* Kapak kutuyu doldurmuyor, İÇİNDE duruyor: referanstaki gibi etrafında
-       bolca boşluk kalsın, ürün bir vitrinde sergileniyormuş gibi görünsün.
-       Fotoğraflar kapağa kırpılmış (409x663) olduğu için %100 yükseklik
-       verildiğinde kutuyu baştan başa kaplıyor ve sıkışık duruyordu. */
-    height: 76%;
-    max-width: 72%;
+    /* MUTLAK konum + inset:0 — böylece %100 genişlik/yükseklik KESİN bir
+       kapsayıcıya göre çözülüyor. Akış içinde denendiğinde (grid öğesi olarak)
+       yüzdeli ölçüler beklendiği gibi çözülmüyordu: önce height:76% ile görsel
+       kutudan 19px, sonra height:100% ile 226px taşıp alttan kırpılıyordu
+       (ikisi de ölçüldü).
+
+       Kapağın etrafındaki nefes payı görselin KENDİ dolgusundan geliyor:
+       box-sizing border-box olduğu için dolgu içerik kutusunu daraltıyor ve
+       object-fit: contain kapağı o daraltılmış alana sığdırıyor. Sonuç:
+       kapağın tamamı her zaman görünür, hiçbir ölçüde kırpılmaz. */
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: clamp(20px, 7%, 48px);
     object-fit: contain;
     /* Zeminden hafifçe ayrılsın — düz bir yapıştırma gibi durmasın. */
     filter: drop-shadow(0 18px 28px rgba(17, 24, 68, 0.18));
