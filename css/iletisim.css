@@ -34,6 +34,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(20px, 3vw, 34px);
+    /* Sayfada bu iki karttan başka bir şey yok; .bolum'un 1440px'lik ortak
+       kolonuna sıkışmaları için bir sebep yok. Geniş ekranda yanlardaki boş
+       alan kartlara veriliyor. */
+    max-width: 1760px;
+    padding-left: clamp(20px, 3vw, 48px);
+    padding-right: clamp(20px, 3vw, 48px);
     /* Sayfa doğrudan kartlarla başlıyor (üstteki tanıtım bloğu kaldırıldı);
        üst bar ile kartlar birbirine yapışmasın. */
     padding-top: clamp(48px, 7vw, 96px);
@@ -141,6 +147,11 @@
         flex: 1;
         min-height: 0;
         align-items: stretch;
+        /* .bolum'un margin:auto'su bir sütun flex kabında satır eksenindeki
+           esnemeyi İPTAL ediyor: kutu içeriğine kadar daralıp ortalanıyordu
+           (ölçüldü: 1920px ekranda kartlar yalnızca 1009px). width:100% onu
+           yeniden max-width'e kadar açıyor. */
+        width: 100%;
         /* .bolum'un büyük dikey dolgusu burada geçerli değil: ekrana sığmak
            için boşluk ölçülü olmalı. */
         padding-top: clamp(20px, 3vh, 40px);

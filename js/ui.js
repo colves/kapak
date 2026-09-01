@@ -121,19 +121,27 @@ function zeminiUygula(no) {
    Konfigürasyon adres çubuğunda yaşar: müşteri linki kopyalayıp satıcıya
    gönderebilir, sayfayı yenilese de seçimi kaybolmaz. */
 
+// Paylaşılacak/adrese yazılacak durum. Varsayılan zemin dışarıda bırakılıyor:
+// link gereksiz yere kirlenmesin. TEK kaynak — adres çubuğu, "Linki Kopyala"
+// ve WhatsApp mesajı aynı adresi üretsin diye üçü de buradan geçiyor.
+function paylasilacakDurum() {
+    return { ...durum, zemin: durum.zemin === VARSAYILAN_ZEMIN ? undefined : durum.zemin };
+}
+
 function urliDurumaEsitle() {
-    // Varsayılan zemin adrese yazılmıyor: paylaşılan link gereksiz yere
-    // kirlenmesin. (Bir zamanlar zemin durumun parçası DEĞİLDİ ve bu fonksiyon
-    // adres çubuğunu her güncellemede baştan yazdığı için ?zemin=N'i siliyordu
-    // — ölçüldü: ?zemin=6 ile açılan sayfa daha ilk karede parametreyi
-    // kaybediyordu, dolayısıyla yenileme ve paylaşım zemin seçimini taşımıyordu.)
-    const sorgu = durumuSorguyaKodla({
-        ...durum,
-        zemin: durum.zemin === VARSAYILAN_ZEMIN ? undefined : durum.zemin
-    });
+    // Bir zamanlar zemin durumun parçası DEĞİLDİ ve bu fonksiyon adres
+    // çubuğunu her güncellemede baştan yazdığı için ?zemin=N'i siliyordu —
+    // ölçüldü: ?zemin=6 ile açılan sayfa daha ilk karede parametreyi
+    // kaybediyordu, dolayısıyla ne yenileme ne de paylaşım zemin seçimini
+    // taşıyordu.
+    const sorgu = durumuSorguyaKodla(paylasilacakDurum());
     // replaceState: her slider hareketinde tarayıcı geçmişine yeni kayıt
     // eklenmesin, geri tuşu konfigüratörde tıkanmasın.
     window.history.replaceState(null, '', `${window.location.pathname}${sorgu}`);
+    // WhatsApp mesajı da aynı adresi taşıyor; adres her değiştiğinde burada
+    // tazeleniyor ki ikisi asla ayrışmasın. (Ayrışıyordu: stüdyo ışığı kapak
+    // çizildikten SONRA yerleşiyor, mesaj o bilgiyi kaçırıyordu.)
+    whatsappBaglantisiniGuncelle();
 }
 
 function urldenDurumuYukle() {
@@ -160,7 +168,7 @@ function paylasButonunuKur() {
     if (!btn) return;
     btn.addEventListener('click', async () => {
         const adres = paylasimAdresiOlustur(
-            `${window.location.origin}${window.location.pathname}`, durum);
+            `${window.location.origin}${window.location.pathname}`, paylasilacakDurum());
         try {
             await navigator.clipboard.writeText(adres);
             bildir('Konfigürasyon linki kopyalandı');
@@ -683,6 +691,30 @@ function indirButonunuKur() {
             setTimeout(() => URL.revokeObjectURL(url), 0);
         }, 'image/png');
     });
+}
+
+// Sipariş kanalı WhatsApp. Müşteri linki kopyalayıp uygulamayı açıp
+// yapıştırmak zorunda kalmasın: mesaj seçimiyle birlikte hazır gelsin.
+// Bağlantı her durum değişiminde tazeleniyor, çünkü metnin içinde seçili
+// model, renk ve ölçü var.
+const WHATSAPP_NUMARA = '905336639714';
+
+function whatsappBaglantisiniGuncelle() {
+    const a = document.getElementById('btn-whatsapp');
+    if (!a) return;
+    const model = idIleModelBul(durum.modelId);
+    const renk = idIleRenkBul(durum.renkId);
+    const adres = paylasimAdresiOlustur(
+        `${window.location.origin}${window.location.pathname}`, paylasilacakDurum());
+    const mesaj = [
+        'Merhaba, konfigüratörden bir kapak hazırladım:',
+        `Model: ${model.isim}`,
+        `Renk: ${renk.isim} (${renk.kod})`,
+        `Ölçü: ${durum.genislik} × ${durum.yukseklik} mm`,
+        adres
+    ].join('\n');
+    a.href = `https://wa.me/${WHATSAPP_NUMARA}?text=${encodeURIComponent(mesaj)}`;
+    a.title = 'Bu konfigürasyonu WhatsApp\'tan gönder';
 }
 
 function tamEkranButonuKur() {

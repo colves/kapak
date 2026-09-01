@@ -79,10 +79,13 @@ html, body {
 
 /* Logo kasıtlı olarak kenardan içeri çekilmiş — üst barın sol boşluğu
    (padding) tek başına yetersizdi, marka nefes alacak ekstra pay verildi. */
+/* Menü sayfaya göre ortalansın diye iki yan bölge eşit ağırlıkta esniyor —
+   ana sayfadaki .ust-bar ile aynı kurulum (bkz. anasayfa.css). */
 .marka-link {
     display: inline-flex; align-items: center;
     border-radius: var(--r-sm);
-    margin-left: var(--s-6);
+    /* Dış değil iç boşluk — bkz. anasayfa.css .ust-araclar'daki not. */
+    padding-left: var(--s-6);
 }
 /* max-height büyütülüyor ama .ustbar'ın kendi yüksekliği (--ustbar-h) SABİT
    kalıyor — align-items:center sayesinde logo barın içinde büyür, barın
@@ -112,7 +115,18 @@ html, body {
 .menu a:hover { opacity: 1; }
 .menu a.one-cikan { font-size: 18px; font-weight: 600; }
 
-.ustbar-sag { display: flex; align-items: center; gap: var(--s-2); }
+.ustbar-sag { display: flex; align-items: center; justify-content: flex-end; gap: var(--s-2); }
+
+/* Menü sayfaya göre tam ortalanıyor — ana sayfadaki .ust-bar ile aynı
+   kurulum ve aynı gerekçe (bkz. anasayfa.css). */
+@media (min-width: 1121px) {
+    .ustbar { position: relative; }
+    .menu {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
 
 /* Araç düğmeleri: önceden şeffaf zeminli, çok soluk bir çerçeve — vurgu
    rengiyle hiç konuşmuyordu. Artık marka tonunda dolu bir zemin + belirgin
@@ -1011,7 +1025,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     .isik-secici-ad { max-width: 118px; }
     .menu { display: none; }
     .marka-logo { max-height: 42px; }
-    .marka-link { margin-left: var(--s-3); }
+    .marka-link { padding-left: var(--s-3); }
     /* Konfigüratördeki ikonlar (indir/tam ekran/paylaş) kendi başlarına
        anlaşılır olduğu için etiketleri gizlenebilir. Ana sayfadaki tek CTA
        için bu YAPILMAZ — bkz. anasayfa.css. */

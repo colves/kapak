@@ -25,12 +25,12 @@
 
 /* ===================== Sayfa başı ===================== */
 .katalog-basi {
-    padding-top: clamp(48px, 7vw, 104px);
-    padding-bottom: clamp(32px, 4vw, 56px);
+    padding-top: clamp(36px, 4.5vw, 68px);
+    padding-bottom: clamp(24px, 3vw, 40px);
 }
 .katalog-basi h1 {
-    margin: 12px 0 18px;
-    font-size: clamp(52px, 11vw, 148px);
+    margin: 10px 0 14px;
+    font-size: clamp(44px, 7.5vw, 104px);
     line-height: 0.86;
     letter-spacing: -0.045em;
     font-weight: 600;
@@ -58,14 +58,20 @@
     white-space: nowrap;
 }
 
+/* Izgarayı taşıyan .bolum'un 152px'e varan dikey dolgusu burada gereksiz:
+   üstteki başlık bölümü zaten kendi boşluğunu veriyor ve o dolgu yüzünden
+   kartların ilk satırı ekranın altına taşıyordu (ölçüldü: ızgara 575px'ten
+   başlıyor, kart 596px, yani 1000px'lik ekranda kart bitmiyordu). */
+.katalog-izgara-bolum { padding-top: 0; padding-bottom: 0; }
+
 /* ===================== Izgara ===================== */
 .katalog-izgara {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     /* Satır aralığı sütun aralığından belirgin şekilde geniş: kartlar satır
        satır okunsun, tek bir gri blok gibi görünmesin. */
-    gap: clamp(48px, 6vw, 84px) clamp(16px, 2.4vw, 32px);
-    padding-bottom: clamp(80px, 10vw, 140px);
+    gap: clamp(40px, 4.5vw, 64px) clamp(16px, 2.4vw, 32px);
+    padding-bottom: clamp(56px, 7vw, 104px);
 }
 .katalog-kart {
     display: flex;
@@ -77,18 +83,26 @@
 }
 
 .katalog-gorsel {
-    display: block;
-    position: relative;
-    /* Kapak dikey bir nesne; kutuyu ona göre kurup görseli kaplatıyoruz.
-       Fotoğraf gelmezse bu zemin görünür, kart boş bir delik olmaz. */
-    aspect-ratio: 4 / 5;
+    display: grid;
+    place-items: center;
+    /* Kutu, kapağın TAMAMI görünsün diye kurulu. Önceden object-fit:cover ve
+       4/5 oran vardı: kapak fotoğrafları dar ve uzun (409x663) olduğu için
+       yanlardan kırpılıyor, ekranda kapağın ortası dışında bir şey
+       kalmıyordu. Artık görsel kutuya SIĞDIRILIYOR (contain) ve arkasındaki
+       krem zemin bir fon kâğıdı gibi duruyor.
+       max-height: geniş ekranda kart yüksekliği ekranı yutmasın — kartın
+       tamamı, adı ve renk noktaları dahil, tek ekranda okunabilsin. */
+    aspect-ratio: 3 / 4;
+    max-height: min(44vh, 420px);
+    padding: 16px;
     overflow: hidden;
     background: linear-gradient(150deg, var(--krem), #D9D0C2);
 }
 .katalog-gorsel img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
     transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .katalog-gorsel:hover img { transform: scale(1.045); }
