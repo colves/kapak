@@ -1,27 +1,22 @@
-// Ana sayfadaki 3B parallaks galerinin fotoğrafları.
+// Kapak fotoğrafları ve her birinin hangi model/renk olduğu.
 //
-// ---- FOTOĞRAF EKLEMEK İÇİN ----
-// 1. Fotoğrafı `assets/galeri/` klasörüne koyun.
-// 2. Aşağıya bir satır ekleyin:
-//        { dosya: 'assets/galeri/mutfak-01.jpg', modelId: 'hk-012-001', baslik: '...' },
+// Ana sayfa yeniden yazılıyor; bu dosya veri olarak DURUYOR çünkü buradaki
+// fotoğraf–model–renk eşlemesi elle kurulmuş bilgi. Yeni ana sayfa bu listeyi
+// olduğu gibi kullanabilir.
 //
-//   dosya   : zorunlu — galeriye girecek görselin yolu.
-//   modelId : isteğe bağlı ama ÖNEMLİ — karta tıklayınca konfigüratör bu
-//             model seçili olarak açılır (models.js'teki id ile birebir aynı
-//             olmalı; parallaks.js geçersiz id'yi fark edip bağlantıyı
-//             sessizce düşürür, bozuk link üretmez).
-//   renkKodu: isteğe bağlı — 4 haneli RAL kodu. Verilirse konfigüratör bu
-//             renkle açılır, yani ziyaretçi tıkladığı fotoğrafın birebir
-//             aynısını görür.
-//   baslik  : isteğe bağlı — ekran okuyucular için alt metin.
+//   dosya   : zorunlu — görselin yolu.
+//   modelId : models.js'teki id ile birebir aynı olmalı. Karta tıklanınca
+//             konfigüratör bu model seçili açılabilsin diye.
+//   renkKodu: 4 haneli RAL kodu. Konfigüratör bu renkle açılabilsin diye.
+//   baslik  : ekran okuyucular için alt metin.
 //
-// Galeri 16 görsel kullanır (4 sütun × 4, sonra her sütun kendi içinde
-// katlanır = 32 kart). Listede 16'dan AZ görsel varsa liste başa sarılarak
-// tekrarlanır; hiç görsel yoksa markanın RAL Lake paletinden kapak
-// görselleri üretilir (bkz. js/parallaks.js kapakGorseliUret).
+// Konfigüratöre bağlantı kurarken sorgu dizesini ELLE üretmeyin:
+// paylasim.js'teki durumuSorguyaKodla({ modelId, renkId }) kullanın — 'm'/'r'
+// anahtarlarını bilen tek yer orası olsun (paylaşım linkiyle aynı biçim).
 //
-// Aşağıdaki üç görsel konfigüratörün kendi "Görseli İndir" çıktısı; bu
-// yüzden dosya adları model ve RAL kodunu zaten taşıyor.
+// Aşağıdaki üç görsel konfigüratörün kendi "Görseli İndir" çıktısı; bu yüzden
+// dosya adları model ve RAL kodunu zaten taşıyor. Üçü de kapağa kırpılmış
+// (409x663, oran ~0.617) ve tamamen opak.
 export const GALERI_FOTOGRAFLARI = [
     {
         dosya: 'assets/galeri/sahinkaya-kapak-HK_012_001-RAL7044-450x720.png',
