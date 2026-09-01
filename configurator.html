@@ -36,6 +36,15 @@
     <a href="index.html" class="marka-link" title="Ana Sayfa">
         <img src="assets/logo.png" alt="Şahinkaya Ahşap — Ana Sayfa" class="marka-logo">
     </a>
+    <!-- Diğer sayfalarla BİREBİR aynı menü: aynı sınıflar, aynı sıra, aynı
+         vurgu (Modeller kataloğun ana girişi olduğu için büyük). Üst bar
+         sayfalar arasında geçerken yerinden oynamıyor; tek değişen sağdaki
+         kontroller. -->
+    <nav class="menu">
+        <a href="renkler.html">Renkler</a>
+        <a class="one-cikan" href="modeller.html">Modeller</a>
+        <a href="iletisim.html">İletişim</a>
+    </nav>
     <div class="ustbar-sag">
         <button id="btn-paylas" class="araci-dugme" type="button">
             <span class="araci-simge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg></span>
@@ -145,23 +154,7 @@
 
         <div class="ayar-govde" id="ayar-govde">
             <section class="ayar-bolum">
-                <p class="ayar-no"><span>01</span> / RENK</p>
-                <div class="ayar-bolum-basi">
-                    <h2 class="ayar-baslik">Lake rengi</h2>
-                    <span class="ayar-secili" id="renk-secili-ad">RAL 7044</span>
-                </div>
-                <!-- Ton ailesi süzgeci (Griler/Maviler/…) kaldırıldı: RAL
-                     numaralandırması zaten aileye göre kümelenmiş, liste
-                     doğrudan RAL koduna göre sıralı geliyor. -->
-                <div id="renk-izgara" class="renk-izgara" role="group" aria-label="RAL renkleri"></div>
-                <p class="renk-not">
-                    <span id="renk-sayisi" class="renk-sayisi"></span>
-                    Ekranda görünen tonlar RAL kartelasının yaklaşık karşılığıdır; kesin eşleşme için fiziksel numune isteyin.
-                </p>
-            </section>
-
-            <section class="ayar-bolum">
-                <p class="ayar-no"><span>02</span> / ÖLÇÜLER</p>
+                <p class="ayar-no"><span>01</span> / ÖLÇÜLER</p>
                 <div class="ayar-bolum-basi">
                     <h2 class="ayar-baslik">Kapak ölçüsü</h2>
                     <span class="ayar-secili">milimetre</span>
@@ -202,6 +195,23 @@
                     <input type="range" id="slider-kalinlik" min="16" max="30" value="18" class="kaydirici" aria-label="Kalınlık">
                 </div>
             </section>
+            <section class="ayar-bolum">
+                <p class="ayar-no"><span>02</span> / RENK</p>
+                <div class="ayar-bolum-basi">
+                    <h2 class="ayar-baslik">Lake rengi</h2>
+                    <span class="ayar-secili" id="renk-secili-ad">RAL 7044</span>
+                </div>
+                <!-- Renkler RAL serilerine (1000, 3000, 5000…) ayrılmış
+                     katlanabilir bölümler hâlinde; js/ui.js üretiyor. 77 rengin
+                     tamamı tek uzun liste hâlinde açıkken panelin altındaki
+                     ölçü bölümüne inmek çok uzun sürüyordu. -->
+                <div id="renk-listesi" class="renk-listesi"></div>
+                <p class="renk-not">
+                    <span id="renk-sayisi" class="renk-sayisi"></span>
+                    Ekranda görünen tonlar RAL kartelasının yaklaşık karşılığıdır; kesin eşleşme için fiziksel numune isteyin.
+                </p>
+            </section>
+
         </div>
     </aside>
 </main>

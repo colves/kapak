@@ -18,47 +18,25 @@
 /* Üst bar sabit (position: fixed) — içerik onun altından başlasın. */
 .ic-sayfa main { padding-top: var(--bar-y); }
 
-/* ===================== Sayfa başı ===================== */
-.iletisim-basi {
-    background: var(--lacivert);
-    color: #F6F0E6;
-
+/* Ekranda görünmeyen ama ekran okuyucuların okuduğu başlık. */
+.gorsel-gizli {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
 }
-.iletisim-basi h1 {
-    margin: 14px 0 20px;
-    font-size: clamp(38px, 6.4vw, 84px);
-    line-height: 0.98;
-    letter-spacing: -0.03em;
-    font-weight: 600;
-    text-wrap: balance;
-}
-.iletisim-basi p {
-    max-width: 52ch;
-    margin: 0 0 34px;
-    font-size: clamp(15px, 1.5vw, 18px);
-    line-height: 1.65;
-    color: rgba(246, 240, 230, 0.76);
-}
-.hizli-eylemler {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-/* Koyu zeminde çalışan hayalet buton — anasayfa.css'teki .hayalet lacivert
-   kenarlı, burada görünmezdi. */
-.dugme.hayalet-acik {
-    background: transparent;
-    border-color: rgba(234, 224, 207, 0.5);
-    color: var(--krem);
-}
-.dugme.hayalet-acik:hover { background: var(--krem); color: var(--lacivert); border-color: var(--krem); }
 
 /* ===================== Konum kartları ===================== */
 .konumlar {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(20px, 3vw, 34px);
-    padding-top: clamp(28px, 4vw, 48px);
+    /* Sayfa doğrudan kartlarla başlıyor (üstteki tanıtım bloğu kaldırıldı);
+       üst bar ile kartlar birbirine yapışmasın. */
+    padding-top: clamp(48px, 7vw, 96px);
     background: var(--lacivert);
 }
 .konum-kart {
@@ -137,29 +115,41 @@
     margin-top: auto;
 }
 
-/* ===================== Kapanış ===================== */
-.iletisim-kapanis {
-    background: var(--kagit);
-    color: var(--murekkep);
-    text-align: center;
-}
-.iletisim-kapanis h2 {
-    margin: 14px auto 18px;
-    max-width: 20ch;
-    font-size: clamp(28px, 4.4vw, 56px);
-    line-height: 1.04;
-    letter-spacing: -0.025em;
-    font-weight: 600;
-    text-wrap: balance;
-}
-.iletisim-kapanis p {
-    max-width: 54ch;
-    margin: 0 auto 30px;
-    font-size: clamp(14px, 1.4vw, 17px);
-    line-height: 1.65;
-    color: rgba(21, 21, 21, 0.72);
-}
-
 @media (max-width: 980px) {
     .konumlar { grid-template-columns: 1fr; }
+}
+
+/* ===================== Tek ekran =====================
+   Bu sayfada geriye yalnızca iki konum kartı kaldı ve sayfanın aşağı
+   kaydırılmaması isteniyor. Kartlar ekranda kalan yüksekliği paylaşıyor,
+   harita da kartın içinde artan boşluğu dolduruyor — bu yüzden haritanın
+   sabit en/boy oranı burada bırakılıyor.
+
+   Kilit YALNIZCA kartların yan yana sığdığı genişliklerde. Dar ekranda iki
+   kart alt alta iniyor ve tek ekrana sığmıyor; orada kaydırmayı kapatmak
+   içeriği erişilemez hâle getirirdi, o yüzden mobil serbest akışta kalıyor. */
+@media (min-width: 981px) {
+    html, body { height: 100%; overflow: hidden; }
+
+    .tek-ekran main {
+        height: 100dvh;
+        padding-top: var(--bar-y);
+        display: flex;
+        flex-direction: column;
+    }
+    .tek-ekran .konumlar {
+        flex: 1;
+        min-height: 0;
+        align-items: stretch;
+        /* .bolum'un büyük dikey dolgusu burada geçerli değil: ekrana sığmak
+           için boşluk ölçülü olmalı. */
+        padding-top: clamp(20px, 3vh, 40px);
+        padding-bottom: clamp(20px, 3vh, 40px);
+    }
+    .tek-ekran .konum-kart { min-height: 0; }
+    .tek-ekran .harita {
+        aspect-ratio: auto;
+        flex: 1;
+        min-height: 0;
+    }
 }

@@ -111,16 +111,29 @@ img { display: block; max-width: 100%; }
 .marka { margin-left: 24px; }
 .marka img { max-height: 60px; min-height: 32px; width: auto; max-width: 210px; object-fit: contain; }
 
-.menu { display: flex; align-items: baseline; gap: 26px; font-size: 12px; }
-/* Modeller katalogun ana girişi — diğer ikisinden bir tık büyük yazılıyor. */
-.menu a.one-cikan { font-size: 14px; font-weight: 600; }
+.menu { display: flex; align-items: baseline; gap: 28px; font-size: 15px; }
+/* Modeller katalogun ana girişi — diğer ikisinden belirgin şekilde büyük.
+   Oran korunuyor: üçü birlikte büyütüldü, Modeller'in öne çıkması aynı kaldı. */
+.menu a.one-cikan { font-size: 18px; font-weight: 600; }
 .menu a { opacity: 0.86; transition: opacity 0.2s ease; }
 .menu a:hover { opacity: 1; }
 
 /* Sağ kenardan uzaklık, Konfigüratör tuşunun merkezi konfigüratördeki
    "Görseli İndir" tuşunun merkeziyle çakışsın diye ayarlı. */
-.ust-araclar { display: flex; align-items: center; gap: 14px; font-size: 12px;
-    margin-right: calc(var(--araci-sag) - 24px - var(--kaydirma-cubugu, 0px)); }
+.ust-araclar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+    font-size: 12px;
+    margin-right: calc(var(--araci-sag) - 24px - var(--kaydirma-cubugu, 0px));
+    /* Konfigüratörün sağ araç grubu (üç düğme) bu sayfalardaki tek düğmeden
+       daha geniş. Bar space-between ile dizildiği için ortadaki menü de o
+       farkı yiyor ve iki sayfada farklı yerde duruyordu. Görünmez bir en payı
+       vererek sağ bölgenin genişliğini eşitliyoruz: düğme yerinden oynamıyor
+       (sağa yaslı), menü ise dört sayfada da aynı noktaya oturuyor. */
+    min-width: 290px;
+}
 /* Konfigüratördeki araç tuşlarıyla AYNI ölçüler: 131px genişlik, 9px dikey
    dolgu, 13px/600 yazı, 6px köşe. */
 .konfig-link {
@@ -342,46 +355,6 @@ img { display: block; max-width: 100%; }
 }
 .konfig-metin p { max-width: 380px; margin-bottom: 30px; color: #555555; line-height: 1.7; }
 
-/* ===================== Renkler & Yüzeyler ===================== */
-.malzeme-duzen { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.malzeme-baslik {
-    background: var(--krem);
-    padding: clamp(32px, 4vw, 56px);
-    min-height: 490px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 24px;
-}
-.malzeme-baslik h2 {
-    margin: 14px 0 0;
-    font-size: clamp(30px, 4.7vw, 66px);
-    line-height: 1.05;
-    letter-spacing: -0.07em;
-    font-weight: 500;
-}
-.malzemeler { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-/* Her kutu bir RAL ton ailesini temsil ediyor; zemin rengi o ailenin
-   gerçek renklerinden JS tarafından üretiliyor. */
-.malzeme {
-    position: relative;
-    min-height: 236px;
-    padding: 20px;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-    background: var(--ton-zemin, #DDDBD6);
-    color: var(--ton-metin, #151515);
-}
-/* İnce tarama dokusu — düz renk yerine "yüzey" hissi. */
-.malzeme::before {
-    content: '';
-    position: absolute; inset: 0;
-    opacity: 0.28;
-    background: repeating-linear-gradient(105deg, transparent 0 7px, rgba(255, 255, 255, 0.7) 8px 9px);
-}
-.malzeme span { position: relative; font-size: 14px; }
-
 /* ===================== Kapanış ===================== */
 .kapanis { text-align: center; padding-block: clamp(90px, 11vw, 160px); }
 .kapanis h2 {
@@ -437,9 +410,8 @@ img { display: block; max-width: 100%; }
 
 /* ===================== Dar ekran ===================== */
 @media (max-width: 900px) {
-    .konfig, .malzeme-duzen { grid-template-columns: 1fr; }
+    .konfig { grid-template-columns: 1fr; }
     .kapak-sahne { height: 420px; }
-    .malzeme-baslik { min-height: 320px; }
     .alt-ust { grid-template-columns: 1fr 1fr; }
     .alt-ust > div:first-child { grid-column: span 2; }
 }
@@ -465,7 +437,7 @@ img { display: block; max-width: 100%; }
         color: var(--lacivert);
     }
     .menu.acik { display: flex; }
-    .menu a { padding: 13px 0; border-bottom: 1px solid var(--cizgi); font-size: 14px; }
+    .menu a { padding: 13px 0; border-bottom: 1px solid var(--cizgi); font-size: 16px; }
     .menu a:last-child { border-bottom: 0; }
     .menu-dugmesi { display: inline-flex; }
     .konfig-link { display: none; }
@@ -473,8 +445,6 @@ img { display: block; max-width: 100%; }
     .hero-icerik { padding: 0 20px 56px; }
     .bolum { padding-left: 20px; padding-right: 20px; }
     .kaydir-ipucu { display: none; }
-    .malzemeler { gap: 8px; }
-    .malzeme { min-height: 165px; }
     .alt { padding-left: 20px; padding-right: 20px; }
     .alt-taban { display: block; }
     .alt-taban span { display: block; margin: 6px 0; }

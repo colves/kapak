@@ -179,6 +179,35 @@ export function ralSirasindakiRenkler() {
     return [...LAKE_TUMU].sort((a, b) => Number(a.kod.slice(4)) - Number(b.kod.slice(4)));
 }
 
+// RAL Classic'in kendi seri adları. Numaranın ilk hanesi seriyi verir; bu
+// tablo yalnızca o serinin insan tarafından okunan karşılığını tutuyor.
+const SERI_ETIKETLERI = {
+    '1000': 'Sarı ve bej tonları',
+    '2000': 'Turuncular',
+    '3000': 'Kırmızılar',
+    '4000': 'Morlar',
+    '5000': 'Maviler',
+    '6000': 'Yeşiller',
+    '7000': 'Griler',
+    '8000': 'Kahveler',
+    '9000': 'Beyaz ve siyahlar'
+};
+
+// Renkleri RAL serisine göre gruplar. Konfigüratörde katlanabilir bölümler
+// olarak gösteriliyor: 77 rengin tamamı tek bir uzun liste hâlinde açıkken
+// panelin altındaki ölçü bölümüne inmek çok uzun sürüyordu.
+export function ralSerileri() {
+    const gruplar = new Map();
+    for (const renk of ralSirasindakiRenkler()) {
+        const seri = `${renk.kod.slice(4, 5)}000`;
+        if (!gruplar.has(seri)) {
+            gruplar.set(seri, { seri, etiket: SERI_ETIKETLERI[seri] || `RAL ${seri}`, renkler: [] });
+        }
+        gruplar.get(seri).renkler.push(renk);
+    }
+    return [...gruplar.values()];
+}
+
 // Kataloğun gerçekten renk içeren aileleri — boş filtre düğmesi çizilmesin diye.
 export function doluTonAileleri() {
     return TON_AILELERI.filter(a => tonAilesindekiRenkler(a.anahtar).length > 0);

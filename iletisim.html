@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/anasayfa.css">
 <link rel="stylesheet" href="css/iletisim.css">
 </head>
-<body class="ic-sayfa">
+<body class="ic-sayfa tek-ekran">
 
 <header class="ust" id="ust">
     <div class="ust-bar">
@@ -23,7 +23,7 @@
             <img src="assets/logo.png" alt="Şahinkaya Ahşap">
         </a>
         <nav class="menu" id="menu">
-            <a href="index.html#renkler">Renkler</a>
+            <a href="renkler.html">Renkler</a>
             <a class="one-cikan" href="modeller.html">Modeller</a>
             <a class="etkin" href="iletisim.html" aria-current="page">İletişim</a>
         </nav>
@@ -36,18 +36,11 @@
 
 <main>
 
-    <section class="iletisim-basi">
-        <div class="bolum">
-            <span class="etiket etiket-acik">İletişim</span>
-            <h1>Kapağınızı birlikte<br>konuşalım.</h1>
-            <p>Mağazamızda numuneleri elinize alabilir, fabrikamızda üretimi yerinde görebilirsiniz. Ölçü, model ve renk seçiminde yanınızdayız.</p>
-            <div class="hizli-eylemler">
-                <a class="dugme acik" href="tel:+905336639714">+90 533 663 97 14</a>
-                <a class="dugme hayalet-acik" href="https://wa.me/905336639714" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
-                <a class="dugme hayalet-acik" href="mailto:sahinkaya@gmail.com">E-Posta Gönder</a>
-            </div>
-        </div>
-    </section>
+    <!-- Görünür bir sayfa başlığı istenmedi (üstteki tanıtım bloğu kaldırıldı).
+         Yine de her sayfanın bir h1'i olmalı: ekran okuyucular sayfayı
+         başlığından tanır ve arama motorları onu kullanır — bu yüzden
+         yalnızca ekranda gizli bir başlık bırakıldı. -->
+    <h1 class="gorsel-gizli">İletişim — Mağaza ve Fabrika</h1>
 
     <!-- İki konum. Harita gömülüsü ve "Haritalar'da Aç" bağlantısı AYNI arama
          metnini kullanıyor (data-konum), yani bir adres değişince tek bir
@@ -56,7 +49,7 @@
         <article class="konum-kart">
             <h2>Mağaza / Showroom</h2>
             <dl class="konum-bilgi">
-                <div><dt>Adres</dt><dd>Şehir Merkezi AVM<br>Adapazarı / Sakarya</dd></div>
+                <div><dt>Adres</dt><dd>Yağcılar, Ankara Cd. No:263<br>54100 Adapazarı / Sakarya</dd></div>
                 <div><dt>Telefon</dt><dd><a href="tel:+905336639714">+90 (533) 663 97 14</a></dd></div>
                 <div><dt>E-Posta</dt><dd><a href="mailto:sahinkaya@gmail.com">sahinkaya@gmail.com</a></dd></div>
             </dl>
@@ -67,14 +60,14 @@
             <div class="harita">
                 <p class="harita-yedek">Haritayı görmek için aşağıdaki düğmeyi kullanın.</p>
             </div>
-            <a class="dugme acik genis" href="https://www.google.com/maps/search/?api=1&amp;query=%C5%9Eahinkaya%20Ah%C5%9Fap%20Mobilya%20Adapazar%C4%B1%20Sakarya" data-harita-baglanti target="_blank" rel="noopener">Google Haritalar'da Aç</a>
+            <a class="dugme acik genis" href="https://www.google.com/maps/search/?api=1&amp;query=%C5%9Eahinkaya%20Mobilya%20ve%20Dekorasyon%2C%20Ya%C4%9Fc%C4%B1lar%2C%20Ankara%20Cd.%20No%3A263%2C%2054100%20Adapazar%C4%B1/Sakarya" data-harita-baglanti target="_blank" rel="noopener">Google Haritalar'da Aç</a>
         </article>
 
         <article class="konum-kart">
             <!-- Kullanıcı isteği: "imalathane" yerine "fabrika". -->
             <h2>Fabrika</h2>
             <dl class="konum-bilgi">
-                <div><dt>Adres</dt><dd>Organize Sanayi Bölgesi<br>Adapazarı / Sakarya</dd></div>
+                <div><dt>Adres</dt><dd>Tekeler, Keresteciler Caddesi No:19/B<br>54100 Adapazarı / Sakarya</dd></div>
                 <div><dt>Telefon</dt><dd><a href="tel:+905336639714">+90 (533) 663 97 14</a></dd></div>
                 <div><dt>E-Posta</dt><dd><a href="mailto:sahinkaya@gmail.com">sahinkaya@gmail.com</a></dd></div>
             </dl>
@@ -85,51 +78,11 @@
             <div class="harita">
                 <p class="harita-yedek">Haritayı görmek için aşağıdaki düğmeyi kullanın.</p>
             </div>
-            <a class="dugme acik genis" href="https://www.google.com/maps/search/?api=1&amp;query=Sakarya%201.%20Organize%20Sanayi%20B%C3%B6lgesi%20Adapazar%C4%B1" data-harita-baglanti target="_blank" rel="noopener">Google Haritalar'da Aç</a>
+            <a class="dugme acik genis" href="https://www.google.com/maps/search/?api=1&amp;query=%C5%9Eahinkaya%20Mobilya%20ve%20Dekorasyon%20Fabrika%2C%20Tekeler%2C%20Keresteciler%20Caddesi%20No%3A19/B%2C%2054100%20Adapazar%C4%B1/Sakarya" data-harita-baglanti target="_blank" rel="noopener">Google Haritalar'da Aç</a>
         </article>
     </section>
 
-    <section class="bolum iletisim-kapanis">
-        <span class="etiket">Önce görmek isterseniz</span>
-        <h2>Kapağınızı gelmeden önce ekranda deneyin.</h2>
-        <p>Konfigüratörde model, renk ve ölçüyü seçip çıkan linki bize gönderin — konuşmaya tam olarak istediğiniz kapaktan başlayalım.</p>
-        <a class="dugme" href="configurator.html">Konfigüratörü Aç</a>
-    </section>
-
 </main>
-
-<footer class="alt">
-    <div class="alt-ic">
-        <div class="alt-ust">
-            <div class="alt-marka">
-                <img src="assets/logo.png" alt="Şahinkaya Ahşap">
-                <p>Modern yaşam alanları için hassas üretilmiş lake kapaklar.</p>
-            </div>
-            <div>
-                <h3>Keşfet</h3>
-                <a href="modeller.html">Modeller</a>
-                <a href="index.html#renkler">Renkler</a>
-                <a href="configurator.html">Konfigüratör</a>
-            </div>
-            <div>
-                <h3>Kurumsal</h3>
-                <a href="iletisim.html">İletişim</a>
-                <a href="https://sahinkayamobilya.com" target="_blank" rel="noopener">sahinkayamobilya.com</a>
-            </div>
-            <div>
-                <h3>İletişim</h3>
-                <a href="tel:+905336639714">+90 533 663 97 14</a>
-                <a href="mailto:sahinkaya@gmail.com">sahinkaya@gmail.com</a>
-                <a href="https://wa.me/905336639714" target="_blank" rel="noopener">WhatsApp</a>
-                <span class="alt-adres">Adapazarı, Sakarya</span>
-            </div>
-        </div>
-        <div class="alt-taban">
-            <span>© 2026 Şahinkaya Ahşap Mobilya. Tüm hakları saklıdır.</span>
-            <span>Mobilya · İç Mimari · Tasarım</span>
-        </div>
-    </div>
-</footer>
 
 <script type="module" src="js/iletisim.js"></script>
 </body>

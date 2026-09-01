@@ -1,4 +1,4 @@
-import { idIleRenkBul, ralSirasindakiRenkler } from './data/colors.js';
+import { idIleRenkBul, ralSerileri } from './data/colors.js';
 import { KAPAK_MODELLERI, idIleModelBul } from './data/models.js';
 import { ORTAM_SECENEKLERI, varsayilanOrtami, idIleOrtamBul } from './data/ortamlar.js';
 import { sahneyiBaslat, kapagiGuncelle, goruntuyuSifirla, ortamiDegistir, kareyiDikeyKaydir } from './viewer.js';
@@ -299,21 +299,59 @@ function renkSecildi(renk) {
     goruntuGuncellemesiPlanla();
 }
 
-function renkIzgarasiniCiz() {
-    const izgara = document.getElementById('renk-izgara');
-    if (!izgara) return;
-    const renkler = ralSirasindakiRenkler();
-    izgara.innerHTML = '';
-    renkler.forEach((renk, i) => {
+function renkSeriBolumuOlustur(grup, acikMi) {
+    const bolum = document.createElement('section');
+    bolum.className = 'renk-seri' + (acikMi ? ' acik' : '');
+
+    const basSatiri = document.createElement('button');
+    basSatiri.type = 'button';
+    basSatiri.className = 'renk-seri-bas';
+    basSatiri.setAttribute('aria-expanded', String(acikMi));
+    basSatiri.innerHTML = `
+        <span class="renk-seri-kod">RAL ${grup.seri}</span>
+        <span class="renk-seri-ad">${grup.etiket}</span>
+        <span class="renk-seri-sayi">${grup.renkler.length}</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    `;
+
+    const izgara = document.createElement('div');
+    izgara.className = 'renk-izgara';
+    izgara.setAttribute('role', 'group');
+    izgara.setAttribute('aria-label', `RAL ${grup.seri} — ${grup.etiket}`);
+    grup.renkler.forEach((renk, i) => {
         const btn = renkButonuOlustur(renk);
-        // Kartlar kademeli belirsin diye (bkz. base.css .renk-btn animasyonu)
-        // her karta kendi sırası yazılıyor.
+        // Kartlar kademeli belirsin diye (bkz. base.css .renk-btn animasyonu).
         btn.style.setProperty('--i', i);
         izgara.appendChild(btn);
     });
 
+    basSatiri.addEventListener('click', () => {
+        const acik = bolum.classList.toggle('acik');
+        basSatiri.setAttribute('aria-expanded', String(acik));
+    });
+
+    bolum.append(basSatiri, izgara);
+    return bolum;
+}
+
+function renkListesiniCiz() {
+    const kap = document.getElementById('renk-listesi');
+    if (!kap) return;
+    kap.innerHTML = '';
+
+    const seriler = ralSerileri();
+    let toplam = 0;
+    seriler.forEach((grup) => {
+        toplam += grup.renkler.length;
+        // Yalnızca SEÇİLİ rengin serisi açık gelir: müşteri hangi tonda
+        // olduğunu görür ama panel 77 kutu boyunca uzamaz, ölçü bölümü de
+        // hemen üstte kalır.
+        const acik = grup.renkler.some((r) => r.id === durum.renkId);
+        kap.appendChild(renkSeriBolumuOlustur(grup, acik));
+    });
+
     const sayiEl = document.getElementById('renk-sayisi');
-    if (sayiEl) sayiEl.textContent = `${renkler.length} RAL tonu`;
+    if (sayiEl) sayiEl.textContent = `${toplam} RAL tonu, ${seriler.length} seri`;
 }
 
 /* ---------------- Ölçü kontrolleri ---------------- */
@@ -628,18 +666,11 @@ function indirButonunuKur() {
             const modelAdi = (model ? model.kisaIsim : durum.modelId).replace(/\s+/g, '');
             const dosyaAdi = `sahinkaya-kapak-${modelAdi}-${renk.kod.replace(/\s+/g, '')}-${durum.genislik}x${durum.yukseklik}.png`;
 
-            if (navigator.canShare) {
-                const dosya = new File([blob], dosyaAdi, { type: 'image/png' });
-                if (navigator.canShare({ files: [dosya] })) {
-                    try {
-                        await navigator.share({ files: [dosya], title: 'Şahinkaya Kapak Konfigürasyonu' });
-                        return;
-                    } catch {
-                        // Kullanıcı paylaşımı iptal etti veya desteklenmiyor — indirmeye düş.
-                    }
-                }
-            }
-
+            // DOĞRUDAN İNDİRME. Burada bir zamanlar navigator.share yolu vardı:
+            // Windows masaüstünde o, dosyayı indirmek yerine işletim
+            // sisteminin "Paylaş" penceresini açıyordu ve kullanıcı dosyayı
+            // bilgisayarına alamıyordu. Düğmenin üzerinde "Görseli İndir"
+            // yazıyor — yaptığı iş de tam olarak bu olmalı.
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
@@ -763,7 +794,7 @@ export function arayuzuBaslat() {
     sahneyiBaslat('canvas-kapsayici');
 
     modelSeciciyiKur();
-    renkIzgarasiniCiz();
+    renkListesiniCiz();
     olcuKontrolleriniKur();
     ayarPaneliniKur();
     isikPaneliniKur();

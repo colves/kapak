@@ -18,7 +18,7 @@ let dolduruculIsik, yonluIsik;
 // tuşu hero'yu konfigüratörün çerçevesine atardı.
 let baslangicKameraMesafesi = 1600;
 
-export function sahneyiBaslat(konteynerId, { kameraMesafesi } = {}) {
+export function sahneyiBaslat(konteynerId, { kameraMesafesi, yakinlastirma = true } = {}) {
     konteyner = document.getElementById(konteynerId);
 
     sahne = new THREE.Scene();
@@ -68,8 +68,29 @@ export function sahneyiBaslat(konteynerId, { kameraMesafesi } = {}) {
     sahne.add(yonluIsik);
 
     kontroller = new OrbitControls(kamera, isleyici.domElement);
+
+    // Kontroller kamerayı her oynattığında çizim İSTE. Bu satır olmadan
+    // tekerlekle yakınlaştırma ekranda görünmüyordu (ölçüldü: tekerlekten
+    // sonra kamera mesafesi 1600 -> 1238 değişiyor ama render sayacı 3'te
+    // sabit kalıyor).
+    //
+    // Sebep: OrbitControls tekerlek olayını işlerken update()'i KENDİ İÇİNDE
+    // çağırıp dolly'yi hemen uyguluyor. Aşağıdaki döngü bir sonraki karede
+    // update()'i tekrar çağırdığında değişecek bir şey kalmadığı için false
+    // dönüyor, dolayısıyla renderGerekli hiç kurulmuyor. Sürüklemede sorun
+    // görünmüyordu çünkü sönümleme (damping) birkaç kare boyunca update()'i
+    // true döndürmeye devam ediyor — kullanıcının "önce çevirince
+    // yakınlaştırabiliyorum" dediği davranışın tam sebebi bu.
+    //
+    // three.js'in kendi "render on demand" örneğindeki desen de budur.
+    kontroller.addEventListener('change', renderIste);
+
     kontroller.enableDamping = true;
     kontroller.dampingFactor = 0.08;
+    // Ana sayfadaki vitrin önizlemesinde yakınlaştırma kapalı: orası bir
+    // inceleme aracı değil, sabit çerçeveli bir vitrin. Ziyaretçi kapağı
+    // çevirebilir ama çerçeveden kaçıramaz. Konfigüratörde açık kalır.
+    kontroller.enableZoom = yakinlastirma;
     kontroller.minDistance = 300;
     kontroller.maxDistance = 2600;
     // Sağ tık ile sürükleyerek kaydırma (pan) istenmiyor — kapak her zaman

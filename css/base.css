@@ -89,6 +89,29 @@ html, body {
    kendisi büyümez. */
 .marka-logo { max-height: 60px; min-height: 32px; width: auto; max-width: 210px; object-fit: contain; display: block; }
 
+/* Üst bardaki menü. Ölçüler anasayfa.css'teki .menu ile AYNI (15px, Modeller
+   18px, 28px aralık) — iki üst bar arasında geçerken yazılar yerinden
+   oynamasın diye. Sınıf adları da bilinçli olarak aynı: işaretleme dört
+   sayfada birebir aynı kalıyor.
+
+   Dar ekranda gizleniyor: konfigüratörün üst barında zaten üç araç düğmesi
+   var ve menü oraya sığmıyor. Logo ana sayfaya döndüğü için gezinme
+   kapanmıyor, sadece bir adım uzuyor. */
+.menu {
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+    font-size: 15px;
+}
+.menu a {
+    color: var(--metin);
+    text-decoration: none;
+    opacity: 0.86;
+    transition: opacity 0.2s ease;
+}
+.menu a:hover { opacity: 1; }
+.menu a.one-cikan { font-size: 18px; font-weight: 600; }
+
 .ustbar-sag { display: flex; align-items: center; gap: var(--s-2); }
 
 /* Araç düğmeleri: önceden şeffaf zeminli, çok soluk bir çerçeve — vurgu
@@ -461,6 +484,55 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     font-size: var(--fs-xs);
     color: var(--metin-soluk);
 }
+
+/* ---- RAL serileri (katlanabilir) ----
+   77 renk tek bir uzun liste hâlinde açıkken panelin altındaki ölçü bölümüne
+   inmek çok uzun sürüyordu. Renkler artık RAL'in kendi serilerine ayrılmış
+   katlanabilir bölümlerde; yalnızca SEÇİLİ rengin serisi açık geliyor.
+   (Ölçü bölümü ayrıca panelin BAŞINA alındı — müşteri ölçüyü nereden
+   değiştireceğini kaydırmadan görsün.) */
+.renk-listesi { display: flex; flex-direction: column; }
+.renk-seri { border-bottom: 1px solid var(--kenarlik); }
+.renk-seri:last-child { border-bottom: 0; }
+.renk-seri-bas {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    width: 100%;
+    padding: var(--s-3) 0;
+    border: none;
+    background: none;
+    color: var(--metin);
+    font-family: inherit;
+    text-align: left;
+}
+.renk-seri-kod {
+    font-family: var(--veri-font);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    white-space: nowrap;
+}
+.renk-seri-ad {
+    flex: 1;
+    font-size: var(--fs-xs);
+    color: var(--metin-soluk);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.renk-seri-sayi {
+    font-family: var(--veri-font);
+    font-size: var(--fs-xs);
+    color: var(--metin-soluk);
+    font-variant-numeric: tabular-nums;
+}
+.renk-seri-bas > svg { color: var(--metin-soluk); flex-shrink: 0; transition: transform 0.2s ease; }
+.renk-seri.acik .renk-seri-bas > svg { transform: rotate(180deg); }
+.renk-seri.acik .renk-seri-kod { color: var(--marka-koyu); }
+/* Kapalı bölüm display:none — sadece görsel gizleme, içindeki düğmeleri
+   klavyeyle gezilebilir bırakırdı. */
+.renk-seri:not(.acik) .renk-izgara { display: none; }
+.renk-seri .renk-izgara { padding-bottom: var(--s-4); }
 
 /* ---- Renk ızgarası ----
    Ton ailesi süzgeci kaldırıldı (RAL numaralandırması zaten aileye göre
@@ -937,6 +1009,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
        yalnızca seçili ortamın adı bırakılıyor. */
     .isik-secici-etiket { display: none; }
     .isik-secici-ad { max-width: 118px; }
+    .menu { display: none; }
     .marka-logo { max-height: 42px; }
     .marka-link { margin-left: var(--s-3); }
     /* Konfigüratördeki ikonlar (indir/tam ekran/paylaş) kendi başlarına
