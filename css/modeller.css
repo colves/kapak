@@ -93,16 +93,22 @@
        max-height: geniş ekranda kart yüksekliği ekranı yutmasın — kartın
        tamamı, adı ve renk noktaları dahil, tek ekranda okunabilsin. */
     aspect-ratio: 3 / 4;
-    max-height: min(44vh, 420px);
+    max-height: min(46vh, 440px);
     padding: 16px;
     overflow: hidden;
     background: linear-gradient(150deg, var(--krem), #D9D0C2);
 }
 .katalog-gorsel img {
     width: auto;
-    height: 100%;
-    max-width: 100%;
+    /* Kapak kutuyu doldurmuyor, İÇİNDE duruyor: referanstaki gibi etrafında
+       bolca boşluk kalsın, ürün bir vitrinde sergileniyormuş gibi görünsün.
+       Fotoğraflar kapağa kırpılmış (409x663) olduğu için %100 yükseklik
+       verildiğinde kutuyu baştan başa kaplıyor ve sıkışık duruyordu. */
+    height: 76%;
+    max-width: 72%;
     object-fit: contain;
+    /* Zeminden hafifçe ayrılsın — düz bir yapıştırma gibi durmasın. */
+    filter: drop-shadow(0 18px 28px rgba(17, 24, 68, 0.18));
     transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .katalog-gorsel:hover img { transform: scale(1.045); }
@@ -158,29 +164,6 @@
     transition: border-color 0.16s ease;
 }
 .katalog-tumu:hover { border-bottom-color: var(--indigo); }
-
-/* ===================== Kapanış ===================== */
-.katalog-kapanis {
-    background: var(--lacivert);
-    color: #F6F0E6;
-    text-align: center;
-}
-.katalog-kapanis h2 {
-    margin: 14px auto 18px;
-    max-width: 20ch;
-    font-size: clamp(28px, 4.4vw, 56px);
-    line-height: 1.04;
-    letter-spacing: -0.025em;
-    font-weight: 600;
-    text-wrap: balance;
-}
-.katalog-kapanis p {
-    max-width: 54ch;
-    margin: 0 auto 30px;
-    font-size: clamp(14px, 1.4vw, 17px);
-    line-height: 1.65;
-    color: rgba(246, 240, 230, 0.76);
-}
 
 @media (max-width: 980px) {
     .katalog-izgara { grid-template-columns: repeat(2, 1fr); }

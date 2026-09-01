@@ -1,6 +1,7 @@
 import { idIleRenkBul, ralSerileri } from './data/colors.js';
 import { KAPAK_MODELLERI, idIleModelBul } from './data/models.js';
 import { ORTAM_SECENEKLERI, varsayilanOrtami, idIleOrtamBul } from './data/ortamlar.js';
+import { YUZEYLER, varsayilanYuzey, idIleYuzeyBul } from './data/yuzeyler.js';
 import { sahneyiBaslat, kapagiGuncelle, goruntuyuSifirla, ortamiDegistir, kareyiDikeyKaydir } from './viewer.js';
 import { durumuSorguyaKodla, sorgudanDurumCoz, paylasimAdresiOlustur } from './paylasim.js';
 
@@ -18,6 +19,9 @@ const durum = {
     yukseklik: baslangicModel.varsayilan.yukseklik,
     kalinlik: baslangicModel.varsayilan.kalinlik,
     renkId: 'lake-ral-7044',
+    // Yüzey bitişi renkten AYRI bir karar: aynı ton mat ve parlakta bambaşka
+    // görünüyor.
+    yuzeyId: varsayilanYuzey().id,
     ortamId: null,
     // Sahne zemini de paylaşılan durumun parçası: seçim yenilemede kaybolmasın
     // ve gönderilen link kapağı aynı zeminde açsın.
@@ -33,7 +37,8 @@ function guncellemeyiUygula() {
     const renk = idIleRenkBul(durum.renkId);
     // Model dosyası yüklenemezse sahne boş kalır; kullanıcı nedenini
     // bilmediği bir boşluğa bakmasın diye durum kendisine bildiriliyor.
-    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi))
+    const yuzey = idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey();
+    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey))
         .catch((hata) => {
             console.error('Model yüklenemedi:', model.gltfUrl, hata);
             bildir('Model yüklenemedi — bağlantınızı kontrol edip sayfayı yenileyin');
@@ -149,7 +154,8 @@ function urldenDurumuYukle() {
         modelGecerliMi: (id) => Boolean(idIleModelBul(id)),
         renkGecerliMi: (id) => Boolean(idIleRenkBul(id)),
         ortamGecerliMi: (id) => Boolean(idIleOrtamBul(id)),
-        zeminGecerliMi: (no) => ZEMIN_SECENEKLERI.some((z) => z.no === no)
+        zeminGecerliMi: (no) => ZEMIN_SECENEKLERI.some((z) => z.no === no),
+        yuzeyGecerliMi: (id) => Boolean(idIleYuzeyBul(id))
     });
     Object.assign(durum, cozulen);
 }
@@ -360,6 +366,48 @@ function renkListesiniCiz() {
 
     const sayiEl = document.getElementById('renk-sayisi');
     if (sayiEl) sayiEl.textContent = `${toplam} RAL tonu, ${seriler.length} seri`;
+}
+
+/* ---------------- Yüzey (parlaklık) ----------------
+   Aynı RAL tonu mat bir yüzeyde düz ve açık, parlak bir yüzeyde derin ve koyu
+   okunuyor; ikisi arasındaki fark renk seçiminden bağımsız bir karar. Üç
+   seçenek de tek bakışta görünüyor — müşteri bunu bir kez seçip geçiyor. */
+
+function yuzeySecildi(yuzey) {
+    if (durum.yuzeyId === yuzey.id) return;
+    durum.yuzeyId = yuzey.id;
+    document.querySelectorAll('.yuzey-btn').forEach((b) => {
+        const aktif = b.dataset.yuzeyId === yuzey.id;
+        b.classList.toggle('aktif', aktif);
+        b.setAttribute('aria-pressed', String(aktif));
+    });
+    const ad = document.getElementById('yuzey-secili-ad');
+    if (ad) ad.textContent = yuzey.isim;
+    goruntuGuncellemesiPlanla();
+}
+
+function yuzeySeciciyiKur() {
+    const kap = document.getElementById('yuzey-secenekleri');
+    if (!kap) return;
+    kap.innerHTML = '';
+    YUZEYLER.forEach((yuzey) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        const aktif = yuzey.id === durum.yuzeyId;
+        btn.className = 'yuzey-btn' + (aktif ? ' aktif' : '');
+        btn.dataset.yuzeyId = yuzey.id;
+        btn.setAttribute('aria-pressed', String(aktif));
+        btn.title = yuzey.aciklama;
+        btn.innerHTML = `
+            <span class="yuzey-btn-ad">${yuzey.isim}</span>
+            <span class="yuzey-btn-aciklama">${yuzey.aciklama}</span>
+        `;
+        btn.addEventListener('click', () => yuzeySecildi(yuzey));
+        kap.appendChild(btn);
+    });
+    const ad = document.getElementById('yuzey-secili-ad');
+    const secili = idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey();
+    if (ad) ad.textContent = secili.isim;
 }
 
 /* ---------------- Ölçü kontrolleri ---------------- */
@@ -710,6 +758,7 @@ function whatsappBaglantisiniGuncelle() {
         'Merhaba, konfigüratörden bir kapak hazırladım:',
         `Model: ${model.isim}`,
         `Renk: ${renk.isim} (${renk.kod})`,
+        `Yüzey: ${(idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey()).isim}`,
         `Ölçü: ${durum.genislik} × ${durum.yukseklik} mm`,
         adres
     ].join('\n');
@@ -827,6 +876,7 @@ export function arayuzuBaslat() {
 
     modelSeciciyiKur();
     renkListesiniCiz();
+    yuzeySeciciyiKur();
     olcuKontrolleriniKur();
     ayarPaneliniKur();
     isikPaneliniKur();

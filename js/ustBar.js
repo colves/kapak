@@ -22,9 +22,17 @@ export function ustBariKur() {
     kaydirmaCubuguPayiniOlc();
     window.addEventListener('resize', kaydirmaCubuguPayiniOlc);
 
-    // Not: burada bir zamanlar sayfa kaydırılınca barı saydamdan opağa
-    // geçiren bir 'kaydirildi' sınıfı vardı. Üst bar artık her sayfada ve her
-    // durumda konfigüratörünkiyle aynı opak barla duruyor, o yüzden kalktı.
+    // Ana sayfada bar hero görselinin üzerinde saydam başlıyor; sayfa
+    // kaydırılınca opaklaşması gerekiyor. Saydam durumun stili yalnızca
+    // .hero-var gövdesinde tanımlı olduğu için bu sınıfı diğer sayfalara
+    // eklemek zararsız — orada hiçbir kurala denk gelmiyor.
+    const ust = document.getElementById('ust');
+    if (ust) {
+        const durumuYaz = () => ust.classList.toggle('kaydirildi', window.scrollY > 40);
+        durumuYaz();
+        // passive: kaydırmayı bloklamasın.
+        window.addEventListener('scroll', durumuYaz, { passive: true });
+    }
 
     const dugme = document.getElementById('menu-dugmesi');
     const menu = document.getElementById('menu');

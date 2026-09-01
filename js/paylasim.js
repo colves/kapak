@@ -9,8 +9,8 @@
 
 // Kısa ve okunabilir anahtarlar: link elle bakıldığında da anlaşılsın.
 //   m = model, r = RAL kodu, g = genişlik, y = yükseklik, k = kalınlık,
-//   o = ortam (HDR ışık), z = sahne zemini
-const ANAHTARLAR = { model: 'm', ral: 'r', genislik: 'g', yukseklik: 'y', kalinlik: 'k', ortam: 'o', zemin: 'z' };
+//   o = ortam (HDR ışık), z = sahne zemini, f = yüzey bitişi (finish)
+const ANAHTARLAR = { model: 'm', ral: 'r', genislik: 'g', yukseklik: 'y', kalinlik: 'k', ortam: 'o', zemin: 'z', yuzey: 'f' };
 
 // 'lake-ral-9016' -> '9016'
 export function renkIdSindenRalKodu(renkId) {
@@ -35,6 +35,7 @@ export function durumuSorguyaKodla(durum) {
     if (Number.isFinite(durum.kalinlik)) p.set(ANAHTARLAR.kalinlik, String(Math.round(durum.kalinlik)));
     if (durum.ortamId) p.set(ANAHTARLAR.ortam, durum.ortamId);
     if (durum.zemin) p.set(ANAHTARLAR.zemin, String(durum.zemin));
+    if (durum.yuzeyId) p.set(ANAHTARLAR.yuzey, durum.yuzeyId);
     const dize = p.toString();
     return dize ? `?${dize}` : '';
 }
@@ -43,7 +44,7 @@ export function durumuSorguyaKodla(durum) {
 // yüklemle yapılır (modelGecerliMi / renkGecerliMi) — böylece bu modül veri
 // katmanına bağımlı kalmaz. Tanınmayan/bozuk değerler sessizce atlanır:
 // elle kurcalanmış bir link uygulamayı kırmak yerine varsayılana düşmeli.
-export function sorgudanDurumCoz(sorgu, { modelGecerliMi, renkGecerliMi, ortamGecerliMi, zeminGecerliMi } = {}) {
+export function sorgudanDurumCoz(sorgu, { modelGecerliMi, renkGecerliMi, ortamGecerliMi, zeminGecerliMi, yuzeyGecerliMi } = {}) {
     const sonuc = {};
     if (typeof sorgu !== 'string' || sorgu.length === 0) return sonuc;
 
@@ -60,6 +61,9 @@ export function sorgudanDurumCoz(sorgu, { modelGecerliMi, renkGecerliMi, ortamGe
 
     const zemin = p.get(ANAHTARLAR.zemin);
     if (zemin && (!zeminGecerliMi || zeminGecerliMi(zemin))) sonuc.zemin = zemin;
+
+    const yuzeyId = p.get(ANAHTARLAR.yuzey);
+    if (yuzeyId && (!yuzeyGecerliMi || yuzeyGecerliMi(yuzeyId))) sonuc.yuzeyId = yuzeyId;
 
     for (const alan of ['genislik', 'yukseklik', 'kalinlik']) {
         const ham = p.get(ANAHTARLAR[alan]);

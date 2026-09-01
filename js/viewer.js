@@ -187,7 +187,7 @@ function kapakGeometrisiTemizle(nesne) {
     }
 }
 
-function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek) {
+function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey) {
     // Kullanıcı yükleme bitmeden başka bir model/renk seçmiş olabilir — o
     // durumda bu (artık eski) sonucu sahneye koymadan temizleyip at.
     if (buIstek !== istekSirasi) {
@@ -203,7 +203,7 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek) {
     }
 
     kapakGrubu = yeniGrup;
-    mevcutMalzeme = renkVerisindenMalzemeOlustur(renkVerisi);
+    mevcutMalzeme = renkVerisindenMalzemeOlustur(renkVerisi, yuzey);
     malzemeUygula(kapakGrubu, mevcutMalzeme);
 
     sahne.add(kapakGrubu);
@@ -212,7 +212,7 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek) {
 
 // glbUrl verilmişse (gerçek 3ds Max'ten aktarılmış model), procedural geometri
 // yerine o dosya asenkron olarak yüklenip kullanılır.
-export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu, kenarPayi) {
+export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu, kenarPayi, yuzey) {
     const buIstek = ++istekSirasi;
 
     // Her modelin bir .glb dosyası var (üretim yalnızca bu modellerden yapılıyor).
@@ -227,7 +227,7 @@ export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbI
     // Söz ÇAĞIRANA DÖNDÜRÜLÜYOR: model dosyası yüklenemediğinde ui.js hatayı
     // yakalayıp kullanıcıya bildiriyor (yoksa boş bir sahneye bakıp kalıyordu).
     return glbKapakGrubuOlustur(glbUrl, genislikMM, yukseklikMM, glbIcerikDonusu || 0, kenarPayi || null)
-        .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek));
+        .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek, yuzey));
 }
 
 // ---------------- Stüdyo HDR ortam ışığı (gerçek fotoğraflanmış ışıklandırma) ----------------

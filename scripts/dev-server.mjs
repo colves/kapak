@@ -38,7 +38,16 @@ const sunucu = http.createServer((istek, yanit) => {
             return;
         }
         const uzanti = path.extname(dosyaYolu).toLowerCase();
-        yanit.writeHead(200, { 'Content-Type': MIME[uzanti] || 'application/octet-stream' });
+        yanit.writeHead(200, {
+            'Content-Type': MIME[uzanti] || 'application/octet-stream',
+            // Hiçbir cache başlığı GÖNDERİLMEZSE tarayıcı kendi sezgisel
+            // önbelleğini uyguluyor ve düzenlenen .js/.css dosyalarının ESKİ
+            // sürümünü servis etmeye devam ediyor — yenilemek, hatta yeni sekme
+            // açmak bile yetmiyordu. Bu, yapılan değişikliğin çalışmadığı
+            // izlenimi veriyordu (ölçüldü: sunucudaki dosya güncel, sayfadaki
+            // modül eski). Geliştirme sunucusunda doğru davranış: hiç saklama.
+            'Cache-Control': 'no-store, must-revalidate'
+        });
         yanit.end(icerik);
     });
 });

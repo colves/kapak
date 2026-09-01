@@ -64,15 +64,18 @@ img { display: block; max-width: 100%; }
 .etiket-acik { color: var(--krem); }
 
 /* ===================== Üst bar ===================== */
-/* Üst bar, konfigüratörünkiyle BİREBİR aynı: aynı yükseklik, aynı yatay
-   dolgu, aynı zemin, aynı alt çizgi ve altındaki 2px'lik marka çizgisi
-   (bkz. base.css .ustbar ve .ustbar::after). Sayfalar arasında geçerken bar
-   yerinden oynamıyor, tek değişen sağdaki kontroller: burada "Konfigüratör"
-   bağlantısı, konfigüratörde onun yerine Linki Kopyala / Görseli İndir /
-   Tam Ekran.
+/* Üst barın ÖLÇÜLERİ her sayfada ve konfigüratörde birebir aynı: aynı
+   yükseklik, aynı yatay dolgu, logo aynı boyda ve soldan aynı uzaklıkta,
+   menü aynı noktada. Sayfalar arasında geçerken bar yerinden oynamıyor.
 
-   Eskiden bu bar hero görselinin üzerinde SAYDAM başlayıp kaydırınca
-   opaklaşıyordu; iki sayfanın barı aynı görünsün diye o davranış kaldırıldı. */
+   Değişen tek şey ZEMİN: ana sayfada bar hero görselinin ÜZERİNDE saydam
+   başlıyor ve sayfa kaydırılınca opaklaşıyor (JS 'kaydirildi' sınıfını
+   ekliyor — bkz. js/ustBar.js). Arkasında görsel olmayan sayfalarda (renk
+   kartelası, katalog, iletişim, konfigüratör) bar ilk andan itibaren opak.
+
+   Saydam durum yalnızca gövdede .hero-var varken devreye giriyor: iç
+   sayfalara ayrıca bir sınıf eklemek gerekmiyor ve o sayfalarda ilk karede
+   saydam görünüp sonra beyaza dönme (flaş) riski yok. */
 .ust {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -84,6 +87,7 @@ img { display: block; max-width: 100%; }
     background: #FFFFFF;
     color: var(--lacivert);
     border-bottom: 1px solid var(--cizgi);
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
 }
 /* Konfigüratördeki .ustbar::after'ın karşılığı — barın altındaki ince marka
    çizgisi. */
@@ -93,7 +97,31 @@ img { display: block; max-width: 100%; }
     left: 0; right: 0; bottom: -1px;
     height: 2px;
     background: var(--indigo);
+    transition: opacity 0.35s ease;
 }
+
+/* --- Hero'nun üzerindeyken: saydam --- */
+.hero-var .ust:not(.kaydirildi) {
+    /* Düz saydam değil, ince bir karartma: hero görselinin açık bir yerine
+       denk gelen logo ve menü yine de okunur kalsın. */
+    background: linear-gradient(rgba(17, 24, 68, 0.45), transparent);
+    backdrop-filter: none;
+    color: #FFFFFF;
+    border-bottom-color: transparent;
+}
+.hero-var .ust:not(.kaydirildi)::after { opacity: 0; }
+
+/* --- Kaydırılınca: opak ---
+   Renk ve kenarlık .ust'tan miras kalıyor olsa da burada AÇIKÇA yazılıyor:
+   saydam durumun kuralları da aynı özgüllükte, hangisinin kazandığı sıraya
+   kalmasın. */
+.hero-var .ust.kaydirildi {
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(16px);
+    color: var(--lacivert);
+    border-bottom-color: var(--cizgi);
+}
+.hero-var .ust.kaydirildi::after { opacity: 1; }
 
 .ust-bar {
     /* Bilinçli olarak ortalanmış bir kolona SIĞDIRILMIYOR: konfigüratörün üst
@@ -184,11 +212,10 @@ img { display: block; max-width: 100%; }
 /* ===================== Hero ===================== */
 .hero {
     position: relative;
-    /* Bar artık opak; hero onun altından başlıyor. */
-    margin-top: var(--bar-y);
-    min-height: 640px;
-    height: calc(100vh - var(--bar-y));
-    height: calc(100dvh - var(--bar-y));
+    /* Bar hero'nun ÜZERİNDE saydam duruyor; hero tam ekran kalıyor. */
+    min-height: 720px;
+    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: flex-end;
     overflow: hidden;

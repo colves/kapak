@@ -499,6 +499,43 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     color: var(--metin-soluk);
 }
 
+/* ---- Yüzey (parlaklık) ----
+   Üç seçenek yan yana; renk ızgarasının aksine kısa ve tam görünür kalmalı,
+   çünkü müşteri bunu bir kez seçip geçiyor. */
+.yuzey-secenekleri {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-2);
+}
+.yuzey-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--s-3) var(--s-2);
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-sm);
+    background: var(--yuzey);
+    color: var(--metin);
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.16s ease, background-color 0.16s ease;
+}
+.yuzey-btn:hover { border-color: var(--kenarlik-guclu); }
+/* Seçili yüzey yalnızca renkle değil, kalın yazı ve dolu zeminle de belli
+   oluyor. */
+.yuzey-btn.aktif {
+    border-color: var(--marka-koyu);
+    background: var(--marka-sis);
+}
+.yuzey-btn-ad { font-size: var(--fs-sm); font-weight: 500; }
+.yuzey-btn.aktif .yuzey-btn-ad { color: var(--marka-koyu); font-weight: 600; }
+.yuzey-btn-aciklama {
+    font-size: 0.68rem;
+    line-height: 1.3;
+    color: var(--metin-soluk);
+}
+
 /* ---- RAL serileri (katlanabilir) ----
    77 renk tek bir uzun liste hâlinde açıkken panelin altındaki ölçü bölümüne
    inmek çok uzun sürüyordu. Renkler artık RAL'in kendi serilerine ayrılmış
