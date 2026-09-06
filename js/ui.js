@@ -206,7 +206,9 @@ function modelGaleriKartiOlustur(model) {
     kart.dataset.modelId = model.id;
 
     const gorselHtml = model.gorselUrl
-        ? `<img src="${model.gorselUrl}" alt="${model.isim}" width="1000" height="1400" loading="lazy" decoding="async" class="model-galeri-kart-gorsel">`
+        ? `<span class="model-galeri-kart-gorsel-cerceve">
+               <img src="${model.gorselUrl}" alt="${model.isim}" width="1000" height="1400" loading="lazy" decoding="async" class="model-galeri-kart-gorsel">
+           </span>`
         : `<div class="model-galeri-kart-yer-tutucu" aria-hidden="true">
                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
                    <rect x="4" y="2" width="16" height="20" rx="1.5"></rect>
