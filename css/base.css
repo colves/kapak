@@ -715,6 +715,24 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
 .olcu-girdi input[type=number] { -moz-appearance: textfield; }
 .olcu-birim { font-size: var(--fs-xs); color: var(--metin-soluk); font-family: var(--veri-font); }
 
+.olcu-sifirla-dugmesi {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-2);
+    width: 100%;
+    min-height: 38px;
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-sm);
+    background: var(--yuzey);
+    color: var(--marka-koyu);
+    font: 500 var(--fs-sm) var(--govde-font);
+    cursor: pointer;
+    transition: border-color 0.16s ease, background-color 0.16s ease;
+}
+.olcu-sifirla-dugmesi:hover { border-color: var(--marka-koyu); background: var(--marka-sis); }
+.olcu-sifirla-dugmesi:active { background: var(--yuzey-2); }
+
 .olcu-aralik {
     display: flex; justify-content: space-between;
     font-family: var(--veri-font);
@@ -940,6 +958,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     .model-secici { min-height: 44px; }
     .isik-satir { min-height: 52px; }
     .olcu-girdi { min-height: 44px; padding: 0 12px; }
+    .olcu-sifirla-dugmesi { min-height: 44px; }
     /* Girdinin KENDİSİ tam yüksekliği kaplasın — sarmalı 44px olsa da
        parmak asıl input'a değmezse alan odaklanmıyordu (input 22px'ti). */
     .olcu-girdi input { font-size: var(--fs-md); padding: 11px 0; }

@@ -3,7 +3,10 @@ import { KAPAK_MODELLERI, idIleModelBul } from './data/models.js';
 import { ORTAM_SECENEKLERI, varsayilanOrtami, idIleOrtamBul } from './data/ortamlar.js';
 import { YUZEYLER, varsayilanYuzey, idIleYuzeyBul } from './data/yuzeyler.js';
 import { sahneyiBaslat, kapagiGuncelle, goruntuyuSifirla, ortamiDegistir, kareyiDikeyKaydir } from './viewer.js';
-import { durumuSorguyaKodla, sorgudanDurumCoz, paylasimAdresiOlustur } from './paylasim.js';
+import {
+    durumuSorguyaKodla, sorgudanDurumCoz, paylasimAdresiOlustur,
+    paylasimMetniOlustur, paylasimDosyaAdiOlustur
+} from './paylasim.js?v=20260907-2';
 
 // Başlangıç ölçüleri sabit sayı olarak DEĞİL, modelin kendi varsayılanından
 // türetiliyor — tek kaynak models.js'teki varsayilan alanı. Önceden burada
@@ -128,7 +131,7 @@ function zeminiUygula(no) {
 
 // Paylaşılacak/adrese yazılacak durum. Varsayılan zemin dışarıda bırakılıyor:
 // link gereksiz yere kirlenmesin. TEK kaynak — adres çubuğu, "Linki Kopyala"
-// ve WhatsApp mesajı aynı adresi üretsin diye üçü de buradan geçiyor.
+// ve genel paylaşım paketi aynı adresi üretsin diye hepsi buradan geçiyor.
 function paylasilacakDurum() {
     return { ...durum, zemin: durum.zemin === VARSAYILAN_ZEMIN ? undefined : durum.zemin };
 }
@@ -143,10 +146,6 @@ function urliDurumaEsitle() {
     // replaceState: her slider hareketinde tarayıcı geçmişine yeni kayıt
     // eklenmesin, geri tuşu konfigüratörde tıkanmasın.
     window.history.replaceState(null, '', `${window.location.pathname}${sorgu}`);
-    // WhatsApp mesajı da aynı adresi taşıyor; adres her değiştiğinde burada
-    // tazeleniyor ki ikisi asla ayrışmasın. (Ayrışıyordu: stüdyo ışığı kapak
-    // çizildikten SONRA yerleşiyor, mesaj o bilgiyi kaçırıyordu.)
-    whatsappBaglantisiniGuncelle();
 }
 
 function urldenDurumuYukle() {
@@ -506,6 +505,18 @@ function olcuKontrolleriniKur() {
     });
 }
 
+function olculeriSifirlamaButonunuKur() {
+    const btn = document.getElementById('btn-olculeri-sifirla');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+        const model = idIleModelBul(durum.modelId);
+        olculeriVarsayilanaSifirla(model);
+        olculeriModelLimitlerineSabitle(model);
+        goruntuGuncellemesiPlanla();
+        bildir(`Ölçüler ${durum.genislik} × ${durum.yukseklik} mm olarak sıfırlandı`);
+    });
+}
+
 /* ---------------- Ayar paneli (sağ, kalıcı) ----------------
    Renk ve ölçü eskiden sahne araç çubuğundaki iki ayrı açılır panelde
    duruyordu. İkisi de karşılaştırarak verilen kararlar — kapak değişirken
@@ -741,29 +752,94 @@ function indirButonunuKur() {
     });
 }
 
-// Sipariş kanalı WhatsApp. Müşteri linki kopyalayıp uygulamayı açıp
-// yapıştırmak zorunda kalmasın: mesaj seçimiyle birlikte hazır gelsin.
-// Bağlantı her durum değişiminde tazeleniyor, çünkü metnin içinde seçili
-// model, renk ve ölçü var.
-const WHATSAPP_NUMARA = '905336639714';
-
-function whatsappBaglantisiniGuncelle() {
-    const a = document.getElementById('btn-whatsapp');
-    if (!a) return;
+function paylasimBilgisiniOlustur() {
     const model = idIleModelBul(durum.modelId);
     const renk = idIleRenkBul(durum.renkId);
     const adres = paylasimAdresiOlustur(
         `${window.location.origin}${window.location.pathname}`, paylasilacakDurum());
-    const mesaj = [
-        'Merhaba, konfigüratörden bir kapak hazırladım:',
-        `Model: ${model.isim}`,
-        `Renk: ${renk.isim} (${renk.kod})`,
-        `Yüzey: ${(idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey()).isim}`,
-        `Ölçü: ${durum.genislik} × ${durum.yukseklik} mm`,
+    return {
+        modelAdi: model.isim,
+        modelKisaAdi: model.kisaIsim || model.id,
+        renkAdi: renk.isim,
+        renkKodu: renk.kod,
+        yuzeyAdi: (idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey()).isim,
+        genislik: durum.genislik,
+        yukseklik: durum.yukseklik,
         adres
-    ].join('\n');
-    a.href = `https://wa.me/${WHATSAPP_NUMARA}?text=${encodeURIComponent(mesaj)}`;
-    a.title = 'Bu konfigürasyonu WhatsApp\'tan gönder';
+    };
+}
+
+function canvasBlobuOlustur(canvas) {
+    return new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+}
+
+async function paylasimPaketiniPanoyaKopyala(blob, metin) {
+    if (navigator.clipboard?.write && typeof ClipboardItem !== 'undefined') {
+        try {
+            await navigator.clipboard.write([new ClipboardItem({
+                'image/png': blob,
+                'text/plain': new Blob([metin], { type: 'text/plain' })
+            })]);
+        } catch {
+            await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+        }
+        return 'gorsel';
+    }
+    if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(metin);
+        return 'metin';
+    }
+    return null;
+}
+
+function genelPaylasButonunuKur() {
+    const btn = document.getElementById('btn-genel-paylas');
+    if (!btn) return;
+    btn.addEventListener('click', async () => {
+        const canvas = document.querySelector('#canvas-kapsayici canvas');
+        if (!canvas) { bildir('Paylaşılacak görsel henüz hazır değil'); return; }
+
+        btn.disabled = true;
+        btn.setAttribute('aria-busy', 'true');
+        try {
+            const bilgi = paylasimBilgisiniOlustur();
+            const metin = paylasimMetniOlustur(bilgi);
+            const blob = await canvasBlobuOlustur(canvas);
+            if (!blob) throw new Error('Görsel oluşturulamadı');
+
+            const dosya = typeof File === 'undefined' ? null : new File(
+                [blob], paylasimDosyaAdiOlustur(bilgi), { type: 'image/png' });
+            const dosyaPaylasilabilir = dosya && navigator.share &&
+                (!navigator.canShare || navigator.canShare({ files: [dosya] }));
+
+            if (dosyaPaylasilabilir) {
+                await navigator.share({
+                    title: 'Şahinkaya Ahşap kapak konfigürasyonu',
+                    text: metin,
+                    files: [dosya]
+                });
+                return;
+            }
+
+            const kopyalanan = await paylasimPaketiniPanoyaKopyala(blob, metin);
+            if (kopyalanan === 'gorsel') bildir('Görsel ve konfigürasyon bilgileri kopyalandı');
+            else if (kopyalanan === 'metin') bildir('Konfigürasyon bilgileri ve bağlantı kopyalandı');
+            else bildir('Paylaşım bu tarayıcıda desteklenmiyor');
+        } catch (hata) {
+            if (hata?.name !== 'AbortError') {
+                try {
+                    const bilgi = paylasimBilgisiniOlustur();
+                    await navigator.clipboard.writeText(paylasimMetniOlustur(bilgi));
+                    bildir('Paylaşım açılamadı; bilgiler ve bağlantı kopyalandı');
+                } catch {
+                    bildir('Paylaşım açılamadı — tekrar deneyin');
+                }
+            }
+        } finally {
+            btn.disabled = false;
+            btn.removeAttribute('aria-busy');
+        }
+    });
 }
 
 function tamEkranButonuKur() {
@@ -878,10 +954,12 @@ export function arayuzuBaslat() {
     renkListesiniCiz();
     yuzeySeciciyiKur();
     olcuKontrolleriniKur();
+    olculeriSifirlamaButonunuKur();
     ayarPaneliniKur();
     isikPaneliniKur();
     sifirlaButonuKur();
     paylasButonunuKur();
+    genelPaylasButonunuKur();
     indirButonunuKur();
     tamEkranButonuKur();
     zeminSeciciyiKur();

@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import {
     renkIdSindenRalKodu, ralKodundanRenkId, durumuSorguyaKodla,
-    sorgudanDurumCoz, paylasimAdresiOlustur
+    sorgudanDurumCoz, paylasimAdresiOlustur, paylasimMetniOlustur,
+    paylasimDosyaAdiOlustur
 } from './paylasim.js';
 
 // ---- renk id <-> RAL kodu ----
@@ -74,5 +75,25 @@ assert.strictEqual(
 );
 assert.strictEqual(paylasimAdresiOlustur('https://ornek.com/x.html', {}), 'https://ornek.com/x.html',
     'Boş durumda adres değişmeden kalmalı');
+
+// ---- genel paylaşım paketi ----
+const paylasimBilgisi = {
+    modelAdi: 'HK_012_001 (3976)',
+    modelKisaAdi: 'HK_012_001',
+    renkAdi: 'İpek Grisi',
+    renkKodu: 'RAL 7044',
+    yuzeyAdi: 'Yarı Parlak',
+    genislik: 450,
+    yukseklik: 720,
+    adres: 'https://ornek.com/configurator.html?m=hk-012-001&r=7044'
+};
+assert.strictEqual(
+    paylasimMetniOlustur(paylasimBilgisi),
+    'Şahinkaya Ahşap kapak konfigürasyonu\nModel: HK_012_001 (3976)\nRenk: İpek Grisi (RAL 7044)\nYüzey: Yarı Parlak\nÖlçü: 450 × 720 mm\nhttps://ornek.com/configurator.html?m=hk-012-001&r=7044'
+);
+assert.strictEqual(
+    paylasimDosyaAdiOlustur(paylasimBilgisi),
+    'sahinkaya-kapak-HK_012_001-RAL7044-450x720.png'
+);
 
 console.log('✔ paylasim.test.js: tüm kontroller geçti.');

@@ -81,3 +81,20 @@ export function sorgudanDurumCoz(sorgu, { modelGecerliMi, renkGecerliMi, ortamGe
 export function paylasimAdresiOlustur(temelAdres, durum) {
     return `${temelAdres}${durumuSorguyaKodla(durum)}`;
 }
+
+export function paylasimMetniOlustur({ modelAdi, renkAdi, renkKodu, yuzeyAdi, genislik, yukseklik, adres }) {
+    return [
+        'Şahinkaya Ahşap kapak konfigürasyonu',
+        `Model: ${modelAdi}`,
+        `Renk: ${renkAdi} (${renkKodu})`,
+        `Yüzey: ${yuzeyAdi}`,
+        `Ölçü: ${genislik} × ${yukseklik} mm`,
+        adres
+    ].join('\n');
+}
+
+export function paylasimDosyaAdiOlustur({ modelKisaAdi, renkKodu, genislik, yukseklik }) {
+    const model = String(modelKisaAdi).replace(/\s+/g, '');
+    const renk = String(renkKodu).replace(/\s+/g, '');
+    return `sahinkaya-kapak-${model}-${renk}-${genislik}x${yukseklik}.png`;
+}
