@@ -364,7 +364,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
 .model-galeri-kart-gorsel {
     position: absolute;
     top: 50%; left: 50%;
-    width: 128%; height: 128%;
+    width: 116%; height: 116%;
     object-fit: contain;
     display: block;
     transform: translate(-50%, -50%);
