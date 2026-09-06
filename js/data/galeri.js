@@ -1,8 +1,8 @@
-// Kapak fotoğrafları ve her birinin hangi model/renk olduğu.
+// Eski katalog çıktıları ve her birinin hangi model/renk olduğu.
 //
-// Ana sayfa yeniden yazılıyor; bu dosya veri olarak DURUYOR çünkü buradaki
-// fotoğraf–model–renk eşlemesi elle kurulmuş bilgi. Yeni ana sayfa bu listeyi
-// olduğu gibi kullanabilir.
+// Güncel ürün fotoğrafının yolu models.js içindeki gorselUrl alanında tutulur.
+// Bu listedeki renk eşlemesi katalog kartının hangi RAL rengiyle açılacağını
+// belirlemeye devam eder; dosya yolu ise gorselUrl yoksa geri dönüş olarak kalır.
 //
 //   dosya   : zorunlu — görselin yolu.
 //   modelId : models.js'teki id ile birebir aynı olmalı. Karta tıklanınca

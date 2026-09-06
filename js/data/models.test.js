@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { existsSync } from 'node:fs';
 import { KAPAK_MODELLERI, idIleModelBul } from './models.js';
 
 assert.strictEqual(KAPAK_MODELLERI.length, 3, 'Üç model bekleniyor (HK_012_001, HK_051_002, 3970)');
@@ -19,6 +20,19 @@ assert.ok(hk012.gltfUrl, "'hk-012-001' için gltfUrl tanımlı olmalı");
 assert.ok(hk051.gltfUrl, "'hk-051-002' için gltfUrl tanımlı olmalı");
 assert.ok(m3970.gltfUrl, "'kapak-3970' için gltfUrl tanımlı olmalı");
 assert.strictEqual(idIleModelBul('olmayan'), null);
+
+// Model fotoğrafı eşleşmeleri dosya numarasına dayanır. Yanlış numara veya
+// eksik web çıktısı, her iki model galerisinde de kırık/yanlış kapak gösterir.
+const beklenenGorseller = new Map([
+    ['hk-012-001', 'assets/model-fotograflari/3976.webp'],
+    ['hk-051-002', 'assets/model-fotograflari/4021.webp'],
+    ['kapak-3970', 'assets/model-fotograflari/3970.webp']
+]);
+
+for (const model of KAPAK_MODELLERI) {
+    assert.strictEqual(model.gorselUrl, beklenenGorseller.get(model.id), `${model.id}: yanlış model fotoğrafı eşlemesi`);
+    assert.ok(existsSync(new URL(`../../${model.gorselUrl}`, import.meta.url)), `${model.id}: model fotoğrafı dosyası bulunamadı`);
+}
 
 // Her modelin gltfUrl'i benzersiz olmalı (birbirine karışmamalı).
 const urlSeti = new Set(KAPAK_MODELLERI.map(m => m.gltfUrl));

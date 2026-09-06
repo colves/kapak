@@ -1,8 +1,8 @@
 // Modeller kataloğu.
 //
-// Kartlar SAYFAYA ELLE YAZILMIYOR: models.js'ten üretiliyor, fotoğraflar
-// galeri.js'ten eşleniyor. Konfigüratöre yeni bir model eklendiğinde katalog
-// kendiliğinden büyüyor, iki yerde ayrı liste tutulmuyor.
+// Kartlar SAYFAYA ELLE YAZILMIYOR: models.js'ten üretiliyor. Ürün fotoğrafı
+// modelin gorselUrl alanından, fotoğraftaki örnek renk ise galeri.js'ten gelir.
+// Böylece iki ekrandaki model fotoğrafı tek bir kaynaktan yönetilir.
 import { KAPAK_MODELLERI } from './data/models.js';
 import { GALERI_FOTOGRAFLARI } from './data/galeri.js';
 import { ralSirasindakiRenkler } from './data/colors.js';
@@ -13,8 +13,10 @@ import { ustBariKur } from './ustBar.js';
 
 const hexMetni = (renk) => `#${renk.hex.toString(16).padStart(6, '0')}`;
 
-function modelinFotografi(modelId) {
-    return GALERI_FOTOGRAFLARI.find((f) => f && f.dosya && f.modelId === modelId) || null;
+function modelinFotografi(model) {
+    const renkEslemesi = GALERI_FOTOGRAFLARI.find((f) => f && f.modelId === model.id) || null;
+    const dosya = model.gorselUrl || renkEslemesi?.dosya;
+    return dosya ? { ...renkEslemesi, dosya } : null;
 }
 
 function konfiguratorAdresi(modelId, renkKodu) {
@@ -44,7 +46,7 @@ function ornekRenkler(fotoKodu) {
 }
 
 function kartOlustur(model) {
-    const foto = modelinFotografi(model.id);
+    const foto = modelinFotografi(model);
     const ad = model.kisaIsim || model.isim;
 
     const kart = document.createElement('article');
@@ -61,6 +63,8 @@ function kartOlustur(model) {
         const img = document.createElement('img');
         img.src = foto.dosya;
         img.alt = '';
+        img.width = 1000;
+        img.height = 1400;
         img.loading = 'lazy';
         img.decoding = 'async';
         gorselBaglanti.appendChild(img);

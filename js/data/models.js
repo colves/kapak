@@ -7,7 +7,7 @@ export const KAPAK_MODELLERI = [
         // etiket görünür; tam ad durum çubuğunda ve aria-label'da kalır.
         kisaIsim: 'HK_012_001',
         aciklama: '3ds Max\'ten aktarılan gerçek kapak modeli.',
-        gorselUrl: null,
+        gorselUrl: 'assets/model-fotograflari/3976.webp',
         gltfUrl: 'assets/models/3976.glb',
         kalinlikAyarlanabilir: false,
         varsayilan: { genislik: 450, yukseklik: 720, kalinlik: 18 },
@@ -21,7 +21,7 @@ export const KAPAK_MODELLERI = [
         isim: 'HK_051_002 (4021)',
         kisaIsim: 'HK_051_002',
         aciklama: '3ds Max\'ten aktarılan gerçek kapak modeli.',
-        gorselUrl: null,
+        gorselUrl: 'assets/model-fotograflari/4021.webp',
         gltfUrl: 'assets/models/4021.glb',
         // Kulp/desen orijinal export'ta sol üstte çıkıyordu, sağ alta gelmesi
         // istendi — modelin tamamı kendi düzleminde 180° döndürülüyor.
@@ -44,7 +44,7 @@ export const KAPAK_MODELLERI = [
         isim: 'Kapak Modeli (3970)',
         kisaIsim: 'Model 3970',
         aciklama: '3ds Max\'ten aktarılan gerçek kapak modeli.',
-        gorselUrl: null,
+        gorselUrl: 'assets/model-fotograflari/3970.webp',
         gltfUrl: 'assets/models/3970.glb',
         kalinlikAyarlanabilir: false,
         varsayilan: { genislik: 450, yukseklik: 720, kalinlik: 18 },
