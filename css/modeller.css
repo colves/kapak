@@ -89,14 +89,14 @@
     /* Kutu, kapağın TAMAMI görünsün diye kurulu. Önceden object-fit:cover ve
        4/5 oran vardı: kapak fotoğrafları dar ve uzun (409x663) olduğu için
        yanlardan kırpılıyor, ekranda kapağın ortası dışında bir şey
-       kalmıyordu. Artık görsel kutuya SIĞDIRILIYOR (contain) ve arkasındaki
-       krem zemin bir fon kâğıdı gibi duruyor.
+       kalmıyordu. Artık görsel kutuya SIĞDIRILIYOR (contain) ve beyaz ürün
+       zemini modelin formunu dikkat dağıtmadan öne çıkarıyor.
        max-height: geniş ekranda kart yüksekliği ekranı yutmasın — kartın
        tamamı, adı ve renk noktaları dahil, tek ekranda okunabilsin. */
     aspect-ratio: 3 / 4;
     max-height: min(46vh, 440px);
     overflow: hidden;
-    background: linear-gradient(150deg, var(--krem), #D9D0C2);
+    background: #fff;
 }
 .katalog-gorsel img {
     /* MUTLAK konum + inset:0 — böylece %100 genişlik/yükseklik KESİN bir

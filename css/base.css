@@ -306,7 +306,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
 .model-secici svg { color: var(--metin-soluk); flex-shrink: 0; }
 
 /* ---- Model galerisi (modal) ---- */
-.model-modal-kutu { max-width: 640px; max-height: 74vh; }
+.model-modal-kutu { max-width: 840px; max-height: 82vh; }
 .model-galeri-arama-satiri {
     display: flex; align-items: center; gap: var(--s-3);
     padding: var(--s-4) var(--s-6) 0;
@@ -331,7 +331,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     padding: var(--s-5) var(--s-6) var(--s-6);
     overflow-y: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: var(--s-3);
 }
 .model-galeri-bos {
@@ -356,9 +356,9 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
 .model-galeri-kart.aktif { border-color: var(--marka-koyu); box-shadow: 0 0 0 1px var(--marka-koyu); }
 .model-galeri-kart-gorsel {
     box-sizing: border-box;
-    width: 100%; aspect-ratio: 5 / 6; object-fit: contain; display: block;
-    padding: var(--s-3);
-    background: linear-gradient(150deg, var(--yuzey-2), color-mix(in srgb, var(--marka) 8%, var(--yuzey-2)));
+    width: 100%; aspect-ratio: 5 / 7; object-fit: contain; display: block;
+    padding: var(--s-2);
+    background: #fff;
 }
 .model-galeri-kart-yer-tutucu {
     width: 100%; aspect-ratio: 4 / 3;
