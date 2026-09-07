@@ -14,6 +14,7 @@ assert.ok(hk051, "'hk-051-002' modeli bulunamadı");
 assert.ok(m3970, "'kapak-3970' modeli bulunamadı");
 assert.strictEqual(hk012.isim, 'HK_012_001 (3976)');
 assert.strictEqual(hk012Yeni.isim, 'HK_012_001 Yeni (3976)');
+assert.strictEqual(hk012Yeni.glbEksenDuzeni, 'y-up', 'Yeni 3976 GLB dosyası kendi Y-up eksen düzeniyle yüklenmeli');
 assert.strictEqual(hk051.isim, 'HK_051_002 (4021)');
 assert.strictEqual(m3970.isim, 'Kapak Modeli (3970)');
 assert.strictEqual(hk012.kalinlikAyarlanabilir, false);

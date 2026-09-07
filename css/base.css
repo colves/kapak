@@ -367,6 +367,9 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     .canvas-kapsayici { transition: none; }
 }
 .canvas-kapsayici:active { cursor: grabbing; }
+/* touch-action kalıtsal değildir; gerçek dokunma hedefi canvas olduğu için
+   mobildeki tek parmakla döndürmeyi burada da açıkça serbest bırakıyoruz. */
+.canvas-kapsayici canvas { touch-action: none; user-select: none; -webkit-user-select: none; }
 
 /* Mobilde sol model rayının yerine gelen kompakt erişim düğmesi. */
 .model-secici {

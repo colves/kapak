@@ -41,7 +41,7 @@ function guncellemeyiUygula() {
     // Model dosyası yüklenemezse sahne boş kalır; kullanıcı nedenini
     // bilmediği bir boşluğa bakmasın diye durum kendisine bildiriliyor.
     const yuzey = idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey();
-    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey))
+    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey, model.glbEksenDuzeni))
         .catch((hata) => {
             console.error('Model yüklenemedi:', model.gltfUrl, hata);
             bildir('Model yüklenemedi — bağlantınızı kontrol edip sayfayı yenileyin');
@@ -243,6 +243,10 @@ function modelGaleriKartiOlustur(model) {
             kalinlikAlanininGorunurlugunuGuncelle(m);
             olculeriModelLimitlerineSabitle(m);
             modelSeciciMetniniGuncelle();
+            // Her model, önceki modelin kullanıcı tarafından çevrilmiş
+            // kamerasını devralmasın; seçildiğinde doğrudan ön görünüm gelsin.
+            goruntuyuSifirla();
+            dikeyKaydirmayiPlanla();
             goruntuGuncellemesiPlanla();
         }
         modelGalerisiniKapat();
@@ -895,6 +899,13 @@ function dikeyKaydirmayiUygula() {
     const canvas = document.querySelector('#canvas-kapsayici canvas');
     // Masaüstünde model rayı sahnenin solunda olduğu için dikey alanı
     // daraltmaz. Mobilde görünür olan üstteki kompakt seçici hesaba katılır.
+    if (!window.matchMedia('(max-width: 760px)').matches) {
+        // Sol model rayı sahne yüksekliğini kaplamaz. Masaüstünde merkezden
+        // kaydırma, kapağı gereksiz biçimde alt kenara itiyordu.
+        kareyiDikeyKaydir(0);
+        return;
+    }
+
     const mobilModelSecici = document.getElementById('model-secici');
     const ustSinir = window.matchMedia('(max-width: 760px)').matches && mobilModelSecici
         ? mobilModelSecici

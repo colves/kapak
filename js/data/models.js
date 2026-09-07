@@ -27,6 +27,9 @@ export const KAPAK_MODELLERI = [
         // kullanılır; sahnede ise yeni GLB dosyası yüklenir.
         gorselUrl: 'assets/model-fotograflari/3976.webp',
         gltfUrl: 'assets/models/3976new.glb',
+        // Bu export zaten glTF'nin Y-up düzeninde. Eski 3ds Max export'larına
+        // uygulanan ikinci X ekseni dönüşümü burada yüksekliği derinliğe çevirir.
+        glbEksenDuzeni: 'y-up',
         kalinlikAyarlanabilir: false,
         varsayilan: { genislik: 450, yukseklik: 720, kalinlik: 18 },
         limitler: {

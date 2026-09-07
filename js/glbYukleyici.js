@@ -14,8 +14,8 @@ const yukleyici = new GLTFLoader();
 // anahtar: `url|icerikDonusu` -> Promise<şablon>
 const onbellek = new Map();
 
-function glbSablonunuYukle(url, icerikDonusuZ) {
-    const anahtar = `${url}|${icerikDonusuZ || 0}`;
+function glbSablonunuYukle(url, icerikDonusuZ, eksenDuzeni = 'max-z-up') {
+    const anahtar = `${url}|${icerikDonusuZ || 0}|${eksenDuzeni}`;
     if (onbellek.has(anahtar)) return onbellek.get(anahtar);
 
     const soz = new Promise((resolve, reject) => {
@@ -32,8 +32,11 @@ function glbSablonunuYukle(url, icerikDonusuZ) {
                 // rotateX(-90°) çağırmak gerekiyor (test edilip doğrulandı):
                 // sonuç olarak ön yüz normali dünya +Z'ye (kameraya), yükseklik
                 // ekseni dünya +Y'ye (dikey) oturuyor.
+                // Yeni exporter Y-up dönüşümünü GLB düğümüne zaten pişiriyor.
+                // Ona eski Max düzeltmesini tekrar uygulamak kapağı derinliği
+                // boyunca yatırır; bu nedenle yalnızca ön yüz yönü çevrilir.
                 kaynakSahne.rotateY(Math.PI);
-                kaynakSahne.rotateX(-Math.PI / 2);
+                if (eksenDuzeni !== 'y-up') kaynakSahne.rotateX(-Math.PI / 2);
 
                 // icerikDonusuZ: bazı modellerde kulp/desen gibi simetrik olmayan
                 // bir detay yanlış köşede çıkıyor (3ds Max'teki orijinal modelleme
@@ -114,8 +117,8 @@ function glbSablonunuYukle(url, icerikDonusuZ) {
 // Verilen alanlar ölçülen bandın yerine geçer. Otomatik ölçüm bir modelde
 // şaşarsa (ör. çerçevesi ortada bir hat taşıyan bir desen) models.js'ten tek
 // satırla düzeltilebilsin diye var; normalde boş bırakılır.
-export function glbKapakGrubuOlustur(url, genislikMM, yukseklikMM, icerikDonusuZ = 0, kenarPayi = null) {
-    return glbSablonunuYukle(url, icerikDonusuZ).then((sablon) => {
+export function glbKapakGrubuOlustur(url, genislikMM, yukseklikMM, icerikDonusuZ = 0, kenarPayi = null, eksenDuzeni = 'max-z-up') {
+    return glbSablonunuYukle(url, icerikDonusuZ, eksenDuzeni).then((sablon) => {
         const { sablonGrup, dogalGenislikMM, dogalYukseklikMM } = sablon;
         const grup = sablonGrup.clone(true);
         grup.name = 'kapak';
