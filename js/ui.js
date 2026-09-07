@@ -196,10 +196,23 @@ function paylasButonunuKur() {
    aranabilir galeri modalı kullanılıyor. Buton her zaman aynı yeri kaplar,
    model sayısı 3 de olsa 300 de olsa. */
 
+let modelGalerisiTetikleyicisi = null;
+
 function modelSeciciMetniniGuncelle() {
     const model = idIleModelBul(durum.modelId);
     const el = document.getElementById('model-secici-ad');
     if (el) el.textContent = model.kisaIsim || model.isim;
+    const ad = document.getElementById('secili-model-ad');
+    const aciklama = document.getElementById('secili-model-aciklama');
+    const gorsel = document.getElementById('secili-model-gorsel');
+    const sayi = document.getElementById('model-sayisi');
+    if (ad) ad.textContent = model.isim;
+    if (aciklama) aciklama.textContent = model.aciklama || 'Modeli değiştirmek için açın';
+    if (gorsel && model.gorselUrl) {
+        gorsel.src = model.gorselUrl;
+        gorsel.alt = `${model.isim} seçili model ön izlemesi`;
+    }
+    if (sayi) sayi.textContent = `${KAPAK_MODELLERI.length} model`;
 }
 
 function modelGaleriKartiOlustur(model) {
@@ -255,7 +268,8 @@ function modelGalerisiniCiz(arama) {
     sonuclar.forEach(model => izgara.appendChild(modelGaleriKartiOlustur(model)));
 }
 
-function modelGalerisiniAc() {
+function modelGalerisiniAc(tetikleyici) {
+    modelGalerisiTetikleyicisi = tetikleyici || document.activeElement;
     document.getElementById('model-galerisi').classList.remove('gizli');
     modelGalerisiniCiz('');
     const arama = document.getElementById('model-galeri-arama');
@@ -265,12 +279,15 @@ function modelGalerisiniAc() {
 
 function modelGalerisiniKapat() {
     document.getElementById('model-galerisi').classList.add('gizli');
-    document.getElementById('model-secici').focus();
+    modelGalerisiTetikleyicisi?.focus();
 }
 
 function modelSeciciyiKur() {
     modelSeciciMetniniGuncelle();
-    document.getElementById('model-secici').addEventListener('click', modelGalerisiniAc);
+    ['model-secici', 'model-katalog-ac', 'model-katalog-tumu'].forEach((id) => {
+        const tetikleyici = document.getElementById(id);
+        tetikleyici?.addEventListener('click', () => modelGalerisiniAc(tetikleyici));
+    });
     document.getElementById('model-galeri-kapat').addEventListener('click', modelGalerisiniKapat);
     document.getElementById('model-galeri-arama').addEventListener('input', (e) => modelGalerisiniCiz(e.target.value));
     const katman = document.getElementById('model-galerisi');
@@ -876,7 +893,12 @@ const DIKEY_KAYDIRMA_AZAMI_DENEME = 20;
 
 function dikeyKaydirmayiUygula() {
     const canvas = document.querySelector('#canvas-kapsayici canvas');
-    const ustSinir = document.getElementById('model-secici');
+    // Masaüstünde model rayı sahnenin solunda olduğu için dikey alanı
+    // daraltmaz. Mobilde görünür olan üstteki kompakt seçici hesaba katılır.
+    const mobilModelSecici = document.getElementById('model-secici');
+    const ustSinir = window.matchMedia('(max-width: 760px)').matches && mobilModelSecici
+        ? mobilModelSecici
+        : canvas;
     const altSinir = document.querySelector('.sahne-araclari');
     const c = canvas ? canvas.getBoundingClientRect() : null;
 

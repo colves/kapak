@@ -186,6 +186,105 @@ body[data-zemin="5"] {
         repeating-linear-gradient(96deg, rgba(116, 76, 39, 0.14) 0 2px, transparent 2px 10px),
         linear-gradient(145deg, #DFC69B 0%, #C9A978 100%);
 }
+
+/* Soldaki model rayı, sağdaki teknik ayar rayının dengesi olacak kadar sakin
+   tutulur. Ürün seçimi her an görünür; sahnenin üstünde kayan bir etiket değil. */
+.model-paneli {
+    flex: 0 0 272px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+    padding: var(--s-6) var(--s-5);
+    border-right: 1px solid var(--kenarlik);
+    background: var(--yuzey);
+    overflow-y: auto;
+}
+.model-paneli-basi {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-3);
+}
+.model-paneli .ayar-no { margin: 0; }
+.model-sayisi {
+    color: var(--metin-soluk);
+    font-family: var(--veri-font);
+    font-size: var(--fs-xs);
+}
+.secili-model-karti {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    width: 100%;
+    padding: var(--s-3);
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-lg);
+    background: var(--yuzey-2);
+    color: var(--metin);
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.secili-model-karti:hover {
+    transform: translateY(-2px);
+    border-color: var(--marka);
+    box-shadow: var(--golge-yumusak);
+}
+.secili-model-karti:focus-visible,
+.model-katalog-tumu:focus-visible { outline: 3px solid var(--marka-sis); outline-offset: 3px; }
+.secili-model-gorsel-cerceve {
+    position: relative;
+    display: grid;
+    min-height: 244px;
+    place-items: center;
+    overflow: hidden;
+    border-radius: calc(var(--r-lg) - 4px);
+    background: linear-gradient(145deg, #FFFFFF, #EEE8DE);
+}
+.secili-model-gorsel { width: 88%; height: 218px; object-fit: contain; }
+.secili-model-etiket {
+    position: absolute;
+    top: var(--s-3);
+    left: var(--s-3);
+    padding: 5px 8px;
+    border-radius: var(--r-full);
+    background: var(--marka-koyu);
+    color: #FFF;
+    font-family: var(--veri-font);
+    font-size: 0.68rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+.secili-model-bilgi { display: grid; gap: 5px; }
+.secili-model-bilgi strong { font-family: var(--veri-font); font-size: var(--fs-sm); line-height: 1.35; }
+.secili-model-bilgi small { color: var(--metin-soluk); font-size: var(--fs-xs); line-height: 1.5; }
+.secili-model-degistir {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--kenarlik);
+    color: var(--marka-koyu);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+}
+.model-katalog-tumu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--s-3) 0;
+    border: none;
+    border-bottom: 1px solid var(--kenarlik);
+    background: none;
+    color: var(--metin-orta);
+    font: inherit;
+    font-size: var(--fs-sm);
+    text-align: left;
+    cursor: pointer;
+}
+.model-katalog-tumu:hover { color: var(--marka-koyu); }
 body[data-zemin="6"] {
     --sahne-zemin:
         linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
@@ -269,17 +368,13 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
 }
 .canvas-kapsayici:active { cursor: grabbing; }
 
-/* ---- Model seçici: sahnenin ÜSTÜNDE, ortada, TEK kompakt buton ----
-   Renk/boyut rayından bilinçli olarak ayrı bir bölgede duruyor. Yatay bir
-   şerit değil — düzine model eklendiğinde bir şerit taşıp kaydırma
-   gerektirirdi; bu buton model sayısından bağımsız hep aynı boyutta kalır,
-   tıklanınca aranabilir bir galeri (aşağıda .model-galeri-*) açılır. */
+/* Mobilde sol model rayının yerine gelen kompakt erişim düğmesi. */
 .model-secici {
     position: absolute;
     top: var(--s-5);
     left: 50%;
     transform: translateX(-50%);
-    display: flex; align-items: center; gap: var(--s-3);
+    display: none; align-items: center; gap: var(--s-3);
     background: color-mix(in srgb, var(--yuzey) 92%, transparent);
     backdrop-filter: blur(10px);
     border: 1px solid var(--kenarlik);
@@ -311,7 +406,16 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
 .model-secici svg { color: var(--metin-soluk); flex-shrink: 0; }
 
 /* ---- Model galerisi (modal) ---- */
-.model-modal-kutu { max-width: 640px; max-height: 74vh; }
+.model-modal-kutu { width: min(880px, calc(100vw - var(--s-8))); max-width: none; max-height: 78vh; }
+.model-modal-kutu .modal-baslik-satiri { align-items: flex-start; }
+.model-galeri-kas {
+    margin: 0 0 5px;
+    color: var(--marka-koyu);
+    font-family: var(--veri-font);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+}
 .model-galeri-arama-satiri {
     display: flex; align-items: center; gap: var(--s-3);
     padding: var(--s-4) var(--s-6) 0;
@@ -336,8 +440,8 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     padding: var(--s-5) var(--s-6) var(--s-6);
     overflow-y: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: var(--s-3);
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: var(--s-4);
 }
 .model-galeri-bos {
     grid-column: 1 / -1;
@@ -357,19 +461,19 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     text-align: left;
     transition: border-color 0.16s ease;
 }
-.model-galeri-kart:hover { border-color: var(--kenarlik-guclu); }
+.model-galeri-kart:hover { border-color: var(--marka); transform: translateY(-2px); box-shadow: var(--golge-yumusak); }
 .model-galeri-kart.aktif { border-color: var(--marka-koyu); box-shadow: 0 0 0 1px var(--marka-koyu); }
 .model-galeri-kart-gorsel-cerceve {
     position: relative;
     width: 100%;
-    aspect-ratio: 3 / 5;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
     background: #fff;
 }
 .model-galeri-kart-gorsel {
     position: absolute;
     top: 50%; left: 50%;
-    width: 116%; height: 116%;
+    width: 92%; height: 92%;
     object-fit: contain;
     display: block;
     transform: translate(-50%, -50%);
@@ -381,7 +485,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     color: var(--marka-koyu);
 }
 .model-galeri-kart-ad {
-    padding: 10px 12px;
+    padding: 12px;
     font-family: var(--veri-font);
     font-size: 0.78rem;
     color: var(--metin);
@@ -1028,6 +1132,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
        tutamaktan açılıp kapanıyor. Kapalıyken bile tutamakta seçili renk ve
        ölçü yazılı, yani panel açılmadan da durum okunuyor. */
     .konfigurator { flex-direction: column; }
+    .model-paneli { display: none; }
     .ayar-paneli {
         flex: 0 0 auto;
         border-left: none;
@@ -1072,10 +1177,11 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
         padding-bottom: var(--s-5);
     }
 
-    .model-secici { top: var(--s-3); padding-left: var(--s-4); gap: var(--s-2); }
+    .model-secici { display: flex; top: var(--s-3); padding-left: var(--s-4); gap: var(--s-2); }
     .model-secici-etiket { display: none; }
     .model-secici-ad { max-width: 130px; }
-    .model-galeri-izgara { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+    .model-modal-kutu { width: min(100% - var(--s-5), 600px); }
+    .model-galeri-izgara { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
     .durum-cubugu {
         left: var(--s-3); right: var(--s-3);

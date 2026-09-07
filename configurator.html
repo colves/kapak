@@ -66,16 +66,35 @@
 </header>
 
 <main class="konfigurator">
+    <!-- Model seçimi ürünün kendisine ait ilk karar olduğu için masaüstünde
+         sahnenin solunda kalıcı bir kütüphane kartı olarak durur. -->
+    <aside class="model-paneli" aria-label="Model seçimi">
+        <div class="model-paneli-basi">
+            <p class="ayar-no"><span>01</span> / MODEL</p>
+            <span class="model-sayisi" id="model-sayisi">4 model</span>
+        </div>
+        <button type="button" id="model-katalog-ac" class="secili-model-karti" aria-haspopup="dialog" aria-controls="model-galerisi">
+            <span class="secili-model-gorsel-cerceve">
+                <img id="secili-model-gorsel" src="assets/model-fotograflari/3976.webp" alt="Seçili kapak modeli" class="secili-model-gorsel">
+                <span class="secili-model-etiket">Seçili</span>
+            </span>
+            <span class="secili-model-bilgi">
+                <strong id="secili-model-ad">HK_012_001</strong>
+                <small id="secili-model-aciklama">Modeli değiştirmek için açın</small>
+            </span>
+            <span class="secili-model-degistir">Modeli değiştir <span aria-hidden="true">→</span></span>
+        </button>
+        <button type="button" id="model-katalog-tumu" class="model-katalog-tumu">
+            <span>Tüm modelleri görüntüle</span>
+            <span aria-hidden="true">↗</span>
+        </button>
+    </aside>
+
     <!-- ===== Sahne alanı ===== -->
     <section class="goruntuleyici">
         <div id="canvas-kapsayici" class="canvas-kapsayici"></div>
 
-        <!-- MODEL — bilinçli olarak renk/boyut ile AYRI bir bölgede: sahnenin
-             üstünde, ortada. Model "hangi ürüne bakıyorum" sorusu; renk ve boyut
-             ise "o ürünü nasıl istiyorum" sorusu. İkisi ayrı zihinsel adım.
-             Yatay şerit DEĞİL, tek bir kompakt seçici buton: düzine model
-             eklendiğinde şerit yatayda taşıp kaydırma gerektirirdi, bu buton
-             sabit boyutta kalır — galeri kaç model olursa olsun aynı yerde. -->
+        <!-- Mobilde sol panel sahnenin üstünde bu kompakt düğmeye dönüşür. -->
         <button type="button" id="model-secici" class="model-secici" aria-haspopup="dialog" aria-controls="model-galerisi">
             <span class="model-secici-etiket">Model</span>
             <span id="model-secici-ad" class="model-secici-ad">HK_012_001</span>
@@ -235,13 +254,15 @@
     </aside>
 </main>
 
-<!-- Model galerisi: onlarca model olsa da tek bir sabit noktadan açılır,
-     arama kutusuyla süzülür. Renk/boyutun aksine model nadir değiştirilen bir
-     seçim olduğu için modal round-trip'i burada bir maliyet değil. -->
+<!-- Model galerisi: seçili model sol kartta daima görünür, ayrıntılı seçim
+     ise arama ve büyük görsel kartlarla bu kütüphanede yapılır. -->
 <div id="model-galerisi" class="modal-katman gizli" role="dialog" aria-modal="true" aria-labelledby="model-galeri-baslik">
     <div class="modal-kutu model-modal-kutu">
         <div class="modal-baslik-satiri">
-            <h3 id="model-galeri-baslik">Model Seç</h3>
+            <div>
+                <p class="model-galeri-kas">KAPAK KÜTÜPHANESİ</p>
+                <h3 id="model-galeri-baslik">Modelini seç</h3>
+            </div>
             <button id="model-galeri-kapat" class="simge-dugme" type="button" aria-label="Kapat">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
