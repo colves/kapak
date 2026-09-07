@@ -66,15 +66,20 @@
 </header>
 
 <main class="konfigurator">
-    <!-- Kapak modelleri masaüstünde sahnenin solunda sürekli görünür. Böylece
-         kullanıcı görselleri karşılaştırırken 3B önizlemeyi kaybetmez. -->
-    <aside class="model-paneli" aria-label="Model seçimi">
+    <!-- Model kütüphanesi sahnenin solundan açılır. Kapalı haldeyken ürünün
+         etrafında daha geniş bir inceleme alanı bırakır. -->
+    <aside class="model-paneli" id="model-paneli" aria-label="Model seçimi" aria-hidden="true">
         <div class="model-paneli-basi">
             <div>
                 <p class="ayar-no"><span>01</span> / MODEL</p>
                 <h2>Kapak modelleri</h2>
             </div>
-            <span class="model-sayisi" id="model-sayisi">4 model</span>
+            <div class="model-paneli-araclari">
+                <span class="model-sayisi" id="model-sayisi">3 model</span>
+                <button id="model-panel-kapat" class="model-panel-kapat" type="button" aria-label="Model panelini kapat">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
         </div>
         <p class="model-paneli-aciklama">Bir modeli seçerek 3B önizlemede inceleyin.</p>
         <div id="model-panel-izgara" class="model-panel-izgara" role="group" aria-label="Kapak modeli seçenekleri"></div>
@@ -84,9 +89,9 @@
     <section class="goruntuleyici">
         <div id="canvas-kapsayici" class="canvas-kapsayici"></div>
 
-        <!-- Mobilde sol panel sahnenin üstünde bu kompakt düğmeye dönüşür. -->
-        <button type="button" id="model-secici" class="model-secici" aria-haspopup="dialog" aria-controls="model-galerisi">
-            <span class="model-secici-etiket">Model</span>
+        <!-- Masaüstünde sol çekmeceyi, mobilde aramalı galeriyi açar. -->
+        <button type="button" id="model-secici" class="model-secici" aria-haspopup="dialog" aria-controls="model-paneli model-galerisi" aria-expanded="false">
+            <span class="model-secici-etiket">Kapak modelleri</span>
             <span id="model-secici-ad" class="model-secici-ad">HK_012_001</span>
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>

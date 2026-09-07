@@ -41,7 +41,7 @@ function guncellemeyiUygula() {
     // Model dosyası yüklenemezse sahne boş kalır; kullanıcı nedenini
     // bilmediği bir boşluğa bakmasın diye durum kendisine bildiriliyor.
     const yuzey = idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey();
-    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey, model.glbEksenDuzeni))
+    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey))
         .catch((hata) => {
             console.error('Model yüklenemedi:', model.gltfUrl, hata);
             bildir('Model yüklenemedi — bağlantınızı kontrol edip sayfayı yenileyin');
@@ -215,11 +215,34 @@ function modeliSec(model) {
     olculeriModelLimitlerineSabitle(secilen);
     modelSeciciMetniniGuncelle();
     modelPaneliniCiz();
+    modelCekmecesiniKapat();
     // Her model, önceki modelin kullanıcı tarafından çevrilmiş kamerasını
     // devralmasın; seçildiğinde doğrudan ön görünüm gelsin.
     goruntuyuSifirla();
     dikeyKaydirmayiPlanla();
     goruntuGuncellemesiPlanla();
+}
+
+function masaustuModelCekmecesiMi() {
+    return window.matchMedia('(min-width: 761px)').matches;
+}
+
+function modelCekmecesiniAc() {
+    const panel = document.getElementById('model-paneli');
+    const tetikleyici = document.getElementById('model-secici');
+    if (!panel || !tetikleyici) return;
+    panel.classList.add('acik');
+    panel.setAttribute('aria-hidden', 'false');
+    tetikleyici.setAttribute('aria-expanded', 'true');
+}
+
+function modelCekmecesiniKapat() {
+    const panel = document.getElementById('model-paneli');
+    const tetikleyici = document.getElementById('model-secici');
+    if (!panel || !tetikleyici) return;
+    panel.classList.remove('acik');
+    panel.setAttribute('aria-hidden', 'true');
+    tetikleyici.setAttribute('aria-expanded', 'false');
 }
 
 function modelGaleriKartiOlustur(model) {
@@ -306,9 +329,14 @@ function modelGalerisiniKapat() {
 function modelSeciciyiKur() {
     modelSeciciMetniniGuncelle();
     modelPaneliniCiz();
-    ['model-secici'].forEach((id) => {
-        const tetikleyici = document.getElementById(id);
-        tetikleyici?.addEventListener('click', () => modelGalerisiniAc(tetikleyici));
+    const tetikleyici = document.getElementById('model-secici');
+    tetikleyici?.addEventListener('click', () => {
+        if (masaustuModelCekmecesiMi()) modelCekmecesiniAc();
+        else modelGalerisiniAc(tetikleyici);
+    });
+    document.getElementById('model-panel-kapat')?.addEventListener('click', () => {
+        modelCekmecesiniKapat();
+        tetikleyici?.focus();
     });
     document.getElementById('model-galeri-kapat').addEventListener('click', modelGalerisiniKapat);
     document.getElementById('model-galeri-arama').addEventListener('input', (e) => modelGalerisiniCiz(e.target.value));
@@ -316,6 +344,7 @@ function modelSeciciyiKur() {
     katman.addEventListener('click', (e) => { if (e.target === katman) modelGalerisiniKapat(); });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !katman.classList.contains('gizli')) modelGalerisiniKapat();
+        if (e.key === 'Escape') modelCekmecesiniKapat();
     });
 }
 

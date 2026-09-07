@@ -55,9 +55,7 @@ function ornekKapagiKur() {
             secili,
             model.gltfUrl,
             model.glbIcerikDonusu,
-            model.kenarPayi,
-            undefined,
-            model.glbEksenDuzeni
+            model.kenarPayi
         ))
             .then(() => { if (yukleniyor) yukleniyor.hidden = true; })
             .catch((hata) => {

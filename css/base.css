@@ -187,10 +187,15 @@ body[data-zemin="5"] {
         linear-gradient(145deg, #DFC69B 0%, #C9A978 100%);
 }
 
-/* Soldaki model rayı, sağdaki teknik ayar rayının dengesi olacak kadar sakin
-   tutulur. Ürün seçimi her an görünür; sahnenin üstünde kayan bir etiket değil. */
+/* Model kütüphanesi masaüstünde soldan açılan bir çekmecedir. Kapalıyken
+   sahneye yer açar; sağdaki teknik ayar paneli sabit kalır. */
 .model-paneli {
-    flex: 0 0 306px;
+    position: absolute;
+    z-index: calc(var(--z-dock) + 1);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(320px, 34vw);
     display: flex;
     flex-direction: column;
     gap: var(--s-4);
@@ -198,6 +203,15 @@ body[data-zemin="5"] {
     border-right: 1px solid var(--kenarlik);
     background: var(--yuzey);
     overflow-y: auto;
+    box-shadow: 16px 0 34px rgba(45, 37, 29, 0.12);
+    transform: translateX(-105%);
+    visibility: hidden;
+    transition: transform 0.24s ease, visibility 0s linear 0.24s;
+}
+.model-paneli.acik {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.24s ease;
 }
 .model-paneli-basi {
     display: flex;
@@ -205,6 +219,20 @@ body[data-zemin="5"] {
     justify-content: space-between;
     gap: var(--s-3);
 }
+.model-paneli-araclari { display: flex; align-items: center; gap: var(--s-2); }
+.model-panel-kapat {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid var(--kenarlik);
+    border-radius: var(--r-sm);
+    background: var(--yuzey);
+    color: var(--metin-soluk);
+    cursor: pointer;
+}
+.model-panel-kapat:hover { color: var(--metin); border-color: var(--kenarlik-guclu); }
 .model-paneli .ayar-no { margin: 0; }
 .model-paneli-basi h2 { margin: 5px 0 0; font-size: var(--fs-md); font-weight: 600; }
 .model-paneli-aciklama { margin: calc(var(--s-3) * -1) 0 0; color: var(--metin-soluk); font-size: var(--fs-xs); line-height: 1.45; }
@@ -343,13 +371,12 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
    mobildeki tek parmakla döndürmeyi burada da açıkça serbest bırakıyoruz. */
 .canvas-kapsayici canvas { touch-action: none; user-select: none; -webkit-user-select: none; }
 
-/* Mobilde sol model rayının yerine gelen kompakt erişim düğmesi. */
+/* Model çekmecesini açan sahne düğmesi. */
 .model-secici {
     position: absolute;
     top: var(--s-5);
-    left: 50%;
-    transform: translateX(-50%);
-    display: none; align-items: center; gap: var(--s-3);
+    left: var(--s-5);
+    display: flex; align-items: center; gap: var(--s-3);
     background: color-mix(in srgb, var(--yuzey) 92%, transparent);
     backdrop-filter: blur(10px);
     border: 1px solid var(--kenarlik);
@@ -357,7 +384,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     padding: var(--s-2) var(--s-4) var(--s-2) var(--s-5);
     box-shadow: var(--golge-yumusak);
     z-index: var(--z-sahne);
-    max-width: calc(100% - var(--s-8));
+    max-width: min(280px, calc(100% - var(--s-8)));
     color: var(--metin);
     font-family: inherit;
     cursor: pointer;
@@ -1086,8 +1113,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
 /* Orta genişlikte iki yan ray sahneyi gereğinden fazla daraltır; bu aralıkta
    modeller mobildeki kompakt seçiciden açılır. */
 @media (max-width: 1100px) {
-    .model-paneli { display: none; }
-    .model-secici { display: flex; }
+    .model-paneli { width: min(320px, 42vw); }
 }
 
 @media (max-width: 760px) {
@@ -1159,7 +1185,7 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
         padding-bottom: var(--s-5);
     }
 
-    .model-secici { display: flex; top: var(--s-3); padding-left: var(--s-4); gap: var(--s-2); }
+    .model-secici { display: flex; top: var(--s-3); left: 50%; transform: translateX(-50%); padding-left: var(--s-4); gap: var(--s-2); }
     .model-secici-etiket { display: none; }
     .model-secici-ad { max-width: 130px; }
     .model-modal-kutu { width: min(100% - var(--s-5), 600px); }
