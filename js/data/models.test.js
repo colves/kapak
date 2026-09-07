@@ -2,21 +2,26 @@ import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { KAPAK_MODELLERI, idIleModelBul } from './models.js';
 
-assert.strictEqual(KAPAK_MODELLERI.length, 3, 'Üç model bekleniyor (HK_012_001, HK_051_002, 3970)');
+assert.strictEqual(KAPAK_MODELLERI.length, 4, 'Dört model bekleniyor (3976, 3976 yeni, 4021, 3970)');
 
 const hk012 = idIleModelBul('hk-012-001');
+const hk012Yeni = idIleModelBul('hk-012-001-yeni');
 const hk051 = idIleModelBul('hk-051-002');
 const m3970 = idIleModelBul('kapak-3970');
 assert.ok(hk012, "'hk-012-001' modeli bulunamadı");
+assert.ok(hk012Yeni, "'hk-012-001-yeni' modeli bulunamadı");
 assert.ok(hk051, "'hk-051-002' modeli bulunamadı");
 assert.ok(m3970, "'kapak-3970' modeli bulunamadı");
 assert.strictEqual(hk012.isim, 'HK_012_001 (3976)');
+assert.strictEqual(hk012Yeni.isim, 'HK_012_001 Yeni (3976)');
 assert.strictEqual(hk051.isim, 'HK_051_002 (4021)');
 assert.strictEqual(m3970.isim, 'Kapak Modeli (3970)');
 assert.strictEqual(hk012.kalinlikAyarlanabilir, false);
+assert.strictEqual(hk012Yeni.kalinlikAyarlanabilir, false);
 assert.strictEqual(hk051.kalinlikAyarlanabilir, false);
 assert.strictEqual(m3970.kalinlikAyarlanabilir, false);
 assert.ok(hk012.gltfUrl, "'hk-012-001' için gltfUrl tanımlı olmalı");
+assert.ok(hk012Yeni.gltfUrl, "'hk-012-001-yeni' için gltfUrl tanımlı olmalı");
 assert.ok(hk051.gltfUrl, "'hk-051-002' için gltfUrl tanımlı olmalı");
 assert.ok(m3970.gltfUrl, "'kapak-3970' için gltfUrl tanımlı olmalı");
 assert.strictEqual(idIleModelBul('olmayan'), null);
@@ -25,6 +30,7 @@ assert.strictEqual(idIleModelBul('olmayan'), null);
 // eksik web çıktısı, her iki model galerisinde de kırık/yanlış kapak gösterir.
 const beklenenGorseller = new Map([
     ['hk-012-001', 'assets/model-fotograflari/3976.webp'],
+    ['hk-012-001-yeni', 'assets/model-fotograflari/3976.webp'],
     ['hk-051-002', 'assets/model-fotograflari/4021.webp'],
     ['kapak-3970', 'assets/model-fotograflari/3970.webp']
 ]);

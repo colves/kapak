@@ -100,7 +100,12 @@ function hexMetni(renk) {
 
 const ZEMIN_SECENEKLERI = [
     { no: '1', ad: 'Açık radyal', aciklama: 'Varsayılan — nötr, aydınlık', ornek: 'radial-gradient(circle at 40% 35%, #FFFFFF, #E9E8E4)' },
-    { no: '6', ad: 'Teknik ızgara', aciklama: 'Ölçü hissi veren milimetrik zemin', ornek: 'repeating-linear-gradient(0deg, #C3BFB6 0 1px, #F5F4F1 1px 8px)' }
+    { no: '2', ad: 'Nötr gri', aciklama: 'Renk karşılaştırması için dengeli fon', ornek: 'linear-gradient(145deg, #E4E2DE, #CFCFCA)' },
+    { no: '3', ad: 'Beton stüdyo', aciklama: 'Mimari, sıcak gri görünüm', ornek: 'linear-gradient(145deg, #D7D0C6, #B7AEA3)' },
+    { no: '4', ad: 'Koyu vitrin', aciklama: 'Koyu kapaklarda güçlü kontrast', ornek: 'radial-gradient(circle at 42% 34%, #66625C, #252321)' },
+    { no: '5', ad: 'Meşe yüzey', aciklama: 'Mobilya sunumu için sıcak doku', ornek: 'repeating-linear-gradient(96deg, #D5B789 0 2px, #C9A978 2px 6px, #DFC69B 6px 10px)' },
+    { no: '6', ad: 'Teknik ızgara', aciklama: 'Ölçü hissi veren milimetrik zemin', ornek: 'repeating-linear-gradient(0deg, #C3BFB6 0 1px, #F5F4F1 1px 8px)' },
+    { no: '7', ad: 'Mavi sis', aciklama: 'Serin ve sakin ürün fonu', ornek: 'radial-gradient(circle at 40% 35%, #F4F7F7, #B8C5C6)' }
 ];
 
 const VARSAYILAN_ZEMIN = '1';

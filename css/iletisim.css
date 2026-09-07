@@ -7,7 +7,7 @@
    Sayfa referans alınan çalışmadaki gibi KOYU: iki konum kartı yan yana,
    her kartta bilgi satırları, harita ve haritaya götüren bir düğme. Referans
    siyah zemin üzerine altın kullanıyordu — burada aynı düzen kendi paletimizle
-   kuruldu (lacivert zemin, krem başlık, çelik mavi ayrıntı).
+   kuruldu (kömür zemin, krem başlık, sıcak gri ayrıntı).
 --------------------------------------------------------------------------- */
 
 /* Üst bar her sayfada AYNI (bkz. anasayfa.css .ust) — burada rengine
@@ -50,7 +50,7 @@
     flex-direction: column;
     gap: 22px;
     padding: clamp(24px, 3vw, 40px);
-    border: 1px solid rgba(234, 224, 207, 0.18);
+    border: 1px solid rgba(241, 233, 222, 0.22);
     border-radius: 14px;
     /* Zeminden bir tık açık: kart, sayfadan ayrışsın ama palet dışına çıkmasın. */
     background: color-mix(in srgb, var(--lacivert) 88%, #FFFFFF);
@@ -87,9 +87,9 @@
     margin: 0;
     font-size: 15px;
     line-height: 1.5;
-    color: #F6F0E6;
+    color: #FAF7F1;
 }
-.konum-bilgi dd a { border-bottom: 1px solid rgba(234, 224, 207, 0.35); }
+.konum-bilgi dd a { border-bottom: 1px solid rgba(241, 233, 222, 0.35); }
 .konum-bilgi dd a:hover { border-bottom-color: var(--krem); }
 
 /* ===================== Harita ===================== */
@@ -113,7 +113,7 @@
 .harita-yedek {
     margin: 0;
     font-size: 13px;
-    color: rgba(246, 240, 230, 0.62);
+    color: rgba(250, 247, 241, 0.62);
 }
 /* Kartın en altındaki düğme tam genişlik — referanstaki gibi. */
 .dugme.genis {

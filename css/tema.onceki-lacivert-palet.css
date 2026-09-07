@@ -1,0 +1,31 @@
+/*
+   Önceki Şahinkaya arayüz paleti — 2026-09-07
+
+   Bu dosya hiçbir HTML sayfasına yüklenmez. "Eski renk paletine dön"
+   istendiğinde aşağıdaki değişkenler css/tema.css ve css/anasayfa.css içindeki
+   karşılıklarına geri uygulanır.
+*/
+:root {
+    /* configurator.html: css/tema.css */
+    --marka: #4B5694;
+    --marka-koyu: #111844;
+    --marka-sis: rgba(75, 86, 148, 0.13);
+    --arkaplan: #EAE0CF;
+    --yuzey: #FFFFFF;
+    --yuzey-2: #F6F2EA;
+    --yuzey-3: #EFE8DA;
+    --metin: #111844;
+    --metin-orta: #3B4577;
+    --metin-soluk: #55608A;
+    --kenarlik: #DCD5C6;
+    --kenarlik-guclu: #C1B8A4;
+
+    /* index.html, modeller.html, renkler.html, iletisim.html: css/anasayfa.css */
+    --lacivert: #111844;
+    --indigo: #4B5694;
+    --celik: #7288AE;
+    --krem: #EAE0CF;
+    --murekkep: #151515;
+    --kagit: #F9F8F5;
+    --cizgi: rgba(17, 24, 68, 0.14);
+}

@@ -17,6 +17,24 @@ export const KAPAK_MODELLERI = [
         }
     },
     {
+        // 3976 modelinin güncel GLB export'u; eski sürüm karşılaştırma için
+        // listede tutulur, bu kayıt onun yerine geçmez.
+        id: 'hk-012-001-yeni',
+        isim: 'HK_012_001 Yeni (3976)',
+        kisaIsim: 'HK_012_001 Yeni',
+        aciklama: '3976 modelinin karşılaştırma için eklenen yeni GLB sürümü.',
+        // Yeni render henüz gelmediği için görsel kartta mevcut 3976 ön izlemi
+        // kullanılır; sahnede ise yeni GLB dosyası yüklenir.
+        gorselUrl: 'assets/model-fotograflari/3976.webp',
+        gltfUrl: 'assets/models/3976new.glb',
+        kalinlikAyarlanabilir: false,
+        varsayilan: { genislik: 450, yukseklik: 720, kalinlik: 18 },
+        limitler: {
+            genislik: { min: 300, max: 900 },
+            yukseklik: { min: 400, max: 1400 }
+        }
+    },
+    {
         id: 'hk-051-002',
         isim: 'HK_051_002 (4021)',
         kisaIsim: 'HK_051_002',

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {
     RENK_KATALOGU, TON_AILELERI, tumRenkleriDuzListeOlarakAl, idIleRenkBul,
-    tonAilesindekiRenkler, doluTonAileleri
+    tonAilesindekiRenkler, doluTonAileleri, ralSerileri
 } from './colors.js';
 
 function renkGecerliMi(renk) {
@@ -65,5 +65,14 @@ for (const aile of dolu) {
 const ilkRenk = tumRenkler[0];
 assert.strictEqual(idIleRenkBul(ilkRenk.id).kod, ilkRenk.kod);
 assert.strictEqual(idIleRenkBul('olmayan-id'), null);
+
+// Konfigüratörde seri başlıkları büyükten küçüğe; her serinin renkleri ise
+// RAL koduna göre küçükten büyüğe okunur kalmalı.
+const seriler = ralSerileri();
+assert.deepStrictEqual(seriler.map((seri) => seri.seri), ['9000', '8000', '7000', '6000', '5000', '4000', '3000', '1000']);
+for (const seri of seriler) {
+    const kodlar = seri.renkler.map((renk) => Number(renk.kod.slice(4)));
+    assert.deepStrictEqual(kodlar, [...kodlar].sort((a, b) => a - b), `RAL ${seri.seri} iç sırası artan olmalı`);
+}
 
 console.log(`✔ colors.test.js: ${tumRenkler.length} renk, ${dolu.length - 1} ton ailesi doğrulandı, tüm kontroller geçti.`);

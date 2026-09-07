@@ -1,12 +1,12 @@
 /* ---------------------------------------------------------------------------
    ANA SAYFA — Şahinkaya Ahşap
 
-   Tasarım dili referans alınan çalışmadan (KapakSiteBurak) geliyor: lacivert/
-   krem palet, çok büyük ve sıkı harf aralıklı başlıklar, tam ekran hero,
+   Tasarım dili referans alınan çalışmadan (KapakSiteBurak) geliyor: turuncu/
+   kömür grisi ve sıcak krem palet, çok büyük ve sıkı harf aralıklı başlıklar, tam ekran hero,
    asimetrik ızgaralar, DM Mono ile küçük "etiket" üst yazıları.
 
-   Palet doğrudan kullanıcının verdiği dört renk:
-     #111844 lacivert · #4B5694 indigo · #7288AE çelik mavi · #EAE0CF krem
+   Palet Şahinkaya logosundan türetilir:
+     #F29200 turuncu · #252321 kömür · #68635D sıcak gri · #FAF7F1 krem
 
    Sayfa KENDİ İÇİNDE kapalı: tema.css/base.css yüklenmiyor, çünkü base.css
    konfigüratör için html/body'ye overflow:hidden veriyor ve bu sayfa uzun,
@@ -14,13 +14,13 @@
 --------------------------------------------------------------------------- */
 
 :root {
-    --lacivert: #111844;
-    --indigo: #4B5694;
-    --celik: #7288AE;
-    --krem: #EAE0CF;
-    --murekkep: #151515;
-    --kagit: #F9F8F5;
-    --cizgi: rgba(17, 24, 68, 0.14);
+    --lacivert: #252321;
+    --indigo: #8A4F00;
+    --celik: #68635D;
+    --krem: #F1E9DE;
+    --murekkep: #252321;
+    --kagit: #FAF7F1;
+    --cizgi: rgba(37, 35, 33, 0.14);
     --en: 1440px;
     /* Konfigüratörün üst barıyla EŞİT yükseklik (bkz. base.css --ustbar-h).
        18px dolgu + 54px logo + 18px dolgu = 90px. */
@@ -104,7 +104,7 @@ img { display: block; max-width: 100%; }
 .hero-var .ust:not(.kaydirildi) {
     /* Düz saydam değil, ince bir karartma: hero görselinin açık bir yerine
        denk gelen logo ve menü yine de okunur kalsın. */
-    background: linear-gradient(rgba(17, 24, 68, 0.45), transparent);
+    background: linear-gradient(rgba(37, 35, 33, 0.45), transparent);
     backdrop-filter: none;
     color: #FFFFFF;
     border-bottom-color: transparent;
@@ -295,7 +295,7 @@ img { display: block; max-width: 100%; }
 .dugme.hayalet { background: transparent; color: var(--lacivert); }
 .dugme.hayalet:hover { background: var(--lacivert); color: #FFFFFF; }
 .dugme.acik { background: var(--krem); border-color: var(--krem); color: var(--lacivert); }
-.dugme.acik:hover { background: #F6F0E6; }
+.dugme.acik:hover { background: #FAF7F1; }
 /* Hero koyu olduğu için hayalet buton orada beyaz kenarlı. */
 .hero .dugme.hayalet { border-color: #FFFFFF; color: #FFFFFF; }
 .hero .dugme.hayalet:hover { background: #FFFFFF; color: var(--lacivert); }
@@ -335,7 +335,7 @@ img { display: block; max-width: 100%; }
     position: absolute;
     width: 620px; height: 620px;
     border-radius: 50%;
-    border: 1px solid rgba(17, 24, 68, 0.13);
+    border: 1px solid rgba(37, 35, 33, 0.13);
 }
 /* Kapak artık CSS ile ÇİZİLMİYOR: burada konfigüratörün gerçek 3B
    görüntüleyicisi çalışıyor (viewer.js canvas'ı bu kaba ekliyor).
@@ -387,7 +387,7 @@ img { display: block; max-width: 100%; }
 .renk-secenek {
     width: 40px; height: 40px;
     border: 3px solid var(--krem);
-    outline: 1px solid rgba(17, 24, 68, 0.35);
+    outline: 1px solid rgba(37, 35, 33, 0.35);
     padding: 0;
     transition: transform 0.16s ease;
 }
@@ -415,7 +415,7 @@ img { display: block; max-width: 100%; }
 }
 
 /* ===================== Footer ===================== */
-.alt { background: #0B102F; color: var(--krem); padding: 65px 32px 24px; }
+.alt { background: #252321; color: var(--krem); padding: 65px 32px 24px; }
 .alt-ic { max-width: var(--en); margin: auto; }
 .alt-ust {
     display: grid;

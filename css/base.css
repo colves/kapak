@@ -175,13 +175,17 @@ html, body {
 }
 
 /* ---- Sahne zemini ----
-   Kapağın arkasındaki yüzey. Dokuz aday denendi (nötr gri, stüdyo siklorama,
-   showroom greige, mimari gri-mavi, krem, koyu vitrin, lacivert…); kullanıcı
-   ikisini seçti ve kalanlar kaldırıldı.
-
-   NOT: bu bir RENK konfigüratörü. Zemin, üstündeki rengin ALGISINI değiştirir
-   (eşzamanlı kontrast); ikisinin de açık ve nötr kalması bilinçli. */
+   Kapak rengini farklı sunum koşullarında karşılaştırmak için nötr stüdyo,
+   mimari, koyu vitrin ve sıcak mobilya yüzeyi alternatifleri sunulur. */
 body[data-zemin="1"] { --sahne-zemin: radial-gradient(ellipse 70% 60% at 50% 42%, #FFFFFF 0%, #F5F4F1 45%, #E9E8E4 100%); }
+body[data-zemin="2"] { --sahne-zemin: linear-gradient(145deg, #E4E2DE 0%, #CFCFCA 100%); }
+body[data-zemin="3"] { --sahne-zemin: linear-gradient(145deg, #D7D0C6 0%, #B7AEA3 100%); }
+body[data-zemin="4"] { --sahne-zemin: radial-gradient(ellipse 70% 60% at 50% 42%, #66625C 0%, #252321 100%); }
+body[data-zemin="5"] {
+    --sahne-zemin:
+        repeating-linear-gradient(96deg, rgba(116, 76, 39, 0.14) 0 2px, transparent 2px 10px),
+        linear-gradient(145deg, #DFC69B 0%, #C9A978 100%);
+}
 body[data-zemin="6"] {
     --sahne-zemin:
         linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
@@ -189,6 +193,7 @@ body[data-zemin="6"] {
         repeating-linear-gradient(90deg, #C3BFB6 0 1px, transparent 1px 40px),
         #F5F4F1;
 }
+body[data-zemin="7"] { --sahne-zemin: radial-gradient(ellipse 70% 60% at 50% 42%, #F4F7F7 0%, #B8C5C6 100%); }
 
 /* ---- Zemin seçici ----
    Eskiden yalnızca adres satırında ?zemin=N varken beliren geçici bir karar

@@ -1,11 +1,7 @@
 /* ---------------------------------------------------------------------------
-   Konfigüratör paleti — sitenin resmî dört rengi üzerine kurulu:
-     #111844 lacivert · #4B5694 indigo · #7288AE çelik mavi · #EAE0CF krem
-
-   Aynı palet ana sayfada ve iletişim sayfasında da kullanılıyor (bkz.
-   css/anasayfa.css); konfigüratör artık siteden kopuk bir araç gibi durmuyor.
-   Önceden burada logodan örneklenmiş turuncu (#F29200) + sıcak nötr griler
-   vardı.
+   Konfigüratör paleti — Şahinkaya logosundan alınan turuncu (#F29200),
+   kömür grisi ve sıcak nötr yüzeyler üzerine kurulu. Aynı renk dili ana
+   sayfa ve iç sayfalarda da kullanılır (bkz. css/anasayfa.css).
 
    ÖNEMLİ SINIR: bu bir RENK konfigüratörü. Palet yalnızca ARAYÜZE uygulanıyor
    — düğmeler, metin, kenarlıklar, paneller. Kapağın arkasındaki sahne zemini
@@ -14,37 +10,32 @@
    lake tonunun algılanan rengini kaydırır (eşzamanlı kontrast) ve müşteri
    ekranda gördüğü rengi yanlış hatırlar.
 
-   Kontrast değerleri ölçüldü (WCAG bağıl parlaklık): --metin 16.96:1,
-   --metin-orta 9.12:1, --metin-soluk 6.13:1 (beyaz üstünde); --metin-soluk
-   en koyu yüzey olan --arkaplan üstünde de 4.69:1 ile eşiği geçiyor.
+   Turuncu vurgu rengidir; normal metinde kullanılmaz. Koyu kömür metin ve
+   aktif durumlarda, beyaz da yüzeylerde kullanılır.
 --------------------------------------------------------------------------- */
 :root {
-    /* --- Marka / vurgu ---
-       Vurgu artık indigo. --marka-koyu metin ve kenarlık için kullanılan,
-       beyaz üstünde 16.96:1 veren lacivert. */
-    --marka: #4B5694;
-    --marka-koyu: #111844;
-    --marka-sis: rgba(75, 86, 148, 0.13);
+    /* --- Marka / vurgu --- */
+    --marka: #F29200;
+    --marka-koyu: #252321;
+    --marka-sis: rgba(242, 146, 0, 0.13);
 
-    /* --- Yüzeyler ---
-       --yuzey NÖTR beyaz kalıyor (yukarıdaki sınır); --yuzey-2/3 ve
-       --arkaplan paletin kremine doğru ısınıyor. */
-    --arkaplan: #EAE0CF;
+    /* --- Yüzeyler --- */
+    --arkaplan: #FAF7F1;
     --yuzey: #FFFFFF;
-    --yuzey-2: #F6F2EA;
-    --yuzey-3: #EFE8DA;
+    --yuzey-2: #F7F0E6;
+    --yuzey-3: #EDE2D2;
 
     /* --- Metin --- */
-    --metin: #111844;
-    --metin-orta: #3B4577;
-    --metin-soluk: #55608A;
+    --metin: #252321;
+    --metin-orta: #4D4944;
+    --metin-soluk: #68635D;
 
     /* --- Çizgiler --- */
-    --kenarlik: #DCD5C6;
-    --kenarlik-guclu: #C1B8A4;
+    --kenarlik: #D8CEC0;
+    --kenarlik-guclu: #C4B8A9;
 
-    --golge: 0 10px 34px rgba(17, 24, 68, 0.14);
-    --golge-yumusak: 0 2px 10px rgba(17, 24, 68, 0.08);
+    --golge: 0 10px 34px rgba(37, 35, 33, 0.14);
+    --golge-yumusak: 0 2px 10px rgba(37, 35, 33, 0.08);
 
     /* --- Tipografi ---
        Archivo: endüstriyel grotesk — logonun geniş, geometrik, köşeli harf

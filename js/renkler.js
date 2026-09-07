@@ -1,13 +1,9 @@
 // Renk kartelası sayfası.
 //
-// Düzen ralcolorchart.com'dan alındı (solda seri listesi, sağda seri seri
-// ızgara) ama içerik BİZİM kataloğumuz: RAL Classic'in 216 rengi değil,
-// Şahinkaya'nın gerçekten lake yaptığı 77 ton. Var olmayan bir rengi
-// listelemek müşteriye yanlış söz vermek olurdu.
-//
-// Renkler colors.js'ten okunuyor; kataloğa yeni bir ton eklendiğinde bu sayfa
-// kendiliğinden güncelleniyor.
-import { ralSerileri } from './data/colors.js';
+// RAL Classic'in 216 rengi kartelada eksiksiz görünür. Yalnızca Şahinkaya'nın
+// ürettiği tonlar konfigüratöre bağlanır; diğerleri kartela referansıdır.
+import { idIleRenkBul } from './data/colors.js';
+import { ralClassicSerileri } from './data/ralClassic.js';
 import { durumuSorguyaKodla } from './paylasim.js';
 import { ustBariKur } from './ustBar.js';
 
@@ -39,24 +35,32 @@ function konfiguratorAdresi(renk) {
 /* ---------------- Kartela ---------------- */
 
 function kutuOlustur(renk) {
-    const a = document.createElement('a');
-    a.className = 'ton';
-    a.href = konfiguratorAdresi(renk);
-    a.style.background = hexMetni(renk);
-    a.style.color = okunurMetinRengi(renk.hex);
-    a.dataset.ara = `${renk.kod} ${renk.isim}`.toLocaleLowerCase('tr');
-    a.setAttribute('aria-label', `${renk.kod} ${renk.isim} — konfigüratörde aç`);
+    const kod = renk.kod.slice(4);
+    const uretimRengi = idIleRenkBul(`lake-ral-${kod}`);
+    const kart = document.createElement(uretimRengi ? 'a' : 'article');
+    kart.className = 'ton' + (uretimRengi ? '' : ' kartela-referansi');
+    if (uretimRengi) kart.href = konfiguratorAdresi(uretimRengi);
+    kart.style.background = hexMetni(renk);
+    kart.style.color = okunurMetinRengi(renk.hex);
+    kart.dataset.ara = `${renk.kod} ${renk.isim}`.toLocaleLowerCase('tr');
+    kart.setAttribute('aria-label', `${renk.kod} ${renk.isim} — ${uretimRengi ? 'konfigüratörde aç' : 'kartela referansı, üretim listesinde değil'}`);
 
-    const kod = document.createElement('span');
-    kod.className = 'ton-kod';
-    kod.textContent = renk.kod;
+    const kodEl = document.createElement('span');
+    kodEl.className = 'ton-kod';
+    kodEl.textContent = renk.kod;
 
     const isim = document.createElement('span');
     isim.className = 'ton-isim';
     isim.textContent = renk.isim;
 
-    a.append(kod, isim);
-    return a;
+    kart.append(kodEl, isim);
+    if (!uretimRengi) {
+        const durum = document.createElement('span');
+        durum.className = 'ton-durum';
+        durum.textContent = 'Kartela referansı';
+        kart.appendChild(durum);
+    }
+    return kart;
 }
 
 function kartelayiCiz() {
@@ -64,7 +68,7 @@ function kartelayiCiz() {
     const yanMenu = document.getElementById('seri-menu');
     if (!kap || !yanMenu) return;
 
-    const seriler = ralSerileri();
+    const seriler = ralClassicSerileri();
     kap.innerHTML = '';
     yanMenu.innerHTML = '';
 
@@ -160,7 +164,7 @@ function aramayiKur() {
 }
 
 function kartelaSayacinaDon() {
-    const seriler = ralSerileri();
+    const seriler = ralClassicSerileri();
     const toplam = seriler.reduce((n, g) => n + g.renkler.length, 0);
     const sayac = document.getElementById('toplam-ton');
     if (sayac) sayac.textContent = `${toplam} ton · ${seriler.length} seri`;

@@ -205,7 +205,9 @@ export function ralSerileri() {
         }
         gruplar.get(seri).renkler.push(renk);
     }
-    return [...gruplar.values()];
+    // Seri grupları büyükten küçüğe gider; seri içindeki renkler yukarıdaki
+    // ralSirasindakiRenkler() sayesinde küçükten büyüğe kalır.
+    return [...gruplar.values()].sort((a, b) => Number(b.seri) - Number(a.seri));
 }
 
 // Kataloğun gerçekten renk içeren aileleri — boş filtre düğmesi çizilmesin diye.
