@@ -119,16 +119,11 @@ function glbSablonunuYukle(url, icerikDonusuZ, eksenDuzeni = 'max-z-up') {
 // Verilen alanlar ölçülen bandın yerine geçer. Otomatik ölçüm bir modelde
 // şaşarsa (ör. çerçevesi ortada bir hat taşıyan bir desen) models.js'ten tek
 // satırla düzeltilebilsin diye var; normalde boş bırakılır.
-export function glbKapakGrubuOlustur(url, genislikMM, yukseklikMM, icerikDonusuZ = 0, kenarPayi = null, eksenDuzeni = 'max-z-up', { olceklendir = true, sahneOlcegi = 1 } = {}) {
+export function glbKapakGrubuOlustur(url, genislikMM, yukseklikMM, icerikDonusuZ = 0, kenarPayi = null, eksenDuzeni = 'max-z-up') {
     return glbSablonunuYukle(url, icerikDonusuZ, eksenDuzeni).then((sablon) => {
         const { sablonGrup, dogalGenislikMM, dogalYukseklikMM } = sablon;
         const grup = sablonGrup.clone(true);
         grup.name = 'kapak';
-
-        if (!olceklendir) {
-            grup.scale.multiplyScalar(sahneOlcegi);
-            return grup;
-        }
 
         const bantX = bandiElleAyarla(sablon.bantX, dogalGenislikMM, kenarPayi?.sol, kenarPayi?.sag);
         const bantY = bandiElleAyarla(sablon.bantY, dogalYukseklikMM, kenarPayi?.alt, kenarPayi?.ust);

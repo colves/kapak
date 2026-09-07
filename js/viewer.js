@@ -187,7 +187,7 @@ function kapakGeometrisiTemizle(nesne) {
     }
 }
 
-function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey, orijinalMalzemeler) {
+function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey) {
     // Kullanıcı yükleme bitmeden başka bir model/renk seçmiş olabilir — o
     // durumda bu (artık eski) sonucu sahneye koymadan temizleyip at.
     if (buIstek !== istekSirasi) {
@@ -203,10 +203,8 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey, orijinalMa
     }
 
     kapakGrubu = yeniGrup;
-    if (!orijinalMalzemeler) {
-        mevcutMalzeme = renkVerisindenMalzemeOlustur(renkVerisi, yuzey);
-        malzemeUygula(kapakGrubu, mevcutMalzeme);
-    }
+    mevcutMalzeme = renkVerisindenMalzemeOlustur(renkVerisi, yuzey);
+    malzemeUygula(kapakGrubu, mevcutMalzeme);
 
     sahne.add(kapakGrubu);
     renderIste();
@@ -214,7 +212,7 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey, orijinalMa
 
 // glbUrl verilmişse (gerçek 3ds Max'ten aktarılmış model), procedural geometri
 // yerine o dosya asenkron olarak yüklenip kullanılır.
-export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu, kenarPayi, yuzey, glbEksenDuzeni, secenekler = {}) {
+export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu, kenarPayi, yuzey, glbEksenDuzeni) {
     const buIstek = ++istekSirasi;
 
     // Her modelin bir .glb dosyası var (üretim yalnızca bu modellerden yapılıyor).
@@ -228,8 +226,8 @@ export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbI
 
     // Söz ÇAĞIRANA DÖNDÜRÜLÜYOR: model dosyası yüklenemediğinde ui.js hatayı
     // yakalayıp kullanıcıya bildiriyor (yoksa boş bir sahneye bakıp kalıyordu).
-    return glbKapakGrubuOlustur(glbUrl, genislikMM, yukseklikMM, glbIcerikDonusu || 0, kenarPayi || null, glbEksenDuzeni, secenekler)
-        .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek, yuzey, secenekler.orijinalMalzemeler));
+    return glbKapakGrubuOlustur(glbUrl, genislikMM, yukseklikMM, glbIcerikDonusu || 0, kenarPayi || null, glbEksenDuzeni)
+        .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek, yuzey));
 }
 
 // ---------------- Stüdyo HDR ortam ışığı (gerçek fotoğraflanmış ışıklandırma) ----------------

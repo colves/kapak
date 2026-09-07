@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
-import { INCELEME_SAHNELERI, KAPAK_MODELLERI, idIleModelBul } from './models.js';
+import { KAPAK_MODELLERI, idIleModelBul } from './models.js';
 
 assert.strictEqual(KAPAK_MODELLERI.length, 4, 'Dört model bekleniyor (3976, 3976 yeni, 4021, 3970)');
 
@@ -26,8 +26,6 @@ assert.ok(hk012Yeni.gltfUrl, "'hk-012-001-yeni' için gltfUrl tanımlı olmalı"
 assert.ok(hk051.gltfUrl, "'hk-051-002' için gltfUrl tanımlı olmalı");
 assert.ok(m3970.gltfUrl, "'kapak-3970' için gltfUrl tanımlı olmalı");
 assert.strictEqual(idIleModelBul('olmayan'), null);
-assert.strictEqual(INCELEME_SAHNELERI.length, 1, 'Bir geçici inceleme sahnesi bekleniyor');
-assert.strictEqual(idIleModelBul('mutfak-inceleme')?.incelemeModeli, true, 'Mutfak modeli kapak seçicisinden ayrı bir inceleme sahnesi olmalı');
 
 // Model fotoğrafı eşleşmeleri dosya numarasına dayanır. Yanlış numara veya
 // eksik web çıktısı, her iki model galerisinde de kırık/yanlış kapak gösterir.
