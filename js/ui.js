@@ -202,17 +202,24 @@ function modelSeciciMetniniGuncelle() {
     const model = idIleModelBul(durum.modelId);
     const el = document.getElementById('model-secici-ad');
     if (el) el.textContent = model.kisaIsim || model.isim;
-    const ad = document.getElementById('secili-model-ad');
-    const aciklama = document.getElementById('secili-model-aciklama');
-    const gorsel = document.getElementById('secili-model-gorsel');
     const sayi = document.getElementById('model-sayisi');
-    if (ad) ad.textContent = model.isim;
-    if (aciklama) aciklama.textContent = model.aciklama || 'Modeli değiştirmek için açın';
-    if (gorsel && model.gorselUrl) {
-        gorsel.src = model.gorselUrl;
-        gorsel.alt = `${model.isim} seçili model ön izlemesi`;
-    }
     if (sayi) sayi.textContent = `${KAPAK_MODELLERI.length} model`;
+}
+
+function modeliSec(model) {
+    if (durum.modelId === model.id) return;
+    durum.modelId = model.id;
+    const secilen = idIleModelBul(model.id);
+    olculeriVarsayilanaSifirla(secilen);
+    kalinlikAlanininGorunurlugunuGuncelle(secilen);
+    olculeriModelLimitlerineSabitle(secilen);
+    modelSeciciMetniniGuncelle();
+    modelPaneliniCiz();
+    // Her model, önceki modelin kullanıcı tarafından çevrilmiş kamerasını
+    // devralmasın; seçildiğinde doğrudan ön görünüm gelsin.
+    goruntuyuSifirla();
+    dikeyKaydirmayiPlanla();
+    goruntuGuncellemesiPlanla();
 }
 
 function modelGaleriKartiOlustur(model) {
@@ -236,22 +243,32 @@ function modelGaleriKartiOlustur(model) {
 
     kart.innerHTML = `${gorselHtml}<span class="model-galeri-kart-ad">${model.isim}</span>`;
     kart.addEventListener('click', () => {
-        if (durum.modelId !== model.id) {
-            durum.modelId = model.id;
-            const m = idIleModelBul(model.id);
-            olculeriVarsayilanaSifirla(m);
-            kalinlikAlanininGorunurlugunuGuncelle(m);
-            olculeriModelLimitlerineSabitle(m);
-            modelSeciciMetniniGuncelle();
-            // Her model, önceki modelin kullanıcı tarafından çevrilmiş
-            // kamerasını devralmasın; seçildiğinde doğrudan ön görünüm gelsin.
-            goruntuyuSifirla();
-            dikeyKaydirmayiPlanla();
-            goruntuGuncellemesiPlanla();
-        }
+        modeliSec(model);
         modelGalerisiniKapat();
     });
     return kart;
+}
+
+function modelPaneliKartiOlustur(model) {
+    const kart = document.createElement('button');
+    const secili = model.id === durum.modelId;
+    kart.type = 'button';
+    kart.className = 'model-panel-kart' + (secili ? ' aktif' : '');
+    kart.setAttribute('aria-pressed', String(secili));
+    kart.innerHTML = `
+        <span class="model-panel-kart-gorsel">
+            <img src="${model.gorselUrl}" alt="${model.isim}" loading="lazy" decoding="async">
+            ${secili ? '<span class="model-panel-kart-secili">Seçili</span>' : ''}
+        </span>
+        <span class="model-panel-kart-ad">${model.kisaIsim || model.isim}</span>`;
+    kart.addEventListener('click', () => modeliSec(model));
+    return kart;
+}
+
+function modelPaneliniCiz() {
+    const izgara = document.getElementById('model-panel-izgara');
+    if (!izgara) return;
+    izgara.replaceChildren(...KAPAK_MODELLERI.map(modelPaneliKartiOlustur));
 }
 
 function modelGalerisiniCiz(arama) {
@@ -288,7 +305,8 @@ function modelGalerisiniKapat() {
 
 function modelSeciciyiKur() {
     modelSeciciMetniniGuncelle();
-    ['model-secici', 'model-katalog-ac', 'model-katalog-tumu'].forEach((id) => {
+    modelPaneliniCiz();
+    ['model-secici'].forEach((id) => {
         const tetikleyici = document.getElementById(id);
         tetikleyici?.addEventListener('click', () => modelGalerisiniAc(tetikleyici));
     });

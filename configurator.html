@@ -66,28 +66,18 @@
 </header>
 
 <main class="konfigurator">
-    <!-- Model seçimi ürünün kendisine ait ilk karar olduğu için masaüstünde
-         sahnenin solunda kalıcı bir kütüphane kartı olarak durur. -->
+    <!-- Kapak modelleri masaüstünde sahnenin solunda sürekli görünür. Böylece
+         kullanıcı görselleri karşılaştırırken 3B önizlemeyi kaybetmez. -->
     <aside class="model-paneli" aria-label="Model seçimi">
         <div class="model-paneli-basi">
-            <p class="ayar-no"><span>01</span> / MODEL</p>
+            <div>
+                <p class="ayar-no"><span>01</span> / MODEL</p>
+                <h2>Kapak modelleri</h2>
+            </div>
             <span class="model-sayisi" id="model-sayisi">4 model</span>
         </div>
-        <button type="button" id="model-katalog-ac" class="secili-model-karti" aria-haspopup="dialog" aria-controls="model-galerisi">
-            <span class="secili-model-gorsel-cerceve">
-                <img id="secili-model-gorsel" src="assets/model-fotograflari/3976.webp" alt="Seçili kapak modeli" class="secili-model-gorsel">
-                <span class="secili-model-etiket">Seçili</span>
-            </span>
-            <span class="secili-model-bilgi">
-                <strong id="secili-model-ad">HK_012_001</strong>
-                <small id="secili-model-aciklama">Modeli değiştirmek için açın</small>
-            </span>
-            <span class="secili-model-degistir">Modeli değiştir <span aria-hidden="true">→</span></span>
-        </button>
-        <button type="button" id="model-katalog-tumu" class="model-katalog-tumu">
-            <span>Tüm modelleri görüntüle</span>
-            <span aria-hidden="true">↗</span>
-        </button>
+        <p class="model-paneli-aciklama">Bir modeli seçerek 3B önizlemede inceleyin.</p>
+        <div id="model-panel-izgara" class="model-panel-izgara" role="group" aria-label="Kapak modeli seçenekleri"></div>
     </aside>
 
     <!-- ===== Sahne alanı ===== -->
