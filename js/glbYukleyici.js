@@ -32,11 +32,13 @@ function glbSablonunuYukle(url, icerikDonusuZ, eksenDuzeni = 'max-z-up') {
                 // rotateX(-90°) çağırmak gerekiyor (test edilip doğrulandı):
                 // sonuç olarak ön yüz normali dünya +Z'ye (kameraya), yükseklik
                 // ekseni dünya +Y'ye (dikey) oturuyor.
-                // Yeni exporter Y-up dönüşümünü GLB düğümüne zaten pişiriyor.
-                // Ona eski Max düzeltmesini tekrar uygulamak kapağı derinliği
-                // boyunca yatırır; bu nedenle yalnızca ön yüz yönü çevrilir.
-                kaynakSahne.rotateY(Math.PI);
-                if (eksenDuzeni !== 'y-up') kaynakSahne.rotateX(-Math.PI / 2);
+                // Yeni exporter Y-up dönüşümünü VE ön yüz yönünü GLB düğümüne
+                // zaten pişiriyor. Eski Max düzeltmesini uygulamak modelin
+                // arka yüzünü kameraya çevirir; bu dosyada dönüşüm yapılmaz.
+                if (eksenDuzeni !== 'y-up') {
+                    kaynakSahne.rotateY(Math.PI);
+                    kaynakSahne.rotateX(-Math.PI / 2);
+                }
 
                 // icerikDonusuZ: bazı modellerde kulp/desen gibi simetrik olmayan
                 // bir detay yanlış köşede çıkıyor (3ds Max'teki orijinal modelleme
