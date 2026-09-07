@@ -30,6 +30,9 @@ export const KAPAK_MODELLERI = [
         // Bu export zaten glTF'nin Y-up düzeninde. Eski 3ds Max export'larına
         // uygulanan ikinci X ekseni dönüşümü burada yüksekliği derinliğe çevirir.
         glbEksenDuzeni: 'y-up',
+        // GLB düğümünün içindeki X dönüşümü dikey ekseni ters çeviriyor.
+        // Ön yüzü koruyarak üst-alt yönünü düzeltmek için yüz düzleminde dön.
+        glbIcerikDonusu: Math.PI,
         kalinlikAyarlanabilir: false,
         varsayilan: { genislik: 450, yukseklik: 720, kalinlik: 18 },
         limitler: {
