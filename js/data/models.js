@@ -76,6 +76,26 @@ export const KAPAK_MODELLERI = [
     }
 ];
 
+// Kapak seçicisine karışmayan, yalnızca 3B sahne kontrolü için geçici içerikler.
+export const INCELEME_SAHNELERI = [
+    {
+        id: 'mutfak-inceleme',
+        isim: 'Mutfak Sahnesi',
+        kisaIsim: 'Mutfak inceleme',
+        aciklama: 'Yalnızca 3B inceleme için eklenen mutfak sahnesi.',
+        gorselUrl: 'assets/anasayfa/hero-mutfak-palet.png',
+        gltfUrl: 'assets/models/mutfak.glb',
+        incelemeModeli: true,
+        // Sahne zaten glTF Y-up düzeninde dışa aktarılmıştır.
+        glbEksenDuzeni: 'y-up',
+        sahneOlcegi: 0.12,
+        varsayilan: { genislik: 450, yukseklik: 720, kalinlik: 18 },
+        limitler: { genislik: { min: 300, max: 900 }, yukseklik: { min: 400, max: 1400 } }
+    }
+];
+
+const TUM_MODELLER = [...KAPAK_MODELLERI, ...INCELEME_SAHNELERI];
+
 export function idIleModelBul(id) {
-    return KAPAK_MODELLERI.find(m => m.id === id) || null;
+    return TUM_MODELLER.find(m => m.id === id) || null;
 }

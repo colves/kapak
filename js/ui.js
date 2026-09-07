@@ -41,7 +41,11 @@ function guncellemeyiUygula() {
     // Model dosyası yüklenemezse sahne boş kalır; kullanıcı nedenini
     // bilmediği bir boşluğa bakmasın diye durum kendisine bildiriliyor.
     const yuzey = idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey();
-    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey, model.glbEksenDuzeni))
+    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey, model.glbEksenDuzeni, {
+        olceklendir: !model.incelemeModeli,
+        sahneOlcegi: model.sahneOlcegi,
+        orijinalMalzemeler: model.incelemeModeli
+    }))
         .catch((hata) => {
             console.error('Model yüklenemedi:', model.gltfUrl, hata);
             bildir('Model yüklenemedi — bağlantınızı kontrol edip sayfayı yenileyin');
@@ -210,9 +214,12 @@ function modeliSec(model) {
     if (durum.modelId === model.id) return;
     durum.modelId = model.id;
     const secilen = idIleModelBul(model.id);
-    olculeriVarsayilanaSifirla(secilen);
-    kalinlikAlanininGorunurlugunuGuncelle(secilen);
-    olculeriModelLimitlerineSabitle(secilen);
+    if (!secilen.incelemeModeli) {
+        olculeriVarsayilanaSifirla(secilen);
+        kalinlikAlanininGorunurlugunuGuncelle(secilen);
+        olculeriModelLimitlerineSabitle(secilen);
+    }
+    document.getElementById('ayar-paneli')?.classList.toggle('inceleme-modu', Boolean(secilen.incelemeModeli));
     modelSeciciMetniniGuncelle();
     modelPaneliniCiz();
     // Her model, önceki modelin kullanıcı tarafından çevrilmiş kamerasını
@@ -310,6 +317,7 @@ function modelSeciciyiKur() {
         const tetikleyici = document.getElementById(id);
         tetikleyici?.addEventListener('click', () => modelGalerisiniAc(tetikleyici));
     });
+    document.getElementById('btn-mutfak-incele')?.addEventListener('click', () => modeliSec(idIleModelBul('mutfak-inceleme')));
     document.getElementById('model-galeri-kapat').addEventListener('click', modelGalerisiniKapat);
     document.getElementById('model-galeri-arama').addEventListener('input', (e) => modelGalerisiniCiz(e.target.value));
     const katman = document.getElementById('model-galerisi');
