@@ -14,3 +14,4 @@ graphify-out/*.sig
 .claude/
 .agents/
 skills-lock.json
+.codex-tmp/

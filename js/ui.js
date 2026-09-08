@@ -15,6 +15,7 @@ import {
 // olculeriVarsayilanaSifirla).
 const BASLANGIC_MODEL_ID = 'hk-012-001';
 const baslangicModel = idIleModelBul(BASLANGIC_MODEL_ID);
+const OLCU_AYARI_AKTIF = false;
 
 const durum = {
     modelId: BASLANGIC_MODEL_ID,
@@ -165,6 +166,12 @@ function urldenDurumuYukle() {
         yuzeyGecerliMi: (id) => Boolean(idIleYuzeyBul(id))
     });
     Object.assign(durum, cozulen);
+    if (!OLCU_AYARI_AKTIF) {
+        const model = idIleModelBul(durum.modelId) || baslangicModel;
+        durum.genislik = model.varsayilan.genislik;
+        durum.yukseklik = model.varsayilan.yukseklik;
+        durum.kalinlik = model.varsayilan.kalinlik;
+    }
 }
 
 function bildir(mesaj) {
@@ -210,7 +217,10 @@ function modelSeciciMetniniGuncelle() {
 }
 
 function modeliSec(model) {
-    if (durum.modelId === model.id) return;
+    if (durum.modelId === model.id) {
+        modelCekmecesiniKapat();
+        return;
+    }
     durum.modelId = model.id;
     const secilen = idIleModelBul(model.id);
     olculeriVarsayilanaSifirla(secilen);
@@ -268,6 +278,11 @@ function modelGaleriKartiOlustur(model) {
            </div>`;
 
     kart.innerHTML = `${gorselHtml}<span class="model-galeri-kart-ad">${model.isim}</span>`;
+    const gorsel = kart.querySelector('img');
+    gorsel?.addEventListener('error', () => {
+        gorsel.closest('.model-galeri-kart-gorsel-cerceve')?.classList.add('gorsel-yok');
+        gorsel.remove();
+    });
     kart.addEventListener('click', () => {
         modeliSec(model);
         modelGalerisiniKapat();
@@ -281,12 +296,16 @@ function modelPaneliKartiOlustur(model) {
     kart.type = 'button';
     kart.className = 'model-panel-kart' + (secili ? ' aktif' : '');
     kart.setAttribute('aria-pressed', String(secili));
+    const gorselIcerigi = model.gorselUrl
+        ? `<img src="${model.gorselUrl}" alt="${model.isim}" loading="lazy" decoding="async">`
+        : `<span class="model-panel-kart-yer-tutucu" aria-hidden="true"></span>`;
     kart.innerHTML = `
         <span class="model-panel-kart-gorsel">
-            <img src="${model.gorselUrl}" alt="${model.isim}" loading="lazy" decoding="async">
-            ${secili ? '<span class="model-panel-kart-secili">Seçili</span>' : ''}
+            ${gorselIcerigi}
         </span>
         <span class="model-panel-kart-ad">${model.kisaIsim || model.isim}</span>`;
+    const gorsel = kart.querySelector('img');
+    gorsel?.addEventListener('error', () => gorsel.remove());
     kart.addEventListener('click', () => modeliSec(model));
     return kart;
 }
@@ -565,6 +584,14 @@ function olcuKontrolleriniKur() {
     eslesmeler.forEach(([sliderId, girdiId, alan]) => {
         const slider = document.getElementById(sliderId);
         const girdi = document.getElementById(girdiId);
+        if (!OLCU_AYARI_AKTIF) {
+            slider.disabled = true;
+            girdi.disabled = true;
+            slider.setAttribute('aria-disabled', 'true');
+            girdi.setAttribute('aria-disabled', 'true');
+            kaydiriciDolgusunuGuncelle(slider);
+            return;
+        }
         slider.addEventListener('input', () => {
             durum[alan] = Number(slider.value);
             girdi.value = slider.value;
@@ -605,6 +632,11 @@ function lakeDokuSeciciyiKur() {
 function olculeriSifirlamaButonunuKur() {
     const btn = document.getElementById('btn-olculeri-sifirla');
     if (!btn) return;
+    if (!OLCU_AYARI_AKTIF) {
+        btn.disabled = true;
+        btn.setAttribute('aria-disabled', 'true');
+        return;
+    }
     btn.addEventListener('click', () => {
         const model = idIleModelBul(durum.modelId);
         olculeriVarsayilanaSifirla(model);

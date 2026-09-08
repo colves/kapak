@@ -25,7 +25,7 @@ function kapakModeli(id, kod) {
         kisaIsim: modelKodu,
         uretimKodu: kod,
         aciklama: '3ds Max\'ten aktarılan gerçek kapak modeli.',
-        gorselUrl: `assets/model-fotograflari/${kod}.jpeg`,
+        gorselUrl: `assets/model-fotograflari/${kod}.webp`,
         gltfUrl: `assets/models/${kod}.glb`,
         glbEksenDuzeni: 'y-up',
         kalinlikAyarlanabilir: false,
@@ -33,6 +33,26 @@ function kapakModeli(id, kod) {
         limitler: {
             genislik: { ...GENEL_LIMITLER.genislik },
             yukseklik: { ...GENEL_LIMITLER.yukseklik }
+        }
+    };
+}
+
+function ozelModel(id, isim, dosya, varsayilan = GENEL_VARSAYILAN, gorselUrl = null, glbIcerikDonusu = 0) {
+    return {
+        id,
+        isim,
+        kisaIsim: isim,
+        uretimKodu: isim,
+        aciklama: '3ds Max kaynak dosyasından aktarılan kapak modeli.',
+        gorselUrl,
+        gltfUrl: `assets/models/${dosya}.glb`,
+        glbIcerikDonusu,
+        glbEksenDuzeni: 'y-up',
+        kalinlikAyarlanabilir: false,
+        varsayilan: { ...varsayilan },
+        limitler: {
+            genislik: { min: Math.max(200, Math.round(varsayilan.genislik * 0.6)), max: Math.round(varsayilan.genislik * 1.4) },
+            yukseklik: { min: Math.max(300, Math.round(varsayilan.yukseklik * 0.6)), max: Math.round(varsayilan.yukseklik * 1.4) }
         }
     };
 }
@@ -82,10 +102,9 @@ export const KAPAK_MODELLERI = [
         kisaIsim: 'M051',
         uretimKodu: 'HK_051_002',
         aciklama: '3ds Max\'ten aktarılan gerçek kapak modeli.',
-        gorselUrl: 'assets/model-fotograflari/4021.webp',
+        gorselUrl: 'assets/model-fotograflari/HK_051_002.webp',
         gltfUrl: 'assets/models/HK_051_002.glb',
         glbEksenDuzeni: 'y-up',
-        glbIcerikDonusu: Math.PI,
         kalinlikAyarlanabilir: false,
         varsayilan: { genislik: 450, yukseklik: 720, kalinlik: 18 },
         limitler: {
@@ -115,7 +134,19 @@ export const KAPAK_MODELLERI = [
     kapakModeli('hk-059-001', 'HK_059_001'),
     kapakModeli('hk-080-001', 'HK_080_001'),
     kapakModeli('hk-081-001', 'HK_081_001'),
-    kapakModeli('hk-082-001', 'HK_082_001')
+    kapakModeli('hk-082-001', 'HK_082_001'),
+    ozelModel('acili-kapak', 'açılı kapak', 'acili-kapak'),
+    ozelModel('alttan-kulplu', 'alttankulplu', 'alttankulplu', GENEL_VARSAYILAN, null, Math.PI),
+    ozelModel('camli-1', 'camlı1', 'camli1', GENEL_VARSAYILAN, 'assets/model-fotograflari/camli1.webp'),
+    ozelModel('camli-2', 'camlı2', 'camli2', GENEL_VARSAYILAN, 'assets/model-fotograflari/camli2.webp'),
+    ozelModel('camli-3', 'camlı3', 'camli3', GENEL_VARSAYILAN, 'assets/model-fotograflari/camli3.webp'),
+    ozelModel('camli-4', 'camlı4', 'camli4', GENEL_VARSAYILAN, 'assets/model-fotograflari/camli4.webp'),
+    ozelModel('ek-kapak', 'ekkapak', 'ekkapak', { genislik: 446, yukseklik: 711, kalinlik: 20 }, 'assets/model-fotograflari/ekkapak.webp'),
+    ozelModel('gardrop-1', 'gardrop 1', 'gardrop-1', { genislik: 1200, yukseklik: 2200, kalinlik: 20 }),
+    ozelModel('gardrop-2', 'gardrop 2', 'gardrop-2', { genislik: 1204, yukseklik: 2200, kalinlik: 20 }),
+    ozelModel('gardrop-3', 'gardrop 3', 'gardrop-3', { genislik: 1210, yukseklik: 1800, kalinlik: 20 }),
+    ozelModel('gardrop-4', 'gardrop 4', 'gardrop-4', { genislik: 1206, yukseklik: 1800, kalinlik: 20 }),
+    ozelModel('yandan-kulplu', 'yandankulplu', 'yandankulplu', GENEL_VARSAYILAN, 'assets/model-fotograflari/yankulplu.webp')
 ].sort((a, b) => a.isim.localeCompare(b.isim, 'tr', { numeric: true }));
 
 export function idIleModelBul(id) {

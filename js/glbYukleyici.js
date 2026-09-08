@@ -14,6 +14,36 @@ const yukleyici = new GLTFLoader();
 // anahtar: `url|icerikDonusu|eksen` -> Promise<şablon>
 const onbellek = new Map();
 
+function onYuzUvleriniOlustur(geometri) {
+    const konum = geometri.attributes.position;
+    if (!konum) return;
+    geometri.computeBoundingBox();
+    const kutu = geometri.boundingBox;
+    const genislik = Math.max(kutu.max.x - kutu.min.x, 1);
+    const yukseklik = Math.max(kutu.max.y - kutu.min.y, 1);
+    const uv = new Float32Array(konum.count * 2);
+    for (let i = 0; i < konum.count; i += 1) {
+        uv[i * 2] = (konum.getX(i) - kutu.min.x) / genislik;
+        uv[i * 2 + 1] = (konum.getY(i) - kutu.min.y) / yukseklik;
+    }
+    geometri.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+}
+
+function aynalanmisYuzleriDuzelt(geometri, matris) {
+    // İki kanatlı gardırop modellerinde ikinci kapak negatif X ölçeğiyle
+    // aynalanmış. Dönüşüm geometriye pişirilince üçgenlerin sarım yönü ters
+    // kalır; ön yüz yerine arka yüz ışık aldığı için kanatlardan biri farklı
+    // malzemeymiş gibi görünür. İndeks sırasını ters çevirerek bunu düzelt.
+    if (matris.determinant() >= 0 || !geometri.index) return;
+    const indeks = geometri.index;
+    for (let i = 0; i < indeks.count; i += 3) {
+        const ikinci = indeks.getX(i + 1);
+        indeks.setX(i + 1, indeks.getX(i + 2));
+        indeks.setX(i + 2, ikinci);
+    }
+    indeks.needsUpdate = true;
+}
+
 function glbSablonunuYukle(url, icerikDonusuZ, eksenDuzeni = 'max-z-up') {
     const anahtar = `${url}|${icerikDonusuZ || 0}|${eksenDuzeni}`;
     if (onbellek.has(anahtar)) return onbellek.get(anahtar);
@@ -76,13 +106,24 @@ function glbSablonunuYukle(url, icerikDonusuZ, eksenDuzeni = 'max-z-up') {
                 disKap.traverse((n) => {
                     if (!n.isMesh) return;
                     const geometri = n.geometry.clone();
-                    geometri.applyMatrix4(new THREE.Matrix4().multiplyMatrices(pisir, n.matrixWorld));
+                    const dunyaMatrisi = new THREE.Matrix4().multiplyMatrices(pisir, n.matrixWorld);
+                    geometri.applyMatrix4(dunyaMatrisi);
+                    aynalanmisYuzleriDuzelt(geometri, dunyaMatrisi);
+                    // FBX/GLB kapakların çoğunda UV yok. Lake bump dokusu renk
+                    // gibi görünür olabilsin diye ön yüz düzleminden, modelden
+                    // bağımsız ve tutarlı UV üretiyoruz.
+                    onYuzUvleriniOlustur(geometri);
                     const p = geometri.attributes.position;
                     for (let i = 0; i < p.count; i++) {
                         xler.push(p.getX(i));
                         yler.push(p.getY(i));
                     }
                     const mesh = new THREE.Mesh(geometri, n.material);
+                    const malzemeler = Array.isArray(n.material) ? n.material : [n.material];
+                    mesh.userData.orijinalMalzemeAdi = malzemeler
+                        .map((malzeme) => malzeme?.name || '')
+                        .join(' ')
+                        .toLocaleLowerCase('tr');
                     // Şablonun geometrisi PAYLAŞILIR: her model seçiminde yeniden
                     // yüklenmesin diye önbellekte duruyor, dispose edilmemeli.
                     mesh.userData.paylasilanGeometri = true;

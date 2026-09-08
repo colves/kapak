@@ -5,19 +5,48 @@ let lakeNoiseDokusu = null;
 function lakeNoiseDokusuOlustur() {
     if (lakeNoiseDokusu) return lakeNoiseDokusu;
 
-    const boyut = 128;
-    const veri = new Uint8Array(boyut * boyut);
+    const boyut = 64;
+    const veri = new Uint8Array(boyut * boyut * 4);
     let tohum = 0x51a7e;
-    for (let i = 0; i < veri.length; i += 1) {
-        // Sabit tohum sayesinde her açılışta aynı, çok ince lake portakallanması.
+    for (let i = 0; i < boyut * boyut; i += 1) {
         tohum = (tohum * 1664525 + 1013904223) >>> 0;
-        veri[i] = 88 + ((tohum >>> 24) % 80);
+        const ton = 132 + ((tohum >>> 24) % 124);
+        veri[i * 4] = ton;
+        veri[i * 4 + 1] = ton;
+        veri[i * 4 + 2] = ton;
+        veri[i * 4 + 3] = 255;
     }
 
-    lakeNoiseDokusu = new THREE.DataTexture(veri, boyut, boyut, THREE.RedFormat);
+    // Tek-piksellik rastgelelik uzaktan bakıldığında ortalamaya karışıp yok
+    // oluyordu. İki yumuşatma turu Corona Noise'a daha yakın, kümeli bir
+    // portakal kabuğu yüzeyi üretir.
+    for (let tur = 0; tur < 2; tur += 1) {
+        const onceki = veri.slice();
+        for (let y = 0; y < boyut; y += 1) {
+            for (let x = 0; x < boyut; x += 1) {
+                let toplam = 0;
+                for (let dy = -1; dy <= 1; dy += 1) {
+                    for (let dx = -1; dx <= 1; dx += 1) {
+                        const px = (x + dx + boyut) % boyut;
+                        const py = (y + dy + boyut) % boyut;
+                        toplam += onceki[(py * boyut + px) * 4];
+                    }
+                }
+                const ton = Math.round(toplam / 9);
+                const i = (y * boyut + x) * 4;
+                veri[i] = ton;
+                veri[i + 1] = ton;
+                veri[i + 2] = ton;
+            }
+        }
+    }
+
+    lakeNoiseDokusu = new THREE.DataTexture(veri, boyut, boyut, THREE.RGBAFormat);
     lakeNoiseDokusu.wrapS = THREE.RepeatWrapping;
     lakeNoiseDokusu.wrapT = THREE.RepeatWrapping;
-    lakeNoiseDokusu.repeat.set(42, 68);
+    lakeNoiseDokusu.repeat.set(5, 8);
+    lakeNoiseDokusu.minFilter = THREE.LinearMipmapLinearFilter;
+    lakeNoiseDokusu.magFilter = THREE.LinearFilter;
     lakeNoiseDokusu.colorSpace = THREE.NoColorSpace;
     lakeNoiseDokusu.needsUpdate = true;
     return lakeNoiseDokusu;
@@ -47,19 +76,42 @@ export function renkVerisindenMalzemeOlustur(renk, yuzey, dokuAktif = false) {
 
     if (dokuAktif) {
         ayarlar.bumpMap = lakeNoiseDokusuOlustur();
-        ayarlar.bumpScale = 0.15;
+        ayarlar.bumpScale = 1.1;
+        ayarlar.roughnessMap = lakeNoiseDokusuOlustur();
+        ayarlar.roughness = Math.min(0.72, ayarlar.roughness * 1.18);
     }
 
     return new THREE.MeshPhysicalMaterial(ayarlar);
 }
 
+function camMalzemesiOlustur() {
+    return new THREE.MeshPhysicalMaterial({
+        color: 0xdfe7e5,
+        roughness: 0.16,
+        metalness: 0,
+        transmission: 0.9,
+        thickness: 6,
+        ior: 1.52,
+        transparent: true,
+        opacity: 0.42,
+        clearcoat: 0.35,
+        clearcoatRoughness: 0.08,
+        side: THREE.DoubleSide
+    });
+}
+
 // Gruptaki tüm mesh'lere aynı malzemeyi uygular. .glb modelleri iç içe
 // gruplardan oluşabildiği için özyinelemeli.
-export function malzemeUygula(nesne, malzeme) {
+export function malzemeUygula(nesne, malzeme, camMalzemesi = null) {
     if (nesne.isMesh) {
-        nesne.material = malzeme;
+        const camMi = /cam|glass|clear/.test(nesne.userData?.orijinalMalzemeAdi || '');
+        nesne.material = camMi ? (camMalzemesi || camMalzemesiOlustur()) : malzeme;
+        if (camMi) camMalzemesi = nesne.material;
     }
     if (nesne.children) {
-        nesne.children.forEach((c) => malzemeUygula(c, malzeme));
+        nesne.children.forEach((c) => {
+            camMalzemesi = malzemeUygula(c, malzeme, camMalzemesi);
+        });
     }
+    return camMalzemesi;
 }

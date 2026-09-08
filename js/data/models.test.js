@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { KAPAK_MODELLERI, idIleModelBul } from './models.js';
 
-assert.strictEqual(KAPAK_MODELLERI.length, 62, 'Yeni 62 kapak modelinin tamamı bekleniyor');
+assert.strictEqual(KAPAK_MODELLERI.length, 74, '62 katalog ve 12 ek modelin tamamı bekleniyor');
 
 const hk012 = idIleModelBul('hk-012-001');
 const hk051 = idIleModelBul('hk-051-002');
@@ -27,27 +27,34 @@ assert.strictEqual(idIleModelBul('olmayan'), null);
 // Model fotoğrafı eşleşmeleri dosya numarasına dayanır. Yanlış numara veya
 // eksik web çıktısı, her iki model galerisinde de kırık/yanlış kapak gösterir.
 const beklenenGorseller = new Map([
-    ['hk-012-001', 'assets/model-fotograflari/HK_012_001.jpeg'],
-    ['hk-051-002', 'assets/model-fotograflari/4021.webp'],
-    ['kapak-3970', 'assets/model-fotograflari/HK_006_001.jpeg']
+    ['hk-012-001', 'assets/model-fotograflari/HK_012_001.webp'],
+    ['hk-051-002', 'assets/model-fotograflari/HK_051_002.webp'],
+    ['kapak-3970', 'assets/model-fotograflari/HK_006_001.webp']
 ]);
 
 for (const model of KAPAK_MODELLERI) {
-    const beklenen = beklenenGorseller.get(model.id) || `assets/model-fotograflari/${model.uretimKodu}.jpeg`;
-    assert.strictEqual(model.gorselUrl, beklenen, `${model.id}: yanlış model fotoğrafı eşlemesi`);
-    assert.ok(existsSync(new URL(`../../${model.gorselUrl}`, import.meta.url)), `${model.id}: model fotoğrafı dosyası bulunamadı`);
+    const beklenen = beklenenGorseller.get(model.id);
+    if (beklenen) assert.strictEqual(model.gorselUrl, beklenen, `${model.id}: yanlış model fotoğrafı eşlemesi`);
+    if (model.gorselUrl) assert.ok(existsSync(new URL(`../../${model.gorselUrl}`, import.meta.url)), `${model.id}: model fotoğrafı dosyası bulunamadı`);
+    assert.ok(existsSync(new URL(`../../${model.gltfUrl}`, import.meta.url)), `${model.id}: GLB dosyası bulunamadı`);
 }
 
 const siraliModelKodlari = KAPAK_MODELLERI.map(model => model.isim);
 const beklenenSiralama = [...siraliModelKodlari].sort((a, b) => a.localeCompare(b, 'tr', { numeric: true }));
 assert.deepStrictEqual(siraliModelKodlari, beklenenSiralama, 'Model kodları küçükten büyüğe sıralı olmalı');
-assert.strictEqual(new Set(siraliModelKodlari).size, KAPAK_MODELLERI.length, 'Model kodları benzersiz olmalı');
-assert.ok(siraliModelKodlari.every(kod => /^M\d{3}(?:-\d{2})?$/.test(kod)), 'Tüm görünen adlar M kodu olmalı');
+assert.strictEqual(new Set(siraliModelKodlari).size, KAPAK_MODELLERI.length, 'Model adları benzersiz olmalı');
+const katalogKodlari = KAPAK_MODELLERI.filter(model => /^HK_/.test(model.uretimKodu)).map(model => model.isim);
+assert.strictEqual(katalogKodlari.length, 62, 'Katalogdaki 62 model korunmalı');
+assert.ok(katalogKodlari.every(kod => /^M\d{3}(?:-\d{2})?$/.test(kod)), 'Katalog modelleri M koduyla görünmeli');
 assert.deepStrictEqual(
     siraliModelKodlari.filter(kod => kod.startsWith('M068')),
     ['M068-02', 'M068-04'],
     'M068 varyantları dosyadaki ikinci sütuna göre adlandırılmalı'
 );
+
+assert.deepStrictEqual(idIleModelBul('gardrop-2').varsayilan, { genislik: 1204, yukseklik: 2200, kalinlik: 20 });
+assert.deepStrictEqual(idIleModelBul('gardrop-1').varsayilan, { genislik: 1200, yukseklik: 2200, kalinlik: 20 });
+assert.strictEqual(idIleModelBul('alttan-kulplu').glbIcerikDonusu, Math.PI, 'Alttan kulplu modelin kulbu üstte olmalı');
 
 // Her modelin gltfUrl'i benzersiz olmalı (birbirine karışmamalı).
 const urlSeti = new Set(KAPAK_MODELLERI.map(m => m.gltfUrl));

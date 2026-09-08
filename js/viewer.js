@@ -7,7 +7,7 @@ import { glbKapakGrubuOlustur } from './glbYukleyici.js';
 
 let sahne, kamera, isleyici, kontroller, pmremUretici;
 let kapakGrubu = null;
-let mevcutMalzeme = null;
+let mevcutMalzemeler = [];
 let renderGerekli = true;
 let konteyner = null;
 let dolduruculIsik, yonluIsik;
@@ -17,6 +17,8 @@ let dolduruculIsik, yonluIsik;
 // çerçevede kaybolmasın). goruntuyuSifirla() de bu değere döner — yoksa sıfırla
 // tuşu hero'yu konfigüratörün çerçevesine atardı.
 let baslangicKameraMesafesi = 1600;
+let otomatikKameraCercevesi = true;
+let sonCercevelenenModelUrl = null;
 
 export function sahneyiBaslat(konteynerId, { kameraMesafesi, yakinlastirma = true } = {}) {
     konteyner = document.getElementById(konteynerId);
@@ -32,6 +34,7 @@ export function sahneyiBaslat(konteynerId, { kameraMesafesi, yakinlastirma = tru
     kamera = new THREE.PerspectiveCamera(40, genislik / yukseklik, 1, 10000);
     if (Number.isFinite(kameraMesafesi) && kameraMesafesi > 0) {
         baslangicKameraMesafesi = kameraMesafesi;
+        otomatikKameraCercevesi = false;
     }
     kamera.position.set(0, 0, baslangicKameraMesafesi);
 
@@ -198,13 +201,12 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey, dokuAktif)
         sahne.remove(kapakGrubu);
         kapakGeometrisiTemizle(kapakGrubu);
     }
-    if (mevcutMalzeme) {
-        mevcutMalzeme.dispose();
-    }
+    mevcutMalzemeler.forEach((malzeme) => malzeme.dispose());
 
     kapakGrubu = yeniGrup;
-    mevcutMalzeme = renkVerisindenMalzemeOlustur(renkVerisi, yuzey, dokuAktif);
-    malzemeUygula(kapakGrubu, mevcutMalzeme);
+    const lakeMalzemesi = renkVerisindenMalzemeOlustur(renkVerisi, yuzey, dokuAktif);
+    const camMalzemesi = malzemeUygula(kapakGrubu, lakeMalzemesi);
+    mevcutMalzemeler = camMalzemesi ? [lakeMalzemesi, camMalzemesi] : [lakeMalzemesi];
 
     sahne.add(kapakGrubu);
     renderIste();
@@ -214,6 +216,17 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey, dokuAktif)
 // yerine o dosya asenkron olarak yüklenip kullanılır.
 export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu, kenarPayi, yuzey, kalinlikMM = 18, eksenDuzeni = 'max-z-up', dokuAktif = false) {
     const buIstek = ++istekSirasi;
+
+    if (otomatikKameraCercevesi && glbUrl !== sonCercevelenenModelUrl && kamera && kontroller) {
+        const dikeyFov = THREE.MathUtils.degToRad(kamera.fov);
+        const yatayFov = 2 * Math.atan(Math.tan(dikeyFov / 2) * kamera.aspect);
+        const dikeyMesafe = (yukseklikMM / 2) / Math.tan(dikeyFov / 2);
+        const yatayMesafe = (genislikMM / 2) / Math.tan(yatayFov / 2);
+        baslangicKameraMesafesi = Math.max(700, dikeyMesafe, yatayMesafe) * 1.22;
+        kontroller.maxDistance = Math.max(2600, baslangicKameraMesafesi * 2);
+        sonCercevelenenModelUrl = glbUrl;
+        goruntuyuSifirla();
+    }
 
     // Her modelin bir .glb dosyası var (üretim yalnızca bu modellerden yapılıyor).
     // Eskiden burada, dosyası olmayan modeller için prosedürel bir kapak üreten

@@ -467,12 +467,11 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 780px) {
-    /* Konfigüratörün mobil üst barıyla eşit (bkz. base.css --ustbar-h):
-       14px dolgu + 42px logo + 14px dolgu = 70px. */
-    :root { --bar-y: 70px; }
-    .ust { padding: 14px 18px; }
+    :root { --bar-y: 72px; }
+    .ust { padding: 10px 14px; }
     .marka { padding-left: 0; }
-    .marka img { max-height: 42px; }
+    .marka img { max-height: 52px; max-width: 166px; }
+    .ust-araclar { gap: 7px; padding-right: 0; margin-left: auto; }
     /* Menü mobilde bara sığmıyor: düğmeyle açılan dikey bir panele iniyor. */
     .menu {
         position: absolute;
@@ -481,17 +480,19 @@ img { display: block; max-width: 100%; }
         flex-direction: column;
         gap: 0;
         padding: 8px 18px 18px;
-        background: rgba(249, 248, 245, 0.97);
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--cizgi);
+        background: rgba(247, 243, 236, 0.58);
+        backdrop-filter: blur(10px) saturate(110%);
+        -webkit-backdrop-filter: blur(10px) saturate(110%);
+        border-bottom: 1px solid rgba(37, 35, 33, 0.16);
         color: var(--lacivert);
     }
     .menu.acik { display: flex; }
-    .menu a { padding: 13px 0; border-bottom: 1px solid var(--cizgi); font-size: 16px; }
+    .menu a { padding: 13px 0; border-bottom: 1px solid rgba(37, 35, 33, 0.16); font-size: 16px; font-weight: 600; opacity: 0.96; }
     .menu a:last-child { border-bottom: 0; }
-    .menu-dugmesi { display: inline-flex; }
-    .konfig-link { display: none; }
+    .menu-dugmesi { display: inline-flex; width: 42px; height: 42px; font-size: 24px; flex-shrink: 0; cursor: pointer; }
+    .konfig-link { display: inline-flex; width: auto; min-height: 40px; padding: 7px 10px; font-size: 11px; line-height: 14px; white-space: nowrap; }
     .hero { min-height: 620px; }
+    .hero-gorsel { background-position: center center; }
     .hero-icerik { padding: 0 20px 56px; }
     .bolum { padding-left: 20px; padding-right: 20px; }
     .kaydir-ipucu { display: none; }

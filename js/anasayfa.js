@@ -15,6 +15,7 @@ import { ustBariKur } from './ustBar.js';
 // bir 3B alan olduğu için bu bir sorun değil.
 import { sahneyiBaslat, kapagiGuncelle, ortamiDegistir } from './viewer.js';
 import { varsayilanOrtami } from './data/ortamlar.js';
+import { varsayilanYuzey } from './data/yuzeyler.js';
 
 /* ---------------- Yardımcılar ---------------- */
 
@@ -56,6 +57,7 @@ function ornekKapagiKur() {
             model.gltfUrl,
             model.glbIcerikDonusu,
             model.kenarPayi,
+            varsayilanYuzey(),
             model.varsayilan.kalinlik,
             model.glbEksenDuzeni
         ))
