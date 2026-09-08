@@ -25,6 +25,9 @@ const durum = {
     // Yüzey bitişi renkten AYRI bir karar: aynı ton mat ve parlakta bambaşka
     // görünüyor.
     yuzeyId: varsayilanYuzey().id,
+    // Corona'daki ince Noise bump dokusu karşılaştırma amacıyla isteğe bağlı.
+    // Varsayılan kapalı: mevcut görünüm aynen korunur.
+    dokuAktif: false,
     ortamId: null,
     // Sahne zemini de paylaşılan durumun parçası: seçim yenilemede kaybolmasın
     // ve gönderilen link kapağı aynı zeminde açsın.
@@ -41,7 +44,7 @@ function guncellemeyiUygula() {
     // Model dosyası yüklenemezse sahne boş kalır; kullanıcı nedenini
     // bilmediği bir boşluğa bakmasın diye durum kendisine bildiriliyor.
     const yuzey = idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey();
-    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey, durum.kalinlik, model.glbEksenDuzeni))
+    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey, durum.kalinlik, model.glbEksenDuzeni, durum.dokuAktif))
         .catch((hata) => {
             console.error('Model yüklenemedi:', model.gltfUrl, hata);
             bildir('Model yüklenemedi — bağlantınızı kontrol edip sayfayı yenileyin');
@@ -299,7 +302,10 @@ function modelGalerisiniCiz(arama) {
     izgara.innerHTML = '';
     const s = (arama || '').trim().toLocaleLowerCase('tr');
     const sonuclar = s
-        ? KAPAK_MODELLERI.filter(m => m.isim.toLocaleLowerCase('tr').includes(s) || (m.kisaIsim || '').toLocaleLowerCase('tr').includes(s))
+        ? KAPAK_MODELLERI.filter(m =>
+            m.isim.toLocaleLowerCase('tr').includes(s)
+            || (m.kisaIsim || '').toLocaleLowerCase('tr').includes(s)
+            || (m.uretimKodu || '').toLocaleLowerCase('tr').includes(s))
         : KAPAK_MODELLERI;
 
     if (sonuclar.length === 0) {
@@ -577,6 +583,22 @@ function olcuKontrolleriniKur() {
             goruntuGuncellemesiPlanla();
         });
         kaydiriciDolgusunuGuncelle(slider);
+    });
+}
+
+function lakeDokuSeciciyiKur() {
+    document.querySelectorAll('.lake-doku-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const aktif = btn.dataset.doku === 'dokulu';
+            if (durum.dokuAktif === aktif) return;
+            durum.dokuAktif = aktif;
+            document.querySelectorAll('.lake-doku-btn').forEach((secenek) => {
+                const secili = secenek.dataset.doku === (aktif ? 'dokulu' : 'duz');
+                secenek.classList.toggle('aktif', secili);
+                secenek.setAttribute('aria-pressed', String(secili));
+            });
+            goruntuGuncellemesiPlanla();
+        });
     });
 }
 
@@ -1040,6 +1062,7 @@ export function arayuzuBaslat() {
     modelSeciciyiKur();
     renkListesiniCiz();
     yuzeySeciciyiKur();
+    lakeDokuSeciciyiKur();
     olcuKontrolleriniKur();
     olculeriSifirlamaButonunuKur();
     ayarPaneliniKur();

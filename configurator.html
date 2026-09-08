@@ -21,7 +21,7 @@
      hiçbir yerde kullanılmıyordu. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tema.css">
-<link rel="stylesheet" href="css/base.css?v=20260907-4">
+<link rel="stylesheet" href="css/base.css?v=20260908-1">
 <script type="importmap">
 {
     "imports": {
@@ -226,6 +226,13 @@
                 <!-- Aynı RAL tonu mat ve parlakta bambaşka görünür; bu yüzden
                      renkten AYRI bir karar olarak duruyor. js/ui.js dolduruyor. -->
                 <div id="yuzey-secenekleri" class="yuzey-secenekleri" role="group" aria-label="Yüzey parlaklığı"></div>
+                <div class="lake-doku-karsilastirma">
+                    <span class="lake-doku-baslik">Lake dokusu</span>
+                    <div class="lake-doku-secenekleri" role="group" aria-label="Lake dokusu karşılaştırması">
+                        <button type="button" class="lake-doku-btn aktif" data-doku="duz" aria-pressed="true">Mevcut</button>
+                        <button type="button" class="lake-doku-btn" data-doku="dokulu" aria-pressed="false">Yeni · Dokulu</button>
+                    </div>
+                </div>
             </section>
 
             <section class="ayar-bolum">

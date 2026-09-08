@@ -10,9 +10,12 @@ const m3970 = idIleModelBul('kapak-3970');
 assert.ok(hk012, "'hk-012-001' modeli bulunamadı");
 assert.ok(hk051, "'hk-051-002' modeli bulunamadı");
 assert.ok(m3970, "'kapak-3970' modeli bulunamadı");
-assert.strictEqual(hk012.isim, 'HK_012_001');
-assert.strictEqual(hk051.isim, 'HK_051_002');
-assert.strictEqual(m3970.isim, 'HK_006_001');
+assert.strictEqual(hk012.isim, 'M012');
+assert.strictEqual(hk051.isim, 'M051');
+assert.strictEqual(m3970.isim, 'M006');
+assert.strictEqual(hk012.uretimKodu, 'HK_012_001');
+assert.strictEqual(hk051.uretimKodu, 'HK_051_002');
+assert.strictEqual(m3970.uretimKodu, 'HK_006_001');
 assert.strictEqual(hk012.kalinlikAyarlanabilir, false);
 assert.strictEqual(hk051.kalinlikAyarlanabilir, false);
 assert.strictEqual(m3970.kalinlikAyarlanabilir, false);
@@ -30,10 +33,21 @@ const beklenenGorseller = new Map([
 ]);
 
 for (const model of KAPAK_MODELLERI) {
-    const beklenen = beklenenGorseller.get(model.id) || `assets/model-fotograflari/${model.isim}.jpeg`;
+    const beklenen = beklenenGorseller.get(model.id) || `assets/model-fotograflari/${model.uretimKodu}.jpeg`;
     assert.strictEqual(model.gorselUrl, beklenen, `${model.id}: yanlış model fotoğrafı eşlemesi`);
     assert.ok(existsSync(new URL(`../../${model.gorselUrl}`, import.meta.url)), `${model.id}: model fotoğrafı dosyası bulunamadı`);
 }
+
+const siraliModelKodlari = KAPAK_MODELLERI.map(model => model.isim);
+const beklenenSiralama = [...siraliModelKodlari].sort((a, b) => a.localeCompare(b, 'tr', { numeric: true }));
+assert.deepStrictEqual(siraliModelKodlari, beklenenSiralama, 'Model kodları küçükten büyüğe sıralı olmalı');
+assert.strictEqual(new Set(siraliModelKodlari).size, KAPAK_MODELLERI.length, 'Model kodları benzersiz olmalı');
+assert.ok(siraliModelKodlari.every(kod => /^M\d{3}(?:-\d{2})?$/.test(kod)), 'Tüm görünen adlar M kodu olmalı');
+assert.deepStrictEqual(
+    siraliModelKodlari.filter(kod => kod.startsWith('M068')),
+    ['M068-02', 'M068-04'],
+    'M068 varyantları dosyadaki ikinci sütuna göre adlandırılmalı'
+);
 
 // Her modelin gltfUrl'i benzersiz olmalı (birbirine karışmamalı).
 const urlSeti = new Set(KAPAK_MODELLERI.map(m => m.gltfUrl));

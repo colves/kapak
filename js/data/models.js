@@ -5,11 +5,25 @@ const GENEL_LIMITLER = {
 
 const GENEL_VARSAYILAN = { genislik: 450, yukseklik: 720, kalinlik: 18 };
 
+const VARYANTLI_URETIM_KODLARI = new Set(['HK_068_002', 'HK_068_004']);
+
+function mKodunuBul(uretimKodu) {
+    const eslesme = /^HK_(\d{3})_(\d{3})$/.exec(uretimKodu);
+    if (!eslesme) throw new Error(`Geçersiz HK üretim kodu: ${uretimKodu}`);
+
+    const [, anaKod, varyant] = eslesme;
+    return VARYANTLI_URETIM_KODLARI.has(uretimKodu)
+        ? `M${anaKod}-${varyant.slice(-2)}`
+        : `M${anaKod}`;
+}
+
 function kapakModeli(id, kod) {
+    const modelKodu = mKodunuBul(kod);
     return {
         id,
-        isim: kod,
-        kisaIsim: kod,
+        isim: modelKodu,
+        kisaIsim: modelKodu,
+        uretimKodu: kod,
         aciklama: '3ds Max\'ten aktarılan gerçek kapak modeli.',
         gorselUrl: `assets/model-fotograflari/${kod}.jpeg`,
         gltfUrl: `assets/models/${kod}.glb`,
@@ -64,8 +78,9 @@ export const KAPAK_MODELLERI = [
     kapakModeli('hk-074-001', 'HK_074_001'),
     {
         id: 'hk-051-002',
-        isim: 'HK_051_002',
-        kisaIsim: 'HK_051_002',
+        isim: 'M051',
+        kisaIsim: 'M051',
+        uretimKodu: 'HK_051_002',
         aciklama: '3ds Max\'ten aktarılan gerçek kapak modeli.',
         gorselUrl: 'assets/model-fotograflari/4021.webp',
         gltfUrl: 'assets/models/HK_051_002.glb',
@@ -101,7 +116,7 @@ export const KAPAK_MODELLERI = [
     kapakModeli('hk-080-001', 'HK_080_001'),
     kapakModeli('hk-081-001', 'HK_081_001'),
     kapakModeli('hk-082-001', 'HK_082_001')
-];
+].sort((a, b) => a.isim.localeCompare(b.isim, 'tr', { numeric: true }));
 
 export function idIleModelBul(id) {
     return KAPAK_MODELLERI.find(m => m.id === id) || null;
