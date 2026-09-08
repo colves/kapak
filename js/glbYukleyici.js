@@ -11,11 +11,11 @@ import { kenarBandiOlc, bandiElleAyarla, eksenEslemesiKur } from './kenarOlcekle
 const METRE_MM = 1000;
 
 const yukleyici = new GLTFLoader();
-// anahtar: `url|icerikDonusu` -> Promise<şablon>
+// anahtar: `url|icerikDonusu|eksen` -> Promise<şablon>
 const onbellek = new Map();
 
-function glbSablonunuYukle(url, icerikDonusuZ) {
-    const anahtar = `${url}|${icerikDonusuZ || 0}`;
+function glbSablonunuYukle(url, icerikDonusuZ, eksenDuzeni = 'max-z-up') {
+    const anahtar = `${url}|${icerikDonusuZ || 0}|${eksenDuzeni}`;
     if (onbellek.has(anahtar)) return onbellek.get(anahtar);
 
     const soz = new Promise((resolve, reject) => {
@@ -24,6 +24,11 @@ function glbSablonunuYukle(url, icerikDonusuZ) {
             (gltf) => {
                 const kaynakSahne = gltf.scene;
 
+                // Eski Max dışa aktarımları Z-yukarı çalışır ve ön yüzü
+                // (Front görünümü) +Y'ye bakar. Yeni GLB dışa aktarımları ise
+                // glTF'in standart Y-yukarı düzeninde zaten hazır gelir.
+                // Yeni düzeni eski dönüşümden geçirmek yüksekliği derinliğe
+                // çevirir; bu yüzden eksen bilgisi model kaydından gelir.
                 // 3ds Max Z-yukarı çalışır ve ön yüzü (Front görünümü) +Y'ye
                 // bakar; bu exporter sahneyi glTF'in Y-yukarı eksenine
                 // çevirmeden aktarmış. THREE.Object3D.rotateX/Y yerel eksende
@@ -32,8 +37,10 @@ function glbSablonunuYukle(url, icerikDonusuZ) {
                 // rotateX(-90°) çağırmak gerekiyor (test edilip doğrulandı):
                 // sonuç olarak ön yüz normali dünya +Z'ye (kameraya), yükseklik
                 // ekseni dünya +Y'ye (dikey) oturuyor.
-                kaynakSahne.rotateY(Math.PI);
-                kaynakSahne.rotateX(-Math.PI / 2);
+                if (eksenDuzeni !== 'y-up') {
+                    kaynakSahne.rotateY(Math.PI);
+                    kaynakSahne.rotateX(-Math.PI / 2);
+                }
 
                 // icerikDonusuZ: bazı modellerde kulp/desen gibi simetrik olmayan
                 // bir detay yanlış köşede çıkıyor (3ds Max'teki orijinal modelleme
@@ -84,11 +91,13 @@ function glbSablonunuYukle(url, icerikDonusuZ) {
 
                 const dogalGenislikMM = boyut.x * METRE_MM;
                 const dogalYukseklikMM = boyut.y * METRE_MM;
+                const dogalDerinlikMM = boyut.z * METRE_MM;
 
                 resolve({
                     sablonGrup,
                     dogalGenislikMM,
                     dogalYukseklikMM,
+                    dogalDerinlikMM,
                     bantX: kenarBandiOlc(xler, dogalGenislikMM),
                     bantY: kenarBandiOlc(yler, dogalYukseklikMM)
                 });
@@ -114,9 +123,9 @@ function glbSablonunuYukle(url, icerikDonusuZ) {
 // Verilen alanlar ölçülen bandın yerine geçer. Otomatik ölçüm bir modelde
 // şaşarsa (ör. çerçevesi ortada bir hat taşıyan bir desen) models.js'ten tek
 // satırla düzeltilebilsin diye var; normalde boş bırakılır.
-export function glbKapakGrubuOlustur(url, genislikMM, yukseklikMM, icerikDonusuZ = 0, kenarPayi = null) {
-    return glbSablonunuYukle(url, icerikDonusuZ).then((sablon) => {
-        const { sablonGrup, dogalGenislikMM, dogalYukseklikMM } = sablon;
+export function glbKapakGrubuOlustur(url, genislikMM, yukseklikMM, icerikDonusuZ = 0, kenarPayi = null, kalinlikMM = 18, eksenDuzeni = 'max-z-up') {
+    return glbSablonunuYukle(url, icerikDonusuZ, eksenDuzeni).then((sablon) => {
+        const { sablonGrup, dogalGenislikMM, dogalYukseklikMM, dogalDerinlikMM } = sablon;
         const grup = sablonGrup.clone(true);
         grup.name = 'kapak';
 
@@ -154,6 +163,7 @@ export function glbKapakGrubuOlustur(url, genislikMM, yukseklikMM, icerikDonusuZ
         // davranış sürüyor: modelin tamamı orantılı ölçekleniyor.
         if (!esleX && dogalGenislikMM > 0) grup.scale.x *= genislikMM / dogalGenislikMM;
         if (!esleY && dogalYukseklikMM > 0) grup.scale.y *= yukseklikMM / dogalYukseklikMM;
+        if (dogalDerinlikMM > 0 && kalinlikMM > 0) grup.scale.z *= kalinlikMM / dogalDerinlikMM;
 
         return grup;
     });

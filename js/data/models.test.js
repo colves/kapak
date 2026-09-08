@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { KAPAK_MODELLERI, idIleModelBul } from './models.js';
 
-assert.strictEqual(KAPAK_MODELLERI.length, 32, 'İlk yarıdaki 31 yeni model ve mevcut 4021 bekleniyor');
+assert.strictEqual(KAPAK_MODELLERI.length, 62, 'Yeni 62 kapak modelinin tamamı bekleniyor');
 
 const hk012 = idIleModelBul('hk-012-001');
 const hk051 = idIleModelBul('hk-051-002');
