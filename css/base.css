@@ -709,6 +709,16 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     outline: 2px solid var(--marka);
     outline-offset: 2px;
 }
+.lake-doku-yogunluk {
+    display: grid;
+    gap: 5px;
+    padding-top: var(--s-2);
+    color: var(--metin-soluk);
+    font-size: var(--fs-xs);
+}
+.lake-doku-yogunluk output { color: var(--metin); font-family: var(--mono-font); }
+.lake-doku-yogunluk input { width: 100%; accent-color: var(--marka); }
+.lake-doku-yogunluk.pasif { opacity: 0.5; }
 
 /* ---- RAL serileri (katlanabilir) ----
    77 renk tek bir uzun liste hâlinde açıkken panelin altındaki ölçü bölümüne

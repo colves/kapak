@@ -190,7 +190,7 @@ function kapakGeometrisiTemizle(nesne) {
     }
 }
 
-function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey, dokuAktif) {
+function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey, dokuAktif, dokuYogunlugu) {
     // Kullanıcı yükleme bitmeden başka bir model/renk seçmiş olabilir — o
     // durumda bu (artık eski) sonucu sahneye koymadan temizleyip at.
     if (buIstek !== istekSirasi) {
@@ -204,7 +204,7 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey, dokuAktif)
     mevcutMalzemeler.forEach((malzeme) => malzeme.dispose());
 
     kapakGrubu = yeniGrup;
-    const lakeMalzemesi = renkVerisindenMalzemeOlustur(renkVerisi, yuzey, dokuAktif);
+    const lakeMalzemesi = renkVerisindenMalzemeOlustur(renkVerisi, yuzey, dokuAktif, dokuYogunlugu);
     const camMalzemesi = malzemeUygula(kapakGrubu, lakeMalzemesi);
     mevcutMalzemeler = camMalzemesi ? [lakeMalzemesi, camMalzemesi] : [lakeMalzemesi];
 
@@ -214,7 +214,7 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey, dokuAktif)
 
 // glbUrl verilmişse (gerçek 3ds Max'ten aktarılmış model), procedural geometri
 // yerine o dosya asenkron olarak yüklenip kullanılır.
-export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu, kenarPayi, yuzey, kalinlikMM = 18, eksenDuzeni = 'max-z-up', dokuAktif = false) {
+export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu, kenarPayi, yuzey, kalinlikMM = 18, eksenDuzeni = 'max-z-up', dokuAktif = false, dokuYogunlugu = 35) {
     const buIstek = ++istekSirasi;
 
     if (otomatikKameraCercevesi && glbUrl !== sonCercevelenenModelUrl && kamera && kontroller) {
@@ -240,7 +240,7 @@ export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbI
     // Söz ÇAĞIRANA DÖNDÜRÜLÜYOR: model dosyası yüklenemediğinde ui.js hatayı
     // yakalayıp kullanıcıya bildiriyor (yoksa boş bir sahneye bakıp kalıyordu).
     return glbKapakGrubuOlustur(glbUrl, genislikMM, yukseklikMM, glbIcerikDonusu || 0, kenarPayi || null, kalinlikMM, eksenDuzeni)
-        .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek, yuzey, dokuAktif));
+        .then((grup) => yeniGrubuSahneyeUygula(grup, renkVerisi, buIstek, yuzey, dokuAktif, dokuYogunlugu));
 }
 
 // ---------------- Stüdyo HDR ortam ışığı (gerçek fotoğraflanmış ışıklandırma) ----------------

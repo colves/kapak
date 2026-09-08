@@ -29,6 +29,7 @@ const durum = {
     // Corona'daki ince Noise bump dokusu karşılaştırma amacıyla isteğe bağlı.
     // Varsayılan kapalı: mevcut görünüm aynen korunur.
     dokuAktif: false,
+    dokuYogunlugu: 35,
     ortamId: null,
     // Sahne zemini de paylaşılan durumun parçası: seçim yenilemede kaybolmasın
     // ve gönderilen link kapağı aynı zeminde açsın.
@@ -45,7 +46,7 @@ function guncellemeyiUygula() {
     // Model dosyası yüklenemezse sahne boş kalır; kullanıcı nedenini
     // bilmediği bir boşluğa bakmasın diye durum kendisine bildiriliyor.
     const yuzey = idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey();
-    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey, durum.kalinlik, model.glbEksenDuzeni, durum.dokuAktif))
+    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey, durum.kalinlik, model.glbEksenDuzeni, durum.dokuAktif, durum.dokuYogunlugu))
         .catch((hata) => {
             console.error('Model yüklenemedi:', model.gltfUrl, hata);
             bildir('Model yüklenemedi — bağlantınızı kontrol edip sayfayı yenileyin');
@@ -614,6 +615,18 @@ function olcuKontrolleriniKur() {
 }
 
 function lakeDokuSeciciyiKur() {
+    const yogunluk = document.getElementById('doku-yogunluk');
+    const yogunlukDegeri = document.getElementById('doku-yogunluk-deger');
+    const yogunlukKontrolu = document.getElementById('lake-doku-yogunluk-kontrolu');
+    const yogunluguGuncelle = () => {
+        if (yogunluk) {
+            yogunluk.value = String(durum.dokuYogunlugu);
+            yogunluk.disabled = !durum.dokuAktif;
+        }
+        if (yogunlukDegeri) yogunlukDegeri.textContent = `${durum.dokuYogunlugu}%`;
+        if (yogunlukKontrolu) yogunlukKontrolu.classList.toggle('pasif', !durum.dokuAktif);
+    };
+
     document.querySelectorAll('.lake-doku-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
             const aktif = btn.dataset.doku === 'dokulu';
@@ -624,9 +637,18 @@ function lakeDokuSeciciyiKur() {
                 secenek.classList.toggle('aktif', secili);
                 secenek.setAttribute('aria-pressed', String(secili));
             });
+            yogunluguGuncelle();
             goruntuGuncellemesiPlanla();
         });
     });
+    if (yogunluk) {
+        yogunluk.addEventListener('input', () => {
+            durum.dokuYogunlugu = Number(yogunluk.value);
+            if (yogunlukDegeri) yogunlukDegeri.textContent = `${durum.dokuYogunlugu}%`;
+            goruntuGuncellemesiPlanla();
+        });
+    }
+    yogunluguGuncelle();
 }
 
 function olculeriSifirlamaButonunuKur() {

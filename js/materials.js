@@ -63,7 +63,7 @@ function lakeNoiseDokusuOlustur() {
 // yuzey: yuzeyler.js'ten gelen bitiş (mat / yarı parlak / parlak). Verilmezse
 // rengin kendi değerleri kullanılır — böylece yüzey seçimi olmayan bir çağrı
 // (ör. eski bir kod yolu) yine de çalışır.
-export function renkVerisindenMalzemeOlustur(renk, yuzey, dokuAktif = false) {
+export function renkVerisindenMalzemeOlustur(renk, yuzey, dokuAktif = false, dokuYogunlugu = 35) {
     const ayarlar = {
         color: renk.hex,
         // Parlaklığı YÜZEY belirliyor, renk değil: aynı ton mat da parlak da
@@ -74,11 +74,11 @@ export function renkVerisindenMalzemeOlustur(renk, yuzey, dokuAktif = false) {
         clearcoatRoughness: yuzey ? yuzey.clearcoatRoughness : (renk.clearcoat > 0 ? 0.15 : 0)
     };
 
-    if (dokuAktif) {
+    const dokuOrani = Math.min(1, Math.max(0, Number(dokuYogunlugu) || 0) / 100);
+    if (dokuAktif && dokuOrani > 0) {
         ayarlar.bumpMap = lakeNoiseDokusuOlustur();
-        ayarlar.bumpScale = 1.1;
-        ayarlar.roughnessMap = lakeNoiseDokusuOlustur();
-        ayarlar.roughness = Math.min(0.72, ayarlar.roughness * 1.18);
+        ayarlar.bumpScale = 1.1 * dokuOrani;
+        ayarlar.roughness = Math.min(0.72, ayarlar.roughness * (1 + (0.18 * dokuOrani)));
     }
 
     return new THREE.MeshPhysicalMaterial(ayarlar);
