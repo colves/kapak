@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { KAPAK_MODELLERI, idIleModelBul } from './models.js';
 
-assert.strictEqual(KAPAK_MODELLERI.length, 3, 'Üç kapak modeli bekleniyor (3976, 4021, 3970)');
+assert.strictEqual(KAPAK_MODELLERI.length, 32, 'İlk yarıdaki 31 yeni model ve mevcut 4021 bekleniyor');
 
 const hk012 = idIleModelBul('hk-012-001');
 const hk051 = idIleModelBul('hk-051-002');
@@ -10,9 +10,9 @@ const m3970 = idIleModelBul('kapak-3970');
 assert.ok(hk012, "'hk-012-001' modeli bulunamadı");
 assert.ok(hk051, "'hk-051-002' modeli bulunamadı");
 assert.ok(m3970, "'kapak-3970' modeli bulunamadı");
-assert.strictEqual(hk012.isim, 'HK_012_001 (3976)');
-assert.strictEqual(hk051.isim, 'HK_051_002 (4021)');
-assert.strictEqual(m3970.isim, 'Kapak Modeli (3970)');
+assert.strictEqual(hk012.isim, 'HK_012_001');
+assert.strictEqual(hk051.isim, 'HK_051_002');
+assert.strictEqual(m3970.isim, 'HK_006_001');
 assert.strictEqual(hk012.kalinlikAyarlanabilir, false);
 assert.strictEqual(hk051.kalinlikAyarlanabilir, false);
 assert.strictEqual(m3970.kalinlikAyarlanabilir, false);
@@ -24,13 +24,14 @@ assert.strictEqual(idIleModelBul('olmayan'), null);
 // Model fotoğrafı eşleşmeleri dosya numarasına dayanır. Yanlış numara veya
 // eksik web çıktısı, her iki model galerisinde de kırık/yanlış kapak gösterir.
 const beklenenGorseller = new Map([
-    ['hk-012-001', 'assets/model-fotograflari/3976.webp'],
+    ['hk-012-001', 'assets/model-fotograflari/HK_012_001.jpeg'],
     ['hk-051-002', 'assets/model-fotograflari/4021.webp'],
-    ['kapak-3970', 'assets/model-fotograflari/3970.webp']
+    ['kapak-3970', 'assets/model-fotograflari/HK_006_001.jpeg']
 ]);
 
 for (const model of KAPAK_MODELLERI) {
-    assert.strictEqual(model.gorselUrl, beklenenGorseller.get(model.id), `${model.id}: yanlış model fotoğrafı eşlemesi`);
+    const beklenen = beklenenGorseller.get(model.id) || `assets/model-fotograflari/${model.isim}.jpeg`;
+    assert.strictEqual(model.gorselUrl, beklenen, `${model.id}: yanlış model fotoğrafı eşlemesi`);
     assert.ok(existsSync(new URL(`../../${model.gorselUrl}`, import.meta.url)), `${model.id}: model fotoğrafı dosyası bulunamadı`);
 }
 
