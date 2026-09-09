@@ -3,6 +3,11 @@ const GENEL_LIMITLER = {
     yukseklik: { min: 400, max: 1400 }
 };
 
+const LISTE_SONU_MODELLERI = new Set([
+    'acili-kapak', 'alttan-kulplu', 'camli-1', 'camli-2', 'camli-3', 'camli-4',
+    'ek-kapak', 'gardrop-1', 'gardrop-2', 'gardrop-3', 'gardrop-4'
+]);
+
 const GENEL_VARSAYILAN = { genislik: 450, yukseklik: 720, kalinlik: 18 };
 
 const VARYANTLI_URETIM_KODLARI = new Set(['HK_068_002', 'HK_068_004']);
@@ -147,7 +152,8 @@ export const KAPAK_MODELLERI = [
     ozelModel('gardrop-3', 'gardrop 3', 'gardrop-3', { genislik: 1210, yukseklik: 1800, kalinlik: 20 }),
     ozelModel('gardrop-4', 'gardrop 4', 'gardrop-4', { genislik: 1206, yukseklik: 1800, kalinlik: 20 }),
     ozelModel('yandan-kulplu', 'yandankulplu', 'yandankulplu', GENEL_VARSAYILAN, 'assets/model-fotograflari/yankulplu.webp')
-].sort((a, b) => a.isim.localeCompare(b.isim, 'tr', { numeric: true }));
+].sort((a, b) => Number(LISTE_SONU_MODELLERI.has(a.id)) - Number(LISTE_SONU_MODELLERI.has(b.id))
+    || a.isim.localeCompare(b.isim, 'tr', { numeric: true }));
 
 export function idIleModelBul(id) {
     return KAPAK_MODELLERI.find(m => m.id === id) || null;

@@ -1,60 +1,5 @@
 [
   {
-    "model": "açılı kapak",
-    "id": "acili-kapak",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=acili-kapak&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
-    "model": "alttankulplu",
-    "id": "alttan-kulplu",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=alttan-kulplu&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
-    "model": "camlı1",
-    "id": "camli-1",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=camli-1&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
-    "model": "camlı2",
-    "id": "camli-2",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=camli-2&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
-    "model": "camlı3",
-    "id": "camli-3",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=camli-3&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
-    "model": "camlı4",
-    "id": "camli-4",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=camli-4&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
-    "model": "ekkapak",
-    "id": "ek-kapak",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=ek-kapak&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
-    "model": "gardrop 1",
-    "id": "gardrop-1",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=gardrop-1&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
-    "model": "gardrop 2",
-    "id": "gardrop-2",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=gardrop-2&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
-    "model": "gardrop 3",
-    "id": "gardrop-3",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=gardrop-3&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
-    "model": "gardrop 4",
-    "id": "gardrop-4",
-    "url": "https://sahinkayamobilya.com/konfigurator/?m=gardrop-4&r=7044&f=yari-parlak&d=1&dy=10"
-  },
-  {
     "model": "M002",
     "id": "hk-002-001",
     "url": "https://sahinkayamobilya.com/konfigurator/?m=hk-002-001&r=7044&f=yari-parlak&d=1&dy=10"
@@ -368,5 +313,60 @@
     "model": "yandankulplu",
     "id": "yandan-kulplu",
     "url": "https://sahinkayamobilya.com/konfigurator/?m=yandan-kulplu&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "açılı kapak",
+    "id": "acili-kapak",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=acili-kapak&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "alttankulplu",
+    "id": "alttan-kulplu",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=alttan-kulplu&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "camlı1",
+    "id": "camli-1",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=camli-1&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "camlı2",
+    "id": "camli-2",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=camli-2&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "camlı3",
+    "id": "camli-3",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=camli-3&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "camlı4",
+    "id": "camli-4",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=camli-4&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "ekkapak",
+    "id": "ek-kapak",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=ek-kapak&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "gardrop 1",
+    "id": "gardrop-1",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=gardrop-1&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "gardrop 2",
+    "id": "gardrop-2",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=gardrop-2&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "gardrop 3",
+    "id": "gardrop-3",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=gardrop-3&r=7044&f=yari-parlak&d=1&dy=10"
+  },
+  {
+    "model": "gardrop 4",
+    "id": "gardrop-4",
+    "url": "https://sahinkayamobilya.com/konfigurator/?m=gardrop-4&r=7044&f=yari-parlak&d=1&dy=10"
   }
 ]

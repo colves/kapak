@@ -40,8 +40,12 @@ for (const model of KAPAK_MODELLERI) {
 }
 
 const siraliModelKodlari = KAPAK_MODELLERI.map(model => model.isim);
-const beklenenSiralama = [...siraliModelKodlari].sort((a, b) => a.localeCompare(b, 'tr', { numeric: true }));
-assert.deepStrictEqual(siraliModelKodlari, beklenenSiralama, 'Model kodları küçükten büyüğe sıralı olmalı');
+const sonaTasinanlar = ['acili-kapak', 'alttan-kulplu', 'camli-1', 'camli-2', 'camli-3', 'camli-4', 'ek-kapak', 'gardrop-1', 'gardrop-2', 'gardrop-3', 'gardrop-4'];
+assert.deepStrictEqual(KAPAK_MODELLERI.slice(-11).map(model => model.id), sonaTasinanlar,
+    'İşaretlenmeyen 11 özel kapak listenin sonunda olmalı');
+const onGrup = KAPAK_MODELLERI.slice(0, -11).map(model => model.isim);
+assert.deepStrictEqual(onGrup, [...onGrup].sort((a, b) => a.localeCompare(b, 'tr', { numeric: true })),
+    'M kodlu modeller kendi sıralamasını korumalı');
 assert.strictEqual(new Set(siraliModelKodlari).size, KAPAK_MODELLERI.length, 'Model adları benzersiz olmalı');
 const katalogKodlari = KAPAK_MODELLERI.filter(model => /^HK_/.test(model.uretimKodu)).map(model => model.isim);
 assert.strictEqual(katalogKodlari.length, 62, 'Katalogdaki 62 model korunmalı');
