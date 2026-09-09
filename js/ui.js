@@ -628,6 +628,9 @@ function lakeDokuSeciciyiKur() {
     };
 
     document.querySelectorAll('.lake-doku-btn').forEach((btn) => {
+        const secili = btn.dataset.doku === (durum.dokuAktif ? 'dokulu' : 'duz');
+        btn.classList.toggle('aktif', secili);
+        btn.setAttribute('aria-pressed', String(secili));
         btn.addEventListener('click', () => {
             const aktif = btn.dataset.doku === 'dokulu';
             if (durum.dokuAktif === aktif) return;

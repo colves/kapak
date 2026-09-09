@@ -36,6 +36,8 @@ export function durumuSorguyaKodla(durum) {
     if (durum.ortamId) p.set(ANAHTARLAR.ortam, durum.ortamId);
     if (durum.zemin) p.set(ANAHTARLAR.zemin, String(durum.zemin));
     if (durum.yuzeyId) p.set(ANAHTARLAR.yuzey, durum.yuzeyId);
+    if (typeof durum.dokuAktif === 'boolean') p.set('d', durum.dokuAktif ? '1' : '0');
+    if (Number.isFinite(durum.dokuYogunlugu)) p.set('dy', String(Math.round(Math.min(100, Math.max(0, durum.dokuYogunlugu)))));
     const dize = p.toString();
     return dize ? `?${dize}` : '';
 }
@@ -49,6 +51,11 @@ export function sorgudanDurumCoz(sorgu, { modelGecerliMi, renkGecerliMi, ortamGe
     if (typeof sorgu !== 'string' || sorgu.length === 0) return sonuc;
 
     const p = new URLSearchParams(sorgu.startsWith('?') ? sorgu.slice(1) : sorgu);
+    if (p.get('d') === '1' || p.get('d') === '0') sonuc.dokuAktif = p.get('d') === '1';
+    const yogunluk = p.get('dy');
+    if (yogunluk !== null && yogunluk.trim() !== '' && Number.isFinite(Number(yogunluk)) && Number(yogunluk) >= 0 && Number(yogunluk) <= 100) {
+        sonuc.dokuYogunlugu = Math.round(Number(yogunluk));
+    }
 
     const model = p.get(ANAHTARLAR.model);
     if (model && (!modelGecerliMi || modelGecerliMi(model))) sonuc.modelId = model;
