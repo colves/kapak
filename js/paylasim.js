@@ -84,7 +84,7 @@ export function paylasimAdresiOlustur(temelAdres, durum) {
 
 export function paylasimMetniOlustur({ modelAdi, renkAdi, renkKodu, yuzeyAdi, genislik, yukseklik, adres }) {
     return [
-        'Şahinkaya Ahşap kapak konfigürasyonu',
+        'Şahinkaya Mobilya kapak konfigürasyonu',
         `Model: ${modelAdi}`,
         `Renk: ${renkAdi} (${renkKodu})`,
         `Yüzey: ${yuzeyAdi}`,

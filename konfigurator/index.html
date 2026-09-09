@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>3B Lake Kapak Konfigüratörü | Şahinkaya Mobilya</title>
+<meta name="description" content="Lake kapak modelinizi seçin, ölçü ve RAL rengini belirleyin, 3B olarak inceleyin. Şahinkaya Mobilya ile tasarımınızı paylaşın ve projeniz için bilgi alın.">
+<link rel="canonical" href="https://sahinkayamobilya.com/konfigurator/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Şahinkaya Mobilya">
+<meta property="og:title" content="3B Lake Kapak Konfigüratörü | Şahinkaya Mobilya">
+<meta property="og:description" content="Lake kapak modelinizi seçin, ölçü ve RAL rengini belirleyin, 3B olarak inceleyin. Şahinkaya Mobilya ile tasarımınızı paylaşın ve projeniz için bilgi alın.">
+<meta property="og:url" content="https://sahinkayamobilya.com/konfigurator/">
+<meta property="og:image" content="https://sahinkayamobilya.com/assets/logo.png">
+<meta property="og:image:alt" content="Şahinkaya Mobilya logosu">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="assets/mini-logo.png">
+<link rel="apple-touch-icon" href="assets/mini-logo.png">
+<!-- Stüdyo HDR'ını modüllerle YARIŞTIRARAK indir. Normalde bu dosya ancak
+     three.js + tüm modüller yüklendikten sonra istenir; o gecikme boyunca
+     sahne geçici procedural ışıkla çizildiği için kapak önce sıcak/krem
+     görünüp sonra gerçek stüdyo ışığına dönüyordu. Preload bu farkı en aza
+     indiriyor. Yol tek kaynak js/data/ortamlar.js'te; burası değişirse
+     orası da değişmeli. -->
+<link rel="preload" href="assets/hdr/photo_studio_01_1k.hdr" as="fetch" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fraunces (serif) BİLİNÇLİ OLARAK yok: konfigüratör bir araç, burada serif
+     başlık kullanılmıyor. Bir süre base.css'in @import'uyla indiriliyor ama
+     hiçbir yerde kullanılmıyordu. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tema.css">
+<link rel="stylesheet" href="css/base.css?v=20260908-4">
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://sahinkayamobilya.com/konfigurator/#webpage",
+      "url": "https://sahinkayamobilya.com/konfigurator/",
+      "name": "3B Lake Kapak Konfigüratörü | Şahinkaya Mobilya",
+      "description": "Lake kapak modelinizi seçin, ölçü ve RAL rengini belirleyin, 3B olarak inceleyin. Şahinkaya Mobilya ile tasarımınızı paylaşın ve projeniz için bilgi alın.",
+      "inLanguage": "tr-TR",
+      "isPartOf": {
+        "@id": "https://sahinkayamobilya.com/#website"
+      },
+      "about": {
+        "@id": "https://sahinkayamobilya.com/#organization"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="ustbar">
+    <a href="/" class="marka-link" title="Ana Sayfa">
+        <img src="assets/logo.png" alt="Şahinkaya Mobilya — Ana Sayfa" class="marka-logo">
+    </a>
+    <!-- Diğer sayfalarla BİREBİR aynı menü: aynı sınıflar, aynı sıra, aynı
+         vurgu (Modeller kataloğun ana girişi olduğu için büyük). Üst bar
+         sayfalar arasında geçerken yerinden oynamıyor; tek değişen sağdaki
+         kontroller. -->
+    <nav class="menu">
+        <a href="/renkler/">Renkler</a>
+        <a class="one-cikan" href="/modeller/">Modeller</a>
+        <a href="/iletisim/">İletişim</a>
+    </nav>
+    <div class="ustbar-sag">
+        <button id="btn-paylas" class="araci-dugme" type="button">
+            <span class="araci-simge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg></span>
+            <span class="araci-etiket">Linki Kopyala</span>
+        </button>
+        <button id="btn-genel-paylas" class="araci-dugme" type="button" title="Görseli ve konfigürasyonu paylaş">
+            <span class="araci-simge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/></svg></span>
+            <span class="araci-etiket">Paylaş</span>
+        </button>
+        <button id="btn-indir" class="araci-dugme" type="button">
+            <span class="araci-simge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+            <span class="araci-etiket">Görseli İndir</span>
+        </button>
+        <button id="btn-tam-ekran" class="araci-dugme" type="button">
+            <span class="araci-simge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H3v6M15 3h6v6M3 15v6h6M21 15v6h-6"/></svg></span>
+            <span class="araci-etiket">Tam Ekran</span>
+        </button>
+    </div>
+</header>
+
+<main class="konfigurator">
+    <!-- Model kütüphanesi sahnenin solundan açılır. Kapalı haldeyken ürünün
+         etrafında daha geniş bir inceleme alanı bırakır. -->
+    <aside class="model-paneli" id="model-paneli" aria-label="Model seçimi" aria-hidden="true">
+        <div class="model-paneli-basi">
+            <div>
+                <p class="ayar-no"><span>01</span> / MODEL</p>
+                <h2>Kapak modelleri</h2>
+            </div>
+            <div class="model-paneli-araclari">
+                <span class="model-sayisi" id="model-sayisi">3 model</span>
+                <button id="model-panel-kapat" class="model-panel-kapat" type="button" aria-label="Model panelini kapat">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+            </div>
+        </div>
+        <p class="model-paneli-aciklama">Bir modeli seçerek 3B önizlemede inceleyin.</p>
+        <div id="model-panel-izgara" class="model-panel-izgara" role="group" aria-label="Kapak modeli seçenekleri"></div>
+    </aside>
+
+    <!-- ===== Sahne alanı ===== -->
+    <section class="goruntuleyici">
+        <div id="canvas-kapsayici" class="canvas-kapsayici"></div>
+
+        <!-- Masaüstünde sol çekmeceyi, mobilde aramalı galeriyi açar. -->
+        <button type="button" id="model-secici" class="model-secici" aria-haspopup="dialog" aria-controls="model-paneli model-galerisi" aria-expanded="false">
+            <span class="model-secici-etiket">Kapak modelleri</span>
+            <span id="model-secici-ad" class="model-secici-ad">HK_012_001</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+
+        <!-- Sahne araçları: sağ alt. Burada yalnızca SAHNEYE ait ayarlar
+             kaldı — stüdyo ışığı ve görünümü sıfırla. Ürünün kendisine ait iki
+             karar (renk ve ölçü) sahnenin dışına, sağdaki kalıcı ayar paneline
+             taşındı: onlar sık ve karşılaştırarak verilen kararlar, her
+             seferinde bir panel açıp kapatmak gerekmesin. -->
+        <div class="sahne-araclari">
+            <div class="isik-sarmal">
+                <div id="isik-panel" class="isik-panel gizli" role="dialog" aria-label="Stüdyo ışığı seç">
+                    <div class="isik-panel-basi">
+                        <h3>Stüdyo Işığı</h3>
+                        <span class="isik-panel-meta">HDR</span>
+                    </div>
+                    <div id="isik-listesi" class="isik-listesi" role="group" aria-label="Stüdyo ışığı seçenekleri"></div>
+                </div>
+                <!-- İkon-only DEĞİL, etiketli: sıfırla tuşuyla aynı görünen bir
+                     güneş ikonu bulunamıyordu (kullanıcı iki kez soramadı bulamadı).
+                     Model seçiciyle aynı desen: etiket + seçili değer + ok. -->
+                <button id="btn-isik" class="isik-secici" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="isik-panel" title="Stüdyo ışığını değiştir">
+                    <span class="isik-secici-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span>
+                    <span class="isik-secici-etiket">Işık</span>
+                    <span id="isik-secici-ad" class="isik-secici-ad">Studio Small 09</span>
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+            </div>
+            <div class="zemin-sarmal">
+                <div id="zemin-panel" class="zemin-panel gizli" role="dialog" aria-label="Sahne zemini seç">
+                    <div class="zemin-panel-basi">
+                        <h3>Sahne Zemini</h3>
+                        <span class="zemin-panel-meta">Arka plan</span>
+                    </div>
+                    <div id="zemin-izgara" class="zemin-izgara" role="group" aria-label="Zemin seçenekleri"></div>
+                </div>
+                <button id="btn-zemin" class="isik-secici" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="zemin-panel" title="Sahne zeminini değiştir">
+                    <span class="isik-secici-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 14l4.5-4.5 4 4 3-3L21 15"/></svg></span>
+                    <span class="isik-secici-etiket">Zemin</span>
+                    <span id="zemin-secici-ad" class="isik-secici-ad">Açık radyal</span>
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+            </div>
+            <button id="btn-sifirla" class="simge-dugme" type="button" aria-label="Görünümü sıfırla" title="Görünümü sıfırla">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.8-6.3"/><path d="M3.5 4v5h5"/></svg>
+            </button>
+        </div>
+
+        <!-- Canlı durum okuması: sahnedeki seçimin metin karşılığı. Ekran
+             okuyucular canvas'tan bilgi alamadığı için burası aria-live. -->
+        <div id="durum-cubugu" class="durum-cubugu" aria-live="polite">
+            <span id="secim-model" class="durum-model">Düz Kapak</span>
+            <span class="durum-ayrac" aria-hidden="true"></span>
+            <span id="secim-renk" class="durum-renk">
+                <span id="secim-renk-nokta" class="durum-renk-nokta" aria-hidden="true"></span>
+                <span id="secim-renk-metin">İpek Grisi · RAL 7044</span>
+            </span>
+            <span class="durum-ayrac" aria-hidden="true"></span>
+            <span id="boyut-metni" class="durum-olcu">480 × 717 mm</span>
+        </div>
+    </section>
+
+    <!-- ===== Ayar paneli (sağ, kalıcı) =====
+         Renk ve ölçü artık açılır panellerde değil, sahnenin yanında sürekli
+         açık duruyor: ikisi de karşılaştırarak verilen kararlar, kapak
+         değişirken listenin ekranda kalması gerekiyor.
+         Numaralı bölüm başlıkları bilinçli — müşteriye "önce şunu, sonra
+         şunu seç" diye bir sıra veriyor. Model ve ışık burada DEĞİL; model
+         "hangi ürün", ışık ise sahne ayarı, ikisi de kendi yerinde kaldı. -->
+    <aside class="ayar-paneli" id="ayar-paneli">
+        <!-- Mobilde panel sağa değil aşağıya iner ve bu başlıktan açılıp
+             kapanır; kapalıyken bile seçili renk ve ölçü okunuyor. -->
+        <button type="button" class="ayar-tutamak" id="ayar-tutamak" aria-expanded="false" aria-controls="ayar-govde">
+            <span class="ayar-tutamak-nokta" id="ayar-tutamak-nokta" aria-hidden="true"></span>
+            <span class="ayar-tutamak-metin" id="ayar-tutamak-metin">RAL 7044 · 450×720 mm</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+        </button>
+
+        <div class="ayar-govde" id="ayar-govde">
+            <section class="ayar-bolum olcu-bolumu" hidden>
+                <p class="ayar-no"><span>01</span> / ÖLÇÜLER</p>
+                <div class="ayar-bolum-basi">
+                    <h2 class="ayar-baslik">Kapak ölçüsü</h2>
+                    <span class="ayar-secili">milimetre</span>
+                </div>
+
+                <div class="olcu-alani">
+                    <div class="olcu-satiri">
+                        <label for="girdi-genislik">Genişlik</label>
+                        <div class="olcu-girdi">
+                            <input type="number" id="girdi-genislik" value="450" inputmode="numeric" enterkeyhint="done" aria-describedby="genislik-aralik">
+                            <span class="olcu-birim">mm</span>
+                        </div>
+                    </div>
+                    <input type="range" id="slider-genislik" min="200" max="1200" value="450" class="kaydirici" aria-label="Genişlik">
+                    <div class="olcu-aralik" id="genislik-aralik"></div>
+                </div>
+
+                <div class="olcu-alani">
+                    <div class="olcu-satiri">
+                        <label for="girdi-yukseklik">Yükseklik</label>
+                        <div class="olcu-girdi">
+                            <input type="number" id="girdi-yukseklik" value="720" inputmode="numeric" enterkeyhint="done" aria-describedby="yukseklik-aralik">
+                            <span class="olcu-birim">mm</span>
+                        </div>
+                    </div>
+                    <input type="range" id="slider-yukseklik" min="200" max="2500" value="720" class="kaydirici" aria-label="Yükseklik">
+                    <div class="olcu-aralik" id="yukseklik-aralik"></div>
+                </div>
+
+                <div class="olcu-alani" id="kalinlik-alani">
+                    <div class="olcu-satiri">
+                        <label for="girdi-kalinlik">Kalınlık</label>
+                        <div class="olcu-girdi">
+                            <input type="number" id="girdi-kalinlik" value="18" inputmode="numeric" enterkeyhint="done">
+                            <span class="olcu-birim">mm</span>
+                        </div>
+                    </div>
+                    <input type="range" id="slider-kalinlik" min="16" max="30" value="18" class="kaydirici" aria-label="Kalınlık">
+                </div>
+                <button type="button" id="btn-olculeri-sifirla" class="olcu-sifirla-dugmesi">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.8-6.3"/><path d="M3.5 4v5h5"/></svg>
+                    <span>Orijinal ölçüye dön</span>
+                </button>
+            </section>
+            <section class="ayar-bolum">
+                <p class="ayar-no"><span>01</span> / YÜZEY</p>
+                <div class="ayar-bolum-basi">
+                    <h2 class="ayar-baslik">Parlaklık</h2>
+                    <span class="ayar-secili" id="yuzey-secili-ad">Yarı Parlak</span>
+                </div>
+                <!-- Aynı RAL tonu mat ve parlakta bambaşka görünür; bu yüzden
+                     renkten AYRI bir karar olarak duruyor. js/ui.js dolduruyor. -->
+                <div id="yuzey-secenekleri" class="yuzey-secenekleri" role="group" aria-label="Yüzey parlaklığı"></div>
+                <div class="lake-doku-karsilastirma">
+                    <span class="lake-doku-baslik">Lake dokusu</span>
+                    <div class="lake-doku-secenekleri" role="group" aria-label="Lake dokusu karşılaştırması">
+                        <button type="button" class="lake-doku-btn" data-doku="duz" aria-pressed="false">Mevcut</button>
+                        <button type="button" class="lake-doku-btn aktif" data-doku="dokulu" aria-pressed="true">Yeni · Dokulu</button>
+                    </div>
+                </div>
+                <div class="lake-doku-yogunluk" id="lake-doku-yogunluk-kontrolu">
+                    <label for="doku-yogunluk">Doku yoğunluğu: <output id="doku-yogunluk-deger" for="doku-yogunluk">10%</output></label>
+                    <input id="doku-yogunluk" type="range" min="0" max="100" step="1" value="10"
+                        aria-label="Lake doku yoğunluğu">
+                </div>
+            </section>
+
+            <section class="ayar-bolum">
+                <p class="ayar-no"><span>02</span> / RENK</p>
+                <div class="ayar-bolum-basi">
+                    <h2 class="ayar-baslik">Lake rengi</h2>
+                    <span class="ayar-secili" id="renk-secili-ad">RAL 7044</span>
+                </div>
+                <!-- Renkler RAL serilerine (1000, 3000, 5000…) ayrılmış
+                     katlanabilir bölümler hâlinde; js/ui.js üretiyor. 77 rengin
+                     tamamı tek uzun liste hâlinde açıkken panelin altındaki
+                     ölçü bölümüne inmek çok uzun sürüyordu. -->
+                <div id="renk-listesi" class="renk-listesi"></div>
+                <p class="renk-not">
+                    <span id="renk-sayisi" class="renk-sayisi"></span>
+                    Ekranda görünen tonlar RAL kartelasının yaklaşık karşılığıdır; kesin tonu mağazamızda görebilirsiniz.
+                </p>
+            </section>
+
+        </div>
+    </aside>
+</main>
+
+<!-- Model galerisi: seçili model sol kartta daima görünür, ayrıntılı seçim
+     ise arama ve büyük görsel kartlarla bu kütüphanede yapılır. -->
+<div id="model-galerisi" class="modal-katman gizli" role="dialog" aria-modal="true" aria-labelledby="model-galeri-baslik">
+    <div class="modal-kutu model-modal-kutu">
+        <div class="modal-baslik-satiri">
+            <div>
+                <p class="model-galeri-kas">KAPAK KÜTÜPHANESİ</p>
+                <h3 id="model-galeri-baslik">Modelini seç</h3>
+            </div>
+            <button id="model-galeri-kapat" class="simge-dugme" type="button" aria-label="Kapat">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="model-galeri-arama-satiri">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input type="search" id="model-galeri-arama" placeholder="Model ara…" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" aria-label="Model ara">
+        </div>
+        <div id="model-galeri-izgara" class="model-galeri-izgara"></div>
+    </div>
+</div>
+
+<div id="bildirim" class="bildirim" role="status" aria-live="polite"></div>
+
+<script type="module" src="js/main.js?v=20260908-3"></script>
+</body>
+</html>

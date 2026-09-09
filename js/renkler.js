@@ -29,7 +29,7 @@ function okunurMetinRengi(hex) {
 }
 
 function konfiguratorAdresi(renk) {
-    return `configurator.html${durumuSorguyaKodla({ renkId: renk.id })}`;
+    return `/konfigurator/${durumuSorguyaKodla({ renkId: renk.id })}`;
 }
 
 /* ---------------- Kartela ---------------- */
@@ -79,7 +79,7 @@ function kartelayiCiz() {
         // yanında — müşteri hangi ailede kaç ton olduğunu tıklamadan görüyor.
         const bag = document.createElement('a');
         bag.className = 'seri-bag';
-        bag.href = `#${kimlik}`;
+        bag.href = `/renkler/#${kimlik}`;
         bag.dataset.seri = grup.seri;
         const nokta = document.createElement('span');
         nokta.className = 'seri-nokta';

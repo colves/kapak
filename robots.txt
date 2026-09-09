@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /graphify-out/
+Disallow: /docs/
+Disallow: /scripts/
+
+Sitemap: https://sahinkayamobilya.com/sitemap.xml

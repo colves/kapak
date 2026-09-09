@@ -28,8 +28,8 @@ const durum = {
     yuzeyId: varsayilanYuzey().id,
     // Corona'daki ince Noise bump dokusu karşılaştırma amacıyla isteğe bağlı.
     // Varsayılan kapalı: mevcut görünüm aynen korunur.
-    dokuAktif: false,
-    dokuYogunlugu: 35,
+    dokuAktif: true,
+    dokuYogunlugu: 10,
     ortamId: null,
     // Sahne zemini de paylaşılan durumun parçası: seçim yenilemede kaybolmasın
     // ve gönderilen link kapağı aynı zeminde açsın.
@@ -965,7 +965,7 @@ function genelPaylasButonunuKur() {
 
             if (dosyaPaylasilabilir) {
                 await navigator.share({
-                    title: 'Şahinkaya Ahşap kapak konfigürasyonu',
+                    title: 'Şahinkaya Mobilya kapak konfigürasyonu',
                     text: metin,
                     files: [dosya]
                 });

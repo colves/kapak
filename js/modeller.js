@@ -24,7 +24,7 @@ function konfiguratorAdresi(modelId, renkKodu) {
         modelId,
         renkId: renkKodu ? `lake-ral-${renkKodu}` : undefined
     });
-    return `configurator.html${sorgu}`;
+    return `/konfigurator/${sorgu}`;
 }
 
 // Kartın altındaki renk noktaları. İlk sırada modelin kendi fotoğrafındaki

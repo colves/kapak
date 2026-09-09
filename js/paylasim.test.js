@@ -89,7 +89,7 @@ const paylasimBilgisi = {
 };
 assert.strictEqual(
     paylasimMetniOlustur(paylasimBilgisi),
-    'Şahinkaya Ahşap kapak konfigürasyonu\nModel: HK_012_001 (3976)\nRenk: İpek Grisi (RAL 7044)\nYüzey: Yarı Parlak\nÖlçü: 450 × 720 mm\nhttps://ornek.com/configurator.html?m=hk-012-001&r=7044'
+    'Şahinkaya Mobilya kapak konfigürasyonu\nModel: HK_012_001 (3976)\nRenk: İpek Grisi (RAL 7044)\nYüzey: Yarı Parlak\nÖlçü: 450 × 720 mm\nhttps://ornek.com/configurator.html?m=hk-012-001&r=7044'
 );
 assert.strictEqual(
     paylasimDosyaAdiOlustur(paylasimBilgisi),

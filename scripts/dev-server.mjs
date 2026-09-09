@@ -24,7 +24,7 @@ const MIME = {
 
 const sunucu = http.createServer((istek, yanit) => {
     let istenenYol = decodeURIComponent(istek.url.split('?')[0]);
-    if (istenenYol === '/') istenenYol = '/index.html';
+    if (istenenYol.endsWith('/')) istenenYol += 'index.html';
 
     const dosyaYolu = path.join(KOK, istenenYol);
     if (!dosyaYolu.startsWith(KOK)) {
