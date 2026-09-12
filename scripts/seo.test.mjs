@@ -5,6 +5,27 @@ import vm from 'node:vm';
 
 const base = 'https://sahinkayamobilya.com/';
 const routes = ['', 'renkler/', 'modeller/', 'iletisim/', 'konfigurator/'];
+test('Old homepage addresses lose #tepe and index.html without losing query data', () => {
+    const script = fs.readFileSync('js/ana-sayfa-adresi.js', 'utf8');
+    for (const [pathname, search, hash, expected] of [
+        ['/', '', '#tepe', '/'],
+        ['/index.html', '', '#tepe', '/'],
+        ['/index.html', '?utm_source=qr', '', '/?utm_source=qr'],
+        ['/', '', '#other', null],
+        ['/renkler/', '', '#seri-7000', null]
+    ]) {
+        let result = null;
+        const state = { existing: true };
+        vm.runInNewContext(script, { window: {
+            location: { pathname, search, hash },
+            history: { state, replaceState: (value, unused, url) => {
+                assert.equal(value, state); result = url;
+            } },
+            addEventListener() {}
+        } });
+        assert.equal(result, expected);
+    }
+});
 test('SEO addresses, structured data and local resources stay consistent', () => {
     const sitemap = fs.readFileSync('sitemap.xml', 'utf8');
     const titles = new Set();
