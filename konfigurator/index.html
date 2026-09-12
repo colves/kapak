@@ -33,7 +33,7 @@
      hiçbir yerde kullanılmıyordu. -->
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tema.css">
-<link rel="stylesheet" href="css/base.css?v=20260908-4">
+<link rel="stylesheet" href="css/base.css?v=20260912-1">
 <script type="importmap">
 {
     "imports": {
@@ -259,18 +259,6 @@
                 <!-- Aynı RAL tonu mat ve parlakta bambaşka görünür; bu yüzden
                      renkten AYRI bir karar olarak duruyor. js/ui.js dolduruyor. -->
                 <div id="yuzey-secenekleri" class="yuzey-secenekleri" role="group" aria-label="Yüzey parlaklığı"></div>
-                <div class="lake-doku-karsilastirma">
-                    <span class="lake-doku-baslik">Lake dokusu</span>
-                    <div class="lake-doku-secenekleri" role="group" aria-label="Lake dokusu karşılaştırması">
-                        <button type="button" class="lake-doku-btn" data-doku="duz" aria-pressed="false">Mevcut</button>
-                        <button type="button" class="lake-doku-btn aktif" data-doku="dokulu" aria-pressed="true">Yeni · Dokulu</button>
-                    </div>
-                </div>
-                <div class="lake-doku-yogunluk" id="lake-doku-yogunluk-kontrolu">
-                    <label for="doku-yogunluk">Doku yoğunluğu: <output id="doku-yogunluk-deger" for="doku-yogunluk">10%</output></label>
-                    <input id="doku-yogunluk" type="range" min="0" max="100" step="1" value="10"
-                        aria-label="Lake doku yoğunluğu">
-                </div>
             </section>
 
             <section class="ayar-bolum">
@@ -317,6 +305,6 @@
 
 <div id="bildirim" class="bildirim" role="status" aria-live="polite"></div>
 
-<script type="module" src="js/main.js?v=20260908-3"></script>
+<script type="module" src="js/main.js?v=20260912-1"></script>
 </body>
 </html>

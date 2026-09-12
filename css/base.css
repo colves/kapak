@@ -670,56 +670,6 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
     color: var(--metin-soluk);
 }
 
-.lake-doku-karsilastirma {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--s-3);
-    padding-top: var(--s-2);
-}
-.lake-doku-baslik {
-    font-size: var(--fs-xs);
-    color: var(--metin-soluk);
-    white-space: nowrap;
-}
-.lake-doku-secenekleri {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    padding: 3px;
-    border: 1px solid var(--kenarlik);
-    border-radius: var(--r-sm);
-    background: var(--yuzey-2);
-}
-.lake-doku-btn {
-    min-height: 30px;
-    padding: 4px 9px;
-    border: 0;
-    border-radius: calc(var(--r-sm) - 3px);
-    background: transparent;
-    color: var(--metin-soluk);
-    font: 500 var(--fs-xs)/1.2 var(--govde-font);
-    cursor: pointer;
-}
-.lake-doku-btn.aktif {
-    background: var(--yuzey);
-    color: var(--metin);
-    box-shadow: 0 1px 4px rgba(28, 24, 20, 0.12);
-}
-.lake-doku-btn:focus-visible {
-    outline: 2px solid var(--marka);
-    outline-offset: 2px;
-}
-.lake-doku-yogunluk {
-    display: grid;
-    gap: 5px;
-    padding-top: var(--s-2);
-    color: var(--metin-soluk);
-    font-size: var(--fs-xs);
-}
-.lake-doku-yogunluk output { color: var(--metin); font-family: var(--mono-font); }
-.lake-doku-yogunluk input { width: 100%; accent-color: var(--marka); }
-.lake-doku-yogunluk.pasif { opacity: 0.5; }
-
 /* ---- RAL serileri (katlanabilir) ----
    77 renk tek bir uzun liste hâlinde açıkken panelin altındaki ölçü bölümüne
    inmek çok uzun sürüyordu. Renkler artık RAL'in kendi serilerine ayrılmış

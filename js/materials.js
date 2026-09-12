@@ -63,7 +63,7 @@ function lakeNoiseDokusuOlustur() {
 // yuzey: yuzeyler.js'ten gelen bitiş (mat / yarı parlak / parlak). Verilmezse
 // rengin kendi değerleri kullanılır — böylece yüzey seçimi olmayan bir çağrı
 // (ör. eski bir kod yolu) yine de çalışır.
-export function renkVerisindenMalzemeOlustur(renk, yuzey, dokuAktif = false, dokuYogunlugu = 35) {
+export function renkVerisindenMalzemeOlustur(renk, yuzey, dokuAktif = true, dokuYogunlugu = 3) {
     const ayarlar = {
         color: renk.hex,
         // Parlaklığı YÜZEY belirliyor, renk değil: aynı ton mat da parlak da

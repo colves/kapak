@@ -26,10 +26,6 @@ const durum = {
     // Yüzey bitişi renkten AYRI bir karar: aynı ton mat ve parlakta bambaşka
     // görünüyor.
     yuzeyId: varsayilanYuzey().id,
-    // Corona'daki ince Noise bump dokusu karşılaştırma amacıyla isteğe bağlı.
-    // Varsayılan kapalı: mevcut görünüm aynen korunur.
-    dokuAktif: true,
-    dokuYogunlugu: 10,
     ortamId: null,
     // Sahne zemini de paylaşılan durumun parçası: seçim yenilemede kaybolmasın
     // ve gönderilen link kapağı aynı zeminde açsın.
@@ -46,7 +42,7 @@ function guncellemeyiUygula() {
     // Model dosyası yüklenemezse sahne boş kalır; kullanıcı nedenini
     // bilmediği bir boşluğa bakmasın diye durum kendisine bildiriliyor.
     const yuzey = idIleYuzeyBul(durum.yuzeyId) || varsayilanYuzey();
-    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey, durum.kalinlik, model.glbEksenDuzeni, durum.dokuAktif, durum.dokuYogunlugu))
+    Promise.resolve(kapagiGuncelle(durum.genislik, durum.yukseklik, renk, model.gltfUrl, model.glbIcerikDonusu, model.kenarPayi, yuzey, durum.kalinlik, model.glbEksenDuzeni))
         .catch((hata) => {
             console.error('Model yüklenemedi:', model.gltfUrl, hata);
             bildir('Model yüklenemedi — bağlantınızı kontrol edip sayfayı yenileyin');
@@ -614,46 +610,6 @@ function olcuKontrolleriniKur() {
     });
 }
 
-function lakeDokuSeciciyiKur() {
-    const yogunluk = document.getElementById('doku-yogunluk');
-    const yogunlukDegeri = document.getElementById('doku-yogunluk-deger');
-    const yogunlukKontrolu = document.getElementById('lake-doku-yogunluk-kontrolu');
-    const yogunluguGuncelle = () => {
-        if (yogunluk) {
-            yogunluk.value = String(durum.dokuYogunlugu);
-            yogunluk.disabled = !durum.dokuAktif;
-        }
-        if (yogunlukDegeri) yogunlukDegeri.textContent = `${durum.dokuYogunlugu}%`;
-        if (yogunlukKontrolu) yogunlukKontrolu.classList.toggle('pasif', !durum.dokuAktif);
-    };
-
-    document.querySelectorAll('.lake-doku-btn').forEach((btn) => {
-        const secili = btn.dataset.doku === (durum.dokuAktif ? 'dokulu' : 'duz');
-        btn.classList.toggle('aktif', secili);
-        btn.setAttribute('aria-pressed', String(secili));
-        btn.addEventListener('click', () => {
-            const aktif = btn.dataset.doku === 'dokulu';
-            if (durum.dokuAktif === aktif) return;
-            durum.dokuAktif = aktif;
-            document.querySelectorAll('.lake-doku-btn').forEach((secenek) => {
-                const secili = secenek.dataset.doku === (aktif ? 'dokulu' : 'duz');
-                secenek.classList.toggle('aktif', secili);
-                secenek.setAttribute('aria-pressed', String(secili));
-            });
-            yogunluguGuncelle();
-            goruntuGuncellemesiPlanla();
-        });
-    });
-    if (yogunluk) {
-        yogunluk.addEventListener('input', () => {
-            durum.dokuYogunlugu = Number(yogunluk.value);
-            if (yogunlukDegeri) yogunlukDegeri.textContent = `${durum.dokuYogunlugu}%`;
-            goruntuGuncellemesiPlanla();
-        });
-    }
-    yogunluguGuncelle();
-}
-
 function olculeriSifirlamaButonunuKur() {
     const btn = document.getElementById('btn-olculeri-sifirla');
     if (!btn) return;
@@ -1119,7 +1075,6 @@ export function arayuzuBaslat() {
     modelSeciciyiKur();
     renkListesiniCiz();
     yuzeySeciciyiKur();
-    lakeDokuSeciciyiKur();
     olcuKontrolleriniKur();
     olculeriSifirlamaButonunuKur();
     ayarPaneliniKur();

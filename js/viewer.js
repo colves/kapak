@@ -214,7 +214,7 @@ function yeniGrubuSahneyeUygula(yeniGrup, renkVerisi, buIstek, yuzey, dokuAktif,
 
 // glbUrl verilmişse (gerçek 3ds Max'ten aktarılmış model), procedural geometri
 // yerine o dosya asenkron olarak yüklenip kullanılır.
-export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu, kenarPayi, yuzey, kalinlikMM = 18, eksenDuzeni = 'max-z-up', dokuAktif = false, dokuYogunlugu = 35) {
+export function kapagiGuncelle(genislikMM, yukseklikMM, renkVerisi, glbUrl, glbIcerikDonusu, kenarPayi, yuzey, kalinlikMM = 18, eksenDuzeni = 'max-z-up', dokuAktif = true, dokuYogunlugu = 3) {
     const buIstek = ++istekSirasi;
 
     if (otomatikKameraCercevesi && glbUrl !== sonCercevelenenModelUrl && kamera && kontroller) {
