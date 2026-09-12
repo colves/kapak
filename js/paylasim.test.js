@@ -21,24 +21,22 @@ assert.strictEqual(ralKodundanRenkId(null), null);
 const ornekDurum = { modelId: 'hk-012-001', renkId: 'lake-ral-9016', genislik: 480, yukseklik: 717, kalinlik: 18, ortamId: 'white-studio-06' };
 const sorgu = durumuSorguyaKodla(ornekDurum);
 assert.ok(sorgu.startsWith('?'), 'Sorgu ? ile başlamalı');
-assert.ok(sorgu.includes('m=hk-012-001'));
+assert.ok(sorgu.includes('m=M012'));
 assert.ok(sorgu.includes('r=9016'));
-assert.ok(sorgu.includes('g=480'));
-assert.ok(sorgu.includes('y=717'));
-assert.ok(sorgu.includes('k=18'));
-assert.ok(sorgu.includes('o=white-studio-06'));
+assert.equal(sorgu, '?m=M012&r=9016');
 
 assert.strictEqual(durumuSorguyaKodla({}), '', 'Boş durum boş sorgu vermeli');
 
 // Ondalıklı ölçüler yuvarlanmalı (slider hep tam sayı verir ama link elle de kurulabilir)
-assert.ok(durumuSorguyaKodla({ genislik: 480.6 }).includes('g=481'));
+assert.equal(durumuSorguyaKodla({ genislik: 480.6 }), '');
 
 // ---- gidiş-dönüş (round trip) ----
 const geriCozulen = sorgudanDurumCoz(sorgu);
-assert.deepStrictEqual(geriCozulen, ornekDurum, 'Kodla → çöz aynı durumu vermeli');
+const publicState = { modelId: ornekDurum.modelId, renkId: ornekDurum.renkId };
+assert.deepStrictEqual(geriCozulen, publicState, 'Model ve renk korunmalı, teknik alanlar yeni linkte bulunmamalı');
 
 // ? olmadan da çözebilmeli
-assert.deepStrictEqual(sorgudanDurumCoz(sorgu.slice(1)), ornekDurum);
+assert.deepStrictEqual(sorgudanDurumCoz(sorgu.slice(1)), publicState);
 
 // ---- doğrulama yüklemleri ----
 const yalnizcaBilinenModel = { modelGecerliMi: (id) => id === 'hk-012-001' };

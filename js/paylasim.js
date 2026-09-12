@@ -1,3 +1,5 @@
+import { KAPAK_MODELLERI, idIleModelBul } from './data/models.js';
+
 // Konfigürasyonun URL'e kodlanması / URL'den çözülmesi.
 //
 // Referans desen (Porsche "Porsche Code", TruStile proje kaydı): müşterinin
@@ -27,13 +29,14 @@ export function ralKodundanRenkId(ral) {
 // Durumu paylaşılabilir sorgu dizesine çevirir ('?m=...&r=...' biçiminde).
 export function durumuSorguyaKodla(durum) {
     const p = new URLSearchParams();
-    if (durum.modelId) p.set(ANAHTARLAR.model, durum.modelId);
+    if (durum.modelId) {
+        const model = idIleModelBul(durum.modelId);
+        p.set(ANAHTARLAR.model, model && /^M\d/.test(model.isim) ? model.isim : durum.modelId);
+    }
     const ral = renkIdSindenRalKodu(durum.renkId);
     if (ral) p.set(ANAHTARLAR.ral, ral);
-    if (Number.isFinite(durum.genislik)) p.set(ANAHTARLAR.genislik, String(Math.round(durum.genislik)));
-    if (Number.isFinite(durum.yukseklik)) p.set(ANAHTARLAR.yukseklik, String(Math.round(durum.yukseklik)));
-    if (Number.isFinite(durum.kalinlik)) p.set(ANAHTARLAR.kalinlik, String(Math.round(durum.kalinlik)));
-    if (durum.ortamId) p.set(ANAHTARLAR.ortam, durum.ortamId);
+    // Ölçü ve aydınlatma bilgileri yeni müşteri bağlantılarına yazılmaz.
+    // Eski bağlantıları çözme desteği aşağıda korunur.
     if (durum.zemin) p.set(ANAHTARLAR.zemin, String(durum.zemin));
     if (durum.yuzeyId) p.set(ANAHTARLAR.yuzey, durum.yuzeyId);
     if (typeof durum.dokuAktif === 'boolean') p.set('d', durum.dokuAktif ? '1' : '0');
@@ -57,7 +60,8 @@ export function sorgudanDurumCoz(sorgu, { modelGecerliMi, renkGecerliMi, ortamGe
         sonuc.dokuYogunlugu = Math.round(Number(yogunluk));
     }
 
-    const model = p.get(ANAHTARLAR.model);
+    const hamModel = p.get(ANAHTARLAR.model);
+    const model = KAPAK_MODELLERI.find(m => m.isim.toLowerCase() === hamModel?.toLowerCase())?.id || hamModel;
     if (model && (!modelGecerliMi || modelGecerliMi(model))) sonuc.modelId = model;
 
     const renkId = ralKodundanRenkId(p.get(ANAHTARLAR.ral));
