@@ -19,3 +19,13 @@ test('Public HTML only references HTTPS external resources', () => {
         assert.doesNotMatch(html, /(?:src|href)="http:\/\//, `${file} has an insecure external resource`);
     }
 });
+
+test('The configurator keeps a single neutral radial background', () => {
+    const html = fs.readFileSync('konfigurator/index.html', 'utf8');
+    const ui = fs.readFileSync('js/ui.js', 'utf8');
+    const css = fs.readFileSync('css/base.css', 'utf8');
+
+    assert.doesNotMatch(html, /btn-zemin|zemin-panel/);
+    assert.match(ui, /zemin:\s*undefined/);
+    assert.doesNotMatch(css, /data-zemin="[2-7]"/);
+});

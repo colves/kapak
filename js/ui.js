@@ -27,8 +27,6 @@ const durum = {
     // görünüyor.
     yuzeyId: varsayilanYuzey().id,
     ortamId: null,
-    // Sahne zemini de paylaşılan durumun parçası: seçim yenilemede kaybolmasın
-    // ve gönderilen link kapağı aynı zeminde açsın.
     zemin: '1'
 };
 
@@ -89,65 +87,19 @@ function hexMetni(renk) {
     return `#${renk.hex.toString(16).padStart(6, '0')}`;
 }
 
-/* ---------------- Sahne zemini ----------------
-   Kapağın arkasındaki yüzey. Eskiden bu yalnızca adres satırında ?zemin=N
-   varken beliren GEÇİCİ bir karar aracıydı; artık sahne araç çubuğundaki
-   kendi tuşundan açılan kalıcı bir ayar.
-
-   NOT: bu bir RENK konfigüratörü. Zemin, üstündeki rengin ALGISINI değiştirir
-   (eşzamanlı kontrast) — bu yüzden liste nötrden doyguna doğru sıralı ve 2
-   numara bilinçli olarak nötr orta gri: fotoğraf ve boya sektöründe rengi
-   yargılamak için kullanılan referans zemin budur. */
-
-const ZEMIN_SECENEKLERI = [
-    { no: '1', ad: 'Açık radyal', aciklama: 'Varsayılan — nötr, aydınlık', ornek: 'radial-gradient(circle at 40% 35%, #FFFFFF, #E9E8E4)' },
-    { no: '2', ad: 'Nötr gri', aciklama: 'Renk karşılaştırması için dengeli fon', ornek: 'linear-gradient(145deg, #E4E2DE, #CFCFCA)' },
-    { no: '3', ad: 'Beton stüdyo', aciklama: 'Mimari, sıcak gri görünüm', ornek: 'linear-gradient(145deg, #D7D0C6, #B7AEA3)' },
-    { no: '4', ad: 'Koyu vitrin', aciklama: 'Koyu kapaklarda güçlü kontrast', ornek: 'radial-gradient(circle at 42% 34%, #66625C, #252321)' },
-    { no: '5', ad: 'Meşe yüzey', aciklama: 'Mobilya sunumu için sıcak doku', ornek: 'repeating-linear-gradient(96deg, #D5B789 0 2px, #C9A978 2px 6px, #DFC69B 6px 10px)' },
-    { no: '6', ad: 'Teknik ızgara', aciklama: 'Ölçü hissi veren milimetrik zemin', ornek: 'repeating-linear-gradient(0deg, #C3BFB6 0 1px, #F5F4F1 1px 8px)' },
-    { no: '7', ad: 'Mavi sis', aciklama: 'Serin ve sakin ürün fonu', ornek: 'radial-gradient(circle at 40% 35%, #F4F7F7, #B8C5C6)' }
-];
-
 const VARSAYILAN_ZEMIN = '1';
-
-function zeminiUygula(no) {
-    document.body.dataset.zemin = no;
-    const secenek = ZEMIN_SECENEKLERI.find((z) => z.no === no);
-
-    document.querySelectorAll('.zemin-dugme').forEach((b) => {
-        const aktif = b.dataset.zemin === no;
-        b.classList.toggle('aktif', aktif);
-        b.setAttribute('aria-pressed', String(aktif));
-    });
-
-    const ad = document.getElementById('zemin-secici-ad');
-    if (ad && secenek) ad.textContent = secenek.ad;
-
-    // Adres satırı seçimi taşısın. Adres BAŞKA bir yerden değil, tek elden
-    // (urliDurumaEsitle) yazılıyor — iki ayrı yazıcı olduğunda biri diğerinin
-    // parametresini siliyordu.
-    durum.zemin = no;
-    urliDurumaEsitle();
-}
 
 /* ---------------- URL ile paylaşım ----------------
    Konfigürasyon adres çubuğunda yaşar: müşteri linki kopyalayıp satıcıya
    gönderebilir, sayfayı yenilese de seçimi kaybolmaz. */
 
-// Paylaşılacak/adrese yazılacak durum. Varsayılan zemin dışarıda bırakılıyor:
-// link gereksiz yere kirlenmesin. TEK kaynak — adres çubuğu, "Linki Kopyala"
-// ve genel paylaşım paketi aynı adresi üretsin diye hepsi buradan geçiyor.
+// Zemin artık sabit Açık radyal. Eski zemin parametrelerini yeni bağlantılara
+// taşımayarak paylaşım adreslerini sade ve tutarlı tutuyoruz.
 function paylasilacakDurum() {
-    return { ...durum, zemin: durum.zemin === VARSAYILAN_ZEMIN ? undefined : durum.zemin };
+    return { ...durum, zemin: undefined };
 }
 
 function urliDurumaEsitle() {
-    // Bir zamanlar zemin durumun parçası DEĞİLDİ ve bu fonksiyon adres
-    // çubuğunu her güncellemede baştan yazdığı için ?zemin=N'i siliyordu —
-    // ölçüldü: ?zemin=6 ile açılan sayfa daha ilk karede parametreyi
-    // kaybediyordu, dolayısıyla ne yenileme ne de paylaşım zemin seçimini
-    // taşıyordu.
     const sorgu = durumuSorguyaKodla(paylasilacakDurum());
     // replaceState: her slider hareketinde tarayıcı geçmişine yeni kayıt
     // eklenmesin, geri tuşu konfigüratörde tıkanmasın.
@@ -159,10 +111,11 @@ function urldenDurumuYukle() {
         modelGecerliMi: (id) => Boolean(idIleModelBul(id)),
         renkGecerliMi: (id) => Boolean(idIleRenkBul(id)),
         ortamGecerliMi: (id) => Boolean(idIleOrtamBul(id)),
-        zeminGecerliMi: (no) => ZEMIN_SECENEKLERI.some((z) => z.no === no),
         yuzeyGecerliMi: (id) => Boolean(idIleYuzeyBul(id))
     });
     Object.assign(durum, cozulen);
+    // Eski paylaşım linklerindeki ?z=... değeri artık kullanıcı seçimi değil.
+    durum.zemin = VARSAYILAN_ZEMIN;
     if (!OLCU_AYARI_AKTIF) {
         const model = idIleModelBul(durum.modelId) || baslangicModel;
         durum.genislik = model.varsayilan.genislik;
@@ -735,7 +688,7 @@ function isikSatiriOlustur(ortam) {
 function digerSeciciPanelleriniKapat(haricBtnId) {
     // Renk ve boyut artık kalıcı panelde; burada yalnızca sahne araç
     // çubuğundaki açılır paneller var — ikisi aynı anda açık kalmasın.
-    [['btn-isik', 'isik-panel'], ['btn-zemin', 'zemin-panel']].forEach(([bId, pId]) => {
+    [['btn-isik', 'isik-panel']].forEach(([bId, pId]) => {
         if (bId === haricBtnId) return;
         const b = document.getElementById(bId), p = document.getElementById(pId);
         if (!b || !p || p.classList.contains('gizli')) return;
@@ -1019,50 +972,6 @@ function dikeyKaydirmayiPlanla() {
     dikeyKaydirmaZamanlayici = setTimeout(dikeyKaydirmayiUygula, 150);
 }
 
-function zeminSeciciyiKur() {
-    const izgara = document.getElementById('zemin-izgara');
-    const btn = document.getElementById('btn-zemin');
-    const panel = document.getElementById('zemin-panel');
-    if (!izgara || !btn || !panel) return;
-
-    izgara.innerHTML = '';
-    ZEMIN_SECENEKLERI.forEach((z) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'zemin-dugme';
-        b.dataset.zemin = z.no;
-        b.title = z.aciklama;
-        b.setAttribute('aria-label', `${z.ad} — ${z.aciklama}`);
-        const ornek = document.createElement('span');
-        ornek.className = 'zemin-ornek';
-        ornek.style.background = z.ornek;
-        const ad = document.createElement('span');
-        ad.className = 'zemin-ad';
-        ad.textContent = z.ad;
-        b.append(ornek, ad);
-        // Panel açık kalsın: müşteri zeminleri sırayla deneyip karşılaştırsın.
-        b.addEventListener('click', () => zeminiUygula(z.no));
-        izgara.appendChild(b);
-    });
-
-    const acKapa = (ac) => {
-        const acilacak = ac === undefined ? panel.classList.contains('gizli') : ac;
-        if (acilacak) digerSeciciPanelleriniKapat('btn-zemin');
-        panel.classList.toggle('gizli', !acilacak);
-        btn.classList.toggle('acik', acilacak);
-        btn.setAttribute('aria-expanded', String(acilacak));
-    };
-    btn.addEventListener('click', (e) => { e.stopPropagation(); acKapa(); });
-    panel.addEventListener('click', (e) => e.stopPropagation());
-    document.addEventListener('click', () => acKapa(false));
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !panel.classList.contains('gizli')) { acKapa(false); btn.focus(); }
-    });
-
-    // Durum zaten adresten çözülmüş olabilir (bkz. urldenDurumuYukle).
-    zeminiUygula(ZEMIN_SECENEKLERI.some((z) => z.no === durum.zemin) ? durum.zemin : VARSAYILAN_ZEMIN);
-}
-
 /* ---------------- Başlangıç ---------------- */
 
 export function arayuzuBaslat() {
@@ -1084,7 +993,6 @@ export function arayuzuBaslat() {
     genelPaylasButonunuKur();
     indirButonunuKur();
     tamEkranButonuKur();
-    zeminSeciciyiKur();
 
     const model = idIleModelBul(durum.modelId);
     kalinlikAlanininGorunurlugunuGuncelle(model);
