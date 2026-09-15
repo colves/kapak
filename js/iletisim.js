@@ -9,24 +9,37 @@ import { ustBariKur } from './ustBar.js';
 // Düğmenin kendisi statik HTML'de tam adresiyle duruyor; yani bu dosya hiç
 // çalışmasa bile müşteri haritaya gidebiliyor, sadece gömülü önizleme olmuyor.
 //
-// output=embed uçlu gömme, Google Haritalar'ın API anahtarı gerektirmeyen
-// biçimi — siteye anahtar/kota bağımlılığı eklemiyor.
+// Kart içindeki önizleme OpenStreetMap kullanır; harici API anahtarı ya da
+// kota gerektirmez. Alttaki düğme ise kullanıcıyı Google Haritalar'a götürür.
 function haritalariKur() {
     document.querySelectorAll('.konum-kart').forEach((kart) => {
         const kutu = kart.querySelector('.harita');
         const baglanti = kart.querySelector('[data-harita-baglanti]');
         if (!kutu || !baglanti) return;
 
-        let q;
-        try {
-            q = new URL(baglanti.href).searchParams.get('query');
-        } catch {
-            q = null;
+        let q = baglanti.dataset.haritaSorgu;
+        if (!q) {
+            try {
+                q = new URL(baglanti.href).searchParams.get('query');
+            } catch {
+                q = null;
+            }
         }
-        if (!q) return; // Adres okunamadıysa yedek metin kalsın, boş iframe basma.
+        const enlem = Number(baglanti.dataset.haritaEnlem);
+        const boylam = Number(baglanti.dataset.haritaBoylam);
+        if (!q || !Number.isFinite(enlem) || !Number.isFinite(boylam)) return;
+
+        const yatayPay = 0.012;
+        const dikeyPay = 0.0075;
+        const sinirlar = [
+            boylam - yatayPay,
+            enlem - dikeyPay,
+            boylam + yatayPay,
+            enlem + dikeyPay
+        ].join(',');
 
         const cerceve = document.createElement('iframe');
-        cerceve.src = `https://www.google.com/maps?q=${encodeURIComponent(q)}&output=embed`;
+        cerceve.src = `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(sinirlar)}&layer=mapnik&marker=${encodeURIComponent(`${enlem},${boylam}`)}`;
         cerceve.loading = 'lazy';
         cerceve.referrerPolicy = 'no-referrer-when-downgrade';
         cerceve.title = `${q} — harita`;

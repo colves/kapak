@@ -61,14 +61,27 @@ test('SEO addresses, structured data and local resources stay consistent', () =>
     assert.equal(fs.readFileSync('CNAME', 'utf8').trim(), 'sahinkayamobilya.com');
 });
 
-test('Homepage describes the local showroom and product paths', () => {
+test('Homepage exposes local showroom data and product paths', () => {
     const html = fs.readFileSync('index.html', 'utf8');
-    assert.match(html, /Sakarya’da ölçüye özel lake kapak üretimi/);
     assert.match(html, /"@type": "FurnitureStore"/);
     assert.match(html, /"addressLocality": "Adapazarı"/);
     assert.match(html, /href="\/modeller\/"/);
     assert.match(html, /href="\/renkler\/"/);
     assert.match(html, /href="\/konfigurator\/"/);
+});
+
+test('Primary pages keep contact prominent and the showroom map resolvable', () => {
+    for (const route of ['', 'renkler/', 'modeller/', 'katalog/', 'iletisim/']) {
+        const html = fs.readFileSync(`${route}index.html`, 'utf8');
+        assert.match(html, /class="iletisim-link(?: etkin)?" href="\/iletisim\/"/);
+    }
+
+    const contact = fs.readFileSync('iletisim/index.html', 'utf8');
+    const script = fs.readFileSync('js/iletisim.js', 'utf8');
+    assert.match(contact, /href="https:\/\/maps\.app\.goo\.gl\/wLMP4kPqc7LdECur8"/);
+    assert.match(contact, /data-harita-enlem="40\.7886866" data-harita-boylam="30\.4225954"/);
+    assert.match(contact, /"hasMap": "https:\/\/maps\.app\.goo\.gl\/wLMP4kPqc7LdECur8"/);
+    assert.match(script, /openstreetmap\.org\/export\/embed\.html/);
 });
 
 test('The not-found page stays branded and out of search results', () => {
