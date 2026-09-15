@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="css/anasayfa.css?v=20260908-2">
 <link rel="stylesheet" href="css/katalog.css?v=20260915-2">
 </head>
-<body class="ic-sayfa katalog-sayfasi">
+<body class="ic-sayfa katalog-sayfasi katalog-yukleniyor">
 <header class="ust" id="ust">
   <div class="ust-bar">
     <a class="marka" href="/" aria-label="Şahinkaya Mobilya - ana sayfa"><img src="assets/logo.png" alt="Şahinkaya Mobilya"></a>
@@ -51,8 +51,10 @@
       </div>
     </div>
     <div class="kitap-kontrolleri" aria-label="Katalog sayfa kontrolleri"><button id="geri" type="button">Geri</button><span id="kitap-ipucu">Sağ yaprağa tıklayarak devam edin</span><button id="ileri" type="button">İleri</button></div>
+    <div class="mobil-katalog" id="mobil-katalog" aria-label="Kaydırılabilir lake kapak kataloğu"></div>
   </section>
 </main>
+<div class="katalog-yukleme-ekrani" id="katalog-yukleme-ekrani" role="status" aria-live="polite"><span></span><strong>Katalog hazırlanıyor</strong></div>
 <script type="module" src="js/katalog.js?v=20260915-2"></script>
 </body>
 </html>

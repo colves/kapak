@@ -14,7 +14,10 @@ const durum = document.getElementById('kitap-durum');
 const ipucu = document.getElementById('kitap-ipucu');
 const geri = document.getElementById('geri');
 const ileri = document.getElementById('ileri');
+const mobilKatalog = document.getElementById('mobil-katalog');
+const yuklemeEkrani = document.getElementById('katalog-yukleme-ekrani');
 
+const sayfaOnbellegi = new Map();
 let yaprak = 0;
 let cevriliyor = false;
 
@@ -23,24 +26,49 @@ function sayfaYolu(sayfa) {
 }
 
 function gorselAta(gorsel, sayfa) {
-    gorsel.src = sayfaYolu(sayfa);
+    gorsel.src = sayfaOnbellegi.get(sayfa)?.src || sayfaYolu(sayfa);
     gorsel.alt = `Katalog sayfası ${sayfa}`;
 }
 
-function tumSayfalariYukle() {
-    for (let sayfa = 1; sayfa <= TOPLAM_SAYFA; sayfa += 1) {
+function gorselYukle(sayfa) {
+    return new Promise((resolve) => {
         const gorsel = new Image();
+        gorsel.decoding = 'async';
+        gorsel.onload = () => {
+            if (typeof gorsel.decode === 'function') {
+                gorsel.decode().catch(() => {}).finally(resolve);
+            } else {
+                resolve();
+            }
+        };
+        gorsel.onerror = resolve;
         gorsel.src = sayfaYolu(sayfa);
+        sayfaOnbellegi.set(sayfa, gorsel);
+    });
+}
+
+function mobilSayfalariKur() {
+    const belge = document.createDocumentFragment();
+
+    for (let sayfa = 1; sayfa <= TOPLAM_SAYFA; sayfa += 1) {
+        const kart = document.createElement('article');
+        const gorsel = document.createElement('img');
+        kart.className = 'mobil-sayfa';
+        gorsel.src = sayfaOnbellegi.get(sayfa)?.src || sayfaYolu(sayfa);
+        gorsel.alt = `Lake kapak kataloğu, sayfa ${sayfa}`;
+        kart.append(gorsel);
+        belge.append(kart);
     }
+
+    mobilKatalog.replaceChildren(belge);
 }
 
 function guncelle() {
     const solSayfa = yaprak * 2 + 1;
     const sagSayfa = solSayfa + 1;
-    const mobil = window.matchMedia('(max-width: 720px)').matches;
 
     gorselAta(solGorsel, solSayfa);
-    gorselAta(sagGorsel, mobil ? solSayfa : sagSayfa);
+    gorselAta(sagGorsel, sagSayfa);
     durum.textContent = `${String(solSayfa).padStart(2, '0')} - ${String(sagSayfa).padStart(2, '0')} / ${TOPLAM_SAYFA}`;
     geri.disabled = yaprak === 0;
     ileri.disabled = yaprak === (TOPLAM_SAYFA / 2) - 1;
@@ -55,12 +83,12 @@ function cevir(yon) {
     const sagSayfa = solSayfa + 1;
     const sonrakiSol = sonraki * 2 + 1;
     const oncekiSag = sonrakiSol + 1;
-    const mobil = window.matchMedia('(max-width: 720px)').matches;
 
     cevriliyor = true;
     cevirenYaprak.classList.add(yon > 0 ? 'ileri' : 'geri');
-    gorselAta(yaprakOn, mobil ? solSayfa : (yon > 0 ? sagSayfa : solSayfa));
-    gorselAta(yaprakArka, mobil ? sonrakiSol : (yon > 0 ? sonrakiSol : oncekiSag));
+    gorselAta(yaprakOn, yon > 0 ? sagSayfa : solSayfa);
+    // Arka yüz ters çizilir; yaprak döndüğünde içerik ekrana doğru okunur kalır.
+    gorselAta(yaprakArka, yon > 0 ? sonrakiSol : oncekiSag);
 
     window.setTimeout(() => {
         yaprak = sonraki;
@@ -71,6 +99,15 @@ function cevir(yon) {
         cevirenYaprak.classList.remove('ileri', 'geri');
         cevriliyor = false;
     }, SURE);
+}
+
+async function kataloguBaslat() {
+    const yuklemeler = Array.from({ length: TOPLAM_SAYFA }, (_, index) => gorselYukle(index + 1));
+    await Promise.all(yuklemeler);
+    mobilSayfalariKur();
+    guncelle();
+    document.body.classList.replace('katalog-yukleniyor', 'katalog-yuklendi');
+    yuklemeEkrani.setAttribute('aria-hidden', 'true');
 }
 
 sol.addEventListener('click', () => cevir(-1));
@@ -88,8 +125,6 @@ kitap.addEventListener('keydown', (event) => {
         cevir(1);
     }
 });
-window.addEventListener('resize', guncelle);
 
-guncelle();
-tumSayfalariYukle();
 ustBariKur();
+kataloguBaslat();
