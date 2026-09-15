@@ -225,8 +225,8 @@ img { display: block; max-width: 100%; }
     height: 100vh;
     height: 100dvh;
     min-height: 720px;
-    display: flex;
-    align-items: flex-end;
+    display: grid;
+    place-items: center;
     overflow: hidden;
 }
 .hero-gorsel {
@@ -242,48 +242,57 @@ img { display: block; max-width: 100%; }
 .hero-sabit::after {
     content: '';
     position: absolute; inset: 0;
-    background:
-        linear-gradient(90deg, rgba(8, 13, 42, 0.78), rgba(8, 13, 42, 0.1) 66%),
-        linear-gradient(0deg, rgba(8, 13, 42, 0.4), transparent 55%);
+    background: linear-gradient(180deg, rgba(18, 15, 11, 0.36), rgba(18, 15, 11, 0.58));
 }
 .hero-icerik {
     position: relative;
     z-index: 1;
-    width: min(var(--en), 100%);
+    width: min(920px, calc(100% - 48px));
     margin: 0 auto;
-    padding: 0 32px 84px;
+    padding: 60px 0 0;
+    text-align: center;
+    animation: hero-yuksel 0.9s 0.12s both ease-out;
 }
 .hero-icerik h1 {
-    max-width: 780px;
-    margin: 18px 0 24px;
-    font-size: clamp(46px, 7.2vw, 112px);
-    line-height: 0.94;
-    letter-spacing: -0.075em;
-    font-weight: 500;
+    margin: 18px 0 22px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(50px, 6.2vw, 98px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    font-weight: 600;
 }
+.hero-icerik h1 em { font-weight: 400; }
 .hero-icerik p {
-    max-width: 390px;
-    margin: 0 0 32px;
-    font-size: 16px;
-    line-height: 1.6;
+    max-width: 640px;
+    margin: 0 auto 34px;
+    font-size: clamp(15px, 1.35vw, 19px);
+    line-height: 1.55;
     color: #F7F5EF;
 }
+.hero .etiket-acik { color: #E2B66E; font-weight: 600; letter-spacing: 0.18em; }
+.hero .eylemler { justify-content: center; }
+.hero .dugme { min-width: 176px; justify-content: center; padding: 15px 22px; }
+.hero .dugme:not(.hayalet) { background: #FFFFFF; border-color: #FFFFFF; color: var(--lacivert); }
+.hero .dugme:not(.hayalet):hover { background: #E2B66E; border-color: #E2B66E; color: var(--lacivert); }
 .kaydir-ipucu {
     position: absolute;
-    right: 34px; bottom: 40px;
+    left: 50%; bottom: 34px;
     z-index: 2;
     display: flex; align-items: center; gap: 10px;
-    transform: rotate(90deg);
-    transform-origin: right;
+    transform: translateX(-50%);
     font: 10px 'DM Mono', ui-monospace, monospace;
     letter-spacing: 0.12em;
 }
 .kaydir-ipucu::before {
     content: '';
-    width: 46px; height: 1px;
+    width: 1px; height: 30px;
     background: #FFFFFF;
 }
 @keyframes suzul { to { transform: scale(1.07) translateX(-1%); } }
+@keyframes hero-yuksel {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 /* ===================== Butonlar ===================== */
 .eylemler { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -503,7 +512,9 @@ img { display: block; max-width: 100%; }
     .hero { height: auto; min-height: 620px; }
     .hero-sabit { position: relative; height: auto; min-height: 620px; }
     .hero-gorsel { background-position: center center; }
-    .hero-icerik { padding: 0 20px 56px; }
+    .hero-icerik { width: min(100% - 40px, 620px); padding: 52px 0 36px; }
+    .hero-icerik h1 { font-size: clamp(43px, 12.5vw, 64px); }
+    .hero-icerik p { font-size: 15px; }
     .bolum { padding-left: 20px; padding-right: 20px; }
     .kaydir-ipucu { display: none; }
     .alt { padding-left: 20px; padding-right: 20px; }
