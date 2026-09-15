@@ -335,27 +335,32 @@ img { display: block; max-width: 100%; }
 
 
 /* ===================== Konfigüratör tanıtımı ===================== */
-.konfig-serit { background: var(--krem); }
+.konfig-serit { background: #1A1A1A; color: #F7F3EC; }
 .konfig {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 0.95fr 1.05fr;
+    grid-template-areas: "metin sahne";
     align-items: center;
     gap: clamp(36px, 6vw, 80px);
 }
 .kapak-sahne {
+    grid-area: sahne;
     position: relative;
-    height: 580px;
+    height: min(580px, 42vw);
+    min-height: 460px;
     display: grid;
     place-items: center;
     overflow: hidden;
-    background: linear-gradient(145deg, #F7F3EC, #D9D0C2);
+    border: 1px solid rgba(247, 243, 236, 0.11);
+    border-radius: 3px;
+    background: radial-gradient(circle at 50% 44%, #3C3934, #262420 72%);
 }
 .kapak-sahne::before {
     content: '';
     position: absolute;
     width: 620px; height: 620px;
     border-radius: 50%;
-    border: 1px solid rgba(37, 35, 33, 0.13);
+    border: 1px solid rgba(247, 243, 236, 0.11);
 }
 /* Kapak artık CSS ile ÇİZİLMİYOR: burada konfigüratörün gerçek 3B
    görüntüleyicisi çalışıyor (viewer.js canvas'ı bu kaba ekliyor).
@@ -378,7 +383,7 @@ img { display: block; max-width: 100%; }
     max-width: 62%;
     text-align: center;
     font-size: 0.9rem;
-    color: color-mix(in srgb, var(--lacivert) 62%, transparent);
+    color: rgba(247, 243, 236, 0.72);
     pointer-events: none;
 }
 .kapak-yukleniyor[hidden] { display: none; }
@@ -392,7 +397,7 @@ img { display: block; max-width: 100%; }
     font-size: 0.72rem;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--lacivert) 52%, transparent);
+    color: rgba(247, 243, 236, 0.55);
     pointer-events: none;
 }
 
@@ -403,6 +408,17 @@ img { display: block; max-width: 100%; }
     left: 22px; bottom: 22px;
     display: flex;
     gap: 10px;
+}
+.sahne-baslik {
+    position: absolute;
+    z-index: 1;
+    top: 24px;
+    left: 24px;
+    font: 11px 'DM Mono', ui-monospace, monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(247, 243, 236, 0.56);
+    pointer-events: none;
 }
 .renk-secenek {
     width: 40px; height: 40px;
@@ -416,12 +432,17 @@ img { display: block; max-width: 100%; }
 
 .konfig-metin h2 {
     margin: 16px 0 22px;
-    font-size: clamp(32px, 4.8vw, 70px);
-    line-height: 1.02;
-    letter-spacing: -0.07em;
-    font-weight: 500;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(38px, 4vw, 62px);
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+    font-weight: 600;
 }
-.konfig-metin p { max-width: 380px; margin-bottom: 30px; color: #555555; line-height: 1.7; }
+.konfig-metin { grid-area: metin; }
+.konfig-metin .etiket { color: #C9A06B; font-weight: 600; letter-spacing: 0.16em; }
+.konfig-metin p { max-width: 480px; margin-bottom: 34px; color: rgba(247, 243, 236, 0.76); font-size: 17px; line-height: 1.75; }
+.konfig-metin .dugme { background: #A88A62; border-color: #A88A62; color: #FFFFFF; padding: 15px 26px; font-size: 14px; }
+.konfig-metin .dugme:hover { background: #C0A177; border-color: #C0A177; }
 
 /* ===================== Kapanış ===================== */
 .kapanis { text-align: center; padding-block: clamp(90px, 11vw, 160px); }
@@ -479,7 +500,8 @@ img { display: block; max-width: 100%; }
 /* ===================== Dar ekran ===================== */
 @media (max-width: 900px) {
     .konfig { grid-template-columns: 1fr; }
-    .kapak-sahne { height: 420px; }
+    .konfig { grid-template-areas: "metin" "sahne"; }
+    .kapak-sahne { height: 420px; min-height: 0; }
     .alt-ust { grid-template-columns: 1fr 1fr; }
     .alt-ust > div:first-child { grid-column: span 2; }
 }
