@@ -282,7 +282,10 @@ img { display: block; max-width: 100%; }
     letter-spacing: -0.045em;
     font-weight: 600;
 }
-.hero-icerik h1 em { font-weight: 400; }
+.hero-icerik h1 em {
+    font-style: normal;
+    font-weight: 600;
+}
 .hero-icerik p {
     max-width: 640px;
     margin: 0 auto 34px;
