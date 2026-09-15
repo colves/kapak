@@ -236,7 +236,7 @@ img { display: block; max-width: 100%; }
     inset: 0;
     /* Özgün lacivert hero saklı tutuluyor; bu sürüm sitenin kömür, krem ve
        turuncu marka paletiyle aynı sıcaklıkta yeniden üretildi. */
-    background: url('../assets/anasayfa/hero-mutfak-palet.png') center/cover;
+    background: url('../assets/anasayfa/hero-render-1000-2.png') center/cover;
     transform: scale(1.015);
     animation: suzul 18s ease-in-out infinite alternate;
 }
