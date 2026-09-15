@@ -214,8 +214,10 @@ img { display: block; max-width: 100%; }
     position: relative;
     /* Görsel, metin akışı boyunca yerinde kalır; deneme sayfasındaki sabit
        fotoğraf hissi arka plan hilesiyle değil, gerçek sticky katmanla sağlanır. */
-    height: 165vh;
-    min-height: 1180px;
+    /* Sabit görsel hissi korunur, ancak sonraki bölüme geçmek için fazladan
+       bir ekran boyu kaydırmak gerekmez. */
+    height: 112vh;
+    min-height: 760px;
     background: var(--lacivert);
     color: #FFFFFF;
 }
