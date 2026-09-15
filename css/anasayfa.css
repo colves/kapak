@@ -249,7 +249,13 @@ img { display: block; max-width: 100%; }
     inset: 0;
     /* Özgün lacivert hero saklı tutuluyor; bu sürüm sitenin kömür, krem ve
        turuncu marka paletiyle aynı sıcaklıkta yeniden üretildi. */
-    background: url('../assets/anasayfa/hero-render-1000-2.png') center/cover;
+    background-image: url('../assets/anasayfa/hero-render-1000-2.png');
+    background-image: image-set(
+        url('../assets/anasayfa/hero-render-1000-2.webp') type('image/webp'),
+        url('../assets/anasayfa/hero-render-1000-2.png') type('image/png')
+    );
+    background-position: center;
+    background-size: cover;
     transform: scale(1.015);
     animation: suzul 18s ease-in-out infinite alternate;
 }
@@ -461,6 +467,111 @@ img { display: block; max-width: 100%; }
 .konfig-metin .dugme { background: #837458; border-color: #837458; color: #FFFFFF; padding: 15px 26px; font-size: 14px; }
 .konfig-metin .dugme:hover { background: #9E8B69; border-color: #9E8B69; }
 
+/* ===================== Yerel hizmet ve ürün rehberi ===================== */
+.seo-serit {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 8% 10%, rgba(226, 182, 110, 0.18), transparent 30%),
+        linear-gradient(135deg, #F7F1E8 0%, #FCFAF6 58%, #EFE5D7 100%);
+}
+.seo-serit::before {
+    content: '';
+    position: absolute;
+    top: -260px;
+    right: -190px;
+    width: 560px;
+    height: 560px;
+    border: 1px solid rgba(138, 79, 0, 0.13);
+    border-radius: 50%;
+}
+.seo-duzen {
+    position: relative;
+    max-width: var(--en);
+    margin: 0 auto;
+    padding: clamp(84px, 9vw, 138px) 32px;
+    display: grid;
+    grid-template-columns: minmax(300px, 0.85fr) minmax(520px, 1.35fr);
+    gap: clamp(46px, 7vw, 112px);
+    align-items: start;
+}
+.seo-giris h2 {
+    margin: 16px 0 24px;
+    max-width: 650px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(39px, 4.2vw, 67px);
+    line-height: 1.03;
+    letter-spacing: -0.045em;
+    font-weight: 600;
+}
+.seo-giris > p {
+    max-width: 600px;
+    margin: 0 0 28px;
+    color: #625D56;
+    font-size: 16px;
+    line-height: 1.78;
+}
+.seo-iletisim {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(37, 35, 33, 0.55);
+    font-weight: 600;
+}
+.seo-kartlar {
+    display: grid;
+    gap: 14px;
+}
+.seo-kart {
+    display: grid;
+    grid-template-columns: 42px 1fr auto;
+    grid-template-areas:
+        "sayi baslik link"
+        "sayi metin link";
+    column-gap: 20px;
+    align-items: center;
+    padding: 28px 30px;
+    border: 1px solid rgba(37, 35, 33, 0.13);
+    background: rgba(255, 255, 255, 0.56);
+    backdrop-filter: blur(10px);
+}
+.seo-kart > span {
+    grid-area: sayi;
+    align-self: start;
+    padding-top: 3px;
+    font: 11px 'DM Mono', ui-monospace, monospace;
+    color: var(--indigo);
+}
+.seo-kart h3 {
+    grid-area: baslik;
+    margin: 0 0 5px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    line-height: 1.2;
+}
+.seo-kart p {
+    grid-area: metin;
+    max-width: 520px;
+    margin: 0;
+    color: #68635D;
+    line-height: 1.65;
+}
+.seo-kart a {
+    grid-area: link;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-left: 24px;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 700;
+}
+.seo-kart a span,
+.seo-iletisim span { transition: transform 0.2s ease; }
+.seo-kart a:hover span,
+.seo-iletisim:hover span { transform: translateX(4px); }
+
 /* ===================== Footer ===================== */
 .alt { background: #252321; color: var(--krem); padding: 65px 32px 24px; }
 .alt-ic { max-width: var(--en); margin: auto; }
@@ -510,6 +621,7 @@ img { display: block; max-width: 100%; }
     .kapak-sahne { height: 420px; min-height: 0; }
     .alt-ust { grid-template-columns: 1fr 1fr; }
     .alt-ust > div:first-child { grid-column: span 2; }
+    .seo-duzen { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 780px) {
@@ -546,6 +658,17 @@ img { display: block; max-width: 100%; }
     .hero-icerik h1 { font-size: clamp(43px, 12.5vw, 64px); }
     .hero-icerik p { font-size: 15px; }
     .bolum { padding-left: 20px; padding-right: 20px; }
+    .seo-duzen { padding: 76px 20px; gap: 42px; }
+    .seo-giris h2 { font-size: clamp(38px, 11vw, 54px); }
+    .seo-kart {
+        grid-template-columns: 34px 1fr;
+        grid-template-areas:
+            "sayi baslik"
+            "sayi metin"
+            ". link";
+        padding: 24px 20px;
+    }
+    .seo-kart a { margin: 18px 0 0; }
     .kaydir-ipucu { display: none; }
     .alt { padding-left: 20px; padding-right: 20px; }
     .alt-taban { display: block; }

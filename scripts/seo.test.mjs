@@ -33,6 +33,7 @@ test('SEO addresses, structured data and local resources stay consistent', () =>
         const html = fs.readFileSync(`${route}index.html`, 'utf8');
         assert.ok(html.includes(`rel="canonical" href="${base}${route}"`));
         assert.ok(sitemap.includes(`<loc>${base}${route}</loc>`));
+        assert.match(sitemap, new RegExp(`<loc>${base}${route.replaceAll('/', '\\/')}</loc><lastmod>\\d{4}-\\d{2}-\\d{2}</lastmod>`));
         const title = html.match(/<title>(.*?)<\/title>/)[1];
         assert.ok(!titles.has(title)); titles.add(title);
         assert.match(html, /<meta name="description" content="[^"]+">/);
@@ -58,6 +59,16 @@ test('SEO addresses, structured data and local resources stay consistent', () =>
     }
     assert.ok(fs.readFileSync('robots.txt', 'utf8').includes(`Sitemap: ${base}sitemap.xml`));
     assert.equal(fs.readFileSync('CNAME', 'utf8').trim(), 'sahinkayamobilya.com');
+});
+
+test('Homepage describes the local showroom and product paths', () => {
+    const html = fs.readFileSync('index.html', 'utf8');
+    assert.match(html, /Sakarya’da ölçüye özel lake kapak üretimi/);
+    assert.match(html, /"@type": "FurnitureStore"/);
+    assert.match(html, /"addressLocality": "Adapazarı"/);
+    assert.match(html, /href="\/modeller\/"/);
+    assert.match(html, /href="\/renkler\/"/);
+    assert.match(html, /href="\/konfigurator\/"/);
 });
 
 test('The not-found page stays branded and out of search results', () => {

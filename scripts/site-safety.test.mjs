@@ -29,3 +29,13 @@ test('The configurator keeps a single neutral radial background', () => {
     assert.match(ui, /zemin:\s*undefined/);
     assert.doesNotMatch(css, /data-zemin="[2-7]"/);
 });
+
+test('Legacy private pages stay unpublished and out of the sitemap', () => {
+    const privatePages = ['admin.html', 'giris.html', 'hesabim.html', 'sepet.html', 'siparisler.html'];
+    const sitemap = fs.readFileSync('sitemap.xml', 'utf8');
+
+    for (const file of privatePages) {
+        assert.equal(fs.existsSync(file), false, `${file} must not be published`);
+        assert.doesNotMatch(sitemap, new RegExp(file.replace('.', '\\.')), `${file} must not be indexed`);
+    }
+});
