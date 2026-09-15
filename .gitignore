@@ -16,5 +16,10 @@ graphify-out/*.sig
 skills-lock.json
 .codex-tmp/
 
+# Yerel gizli anahtarlar ve ortam değişkenleri kesinlikle sürüm takibine girmez
+.env
+.env.*
+!.env.example
+
 # Reklam görselleri yalnızca bu bilgisayarda tutulur
 assets/reklam/

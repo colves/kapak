@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const base = 'https://sahinkayamobilya.com/';
-const routes = ['', 'renkler/', 'modeller/', 'iletisim/', 'konfigurator/'];
+const routes = ['', 'renkler/', 'modeller/', 'iletisim/', 'konfigurator/', 'katalog/'];
 test('Old homepage addresses lose #tepe and index.html without losing query data', () => {
     const script = fs.readFileSync('js/ana-sayfa-adresi.js', 'utf8');
     for (const [pathname, search, hash, expected] of [
@@ -35,6 +35,15 @@ test('SEO addresses, structured data and local resources stay consistent', () =>
         assert.ok(sitemap.includes(`<loc>${base}${route}</loc>`));
         const title = html.match(/<title>(.*?)<\/title>/)[1];
         assert.ok(!titles.has(title)); titles.add(title);
+        assert.match(html, /<meta name="description" content="[^"]+">/);
+        assert.match(html, new RegExp(`<meta property="og:url" content="${base}${route}">`));
+        assert.match(html, /<meta property="og:image" content="https:\/\/sahinkayamobilya\.com\/[^\"]+">/);
+        assert.match(html, /<meta property="og:image:alt" content="[^"]+">/);
+        assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
+        assert.match(html, /<h1(?:\s[^>]*)?>[\s\S]*?<\/h1>/);
+        for (const image of html.matchAll(/<img\b[^>]*>/g)) {
+            assert.match(image[0], /\balt="[^"]*"/, `Missing alt attribute in ${route || 'home'}`);
+        }
         assert.ok(!/href="(?:[^"/]+\.html|#tepe)"/.test(html));
         for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
             assert.equal(JSON.parse(match[1])['@context'], 'https://schema.org');
@@ -49,6 +58,14 @@ test('SEO addresses, structured data and local resources stay consistent', () =>
     }
     assert.ok(fs.readFileSync('robots.txt', 'utf8').includes(`Sitemap: ${base}sitemap.xml`));
     assert.equal(fs.readFileSync('CNAME', 'utf8').trim(), 'sahinkayamobilya.com');
+});
+
+test('The not-found page stays branded and out of search results', () => {
+    const html = fs.readFileSync('404.html', 'utf8');
+    assert.match(html, /<meta name="robots" content="noindex, follow">/);
+    assert.match(html, /<h1>Aradığınız sayfayı bulamadık\.?<\/h1>/);
+    assert.match(html, /href="\/modeller\/"/);
+    assert.match(html, /href="\/konfigurator\/"/);
 });
 
 test('Legacy redirects preserve shared selections and fragments', () => {
