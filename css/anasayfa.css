@@ -212,15 +212,22 @@ img { display: block; max-width: 100%; }
 /* ===================== Hero ===================== */
 .hero {
     position: relative;
-    /* Bar hero'nun ÜZERİNDE saydam duruyor; hero tam ekran kalıyor. */
-    min-height: 720px;
+    /* Görsel, metin akışı boyunca yerinde kalır; deneme sayfasındaki sabit
+       fotoğraf hissi arka plan hilesiyle değil, gerçek sticky katmanla sağlanır. */
+    height: 165vh;
+    min-height: 1180px;
+    background: var(--lacivert);
+    color: #FFFFFF;
+}
+.hero-sabit {
+    position: sticky;
+    top: 0;
     height: 100vh;
     height: 100dvh;
+    min-height: 720px;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
-    background: var(--lacivert);
-    color: #FFFFFF;
 }
 .hero-gorsel {
     position: absolute;
@@ -232,7 +239,7 @@ img { display: block; max-width: 100%; }
     animation: suzul 18s ease-in-out infinite alternate;
 }
 /* Metnin görsel üzerinde okunması için soldan sağa açılan karartma. */
-.hero::after {
+.hero-sabit::after {
     content: '';
     position: absolute; inset: 0;
     background:
@@ -491,7 +498,10 @@ img { display: block; max-width: 100%; }
     .menu a:last-child { border-bottom: 0; }
     .menu-dugmesi { display: inline-flex; width: 42px; height: 42px; font-size: 24px; flex-shrink: 0; cursor: pointer; }
     .konfig-link { display: inline-flex; width: auto; min-height: 40px; padding: 7px 10px; font-size: 11px; line-height: 14px; white-space: nowrap; }
-    .hero { min-height: 620px; }
+    /* Mobilde sayfa başlangıcı beklenmedik şekilde uzamasın; görsel ilk
+       ekranda, mevcut kompakt hero davranışıyla görünmeye devam eder. */
+    .hero { height: auto; min-height: 620px; }
+    .hero-sabit { position: relative; height: auto; min-height: 620px; }
     .hero-gorsel { background-position: center center; }
     .hero-icerik { padding: 0 20px 56px; }
     .bolum { padding-left: 20px; padding-right: 20px; }
