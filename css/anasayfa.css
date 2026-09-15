@@ -335,7 +335,11 @@ img { display: block; max-width: 100%; }
 
 
 /* ===================== Konfigüratör tanıtımı ===================== */
-.konfig-serit { background: #1A1A1A; color: #F7F3EC; }
+.konfig-serit {
+    /* Hero renderındaki ceviz, bronz ve taş tonlarıyla devam eden sıcak palet. */
+    background: radial-gradient(circle at 78% 22%, #4A3525 0, #2E2119 42%, #201713 100%);
+    color: #FFF8EE;
+}
 .konfig {
     display: grid;
     grid-template-columns: 0.95fr 1.05fr;
@@ -351,16 +355,16 @@ img { display: block; max-width: 100%; }
     display: grid;
     place-items: center;
     overflow: hidden;
-    border: 1px solid rgba(247, 243, 236, 0.11);
+    border: 1px solid rgba(242, 215, 180, 0.17);
     border-radius: 3px;
-    background: radial-gradient(circle at 50% 44%, #3C3934, #262420 72%);
+    background: radial-gradient(circle at 50% 44%, #5B4330, #302218 72%);
 }
 .kapak-sahne::before {
     content: '';
     position: absolute;
     width: 620px; height: 620px;
     border-radius: 50%;
-    border: 1px solid rgba(247, 243, 236, 0.11);
+    border: 1px solid rgba(242, 215, 180, 0.16);
 }
 /* Kapak artık CSS ile ÇİZİLMİYOR: burada konfigüratörün gerçek 3B
    görüntüleyicisi çalışıyor (viewer.js canvas'ı bu kaba ekliyor).
@@ -383,7 +387,7 @@ img { display: block; max-width: 100%; }
     max-width: 62%;
     text-align: center;
     font-size: 0.9rem;
-    color: rgba(247, 243, 236, 0.72);
+    color: rgba(255, 244, 228, 0.76);
     pointer-events: none;
 }
 .kapak-yukleniyor[hidden] { display: none; }
@@ -397,7 +401,7 @@ img { display: block; max-width: 100%; }
     font-size: 0.72rem;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: rgba(247, 243, 236, 0.55);
+    color: rgba(255, 232, 200, 0.62);
     pointer-events: none;
 }
 
@@ -417,7 +421,7 @@ img { display: block; max-width: 100%; }
     font: 11px 'DM Mono', ui-monospace, monospace;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(247, 243, 236, 0.56);
+    color: rgba(255, 232, 200, 0.64);
     pointer-events: none;
 }
 .renk-secenek {
@@ -439,10 +443,10 @@ img { display: block; max-width: 100%; }
     font-weight: 600;
 }
 .konfig-metin { grid-area: metin; }
-.konfig-metin .etiket { color: #C9A06B; font-weight: 600; letter-spacing: 0.16em; }
-.konfig-metin p { max-width: 480px; margin-bottom: 34px; color: rgba(247, 243, 236, 0.76); font-size: 17px; line-height: 1.75; }
-.konfig-metin .dugme { background: #A88A62; border-color: #A88A62; color: #FFFFFF; padding: 15px 26px; font-size: 14px; }
-.konfig-metin .dugme:hover { background: #C0A177; border-color: #C0A177; }
+.konfig-metin .etiket { color: #DEA861; font-weight: 600; letter-spacing: 0.16em; }
+.konfig-metin p { max-width: 480px; margin-bottom: 34px; color: rgba(255, 238, 216, 0.78); font-size: 17px; line-height: 1.75; }
+.konfig-metin .dugme { background: #B68145; border-color: #B68145; color: #FFF9F0; padding: 15px 26px; font-size: 14px; }
+.konfig-metin .dugme:hover { background: #D09B59; border-color: #D09B59; }
 
 /* ===================== Footer ===================== */
 .alt { background: #252321; color: var(--krem); padding: 65px 32px 24px; }
