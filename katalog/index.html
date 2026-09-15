@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/anasayfa.css?v=20260908-2">
-<link rel="stylesheet" href="css/katalog.css?v=20260915-1">
+<link rel="stylesheet" href="css/katalog.css?v=20260915-2">
 </head>
 <body class="ic-sayfa katalog-sayfasi">
 <header class="ust" id="ust">
@@ -35,23 +35,24 @@
   </div>
 </header>
 <main class="katalog-main">
-  <section class="katalog-hero bolum">
-    <div><span class="etiket">Şahinkaya Ahşap</span><h1>Lake Kapak<br>Koleksiyonu</h1></div>
-    <p>Sayfaları çevirmek için kitabın sağ veya sol yaprağına tıklayın.</p>
-  </section>
-  <section class="kitap-alani bolum" aria-label="Lake kapak kataloğu">
+  <section class="kitap-alani" aria-label="Lake kapak kataloğu">
     <div class="kitap-araclari"><span class="kitap-durum" id="kitap-durum" aria-live="polite">01 - 02 / 20</span><a class="pdf-indir" href="assets/katalog/sahinkaya-lake-kapak-katalogu.pdf" download>PDF indir</a></div>
-    <div class="kitap-golge">
-      <div class="kitap" id="kitap" tabindex="0" aria-label="Dijital katalog. Sağ yaprağa tıklayarak ilerleyin, sol yaprağa tıklayarak geri dönün.">
-        <button class="kitap-sayfa kitap-sol" id="kitap-sol" type="button" aria-label="Önceki sayfalar"><img id="sol-sayfa-gorsel" src="assets/katalog/sayfa-01.jpg" alt="Katalog sayfası 1"></button>
-        <button class="kitap-sayfa kitap-sag" id="kitap-sag" type="button" aria-label="Sonraki sayfalar"><img id="sag-sayfa-gorsel" src="assets/katalog/sayfa-02.jpg" alt="Katalog sayfası 2"></button>
-        <span class="kitap-sirti" aria-hidden="true"></span>
+    <div class="kitap-sahnesi">
+      <div class="kitap-golge">
+        <div class="kitap" id="kitap" tabindex="0" aria-label="Dijital katalog. Sağ yaprağa tıklayarak ilerleyin, sol yaprağa tıklayarak geri dönün.">
+          <button class="kitap-sayfa kitap-sol" id="kitap-sol" type="button" aria-label="Önceki sayfalar"><img id="sol-sayfa-gorsel" src="assets/katalog/sayfa-01.jpg" alt="Katalog sayfası 1"></button>
+          <button class="kitap-sayfa kitap-sag" id="kitap-sag" type="button" aria-label="Sonraki sayfalar"><img id="sag-sayfa-gorsel" src="assets/katalog/sayfa-02.jpg" alt="Katalog sayfası 2"></button>
+          <div class="ceviren-yaprak" id="ceviren-yaprak" aria-hidden="true">
+            <div class="yaprak-yuzu yaprak-on"><img id="yaprak-on-gorsel" src="assets/katalog/sayfa-02.jpg" alt=""></div>
+            <div class="yaprak-yuzu yaprak-arka"><img id="yaprak-arka-gorsel" src="assets/katalog/sayfa-03.jpg" alt=""></div>
+          </div>
+          <span class="kitap-sirti" aria-hidden="true"></span>
+        </div>
       </div>
     </div>
     <div class="kitap-kontrolleri" aria-label="Katalog sayfa kontrolleri"><button id="geri" type="button">Geri</button><span id="kitap-ipucu">Sağ yaprağa tıklayarak devam edin</span><button id="ileri" type="button">İleri</button></div>
   </section>
 </main>
-<footer class="alt"><div class="alt-ic"><div class="alt-taban"><span>© 2026 Şahinkaya Mobilya. Tüm hakları saklıdır.</span><span>Mobilya - İç Mimari - Tasarım</span></div></div></footer>
-<script type="module" src="js/katalog.js?v=20260915-1"></script>
+<script type="module" src="js/katalog.js?v=20260915-2"></script>
 </body>
 </html>
