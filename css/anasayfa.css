@@ -389,9 +389,10 @@ img { display: block; max-width: 100%; }
 
 /* ===================== Konfigüratör tanıtımı ===================== */
 .konfig-serit {
-    /* Hero'daki sıcaklığı sadece alt tonda taşıyan sakin füme taş paleti. */
-    background: radial-gradient(circle at 78% 22%, #393731 0, #282824 46%, #1E1F1D 100%);
-    color: #F5F2EB;
+    background:
+        radial-gradient(circle at 78% 18%, rgba(210, 184, 145, 0.34), transparent 36%),
+        linear-gradient(135deg, #F8F3EB 0%, #EEE5D9 100%);
+    color: var(--murekkep);
 }
 .konfig {
     display: grid;
@@ -408,16 +409,17 @@ img { display: block; max-width: 100%; }
     display: grid;
     place-items: center;
     overflow: hidden;
-    border: 1px solid rgba(245, 242, 235, 0.12);
+    border: 1px solid rgba(37, 35, 33, 0.13);
     border-radius: 3px;
-    background: radial-gradient(circle at 50% 44%, #45433D, #2C2D29 72%);
+    background: radial-gradient(circle at 50% 42%, #FFFFFF 0, #EEE8DF 58%, #DDD3C5 100%);
+    box-shadow: 0 24px 70px rgba(72, 54, 35, 0.12);
 }
 .kapak-sahne::before {
     content: '';
     position: absolute;
     width: 620px; height: 620px;
     border-radius: 50%;
-    border: 1px solid rgba(245, 242, 235, 0.11);
+    border: 1px solid rgba(37, 35, 33, 0.1);
 }
 /* Kapak artık CSS ile ÇİZİLMİYOR: burada konfigüratörün gerçek 3B
    görüntüleyicisi çalışıyor (viewer.js canvas'ı bu kaba ekliyor).
@@ -440,7 +442,7 @@ img { display: block; max-width: 100%; }
     max-width: 62%;
     text-align: center;
     font-size: 0.9rem;
-    color: rgba(245, 242, 235, 0.74);
+    color: rgba(37, 35, 33, 0.68);
     pointer-events: none;
 }
 .kapak-yukleniyor[hidden] { display: none; }
@@ -454,7 +456,7 @@ img { display: block; max-width: 100%; }
     font-size: 0.72rem;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: rgba(245, 242, 235, 0.56);
+    color: rgba(37, 35, 33, 0.56);
     pointer-events: none;
 }
 
@@ -474,7 +476,7 @@ img { display: block; max-width: 100%; }
     font: 11px 'DM Mono', ui-monospace, monospace;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(245, 242, 235, 0.56);
+    color: rgba(37, 35, 33, 0.56);
     pointer-events: none;
 }
 .renk-secenek {
@@ -496,13 +498,18 @@ img { display: block; max-width: 100%; }
     font-weight: 600;
 }
 .konfig-metin { grid-area: metin; }
-.konfig-metin .etiket { color: #C7B18B; font-weight: 600; letter-spacing: 0.16em; }
-.konfig-metin p { max-width: 480px; margin-bottom: 34px; color: rgba(245, 242, 235, 0.76); font-size: 17px; line-height: 1.75; }
-.konfig-metin .dugme { background: #837458; border-color: #837458; color: #FFFFFF; padding: 15px 26px; font-size: 14px; }
-.konfig-metin .dugme:hover { background: #9E8B69; border-color: #9E8B69; }
+.konfig-metin .etiket { color: var(--indigo); font-weight: 600; letter-spacing: 0.16em; }
+.konfig-metin p { max-width: 480px; margin-bottom: 34px; color: #686058; font-size: 17px; line-height: 1.75; }
+.konfig-metin .dugme { background: var(--murekkep); border-color: var(--murekkep); color: #FFFFFF; padding: 15px 26px; font-size: 14px; }
+.konfig-metin .dugme:hover { background: var(--indigo); border-color: var(--indigo); }
 
 /* ===================== Footer ===================== */
-.alt { background: #252321; color: var(--krem); padding: 65px 32px 24px; }
+.alt {
+    background: linear-gradient(180deg, #E9E1D6 0%, #DED3C5 100%);
+    color: var(--murekkep);
+    padding: 65px 32px 24px;
+    border-top: 1px solid rgba(37, 35, 33, 0.12);
+}
 .alt-ic { max-width: var(--en); margin: auto; }
 .alt-ust {
     display: grid;
@@ -511,27 +518,27 @@ img { display: block; max-width: 100%; }
     padding-bottom: 60px;
 }
 .alt-marka img { max-height: 52px; width: auto; margin-bottom: 16px; }
-.alt-marka p { max-width: 240px; font-size: 12px; color: #AEB8DD; line-height: 1.7; }
+.alt-marka p { max-width: 240px; font-size: 12px; color: #6D655C; line-height: 1.7; }
 .alt h3 {
     margin: 0 0 6px;
     font: 10px 'DM Mono', ui-monospace, monospace;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-weight: 400;
-    color: #AEB8DD;
+    color: #8A4F00;
 }
 .alt a, .alt-adres { display: block; margin: 10px 0; font-size: 12px; }
 .alt a { transition: color 0.18s ease; }
-.alt a:hover { color: #FFFFFF; }
-.alt-adres { color: #AEB8DD; }
+.alt a:hover { color: #8A4F00; }
+.alt-adres { color: #6D655C; }
 .alt-taban {
     display: flex;
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
     padding-top: 18px;
-    border-top: 1px solid rgba(255, 255, 255, 0.19);
-    color: #AEB8DD;
+    border-top: 1px solid rgba(37, 35, 33, 0.17);
+    color: #6D655C;
     font-size: 11px;
 }
 

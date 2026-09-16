@@ -1,0 +1,216 @@
+.projeler-sayfasi {
+    background: #f5f0e8;
+}
+
+.projeler-sayfasi .menu a.etkin {
+    border-bottom: 1px solid var(--lacivert);
+}
+
+.projeler-main {
+    padding-top: var(--bar-y);
+}
+
+.proje-giris,
+.proje,
+.proje-iletisim {
+    width: min(100% - 64px, 1440px);
+    margin-inline: auto;
+}
+
+.proje-giris {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+    align-items: end;
+    gap: 48px;
+    padding: clamp(76px, 9vw, 138px) 0 clamp(70px, 8vw, 118px);
+}
+
+.proje-giris .etiket {
+    grid-column: 1 / -1;
+    margin-bottom: -26px;
+}
+
+.proje-giris h1 {
+    margin: 0;
+    font: 600 clamp(52px, 7.2vw, 112px)/.92 'Playfair Display', Georgia, serif;
+    letter-spacing: -.055em;
+}
+
+.proje-giris p {
+    max-width: 520px;
+    margin: 0 0 8px;
+    color: #6b635a;
+    font-size: clamp(15px, 1.45vw, 20px);
+    line-height: 1.7;
+}
+
+.proje {
+    padding: clamp(54px, 7vw, 96px) 0;
+    border-top: 1px solid rgba(37, 35, 33, .16);
+}
+
+.proje-baslik {
+    display: grid;
+    grid-template-columns: 1fr minmax(300px, .62fr);
+    gap: 42px;
+    align-items: end;
+    margin-bottom: clamp(28px, 4vw, 52px);
+}
+
+.proje-no {
+    display: block;
+    margin-bottom: 14px;
+    color: #8a4f00;
+    font: 500 11px/1 'DM Mono', monospace;
+    letter-spacing: .14em;
+}
+
+.proje h2 {
+    margin: 0;
+    font: 600 clamp(36px, 4.6vw, 68px)/1 'Playfair Display', Georgia, serif;
+    letter-spacing: -.04em;
+}
+
+.proje-baslik p {
+    max-width: 540px;
+    margin: 0 0 4px;
+    color: #6b635a;
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.proje-galeri {
+    display: grid;
+    gap: clamp(12px, 1.7vw, 24px);
+}
+
+.mutfak-galeri { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.mutfak-galeri .genel {
+    grid-column: 1 / -1;
+    aspect-ratio: 4 / 3;
+}
+
+.mutfak-galeri .tezgah,
+.mutfak-galeri .buzdolabi { aspect-ratio: 3 / 4; }
+
+.vitrin-galeri { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.oda-galeri { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.vitrin-galeri .proje-gorsel,
+.oda-galeri .proje-gorsel { aspect-ratio: 9 / 16; }
+
+.proje-gorsel {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    background: #d8cec1;
+}
+
+.proje-gorsel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .7s cubic-bezier(.2, .7, .2, 1);
+}
+
+.proje-gorsel:hover img {
+    transform: scale(1.015);
+}
+
+.proje-gorsel figcaption {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    padding: 8px 10px;
+    background: rgba(250, 247, 241, .88);
+    backdrop-filter: blur(8px);
+    color: #352f29;
+    font: 500 10px/1 'DM Mono', monospace;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.proje-iletisim {
+    display: grid;
+    grid-template-columns: auto minmax(280px, 1fr) auto;
+    align-items: center;
+    gap: 34px;
+    margin-top: 34px;
+    margin-bottom: clamp(80px, 9vw, 132px);
+    padding: 34px 0;
+    border-top: 1px solid rgba(37, 35, 33, .16);
+    border-bottom: 1px solid rgba(37, 35, 33, .16);
+}
+
+.proje-iletisim p {
+    margin: 0;
+    font: 500 clamp(20px, 2.5vw, 34px)/1.22 'Playfair Display', Georgia, serif;
+}
+
+.proje-iletisim .dugme:hover {
+    background: #8a4f00;
+    border-color: #8a4f00;
+}
+
+@media (max-width: 800px) {
+    .proje-giris,
+    .proje-baslik,
+    .proje-iletisim {
+        grid-template-columns: 1fr;
+    }
+
+    .proje-giris,
+    .proje,
+    .proje-iletisim {
+        width: min(100% - 40px, 1440px);
+    }
+
+    .proje-giris {
+        gap: 28px;
+        padding-top: 64px;
+    }
+
+    .proje-giris .etiket {
+        margin-bottom: -8px;
+    }
+
+    .proje-giris h1 br {
+        display: none;
+    }
+
+    .proje-baslik {
+        gap: 20px;
+    }
+
+    .mutfak-galeri,
+    .vitrin-galeri,
+    .oda-galeri {
+        grid-template-columns: 1fr;
+    }
+
+    .mutfak-galeri .genel {
+        grid-column: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    .mutfak-galeri .tezgah,
+    .mutfak-galeri .buzdolabi { aspect-ratio: 3 / 4; }
+
+    .vitrin-galeri .proje-gorsel,
+    .oda-galeri .proje-gorsel { aspect-ratio: 9 / 16; }
+
+    .proje-iletisim {
+        gap: 20px;
+    }
+
+    .proje-iletisim .dugme {
+        width: fit-content;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .proje-gorsel img {
+        transition: none;
+    }
+}

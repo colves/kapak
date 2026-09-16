@@ -9,8 +9,8 @@ import { ustBariKur } from './ustBar.js';
 // Düğmenin kendisi statik HTML'de tam adresiyle duruyor; yani bu dosya hiç
 // çalışmasa bile müşteri haritaya gidebiliyor, sadece gömülü önizleme olmuyor.
 //
-// Kart içindeki önizleme OpenStreetMap kullanır; harici API anahtarı ya da
-// kota gerektirmez. Alttaki düğme ise kullanıcıyı Google Haritalar'a götürür.
+// Eski iletişim sayfasında sorunsuz çalışan Google Maps koordinat gömmesi
+// kullanılır. Alttaki düğme aynı konumu Google Haritalar uygulamasında açar.
 function haritalariKur() {
     document.querySelectorAll('.konum-kart').forEach((kart) => {
         const kutu = kart.querySelector('.harita');
@@ -29,18 +29,9 @@ function haritalariKur() {
         const boylam = Number(baglanti.dataset.haritaBoylam);
         if (!q || !Number.isFinite(enlem) || !Number.isFinite(boylam)) return;
 
-        const yatayPay = 0.012;
-        const dikeyPay = 0.0075;
-        const sinirlar = [
-            boylam - yatayPay,
-            enlem - dikeyPay,
-            boylam + yatayPay,
-            enlem + dikeyPay
-        ].join(',');
-
         const cerceve = document.createElement('iframe');
-        cerceve.src = `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(sinirlar)}&layer=mapnik&marker=${encodeURIComponent(`${enlem},${boylam}`)}`;
-        cerceve.loading = 'lazy';
+        cerceve.src = `https://maps.google.com/maps?q=${encodeURIComponent(`${enlem},${boylam}`)}&hl=tr&z=15&output=embed`;
+        cerceve.loading = 'eager';
         cerceve.referrerPolicy = 'no-referrer-when-downgrade';
         cerceve.title = `${q} — harita`;
         cerceve.setAttribute('allowfullscreen', '');

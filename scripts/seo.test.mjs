@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const base = 'https://sahinkayamobilya.com/';
-const routes = ['', 'renkler/', 'modeller/', 'iletisim/', 'konfigurator/', 'katalog/'];
+const routes = ['', 'renkler/', 'modeller/', 'iletisim/', 'konfigurator/', 'projeler/'];
 test('Old homepage addresses lose #tepe and index.html without losing query data', () => {
     const script = fs.readFileSync('js/ana-sayfa-adresi.js', 'utf8');
     for (const [pathname, search, hash, expected] of [
@@ -70,8 +70,23 @@ test('Homepage exposes local showroom data and product paths', () => {
     assert.match(html, /href="\/konfigurator\/"/);
 });
 
+test('Projects page uses the curated completed-project photography', () => {
+    const html = fs.readFileSync('projeler/index.html', 'utf8');
+    const projects = [
+        ['Sakarya Beyaz Lake Mutfak', 'sakarya-beyaz-lake-mutfak-', 3],
+        ['Sakarya Aynalı Lake Vitrin', 'sakarya-aynali-lake-vitrin-', 3],
+        ['Sakarya Klasik Çocuk Odası', 'sakarya-klasik-cocuk-odasi-', 4]
+    ];
+
+    for (const [name, prefix, expectedCount] of projects) {
+        assert.ok(html.includes(name), `Missing project: ${name}`);
+        assert.equal(html.match(new RegExp(`src="assets/projeler/${prefix}`, 'g'))?.length, expectedCount);
+    }
+    assert.doesNotMatch(html, /assets\/renderlar|\/katalog\//);
+});
+
 test('Primary pages keep contact prominent and the showroom map resolvable', () => {
-    for (const route of ['', 'renkler/', 'modeller/', 'katalog/', 'iletisim/']) {
+    for (const route of ['', 'renkler/', 'modeller/', 'projeler/', 'iletisim/']) {
         const html = fs.readFileSync(`${route}index.html`, 'utf8');
         assert.match(html, /class="iletisim-link(?: etkin)?" href="\/iletisim\/"/);
     }
@@ -81,7 +96,7 @@ test('Primary pages keep contact prominent and the showroom map resolvable', () 
     assert.match(contact, /href="https:\/\/maps\.app\.goo\.gl\/wLMP4kPqc7LdECur8"/);
     assert.match(contact, /data-harita-enlem="40\.7886866" data-harita-boylam="30\.4225954"/);
     assert.match(contact, /"hasMap": "https:\/\/maps\.app\.goo\.gl\/wLMP4kPqc7LdECur8"/);
-    assert.match(script, /openstreetmap\.org\/export\/embed\.html/);
+    assert.match(script, /maps\.google\.com\/maps\?q=/);
 });
 
 test('The not-found page stays branded and out of search results', () => {
