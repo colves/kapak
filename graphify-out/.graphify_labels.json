@@ -1,1 +1,21 @@
-{"0": "ui.js", "1": "Task 6: 3D Görüntüleyici", "2": "viewer.js", "3": "colors.js", "4": "Şahinkaya Kapak Konfigüratörü Projesi", "5": "kenarOlcekleme.test.js", "6": "Kaydırmalı Renk-Döngülü Ana Sayfa — Tasarım", "7": "Şahinkaya Ahşap Logo", "8": "package.json", "9": "renkler.js", "10": "modeller.js", "11": "4. Uygulama planı", "12": "models.test.js", "13": "Galeri fotoğrafları"}
+{
+  "0": "ui.js",
+  "1": "Task 6: 3D Görüntüleyici",
+  "2": "viewer.js",
+  "3": "colors.js",
+  "4": "Şahinkaya Kapak Konfigüratörü Projesi",
+  "5": "glbYukleyici.js",
+  "6": "Kaydırmalı Renk-Döngülü Ana Sayfa — Tasarım",
+  "7": "Şahinkaya Ahşap Logo",
+  "8": "package.json",
+  "9": "renkler.js",
+  "10": "models.js",
+  "11": "4. Uygulama planı",
+  "13": "Galeri fotoğrafları",
+  "14": "modeller.js",
+  "15": "seo.test.mjs",
+  "16": "AGENTS.md",
+  "17": "ana-sayfa-adresi.js",
+  "18": "export-model-qr.py",
+  "19": "site-safety.test.mjs"
+}

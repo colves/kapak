@@ -69,7 +69,19 @@
       "file_type": "code",
       "norm_label": "idilemodelbul()",
       "source_file": "js/data/models.js",
-      "source_location": "L58"
+      "source_location": "L158"
+    },
+    {
+      "id": "js_data_ortamlar_idileortambul",
+      "label": "idIleOrtamBul()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "idileortambul()",
+      "source_file": "js/data/ortamlar.js",
+      "source_location": "L33"
     },
     {
       "id": "js_data_yuzeyler_idileyuzeybul",
@@ -84,18 +96,6 @@
       "source_location": "L48"
     },
     {
-      "id": "js_data_yuzeyler_varsayilanyuzey",
-      "label": "varsayilanYuzey()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "file_type": "code",
-      "norm_label": "varsayilanyuzey()",
-      "source_file": "js/data/yuzeyler.js",
-      "source_location": "L44"
-    },
-    {
       "id": "js_ui_araliketiketiniguncelle",
       "label": "aralikEtiketiniGuncelle()",
       "_callable": true,
@@ -105,7 +105,7 @@
       "file_type": "code",
       "norm_label": "araliketiketiniguncelle()",
       "source_file": "js/ui.js",
-      "source_location": "L427"
+      "source_location": "L476"
     },
     {
       "id": "js_ui_arayuzubaslat",
@@ -117,7 +117,7 @@
       "file_type": "code",
       "norm_label": "arayuzubaslat()",
       "source_file": "js/ui.js",
-      "source_location": "L870"
+      "source_location": "L977"
     },
     {
       "id": "js_ui_ayarozetiniguncelle",
@@ -129,7 +129,7 @@
       "file_type": "code",
       "norm_label": "ayarozetiniguncelle()",
       "source_file": "js/ui.js",
-      "source_location": "L529"
+      "source_location": "L603"
     },
     {
       "id": "js_ui_ayarpanelinikur",
@@ -141,7 +141,7 @@
       "file_type": "code",
       "norm_label": "ayarpanelinikur()",
       "source_file": "js/ui.js",
-      "source_location": "L516"
+      "source_location": "L590"
     },
     {
       "id": "js_ui_bildir",
@@ -153,7 +153,19 @@
       "file_type": "code",
       "norm_label": "bildir()",
       "source_file": "js/ui.js",
-      "source_location": "L163"
+      "source_location": "L127"
+    },
+    {
+      "id": "js_ui_canvasblobuolustur",
+      "label": "canvasBlobuOlustur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "canvasblobuolustur()",
+      "source_file": "js/ui.js",
+      "source_location": "L835"
     },
     {
       "id": "js_ui_digersecicipanellerinikapat",
@@ -165,7 +177,7 @@
       "file_type": "code",
       "norm_label": "digersecicipanellerinikapat()",
       "source_file": "js/ui.js",
-      "source_location": "L614"
+      "source_location": "L688"
     },
     {
       "id": "js_ui_dikeykaydirmayiplanla",
@@ -177,7 +189,7 @@
       "file_type": "code",
       "norm_label": "dikeykaydirmayiplanla()",
       "source_file": "js/ui.js",
-      "source_location": "L817"
+      "source_location": "L968"
     },
     {
       "id": "js_ui_dikeykaydirmayiuygula",
@@ -189,7 +201,19 @@
       "file_type": "code",
       "norm_label": "dikeykaydirmayiuygula()",
       "source_file": "js/ui.js",
-      "source_location": "L794"
+      "source_location": "L933"
+    },
+    {
+      "id": "js_ui_genelpaylasbutonunukur",
+      "label": "genelPaylasButonunuKur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "genelpaylasbutonunukur()",
+      "source_file": "js/ui.js",
+      "source_location": "L858"
     },
     {
       "id": "js_ui_goruntuguncellemesiplanla",
@@ -201,7 +225,7 @@
       "file_type": "code",
       "norm_label": "goruntuguncellemesiplanla()",
       "source_file": "js/ui.js",
-      "source_location": "L67"
+      "source_location": "L69"
     },
     {
       "id": "js_ui_guncellemeyiuygula",
@@ -213,7 +237,7 @@
       "file_type": "code",
       "norm_label": "guncellemeyiuygula()",
       "source_file": "js/ui.js",
-      "source_location": "L35"
+      "source_location": "L37"
     },
     {
       "id": "js_ui_hexmetni",
@@ -225,7 +249,7 @@
       "file_type": "code",
       "norm_label": "hexmetni()",
       "source_file": "js/ui.js",
-      "source_location": "L84"
+      "source_location": "L86"
     },
     {
       "id": "js_ui_indirbutonunukur",
@@ -237,7 +261,7 @@
       "file_type": "code",
       "norm_label": "indirbutonunukur()",
       "source_file": "js/ui.js",
-      "source_location": "L712"
+      "source_location": "L786"
     },
     {
       "id": "js_ui_isikpaneliniackapa",
@@ -249,7 +273,67 @@
       "file_type": "code",
       "norm_label": "isikpaneliniackapa()",
       "source_file": "js/ui.js",
-      "source_location": "L627"
+      "source_location": "L701"
+    },
+    {
+      "id": "js_ui_isikpanelinikur",
+      "label": "isikPaneliniKur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "isikpanelinikur()",
+      "source_file": "js/ui.js",
+      "source_location": "L722"
+    },
+    {
+      "id": "js_ui_isiksatiridurumunuguncelle",
+      "label": "isikSatiriDurumunuGuncelle()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "isiksatiridurumunuguncelle()",
+      "source_file": "js/ui.js",
+      "source_location": "L626"
+    },
+    {
+      "id": "js_ui_isiksatiriolustur",
+      "label": "isikSatiriOlustur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "isiksatiriolustur()",
+      "source_file": "js/ui.js",
+      "source_location": "L663"
+    },
+    {
+      "id": "js_ui_isiksecicimetniniguncelle",
+      "label": "isikSeciciMetniniGuncelle()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "isiksecicimetniniguncelle()",
+      "source_file": "js/ui.js",
+      "source_location": "L620"
+    },
+    {
+      "id": "js_ui_isiksecildi",
+      "label": "isikSecildi()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "isiksecildi()",
+      "source_file": "js/ui.js",
+      "source_location": "L638"
     },
     {
       "id": "js_ui_kalinlikalaniningorunurlugunuguncelle",
@@ -261,7 +345,7 @@
       "file_type": "code",
       "norm_label": "kalinlikalaniningorunurlugunuguncelle()",
       "source_file": "js/ui.js",
-      "source_location": "L415"
+      "source_location": "L464"
     },
     {
       "id": "js_ui_kaydiricidolgusunuguncelle",
@@ -273,7 +357,43 @@
       "file_type": "code",
       "norm_label": "kaydiricidolgusunuguncelle()",
       "source_file": "js/ui.js",
-      "source_location": "L421"
+      "source_location": "L470"
+    },
+    {
+      "id": "js_ui_masaustumodelcekmecesimi",
+      "label": "masaustuModelCekmecesiMi()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "masaustumodelcekmecesimi()",
+      "source_file": "js/ui.js",
+      "source_location": "L189"
+    },
+    {
+      "id": "js_ui_modelcekmecesiniac",
+      "label": "modelCekmecesiniAc()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "modelcekmecesiniac()",
+      "source_file": "js/ui.js",
+      "source_location": "L193"
+    },
+    {
+      "id": "js_ui_modelcekmecesinikapat",
+      "label": "modelCekmecesiniKapat()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "modelcekmecesinikapat()",
+      "source_file": "js/ui.js",
+      "source_location": "L202"
     },
     {
       "id": "js_ui_modelgalerikartiolustur",
@@ -285,7 +405,7 @@
       "file_type": "code",
       "norm_label": "modelgalerikartiolustur()",
       "source_file": "js/ui.js",
-      "source_location": "L201"
+      "source_location": "L211"
     },
     {
       "id": "js_ui_modelgalerisiniac",
@@ -297,7 +417,7 @@
       "file_type": "code",
       "norm_label": "modelgalerisiniac()",
       "source_file": "js/ui.js",
-      "source_location": "L252"
+      "source_location": "L290"
     },
     {
       "id": "js_ui_modelgalerisiniciz",
@@ -309,7 +429,7 @@
       "file_type": "code",
       "norm_label": "modelgalerisiniciz()",
       "source_file": "js/ui.js",
-      "source_location": "L234"
+      "source_location": "L269"
     },
     {
       "id": "js_ui_modelgalerisinikapat",
@@ -321,7 +441,43 @@
       "file_type": "code",
       "norm_label": "modelgalerisinikapat()",
       "source_file": "js/ui.js",
-      "source_location": "L260"
+      "source_location": "L299"
+    },
+    {
+      "id": "js_ui_modelisec",
+      "label": "modeliSec()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "modelisec()",
+      "source_file": "js/ui.js",
+      "source_location": "L169"
+    },
+    {
+      "id": "js_ui_modelpanelikartiolustur",
+      "label": "modelPaneliKartiOlustur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "modelpanelikartiolustur()",
+      "source_file": "js/ui.js",
+      "source_location": "L243"
+    },
+    {
+      "id": "js_ui_modelpaneliniciz",
+      "label": "modelPaneliniCiz()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "modelpaneliniciz()",
+      "source_file": "js/ui.js",
+      "source_location": "L263"
     },
     {
       "id": "js_ui_modelsecicimetniniguncelle",
@@ -333,7 +489,7 @@
       "file_type": "code",
       "norm_label": "modelsecicimetniniguncelle()",
       "source_file": "js/ui.js",
-      "source_location": "L195"
+      "source_location": "L161"
     },
     {
       "id": "js_ui_modelseciciyikur",
@@ -345,7 +501,7 @@
       "file_type": "code",
       "norm_label": "modelseciciyikur()",
       "source_file": "js/ui.js",
-      "source_location": "L265"
+      "source_location": "L304"
     },
     {
       "id": "js_ui_olcukontrollerinikur",
@@ -357,7 +513,7 @@
       "file_type": "code",
       "norm_label": "olcukontrollerinikur()",
       "source_file": "js/ui.js",
-      "source_location": "L479"
+      "source_location": "L528"
     },
     {
       "id": "js_ui_olculerimodellimitlerinesabitle",
@@ -369,7 +525,19 @@
       "file_type": "code",
       "norm_label": "olculerimodellimitlerinesabitle()",
       "source_file": "js/ui.js",
-      "source_location": "L444"
+      "source_location": "L493"
+    },
+    {
+      "id": "js_ui_olculerisifirlamabutonunukur",
+      "label": "olculeriSifirlamaButonunuKur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "olculerisifirlamabutonunukur()",
+      "source_file": "js/ui.js",
+      "source_location": "L566"
     },
     {
       "id": "js_ui_olculerivarsayilanasifirla",
@@ -381,7 +549,7 @@
       "file_type": "code",
       "norm_label": "olculerivarsayilanasifirla()",
       "source_file": "js/ui.js",
-      "source_location": "L438"
+      "source_location": "L487"
     },
     {
       "id": "js_ui_paylasbutonunukur",
@@ -393,7 +561,7 @@
       "file_type": "code",
       "norm_label": "paylasbutonunukur()",
       "source_file": "js/ui.js",
-      "source_location": "L172"
+      "source_location": "L136"
     },
     {
       "id": "js_ui_paylasilacakdurum",
@@ -405,7 +573,31 @@
       "file_type": "code",
       "norm_label": "paylasilacakdurum()",
       "source_file": "js/ui.js",
-      "source_location": "L132"
+      "source_location": "L98"
+    },
+    {
+      "id": "js_ui_paylasimbilgisiniolustur",
+      "label": "paylasimBilgisiniOlustur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "paylasimbilgisiniolustur()",
+      "source_file": "js/ui.js",
+      "source_location": "L818"
+    },
+    {
+      "id": "js_ui_paylasimpaketinipanoyakopyala",
+      "label": "paylasimPaketiniPanoyaKopyala()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "paylasimpaketinipanoyakopyala()",
+      "source_file": "js/ui.js",
+      "source_location": "L839"
     },
     {
       "id": "js_ui_renkbutonuolustur",
@@ -417,7 +609,7 @@
       "file_type": "code",
       "norm_label": "renkbutonuolustur()",
       "source_file": "js/ui.js",
-      "source_location": "L285"
+      "source_location": "L334"
     },
     {
       "id": "js_ui_renklistesiniciz",
@@ -429,7 +621,7 @@
       "file_type": "code",
       "norm_label": "renklistesiniciz()",
       "source_file": "js/ui.js",
-      "source_location": "L351"
+      "source_location": "L400"
     },
     {
       "id": "js_ui_renksecildi",
@@ -441,7 +633,7 @@
       "file_type": "code",
       "norm_label": "renksecildi()",
       "source_file": "js/ui.js",
-      "source_location": "L306"
+      "source_location": "L355"
     },
     {
       "id": "js_ui_renkseribolumuolustur",
@@ -453,7 +645,19 @@
       "file_type": "code",
       "norm_label": "renkseribolumuolustur()",
       "source_file": "js/ui.js",
-      "source_location": "L316"
+      "source_location": "L365"
+    },
+    {
+      "id": "js_ui_sahneyiacigacikar",
+      "label": "sahneyiAcigaCikar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "ui.js",
+      "file_type": "code",
+      "norm_label": "sahneyiacigacikar()",
+      "source_file": "js/ui.js",
+      "source_location": "L716"
     },
     {
       "id": "js_ui_sifirlabutonukur",
@@ -465,7 +669,7 @@
       "file_type": "code",
       "norm_label": "sifirlabutonukur()",
       "source_file": "js/ui.js",
-      "source_location": "L707"
+      "source_location": "L781"
     },
     {
       "id": "js_ui_tamekranbutonukur",
@@ -477,7 +681,7 @@
       "file_type": "code",
       "norm_label": "tamekranbutonukur()",
       "source_file": "js/ui.js",
-      "source_location": "L769"
+      "source_location": "L908"
     },
     {
       "id": "js_ui_urldendurumuyukle",
@@ -489,7 +693,7 @@
       "file_type": "code",
       "norm_label": "urldendurumuyukle()",
       "source_file": "js/ui.js",
-      "source_location": "L152"
+      "source_location": "L109"
     },
     {
       "id": "js_ui_urlidurumaesitle",
@@ -501,19 +705,7 @@
       "file_type": "code",
       "norm_label": "urlidurumaesitle()",
       "source_file": "js/ui.js",
-      "source_location": "L136"
-    },
-    {
-      "id": "js_ui_whatsappbaglantisiniguncelle",
-      "label": "whatsappBaglantisiniGuncelle()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "file_type": "code",
-      "norm_label": "whatsappbaglantisiniguncelle()",
-      "source_file": "js/ui.js",
-      "source_location": "L750"
+      "source_location": "L102"
     },
     {
       "id": "js_ui_yuzeyseciciyikur",
@@ -525,7 +717,7 @@
       "file_type": "code",
       "norm_label": "yuzeyseciciyikur()",
       "source_file": "js/ui.js",
-      "source_location": "L389"
+      "source_location": "L438"
     },
     {
       "id": "js_ui_yuzeysecildi",
@@ -537,50 +729,146 @@
       "file_type": "code",
       "norm_label": "yuzeysecildi()",
       "source_file": "js/ui.js",
-      "source_location": "L376"
+      "source_location": "L425"
     },
     {
-      "id": "js_ui_zeminiuygula",
-      "label": "zeminiUygula()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "file_type": "code",
-      "norm_label": "zeminiuygula()",
-      "source_file": "js/ui.js",
-      "source_location": "L105"
-    },
-    {
-      "id": "js_ui_zeminseciciyikur",
-      "label": "zeminSeciciyiKur()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "file_type": "code",
-      "norm_label": "zeminseciciyikur()",
-      "source_file": "js/ui.js",
-      "source_location": "L824"
-    },
-    {
-      "id": "js_data_colors_ralsirasindakirenkler",
-      "label": "ralSirasindakiRenkler()",
+      "id": "js_data_models_kapakmodeli",
+      "label": "kapakModeli()",
       "_callable": true,
       "_origin": "ast",
       "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "kapakmodeli()",
+      "source_file": "js/data/models.js",
+      "source_location": "L25"
+    },
+    {
+      "id": "js_data_models_mkodunubul",
+      "label": "mKodunuBul()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "mkodunubul()",
+      "source_file": "js/data/models.js",
+      "source_location": "L15"
+    },
+    {
+      "id": "js_data_models_ozelmodel",
+      "label": "ozelModel()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "ozelmodel()",
+      "source_file": "js/data/models.js",
+      "source_location": "L45"
+    },
+    {
+      "id": "js_paylasim_durumusorguyakodla",
+      "label": "durumuSorguyaKodla()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "durumusorguyakodla()",
+      "source_file": "js/paylasim.js",
+      "source_location": "L30"
+    },
+    {
+      "id": "js_paylasim_paylasimadresiolustur",
+      "label": "paylasimAdresiOlustur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "paylasimadresiolustur()",
+      "source_file": "js/paylasim.js",
+      "source_location": "L92"
+    },
+    {
+      "id": "js_paylasim_paylasimdosyaadiolustur",
+      "label": "paylasimDosyaAdiOlustur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "paylasimdosyaadiolustur()",
+      "source_file": "js/paylasim.js",
+      "source_location": "L107"
+    },
+    {
+      "id": "js_paylasim_paylasimmetniolustur",
+      "label": "paylasimMetniOlustur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "paylasimmetniolustur()",
+      "source_file": "js/paylasim.js",
+      "source_location": "L96"
+    },
+    {
+      "id": "js_paylasim_ralkodundanrenkid",
+      "label": "ralKodundanRenkId()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "ralkodundanrenkid()",
+      "source_file": "js/paylasim.js",
+      "source_location": "L25"
+    },
+    {
+      "id": "js_paylasim_renkidsindenralkodu",
+      "label": "renkIdSindenRalKodu()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "renkidsindenralkodu()",
+      "source_file": "js/paylasim.js",
+      "source_location": "L18"
+    },
+    {
+      "id": "js_paylasim_sorgudandurumcoz",
+      "label": "sorgudanDurumCoz()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "sorgudandurumcoz()",
+      "source_file": "js/paylasim.js",
+      "source_location": "L52"
+    },
+    {
+      "id": "js_iletisim_haritalarikur",
+      "label": "haritalariKur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 14,
       "community_name": "modeller.js",
       "file_type": "code",
-      "norm_label": "ralsirasindakirenkler()",
-      "source_file": "js/data/colors.js",
-      "source_location": "L178"
+      "norm_label": "haritalarikur()",
+      "source_file": "js/iletisim.js",
+      "source_location": "L14"
     },
     {
       "id": "js_modeller_hexmetni",
       "label": "hexMetni()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
+      "community": 14,
       "community_name": "modeller.js",
       "file_type": "code",
       "norm_label": "hexmetni()",
@@ -592,7 +880,7 @@
       "label": "kartOlustur()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
+      "community": 14,
       "community_name": "modeller.js",
       "file_type": "code",
       "norm_label": "kartolustur()",
@@ -604,7 +892,7 @@
       "label": "katalogunuCiz()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
+      "community": 14,
       "community_name": "modeller.js",
       "file_type": "code",
       "norm_label": "katalogunuciz()",
@@ -616,7 +904,7 @@
       "label": "konfiguratorAdresi()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
+      "community": 14,
       "community_name": "modeller.js",
       "file_type": "code",
       "norm_label": "konfiguratoradresi()",
@@ -628,7 +916,7 @@
       "label": "modelinFotografi()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
+      "community": 14,
       "community_name": "modeller.js",
       "file_type": "code",
       "norm_label": "modelinfotografi()",
@@ -640,7 +928,7 @@
       "label": "ornekRenkler()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
+      "community": 14,
       "community_name": "modeller.js",
       "file_type": "code",
       "norm_label": "ornekrenkler()",
@@ -648,64 +936,52 @@
       "source_location": "L36"
     },
     {
-      "id": "js_paylasim_durumusorguyakodla",
-      "label": "durumuSorguyaKodla()",
+      "id": "js_ustbar_kaydirmacubugupayiniolc",
+      "label": "kaydirmaCubuguPayiniOlc()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
+      "community": 14,
       "community_name": "modeller.js",
       "file_type": "code",
-      "norm_label": "durumusorguyakodla()",
-      "source_file": "js/paylasim.js",
-      "source_location": "L28"
-    },
-    {
-      "id": "js_paylasim_paylasimadresiolustur",
-      "label": "paylasimAdresiOlustur()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "modeller.js",
-      "file_type": "code",
-      "norm_label": "paylasimadresiolustur()",
-      "source_file": "js/paylasim.js",
-      "source_location": "L81"
-    },
-    {
-      "id": "js_paylasim_ralkodundanrenkid",
-      "label": "ralKodundanRenkId()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "modeller.js",
-      "file_type": "code",
-      "norm_label": "ralkodundanrenkid()",
-      "source_file": "js/paylasim.js",
-      "source_location": "L23"
-    },
-    {
-      "id": "js_paylasim_renkidsindenralkodu",
-      "label": "renkIdSindenRalKodu()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "modeller.js",
-      "file_type": "code",
-      "norm_label": "renkidsindenralkodu()",
-      "source_file": "js/paylasim.js",
+      "norm_label": "kaydirmacubugupayiniolc()",
+      "source_file": "js/ustBar.js",
       "source_location": "L16"
     },
     {
-      "id": "js_paylasim_sorgudandurumcoz",
-      "label": "sorgudanDurumCoz()",
+      "id": "js_ustbar_ustbarikur",
+      "label": "ustBariKur()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
+      "community": 14,
       "community_name": "modeller.js",
       "file_type": "code",
-      "norm_label": "sorgudandurumcoz()",
-      "source_file": "js/paylasim.js",
-      "source_location": "L47"
+      "norm_label": "ustbarikur()",
+      "source_file": "js/ustBar.js",
+      "source_location": "L21"
+    },
+    {
+      "id": "scripts_seo_test_addeventlistener",
+      "label": "addEventListener()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "seo.test.mjs",
+      "file_type": "code",
+      "norm_label": "addeventlistener()",
+      "source_file": "scripts/seo.test.mjs",
+      "source_location": "L24"
+    },
+    {
+      "id": "js_ana_sayfa_adresi_anasayfaadresinitemizle",
+      "label": "anaSayfaAdresiniTemizle()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "ana-sayfa-adresi.js",
+      "file_type": "code",
+      "norm_label": "anasayfaadresinitemizle()",
+      "source_file": "js/ana-sayfa-adresi.js",
+      "source_location": "L3"
     },
     {
       "id": "js_anasayfa_baslat",
@@ -717,7 +993,7 @@
       "file_type": "code",
       "norm_label": "baslat()",
       "source_file": "js/anasayfa.js",
-      "source_location": "L134"
+      "source_location": "L138"
     },
     {
       "id": "js_anasayfa_hexmetni",
@@ -729,7 +1005,7 @@
       "file_type": "code",
       "norm_label": "hexmetni()",
       "source_file": "js/anasayfa.js",
-      "source_location": "L21"
+      "source_location": "L22"
     },
     {
       "id": "js_anasayfa_ornekkapagikur",
@@ -741,19 +1017,7 @@
       "file_type": "code",
       "norm_label": "ornekkapagikur()",
       "source_file": "js/anasayfa.js",
-      "source_location": "L25"
-    },
-    {
-      "id": "js_data_ortamlar_idileortambul",
-      "label": "idIleOrtamBul()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "viewer.js",
-      "file_type": "code",
-      "norm_label": "idileortambul()",
-      "source_file": "js/data/ortamlar.js",
-      "source_location": "L33"
+      "source_location": "L26"
     },
     {
       "id": "js_data_ortamlar_varsayilanortami",
@@ -768,16 +1032,40 @@
       "source_location": "L29"
     },
     {
-      "id": "js_iletisim_haritalarikur",
-      "label": "haritalariKur()",
+      "id": "js_data_yuzeyler_varsayilanyuzey",
+      "label": "varsayilanYuzey()",
       "_callable": true,
       "_origin": "ast",
       "community": 2,
       "community_name": "viewer.js",
       "file_type": "code",
-      "norm_label": "haritalarikur()",
-      "source_file": "js/iletisim.js",
-      "source_location": "L14"
+      "norm_label": "varsayilanyuzey()",
+      "source_file": "js/data/yuzeyler.js",
+      "source_location": "L44"
+    },
+    {
+      "id": "js_materials_cammalzemesiolustur",
+      "label": "camMalzemesiOlustur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "viewer.js",
+      "file_type": "code",
+      "norm_label": "cammalzemesiolustur()",
+      "source_file": "js/materials.js",
+      "source_location": "L87"
+    },
+    {
+      "id": "js_materials_lakenoisedokusuolustur",
+      "label": "lakeNoiseDokusuOlustur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "viewer.js",
+      "file_type": "code",
+      "norm_label": "lakenoisedokusuolustur()",
+      "source_file": "js/materials.js",
+      "source_location": "L5"
     },
     {
       "id": "js_materials_malzemeuygula",
@@ -789,7 +1077,7 @@
       "file_type": "code",
       "norm_label": "malzemeuygula()",
       "source_file": "js/materials.js",
-      "source_location": "L28"
+      "source_location": "L105"
     },
     {
       "id": "js_materials_renkverisindenmalzemeolustur",
@@ -801,103 +1089,7 @@
       "file_type": "code",
       "norm_label": "renkverisindenmalzemeolustur()",
       "source_file": "js/materials.js",
-      "source_location": "L14"
-    },
-    {
-      "id": "js_ui_isikpanelinikur",
-      "label": "isikPaneliniKur()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "viewer.js",
-      "file_type": "code",
-      "norm_label": "isikpanelinikur()",
-      "source_file": "js/ui.js",
-      "source_location": "L648"
-    },
-    {
-      "id": "js_ui_isiksatiridurumunuguncelle",
-      "label": "isikSatiriDurumunuGuncelle()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "viewer.js",
-      "file_type": "code",
-      "norm_label": "isiksatiridurumunuguncelle()",
-      "source_file": "js/ui.js",
-      "source_location": "L552"
-    },
-    {
-      "id": "js_ui_isiksatiriolustur",
-      "label": "isikSatiriOlustur()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "viewer.js",
-      "file_type": "code",
-      "norm_label": "isiksatiriolustur()",
-      "source_file": "js/ui.js",
-      "source_location": "L589"
-    },
-    {
-      "id": "js_ui_isiksecicimetniniguncelle",
-      "label": "isikSeciciMetniniGuncelle()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "viewer.js",
-      "file_type": "code",
-      "norm_label": "isiksecicimetniniguncelle()",
-      "source_file": "js/ui.js",
-      "source_location": "L546"
-    },
-    {
-      "id": "js_ui_isiksecildi",
-      "label": "isikSecildi()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "viewer.js",
-      "file_type": "code",
-      "norm_label": "isiksecildi()",
-      "source_file": "js/ui.js",
-      "source_location": "L564"
-    },
-    {
-      "id": "js_ui_sahneyiacigacikar",
-      "label": "sahneyiAcigaCikar()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "viewer.js",
-      "file_type": "code",
-      "norm_label": "sahneyiacigacikar()",
-      "source_file": "js/ui.js",
-      "source_location": "L642"
-    },
-    {
-      "id": "js_ustbar_kaydirmacubugupayiniolc",
-      "label": "kaydirmaCubuguPayiniOlc()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "viewer.js",
-      "file_type": "code",
-      "norm_label": "kaydirmacubugupayiniolc()",
-      "source_file": "js/ustBar.js",
-      "source_location": "L16"
-    },
-    {
-      "id": "js_ustbar_ustbarikur",
-      "label": "ustBariKur()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "viewer.js",
-      "file_type": "code",
-      "norm_label": "ustbarikur()",
-      "source_file": "js/ustBar.js",
-      "source_location": "L21"
+      "source_location": "L66"
     },
     {
       "id": "js_viewer_donguyubaslat",
@@ -909,7 +1101,7 @@
       "file_type": "code",
       "norm_label": "donguyubaslat()",
       "source_file": "js/viewer.js",
-      "source_location": "L166"
+      "source_location": "L169"
     },
     {
       "id": "js_viewer_goruntuyusifirla",
@@ -921,7 +1113,7 @@
       "file_type": "code",
       "norm_label": "goruntuyusifirla()",
       "source_file": "js/viewer.js",
-      "source_location": "L281"
+      "source_location": "L294"
     },
     {
       "id": "js_viewer_kapagiguncelle",
@@ -933,7 +1125,7 @@
       "file_type": "code",
       "norm_label": "kapagiguncelle()",
       "source_file": "js/viewer.js",
-      "source_location": "L215"
+      "source_location": "L217"
     },
     {
       "id": "js_viewer_kapakgeometrisitemizle",
@@ -945,7 +1137,7 @@
       "file_type": "code",
       "norm_label": "kapakgeometrisitemizle()",
       "source_file": "js/viewer.js",
-      "source_location": "L182"
+      "source_location": "L185"
     },
     {
       "id": "js_viewer_kareyidikeykaydir",
@@ -957,7 +1149,7 @@
       "file_type": "code",
       "norm_label": "kareyidikeykaydir()",
       "source_file": "js/viewer.js",
-      "source_location": "L301"
+      "source_location": "L314"
     },
     {
       "id": "js_viewer_ortamidegistir",
@@ -969,7 +1161,7 @@
       "file_type": "code",
       "norm_label": "ortamidegistir()",
       "source_file": "js/viewer.js",
-      "source_location": "L267"
+      "source_location": "L280"
     },
     {
       "id": "js_viewer_ortamyukle",
@@ -981,7 +1173,7 @@
       "file_type": "code",
       "norm_label": "ortamyukle()",
       "source_file": "js/viewer.js",
-      "source_location": "L240"
+      "source_location": "L253"
     },
     {
       "id": "js_viewer_pencereboyutlandi",
@@ -993,7 +1185,7 @@
       "file_type": "code",
       "norm_label": "pencereboyutlandi()",
       "source_file": "js/viewer.js",
-      "source_location": "L147"
+      "source_location": "L150"
     },
     {
       "id": "js_viewer_renderiste",
@@ -1005,7 +1197,7 @@
       "file_type": "code",
       "norm_label": "renderiste()",
       "source_file": "js/viewer.js",
-      "source_location": "L158"
+      "source_location": "L161"
     },
     {
       "id": "js_viewer_sahneyibaslat",
@@ -1017,7 +1209,7 @@
       "file_type": "code",
       "norm_label": "sahneyibaslat()",
       "source_file": "js/viewer.js",
-      "source_location": "L21"
+      "source_location": "L23"
     },
     {
       "id": "js_viewer_yenigrubusahneyeuygula",
@@ -1029,7 +1221,7 @@
       "file_type": "code",
       "norm_label": "yenigrubusahneyeuygula()",
       "source_file": "js/viewer.js",
-      "source_location": "L190"
+      "source_location": "L193"
     },
     {
       "id": "js_data_colors_dolutonaileleri",
@@ -1041,7 +1233,7 @@
       "file_type": "code",
       "norm_label": "dolutonaileleri()",
       "source_file": "js/data/colors.js",
-      "source_location": "L212"
+      "source_location": "L214"
     },
     {
       "id": "js_data_colors_laketonuuret",
@@ -1066,6 +1258,30 @@
       "norm_label": "ralkarsilastir()",
       "source_file": "js/data/colors.js",
       "source_location": "L95"
+    },
+    {
+      "id": "js_data_colors_ralserileri",
+      "label": "ralSerileri()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "colors.js",
+      "file_type": "code",
+      "norm_label": "ralserileri()",
+      "source_file": "js/data/colors.js",
+      "source_location": "L199"
+    },
+    {
+      "id": "js_data_colors_ralsirasindakirenkler",
+      "label": "ralSirasindakiRenkler()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "colors.js",
+      "file_type": "code",
+      "norm_label": "ralsirasindakirenkler()",
+      "source_file": "js/data/colors.js",
+      "source_location": "L178"
     },
     {
       "id": "js_data_colors_test_renkgecerlimi",
@@ -1116,16 +1332,28 @@
       "source_location": "L152"
     },
     {
+      "id": "js_glbyukleyici_aynalanmisyuzleriduzelt",
+      "label": "aynalanmisYuzleriDuzelt()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "glbYukleyici.js",
+      "file_type": "code",
+      "norm_label": "aynalanmisyuzleriduzelt()",
+      "source_file": "js/glbYukleyici.js",
+      "source_location": "L32"
+    },
+    {
       "id": "js_glbyukleyici_glbkapakgrubuolustur",
       "label": "glbKapakGrubuOlustur()",
       "_callable": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "glbkapakgrubuolustur()",
       "source_file": "js/glbYukleyici.js",
-      "source_location": "L117"
+      "source_location": "L167"
     },
     {
       "id": "js_glbyukleyici_glbsablonunuyukle",
@@ -1133,9 +1361,21 @@
       "_callable": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "glbsablonunuyukle()",
+      "source_file": "js/glbYukleyici.js",
+      "source_location": "L47"
+    },
+    {
+      "id": "js_glbyukleyici_onyuzuvleriniolustur",
+      "label": "onYuzUvleriniOlustur()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "glbYukleyici.js",
+      "file_type": "code",
+      "norm_label": "onyuzuvleriniolustur()",
       "source_file": "js/glbYukleyici.js",
       "source_location": "L17"
     },
@@ -1145,7 +1385,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "bandielleayarla()",
       "source_file": "js/kenarOlcekleme.js",
@@ -1157,7 +1397,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "ekseneslemesikur()",
       "source_file": "js/kenarOlcekleme.js",
@@ -1169,23 +1409,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "kenarbandiolc()",
       "source_file": "js/kenarOlcekleme.js",
       "source_location": "L41"
     },
     {
-      "id": "js_data_colors_ralserileri",
-      "label": "ralSerileri()",
+      "id": "js_data_ralclassic_ralclassicserileri",
+      "label": "ralClassicSerileri()",
       "_callable": true,
       "_origin": "ast",
       "community": 9,
       "community_name": "renkler.js",
       "file_type": "code",
-      "norm_label": "ralserileri()",
-      "source_file": "js/data/colors.js",
-      "source_location": "L199"
+      "norm_label": "ralclassicserileri()",
+      "source_file": "js/data/ralClassic.js",
+      "source_location": "L238"
     },
     {
       "id": "js_renkler_aramayikur",
@@ -1197,7 +1437,7 @@
       "file_type": "code",
       "norm_label": "aramayikur()",
       "source_file": "js/renkler.js",
-      "source_location": "L122"
+      "source_location": "L126"
     },
     {
       "id": "js_renkler_bagilparlaklik",
@@ -1209,7 +1449,7 @@
       "file_type": "code",
       "norm_label": "bagilparlaklik()",
       "source_file": "js/renkler.js",
-      "source_location": "L21"
+      "source_location": "L17"
     },
     {
       "id": "js_renkler_hexmetni",
@@ -1221,7 +1461,7 @@
       "file_type": "code",
       "norm_label": "hexmetni()",
       "source_file": "js/renkler.js",
-      "source_location": "L14"
+      "source_location": "L10"
     },
     {
       "id": "js_renkler_kartelasayacinadon",
@@ -1233,7 +1473,7 @@
       "file_type": "code",
       "norm_label": "kartelasayacinadon()",
       "source_file": "js/renkler.js",
-      "source_location": "L162"
+      "source_location": "L166"
     },
     {
       "id": "js_renkler_kartelayiciz",
@@ -1245,7 +1485,7 @@
       "file_type": "code",
       "norm_label": "kartelayiciz()",
       "source_file": "js/renkler.js",
-      "source_location": "L62"
+      "source_location": "L66"
     },
     {
       "id": "js_renkler_konfiguratoradresi",
@@ -1257,7 +1497,7 @@
       "file_type": "code",
       "norm_label": "konfiguratoradresi()",
       "source_file": "js/renkler.js",
-      "source_location": "L35"
+      "source_location": "L31"
     },
     {
       "id": "js_renkler_kutuolustur",
@@ -1269,7 +1509,7 @@
       "file_type": "code",
       "norm_label": "kutuolustur()",
       "source_file": "js/renkler.js",
-      "source_location": "L41"
+      "source_location": "L37"
     },
     {
       "id": "js_renkler_okunurmetinrengi",
@@ -1281,7 +1521,7 @@
       "file_type": "code",
       "norm_label": "okunurmetinrengi()",
       "source_file": "js/renkler.js",
-      "source_location": "L29"
+      "source_location": "L25"
     },
     {
       "id": "js_renkler_seritakibinikur",
@@ -1293,29 +1533,7 @@
       "file_type": "code",
       "norm_label": "seritakibinikur()",
       "source_file": "js/renkler.js",
-      "source_location": "L170"
-    },
-    {
-      "id": "js_data_yuzeyler",
-      "label": "yuzeyler.js",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "file_type": "code",
-      "norm_label": "yuzeyler.js",
-      "source_file": "js/data/yuzeyler.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "js_data_yuzeyler_yuzeyler",
-      "label": "YUZEYLER",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "file_type": "code",
-      "norm_label": "yuzeyler",
-      "source_file": "js/data/yuzeyler.js",
-      "source_location": "L16"
+      "source_location": "L174"
     },
     {
       "id": "js_main",
@@ -1348,7 +1566,7 @@
       "file_type": "code",
       "norm_label": "baslangicmodel",
       "source_file": "js/ui.js",
-      "source_location": "L14"
+      "source_location": "L17"
     },
     {
       "id": "js_ui_durum",
@@ -1359,69 +1577,190 @@
       "file_type": "code",
       "norm_label": "durum",
       "source_file": "js/ui.js",
-      "source_location": "L16"
-    },
-    {
-      "id": "js_ui_zemin_secenekleri",
-      "label": "ZEMIN_SECENEKLERI",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "ui.js",
-      "file_type": "code",
-      "norm_label": "zemin_secenekleri",
-      "source_file": "js/ui.js",
-      "source_location": "L98"
-    },
-    {
-      "id": "js_data_galeri",
-      "label": "galeri.js",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "modeller.js",
-      "file_type": "code",
-      "norm_label": "galeri.js",
-      "source_file": "js/data/galeri.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "js_data_galeri_galeri_fotograflari",
-      "label": "GALERI_FOTOGRAFLARI",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "modeller.js",
-      "file_type": "code",
-      "norm_label": "galeri_fotograflari",
-      "source_file": "js/data/galeri.js",
       "source_location": "L20"
     },
     {
-      "id": "js_modeller",
-      "label": "modeller.js",
+      "id": "js_data_models",
+      "label": "models.js",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
-      "norm_label": "modeller.js",
-      "source_file": "js/modeller.js",
+      "norm_label": "models.js",
+      "source_file": "js/data/models.js",
       "source_location": "L1"
     },
     {
-      "id": "js_modeller_ornek_kodlar",
-      "label": "ORNEK_KODLAR",
+      "id": "js_data_models_genel_limitler",
+      "label": "GENEL_LIMITLER",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
-      "norm_label": "ornek_kodlar",
-      "source_file": "js/modeller.js",
-      "source_location": "L34"
+      "norm_label": "genel_limitler",
+      "source_file": "js/data/models.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_data_models_genel_varsayilan",
+      "label": "GENEL_VARSAYILAN",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "genel_varsayilan",
+      "source_file": "js/data/models.js",
+      "source_location": "L11"
+    },
+    {
+      "id": "js_data_models_kapak_modelleri",
+      "label": "KAPAK_MODELLERI",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "kapak_modelleri",
+      "source_file": "js/data/models.js",
+      "source_location": "L65"
+    },
+    {
+      "id": "js_data_models_liste_sonu_modelleri",
+      "label": "LISTE_SONU_MODELLERI",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "liste_sonu_modelleri",
+      "source_file": "js/data/models.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "js_data_models_test",
+      "label": "models.test.js",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "models.test.js",
+      "source_file": "js/data/models.test.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_data_models_test_beklenengorseller",
+      "label": "beklenenGorseller",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "beklenengorseller",
+      "source_file": "js/data/models.test.js",
+      "source_location": "L29"
+    },
+    {
+      "id": "js_data_models_test_hk012",
+      "label": "hk012",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "hk012",
+      "source_file": "js/data/models.test.js",
+      "source_location": "L7"
+    },
+    {
+      "id": "js_data_models_test_hk051",
+      "label": "hk051",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "hk051",
+      "source_file": "js/data/models.test.js",
+      "source_location": "L8"
+    },
+    {
+      "id": "js_data_models_test_katalogkodlari",
+      "label": "katalogKodlari",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "katalogkodlari",
+      "source_file": "js/data/models.test.js",
+      "source_location": "L50"
+    },
+    {
+      "id": "js_data_models_test_m3970",
+      "label": "m3970",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "m3970",
+      "source_file": "js/data/models.test.js",
+      "source_location": "L9"
+    },
+    {
+      "id": "js_data_models_test_ongrup",
+      "label": "onGrup",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "ongrup",
+      "source_file": "js/data/models.test.js",
+      "source_location": "L46"
+    },
+    {
+      "id": "js_data_models_test_siralimodelkodlari",
+      "label": "siraliModelKodlari",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "siralimodelkodlari",
+      "source_file": "js/data/models.test.js",
+      "source_location": "L42"
+    },
+    {
+      "id": "js_data_models_test_sonatasinanlar",
+      "label": "sonaTasinanlar",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "sonatasinanlar",
+      "source_file": "js/data/models.test.js",
+      "source_location": "L43"
+    },
+    {
+      "id": "js_data_models_test_urlseti",
+      "label": "urlSeti",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "urlseti",
+      "source_file": "js/data/models.test.js",
+      "source_location": "L64"
+    },
+    {
+      "id": "js_data_models_varyantli_uretim_kodlari",
+      "label": "VARYANTLI_URETIM_KODLARI",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "varyantli_uretim_kodlari",
+      "source_file": "js/data/models.js",
+      "source_location": "L13"
     },
     {
       "id": "js_paylasim",
       "label": "paylasim.js",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
       "norm_label": "paylasim.js",
       "source_file": "js/paylasim.js",
@@ -1432,18 +1771,18 @@
       "label": "ANAHTARLAR",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
       "norm_label": "anahtarlar",
       "source_file": "js/paylasim.js",
-      "source_location": "L13"
+      "source_location": "L15"
     },
     {
       "id": "js_paylasim_test",
       "label": "paylasim.test.js",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
       "norm_label": "paylasim.test.js",
       "source_file": "js/paylasim.test.js",
@@ -1454,66 +1793,121 @@
       "label": "geriCozulen",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
       "norm_label": "gericozulen",
       "source_file": "js/paylasim.test.js",
-      "source_location": "L36"
+      "source_location": "L34"
     },
     {
       "id": "js_paylasim_test_ornekdurum",
       "label": "ornekDurum",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
       "norm_label": "ornekdurum",
       "source_file": "js/paylasim.test.js",
-      "source_location": "L20"
+      "source_location": "L21"
+    },
+    {
+      "id": "js_paylasim_test_paylasimbilgisi",
+      "label": "paylasimBilgisi",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "paylasimbilgisi",
+      "source_file": "js/paylasim.test.js",
+      "source_location": "L78"
+    },
+    {
+      "id": "js_paylasim_test_publicstate",
+      "label": "publicState",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "publicstate",
+      "source_file": "js/paylasim.test.js",
+      "source_location": "L35"
     },
     {
       "id": "js_paylasim_test_sorgu",
       "label": "sorgu",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
       "norm_label": "sorgu",
       "source_file": "js/paylasim.test.js",
-      "source_location": "L21"
+      "source_location": "L22"
     },
     {
       "id": "js_paylasim_test_yalnizcabilinenmodel",
       "label": "yalnizcaBilinenModel",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
       "norm_label": "yalnizcabilinenmodel",
       "source_file": "js/paylasim.test.js",
-      "source_location": "L43"
+      "source_location": "L42"
     },
     {
       "id": "js_paylasim_test_yalnizcavarolanortam",
       "label": "yalnizcaVarOlanOrtam",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
       "norm_label": "yalnizcavarolanortam",
       "source_file": "js/paylasim.test.js",
-      "source_location": "L53"
+      "source_location": "L52"
     },
     {
       "id": "js_paylasim_test_yalnizcavarolanrenk",
       "label": "yalnizcaVarOlanRenk",
       "_origin": "ast",
       "community": 10,
-      "community_name": "modeller.js",
+      "community_name": "models.js",
       "file_type": "code",
       "norm_label": "yalnizcavarolanrenk",
       "source_file": "js/paylasim.test.js",
-      "source_location": "L48"
+      "source_location": "L47"
+    },
+    {
+      "id": "scripts_model_links",
+      "label": "model-links.mjs",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "model-links.mjs",
+      "source_file": "scripts/model-links.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_model_links_rows",
+      "label": "rows",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "rows",
+      "source_file": "scripts/model-links.mjs",
+      "source_location": "L7"
+    },
+    {
+      "id": "scripts_model_links_test",
+      "label": "model-links.test.mjs",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "models.js",
+      "file_type": "code",
+      "norm_label": "model-links.test.mjs",
+      "source_file": "scripts/model-links.test.mjs",
+      "source_location": "L1"
     },
     {
       "id": "docs_superpowers_plans_2026_08_22_konfigurator_arayuz_yenileme",
@@ -1732,94 +2126,6 @@
       "source_location": "L13"
     },
     {
-      "id": "js_data_models",
-      "label": "models.js",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "models.test.js",
-      "file_type": "code",
-      "norm_label": "models.js",
-      "source_file": "js/data/models.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "js_data_models_kapak_modelleri",
-      "label": "KAPAK_MODELLERI",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "models.test.js",
-      "file_type": "code",
-      "norm_label": "kapak_modelleri",
-      "source_file": "js/data/models.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "js_data_models_test",
-      "label": "models.test.js",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "models.test.js",
-      "file_type": "code",
-      "norm_label": "models.test.js",
-      "source_file": "js/data/models.test.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "js_data_models_test_beklenengorseller",
-      "label": "beklenenGorseller",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "models.test.js",
-      "file_type": "code",
-      "norm_label": "beklenengorseller",
-      "source_file": "js/data/models.test.js",
-      "source_location": "L26"
-    },
-    {
-      "id": "js_data_models_test_hk012",
-      "label": "hk012",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "models.test.js",
-      "file_type": "code",
-      "norm_label": "hk012",
-      "source_file": "js/data/models.test.js",
-      "source_location": "L7"
-    },
-    {
-      "id": "js_data_models_test_hk051",
-      "label": "hk051",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "models.test.js",
-      "file_type": "code",
-      "norm_label": "hk051",
-      "source_file": "js/data/models.test.js",
-      "source_location": "L8"
-    },
-    {
-      "id": "js_data_models_test_m3970",
-      "label": "m3970",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "models.test.js",
-      "file_type": "code",
-      "norm_label": "m3970",
-      "source_file": "js/data/models.test.js",
-      "source_location": "L9"
-    },
-    {
-      "id": "js_data_models_test_urlseti",
-      "label": "urlSeti",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "models.test.js",
-      "file_type": "code",
-      "norm_label": "urlseti",
-      "source_file": "js/data/models.test.js",
-      "source_location": "L38"
-    },
-    {
       "id": "assets_galeri_readme",
       "label": "README.md",
       "_origin": "ast",
@@ -1868,6 +2174,184 @@
       "source_location": "L5"
     },
     {
+      "id": "js_data_galeri",
+      "label": "galeri.js",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "modeller.js",
+      "file_type": "code",
+      "norm_label": "galeri.js",
+      "source_file": "js/data/galeri.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_data_galeri_galeri_fotograflari",
+      "label": "GALERI_FOTOGRAFLARI",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "modeller.js",
+      "file_type": "code",
+      "norm_label": "galeri_fotograflari",
+      "source_file": "js/data/galeri.js",
+      "source_location": "L20"
+    },
+    {
+      "id": "js_iletisim",
+      "label": "iletisim.js",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "modeller.js",
+      "file_type": "code",
+      "norm_label": "iletisim.js",
+      "source_file": "js/iletisim.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_modeller",
+      "label": "modeller.js",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "modeller.js",
+      "file_type": "code",
+      "norm_label": "modeller.js",
+      "source_file": "js/modeller.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_modeller_ornek_kodlar",
+      "label": "ORNEK_KODLAR",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "modeller.js",
+      "file_type": "code",
+      "norm_label": "ornek_kodlar",
+      "source_file": "js/modeller.js",
+      "source_location": "L34"
+    },
+    {
+      "id": "js_projeler",
+      "label": "projeler.js",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "modeller.js",
+      "file_type": "code",
+      "norm_label": "projeler.js",
+      "source_file": "js/projeler.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_ustbar",
+      "label": "ustBar.js",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "modeller.js",
+      "file_type": "code",
+      "norm_label": "ustbar.js",
+      "source_file": "js/ustBar.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_seo_test",
+      "label": "seo.test.mjs",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "seo.test.mjs",
+      "file_type": "code",
+      "norm_label": "seo.test.mjs",
+      "source_file": "scripts/seo.test.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_seo_test_routes",
+      "label": "routes",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "seo.test.mjs",
+      "file_type": "code",
+      "norm_label": "routes",
+      "source_file": "scripts/seo.test.mjs",
+      "source_location": "L7"
+    },
+    {
+      "id": "agents",
+      "label": "AGENTS.md",
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "AGENTS.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "agents.md",
+      "source_file": "AGENTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_calisma_kurallari",
+      "label": "Calisma Kurallari",
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "AGENTS.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "calisma kurallari",
+      "source_file": "AGENTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_ana_sayfa_adresi",
+      "label": "ana-sayfa-adresi.js",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "ana-sayfa-adresi.js",
+      "file_type": "code",
+      "norm_label": "ana-sayfa-adresi.js",
+      "source_file": "js/ana-sayfa-adresi.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_export_model_qr",
+      "label": "export-model-qr.py",
+      "_origin": "ast",
+      "community": 18,
+      "community_name": "export-model-qr.py",
+      "file_type": "code",
+      "norm_label": "export-model-qr.py",
+      "source_file": "scripts/export-model-qr.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_export_model_qr_rationale_1",
+      "label": "Export transparent model QR pairs; pip install qrcode==8.2 zxing-cpp==3.1.1\u2026",
+      "_origin": "ast",
+      "community": 18,
+      "community_name": "export-model-qr.py",
+      "file_type": "rationale",
+      "norm_label": "export transparent model qr pairs; pip install qrcode==8.2 zxing-cpp==3.1.1...",
+      "source_file": "scripts/export-model-qr.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_site_safety_test",
+      "label": "site-safety.test.mjs",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "site-safety.test.mjs",
+      "file_type": "code",
+      "norm_label": "site-safety.test.mjs",
+      "source_file": "scripts/site-safety.test.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_site_safety_test_publichtmlfiles",
+      "label": "publicHtmlFiles",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "site-safety.test.mjs",
+      "file_type": "code",
+      "norm_label": "publichtmlfiles",
+      "source_file": "scripts/site-safety.test.mjs",
+      "source_location": "L6"
+    },
+    {
       "id": "js_anasayfa",
       "label": "anasayfa.js",
       "_origin": "ast",
@@ -1901,15 +2385,26 @@
       "source_location": "L19"
     },
     {
-      "id": "js_iletisim",
-      "label": "iletisim.js",
+      "id": "js_data_yuzeyler",
+      "label": "yuzeyler.js",
       "_origin": "ast",
       "community": 2,
       "community_name": "viewer.js",
       "file_type": "code",
-      "norm_label": "iletisim.js",
-      "source_file": "js/iletisim.js",
+      "norm_label": "yuzeyler.js",
+      "source_file": "js/data/yuzeyler.js",
       "source_location": "L1"
+    },
+    {
+      "id": "js_data_yuzeyler_yuzeyler",
+      "label": "YUZEYLER",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "viewer.js",
+      "file_type": "code",
+      "norm_label": "yuzeyler",
+      "source_file": "js/data/yuzeyler.js",
+      "source_location": "L16"
     },
     {
       "id": "js_materials",
@@ -1920,17 +2415,6 @@
       "file_type": "code",
       "norm_label": "materials.js",
       "source_file": "js/materials.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "js_ustbar",
-      "label": "ustBar.js",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "viewer.js",
-      "file_type": "code",
-      "norm_label": "ustbar.js",
-      "source_file": "js/ustBar.js",
       "source_location": "L1"
     },
     {
@@ -1945,6 +2429,17 @@
       "source_location": "L1"
     },
     {
+      "id": "js_viewer_mevcutmalzemeler",
+      "label": "mevcutMalzemeler",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "viewer.js",
+      "file_type": "code",
+      "norm_label": "mevcutmalzemeler",
+      "source_file": "js/viewer.js",
+      "source_location": "L10"
+    },
+    {
       "id": "js_viewer_ortamonbellek",
       "label": "ortamOnbellek",
       "_origin": "ast",
@@ -1953,7 +2448,7 @@
       "file_type": "code",
       "norm_label": "ortamonbellek",
       "source_file": "js/viewer.js",
-      "source_location": "L238"
+      "source_location": "L251"
     },
     {
       "id": "js_viewer_rgbeyukleyici",
@@ -1964,7 +2459,7 @@
       "file_type": "code",
       "norm_label": "rgbeyukleyici",
       "source_file": "js/viewer.js",
-      "source_location": "L237"
+      "source_location": "L250"
     },
     {
       "id": "js_data_colors",
@@ -2099,6 +2594,17 @@
       "source_location": "L19"
     },
     {
+      "id": "js_data_colors_test_seriler",
+      "label": "seriler",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "colors.js",
+      "file_type": "code",
+      "norm_label": "seriler",
+      "source_file": "js/data/colors.test.js",
+      "source_location": "L71"
+    },
+    {
       "id": "js_data_colors_test_tumrenkler",
       "label": "tumRenkler",
       "_origin": "ast",
@@ -2169,7 +2675,7 @@
       "label": "glbYukleyici.js",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "glbyukleyici.js",
       "source_file": "js/glbYukleyici.js",
@@ -2180,7 +2686,7 @@
       "label": "onbellek",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "onbellek",
       "source_file": "js/glbYukleyici.js",
@@ -2191,7 +2697,7 @@
       "label": "yukleyici",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "yukleyici",
       "source_file": "js/glbYukleyici.js",
@@ -2202,7 +2708,7 @@
       "label": "kenarOlcekleme.js",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "kenarolcekleme.js",
       "source_file": "js/kenarOlcekleme.js",
@@ -2213,7 +2719,7 @@
       "label": "kenarOlcekleme.test.js",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "kenarolcekleme.test.js",
       "source_file": "js/kenarOlcekleme.test.js",
@@ -2224,7 +2730,7 @@
       "label": "bant",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "bant",
       "source_file": "js/kenarOlcekleme.test.js",
@@ -2235,7 +2741,7 @@
       "label": "cerceveliX",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "cercevelix",
       "source_file": "js/kenarOlcekleme.test.js",
@@ -2246,7 +2752,7 @@
       "label": "e",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "e",
       "source_file": "js/kenarOlcekleme.test.js",
@@ -2257,7 +2763,7 @@
       "label": "icerde",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "icerde",
       "source_file": "js/kenarOlcekleme.test.js",
@@ -2268,7 +2774,7 @@
       "label": "sinir",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "sinir",
       "source_file": "js/kenarOlcekleme.test.js",
@@ -2279,7 +2785,7 @@
       "label": "yivli",
       "_origin": "ast",
       "community": 5,
-      "community_name": "kenarOlcekleme.test.js",
+      "community_name": "glbYukleyici.js",
       "file_type": "code",
       "norm_label": "yivli",
       "source_file": "js/kenarOlcekleme.test.js",
@@ -2415,6 +2921,50 @@
       "source_location": "L3"
     },
     {
+      "id": "package_scripts",
+      "label": "scripts",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "scripts",
+      "source_file": "package.json",
+      "source_location": "L5"
+    },
+    {
+      "id": "package_scripts_check",
+      "label": "check",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "check",
+      "source_file": "package.json",
+      "source_location": "L8"
+    },
+    {
+      "id": "package_scripts_start",
+      "label": "start",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "start",
+      "source_file": "package.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "package_scripts_test",
+      "label": "test",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "test",
+      "source_file": "package.json",
+      "source_location": "L7"
+    },
+    {
       "id": "package_type",
       "label": "type",
       "_origin": "ast",
@@ -2424,6 +2974,72 @@
       "norm_label": "type",
       "source_file": "package.json",
       "source_location": "L4"
+    },
+    {
+      "id": "js_data_ralclassic",
+      "label": "ralClassic.js",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "renkler.js",
+      "file_type": "code",
+      "norm_label": "ralclassic.js",
+      "source_file": "js/data/ralClassic.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_data_ralclassic_ral_classic_kartela",
+      "label": "RAL_CLASSIC_KARTELA",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "renkler.js",
+      "file_type": "code",
+      "norm_label": "ral_classic_kartela",
+      "source_file": "js/data/ralClassic.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "js_data_ralclassic_ral_classic_seri_etiketleri",
+      "label": "RAL_CLASSIC_SERI_ETIKETLERI",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "renkler.js",
+      "file_type": "code",
+      "norm_label": "ral_classic_seri_etiketleri",
+      "source_file": "js/data/ralClassic.js",
+      "source_location": "L225"
+    },
+    {
+      "id": "js_data_ralclassic_test",
+      "label": "ralClassic.test.js",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "renkler.js",
+      "file_type": "code",
+      "norm_label": "ralclassic.test.js",
+      "source_file": "js/data/ralClassic.test.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_data_ralclassic_test_kodlar",
+      "label": "kodlar",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "renkler.js",
+      "file_type": "code",
+      "norm_label": "kodlar",
+      "source_file": "js/data/ralClassic.test.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "js_data_ralclassic_test_seriler",
+      "label": "seriler",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "renkler.js",
+      "file_type": "code",
+      "norm_label": "seriler",
+      "source_file": "js/data/ralClassic.test.js",
+      "source_location": "L14"
     },
     {
       "id": "js_renkler",
@@ -3553,7 +4169,7 @@
       "confidence_score": 0.85,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L806",
+      "source_location": "L957",
       "weight": 1.0
     },
     {
@@ -3565,7 +4181,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/anasayfa.js",
-      "source_location": "L135",
+      "source_location": "L139",
       "weight": 1.0
     },
     {
@@ -3577,7 +4193,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/anasayfa.js",
-      "source_location": "L136",
+      "source_location": "L140",
       "weight": 1.0
     },
     {
@@ -3589,7 +4205,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/anasayfa.js",
-      "source_location": "L106",
+      "source_location": "L110",
       "weight": 1.0
     },
     {
@@ -3601,7 +4217,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/anasayfa.js",
-      "source_location": "L112",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -3613,7 +4229,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/anasayfa.js",
-      "source_location": "L114",
+      "source_location": "L118",
       "weight": 1.0
     },
     {
@@ -3625,7 +4241,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/anasayfa.js",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -3637,7 +4253,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/anasayfa.js",
-      "source_location": "L52",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "js_anasayfa_ornekkapagikur",
+      "target": "js_data_yuzeyler_varsayilanyuzey",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/anasayfa.js",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -3649,7 +4277,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/anasayfa.js",
-      "source_location": "L87",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -3661,7 +4289,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/data/colors.js",
-      "source_location": "L213",
+      "source_location": "L215",
       "weight": 1.0
     },
     {
@@ -3701,6 +4329,18 @@
       "weight": 1.0
     },
     {
+      "source": "js_data_models_kapakmodeli",
+      "target": "js_data_models_mkodunubul",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/data/models.js",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
       "source": "js_glbyukleyici_glbkapakgrubuolustur",
       "target": "js_glbyukleyici_glbsablonunuyukle",
       "relation": "calls",
@@ -3709,7 +4349,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/glbYukleyici.js",
-      "source_location": "L118",
+      "source_location": "L168",
       "weight": 1.0
     },
     {
@@ -3721,7 +4361,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/glbYukleyici.js",
-      "source_location": "L123",
+      "source_location": "L173",
       "weight": 1.0
     },
     {
@@ -3733,7 +4373,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/glbYukleyici.js",
-      "source_location": "L126",
+      "source_location": "L176",
+      "weight": 1.0
+    },
+    {
+      "source": "js_glbyukleyici_glbsablonunuyukle",
+      "target": "js_glbyukleyici_aynalanmisyuzleriduzelt",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/glbYukleyici.js",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "js_glbyukleyici_glbsablonunuyukle",
+      "target": "js_glbyukleyici_onyuzuvleriniolustur",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/glbYukleyici.js",
+      "source_location": "L115",
       "weight": 1.0
     },
     {
@@ -3745,7 +4409,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/glbYukleyici.js",
-      "source_location": "L92",
+      "source_location": "L142",
+      "weight": 1.0
+    },
+    {
+      "source": "js_materials_malzemeuygula",
+      "target": "js_materials_cammalzemesiolustur",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/materials.js",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "js_materials_renkverisindenmalzemeolustur",
+      "target": "js_materials_lakenoisedokusuolustur",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/materials.js",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -3834,6 +4522,18 @@
     },
     {
       "source": "js_paylasim_durumusorguyakodla",
+      "target": "js_data_models_idilemodelbul",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/paylasim.js",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "js_paylasim_durumusorguyakodla",
       "target": "js_paylasim_renkidsindenralkodu",
       "relation": "calls",
       "_origin": "ast",
@@ -3841,7 +4541,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/paylasim.js",
-      "source_location": "L31",
+      "source_location": "L36",
       "weight": 1.0
     },
     {
@@ -3853,7 +4553,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/paylasim.js",
-      "source_location": "L82",
+      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -3865,7 +4565,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/paylasim.js",
-      "source_location": "L56",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -3877,19 +4577,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/renkler.js",
-      "source_location": "L149",
+      "source_location": "L153",
       "weight": 1.0
     },
     {
       "source": "js_renkler_kartelasayacinadon",
-      "target": "js_data_colors_ralserileri",
+      "target": "js_data_ralclassic_ralclassicserileri",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/renkler.js",
-      "source_location": "L163",
+      "source_location": "L167",
       "weight": 1.0
     },
     {
@@ -3901,19 +4601,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/renkler.js",
-      "source_location": "L108",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
       "source": "js_renkler_kartelayiciz",
-      "target": "js_data_colors_ralserileri",
+      "target": "js_data_ralclassic_ralclassicserileri",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/renkler.js",
-      "source_location": "L67",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -3925,7 +4625,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/renkler.js",
-      "source_location": "L82",
+      "source_location": "L86",
       "weight": 1.0
     },
     {
@@ -3937,7 +4637,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/renkler.js",
-      "source_location": "L36",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "js_renkler_kutuolustur",
+      "target": "js_data_colors_idilerenkbul",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/renkler.js",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
@@ -3949,7 +4661,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/renkler.js",
-      "source_location": "L44",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -3961,7 +4673,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/renkler.js",
-      "source_location": "L45",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -3973,7 +4685,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/renkler.js",
-      "source_location": "L46",
+      "source_location": "L44",
       "weight": 1.0
     },
     {
@@ -3985,7 +4697,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/renkler.js",
-      "source_location": "L30",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_guncellemeyiuygula",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L1000",
       "weight": 1.0
     },
     {
@@ -3997,7 +4721,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L873",
+      "source_location": "L980",
       "weight": 1.0
     },
     {
@@ -4009,7 +4733,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L875",
+      "source_location": "L982",
       "weight": 1.0
     },
     {
@@ -4021,7 +4745,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L877",
+      "source_location": "L984",
       "weight": 1.0
     },
     {
@@ -4033,7 +4757,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L878",
+      "source_location": "L985",
       "weight": 1.0
     },
     {
@@ -4045,7 +4769,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L879",
+      "source_location": "L986",
       "weight": 1.0
     },
     {
@@ -4057,7 +4781,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L880",
+      "source_location": "L987",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_olculerisifirlamabutonunukur",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L988",
       "weight": 1.0
     },
     {
@@ -4069,7 +4805,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L881",
+      "source_location": "L989",
       "weight": 1.0
     },
     {
@@ -4081,7 +4817,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L882",
+      "source_location": "L990",
       "weight": 1.0
     },
     {
@@ -4093,7 +4829,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L883",
+      "source_location": "L991",
       "weight": 1.0
     },
     {
@@ -4105,7 +4841,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L884",
+      "source_location": "L992",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_arayuzubaslat",
+      "target": "js_ui_genelpaylasbutonunukur",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L993",
       "weight": 1.0
     },
     {
@@ -4117,7 +4865,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L885",
+      "source_location": "L994",
       "weight": 1.0
     },
     {
@@ -4129,19 +4877,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L886",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_zeminseciciyikur",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L887",
+      "source_location": "L995",
       "weight": 1.0
     },
     {
@@ -4153,7 +4889,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L889",
+      "source_location": "L997",
       "weight": 1.0
     },
     {
@@ -4165,7 +4901,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L890",
+      "source_location": "L998",
       "weight": 1.0
     },
     {
@@ -4177,19 +4913,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L891",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_arayuzubaslat",
-      "target": "js_ui_guncellemeyiuygula",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L892",
+      "source_location": "L999",
       "weight": 1.0
     },
     {
@@ -4201,7 +4925,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L533",
+      "source_location": "L607",
       "weight": 1.0
     },
     {
@@ -4213,7 +4937,55 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L813",
+      "source_location": "L940",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_genelpaylasbutonunukur",
+      "target": "js_ui_bildir",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L863",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_genelpaylasbutonunukur",
+      "target": "js_ui_paylasimbilgisiniolustur",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L868",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_genelpaylasbutonunukur",
+      "target": "js_ui_canvasblobuolustur",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L870",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_genelpaylasbutonunukur",
+      "target": "js_ui_paylasimpaketinipanoyakopyala",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L887",
       "weight": 1.0
     },
     {
@@ -4225,7 +4997,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L75",
+      "source_location": "L77",
       "weight": 1.0
     },
     {
@@ -4237,7 +5009,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L36",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -4249,7 +5021,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
@@ -4261,7 +5033,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L40",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -4273,7 +5045,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L40",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -4285,7 +5057,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L41",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -4297,7 +5069,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -4309,7 +5081,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L57",
+      "source_location": "L59",
       "weight": 1.0
     },
     {
@@ -4321,7 +5093,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L61",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -4333,7 +5105,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L63",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
@@ -4345,7 +5117,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L720",
+      "source_location": "L794",
       "weight": 1.0
     },
     {
@@ -4357,7 +5129,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L721",
+      "source_location": "L795",
       "weight": 1.0
     },
     {
@@ -4369,7 +5141,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L632",
+      "source_location": "L706",
       "weight": 1.0
     },
     {
@@ -4381,7 +5153,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L653",
+      "source_location": "L727",
       "weight": 1.0
     },
     {
@@ -4393,7 +5165,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L661",
+      "source_location": "L735",
       "weight": 1.0
     },
     {
@@ -4405,7 +5177,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L669",
+      "source_location": "L743",
       "weight": 1.0
     },
     {
@@ -4417,7 +5189,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L684",
+      "source_location": "L758",
       "weight": 1.0
     },
     {
@@ -4429,7 +5201,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L684",
+      "source_location": "L758",
       "weight": 1.0
     },
     {
@@ -4441,7 +5213,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L686",
+      "source_location": "L760",
       "weight": 1.0
     },
     {
@@ -4453,7 +5225,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L690",
+      "source_location": "L764",
       "weight": 1.0
     },
     {
@@ -4465,7 +5237,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L702",
+      "source_location": "L776",
       "weight": 1.0
     },
     {
@@ -4477,7 +5249,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L703",
+      "source_location": "L777",
       "weight": 1.0
     },
     {
@@ -4489,7 +5261,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L603",
+      "source_location": "L677",
       "weight": 1.0
     },
     {
@@ -4501,7 +5273,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L604",
+      "source_location": "L678",
       "weight": 1.0
     },
     {
@@ -4513,7 +5285,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L547",
+      "source_location": "L621",
       "weight": 1.0
     },
     {
@@ -4525,7 +5297,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L566",
+      "source_location": "L640",
       "weight": 1.0
     },
     {
@@ -4537,7 +5309,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L567",
+      "source_location": "L641",
       "weight": 1.0
     },
     {
@@ -4549,7 +5321,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L572",
+      "source_location": "L646",
       "weight": 1.0
     },
     {
@@ -4561,7 +5333,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L584",
+      "source_location": "L658",
       "weight": 1.0
     },
     {
@@ -4573,79 +5345,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L585",
+      "source_location": "L659",
       "weight": 1.0
     },
     {
       "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_data_models_idilemodelbul",
+      "target": "js_ui_modelisec",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L222",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_olculerivarsayilanasifirla",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L223",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_kalinlikalaniningorunurlugunuguncelle",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L224",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_olculerimodellimitlerinesabitle",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L225",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_modelsecicimetniniguncelle",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L226",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_modelgalerikartiolustur",
-      "target": "js_ui_goruntuguncellemesiplanla",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L227",
+      "source_location": "L237",
       "weight": 1.0
     },
     {
@@ -4657,7 +5369,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L229",
+      "source_location": "L238",
       "weight": 1.0
     },
     {
@@ -4669,7 +5381,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L254",
+      "source_location": "L293",
       "weight": 1.0
     },
     {
@@ -4681,7 +5393,139 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L249",
+      "source_location": "L287",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelisec",
+      "target": "js_ui_modelcekmecesinikapat",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L171",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelisec",
+      "target": "js_data_models_idilemodelbul",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L175",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelisec",
+      "target": "js_ui_olculerivarsayilanasifirla",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L176",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelisec",
+      "target": "js_ui_kalinlikalaniningorunurlugunuguncelle",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L177",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelisec",
+      "target": "js_ui_olculerimodellimitlerinesabitle",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L178",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelisec",
+      "target": "js_ui_modelsecicimetniniguncelle",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L179",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelisec",
+      "target": "js_ui_modelpaneliniciz",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L180",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelisec",
+      "target": "js_viewer_goruntuyusifirla",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L184",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelisec",
+      "target": "js_ui_dikeykaydirmayiplanla",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L185",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelisec",
+      "target": "js_ui_goruntuguncellemesiplanla",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L186",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelpanelikartiolustur",
+      "target": "js_ui_modelisec",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L259",
       "weight": 1.0
     },
     {
@@ -4693,7 +5537,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L196",
+      "source_location": "L162",
       "weight": 1.0
     },
     {
@@ -4705,7 +5549,67 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L266",
+      "source_location": "L305",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelseciciyikur",
+      "target": "js_ui_modelpaneliniciz",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L306",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelseciciyikur",
+      "target": "js_ui_masaustumodelcekmecesimi",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L309",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelseciciyikur",
+      "target": "js_ui_modelcekmecesiniac",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L309",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelseciciyikur",
+      "target": "js_ui_modelgalerisiniac",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L310",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_modelseciciyikur",
+      "target": "js_ui_modelcekmecesinikapat",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L313",
       "weight": 1.0
     },
     {
@@ -4717,7 +5621,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L269",
+      "source_location": "L317",
       "weight": 1.0
     },
     {
@@ -4729,7 +5633,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L491",
+      "source_location": "L542",
       "weight": 1.0
     },
     {
@@ -4741,7 +5645,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L492",
+      "source_location": "L549",
       "weight": 1.0
     },
     {
@@ -4753,7 +5657,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L454",
+      "source_location": "L503",
       "weight": 1.0
     },
     {
@@ -4765,19 +5669,67 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L456",
+      "source_location": "L505",
       "weight": 1.0
     },
     {
-      "source": "js_ui_paylasbutonunukur",
-      "target": "js_paylasim_paylasimadresiolustur",
+      "source": "js_ui_olculerisifirlamabutonunukur",
+      "target": "js_data_models_idilemodelbul",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L176",
+      "source_location": "L575",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_olculerisifirlamabutonunukur",
+      "target": "js_ui_olculerivarsayilanasifirla",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L576",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_olculerisifirlamabutonunukur",
+      "target": "js_ui_olculerimodellimitlerinesabitle",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L577",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_olculerisifirlamabutonunukur",
+      "target": "js_ui_goruntuguncellemesiplanla",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L578",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_olculerisifirlamabutonunukur",
+      "target": "js_ui_bildir",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L579",
       "weight": 1.0
     },
     {
@@ -4789,7 +5741,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L177",
+      "source_location": "L141",
       "weight": 1.0
     },
     {
@@ -4801,7 +5753,67 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L180",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_paylasimbilgisiniolustur",
+      "target": "js_data_models_idilemodelbul",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L819",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_paylasimbilgisiniolustur",
+      "target": "js_data_colors_idilerenkbul",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L820",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_paylasimbilgisiniolustur",
+      "target": "js_ui_paylasilacakdurum",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L822",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_paylasimbilgisiniolustur",
+      "target": "js_data_yuzeyler_idileyuzeybul",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L828",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui_paylasimbilgisiniolustur",
+      "target": "js_data_yuzeyler_varsayilanyuzey",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/ui.js",
+      "source_location": "L828",
       "weight": 1.0
     },
     {
@@ -4813,7 +5825,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L295",
+      "source_location": "L344",
       "weight": 1.0
     },
     {
@@ -4825,7 +5837,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L302",
+      "source_location": "L351",
       "weight": 1.0
     },
     {
@@ -4837,7 +5849,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L356",
+      "source_location": "L405",
       "weight": 1.0
     },
     {
@@ -4849,7 +5861,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L364",
+      "source_location": "L413",
       "weight": 1.0
     },
     {
@@ -4861,7 +5873,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L313",
+      "source_location": "L362",
       "weight": 1.0
     },
     {
@@ -4873,19 +5885,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L336",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_urldendurumuyukle",
-      "target": "js_paylasim_sorgudandurumcoz",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L153",
+      "source_location": "L385",
       "weight": 1.0
     },
     {
@@ -4897,7 +5897,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L154",
+      "source_location": "L111",
       "weight": 1.0
     },
     {
@@ -4909,7 +5909,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L155",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -4921,7 +5921,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L156",
+      "source_location": "L113",
       "weight": 1.0
     },
     {
@@ -4933,19 +5933,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L158",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_urlidurumaesitle",
-      "target": "js_paylasim_durumusorguyakodla",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L142",
+      "source_location": "L114",
       "weight": 1.0
     },
     {
@@ -4957,91 +5945,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L142",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_urlidurumaesitle",
-      "target": "js_ui_whatsappbaglantisiniguncelle",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L149",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_whatsappbaglantisiniguncelle",
-      "target": "js_data_models_idilemodelbul",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L753",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_whatsappbaglantisiniguncelle",
-      "target": "js_data_colors_idilerenkbul",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L754",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_whatsappbaglantisiniguncelle",
-      "target": "js_paylasim_paylasimadresiolustur",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L755",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_whatsappbaglantisiniguncelle",
-      "target": "js_ui_paylasilacakdurum",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L756",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_whatsappbaglantisiniguncelle",
-      "target": "js_data_yuzeyler_idileyuzeybul",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L761",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_whatsappbaglantisiniguncelle",
-      "target": "js_data_yuzeyler_varsayilanyuzey",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L761",
+      "source_location": "L103",
       "weight": 1.0
     },
     {
@@ -5053,7 +5957,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L405",
+      "source_location": "L454",
       "weight": 1.0
     },
     {
@@ -5065,7 +5969,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L409",
+      "source_location": "L458",
       "weight": 1.0
     },
     {
@@ -5077,7 +5981,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L409",
+      "source_location": "L458",
       "weight": 1.0
     },
     {
@@ -5089,43 +5993,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/ui.js",
-      "source_location": "L386",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_zeminiuygula",
-      "target": "js_ui_urlidurumaesitle",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L122",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_zeminseciciyikur",
-      "target": "js_ui_zeminiuygula",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L846",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui_zeminseciciyikur",
-      "target": "js_ui_digersecicipanellerinikapat",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "js/ui.js",
-      "source_location": "L852",
+      "source_location": "L435",
       "weight": 1.0
     },
     {
@@ -5149,7 +6017,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L287",
+      "source_location": "L300",
+      "weight": 1.0
+    },
+    {
+      "source": "js_viewer_kapagiguncelle",
+      "target": "js_viewer_goruntuyusifirla",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "js/viewer.js",
+      "source_location": "L228",
       "weight": 1.0
     },
     {
@@ -5161,7 +6041,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L229",
+      "source_location": "L242",
       "weight": 1.0
     },
     {
@@ -5173,7 +6053,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L230",
+      "source_location": "L243",
       "weight": 1.0
     },
     {
@@ -5185,7 +6065,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L316",
+      "source_location": "L329",
       "weight": 1.0
     },
     {
@@ -5197,7 +6077,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L269",
+      "source_location": "L282",
       "weight": 1.0
     },
     {
@@ -5209,7 +6089,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L276",
+      "source_location": "L289",
       "weight": 1.0
     },
     {
@@ -5221,7 +6101,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L155",
+      "source_location": "L158",
       "weight": 1.0
     },
     {
@@ -5233,7 +6113,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L143",
+      "source_location": "L146",
       "weight": 1.0
     },
     {
@@ -5245,7 +6125,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L194",
+      "source_location": "L197",
       "weight": 1.0
     },
     {
@@ -5257,7 +6137,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L206",
+      "source_location": "L207",
       "weight": 1.0
     },
     {
@@ -5269,7 +6149,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L207",
+      "source_location": "L208",
       "weight": 1.0
     },
     {
@@ -5281,7 +6161,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/viewer.js",
-      "source_location": "L210",
+      "source_location": "L212",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_model_links_rows",
+      "target": "js_paylasim_paylasimadresiolustur",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "scripts/model-links.mjs",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -5346,6 +6238,18 @@
     },
     {
       "source": "js_anasayfa",
+      "target": "js_data_yuzeyler_varsayilanyuzey",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/anasayfa.js",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "js_anasayfa",
       "target": "js_data_models_kapak_modelleri",
       "relation": "imports",
       "_origin": "ast",
@@ -5383,6 +6287,18 @@
     {
       "source": "js_data_colors_test",
       "target": "js_data_colors_idilerenkbul",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/data/colors.test.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_colors_test",
+      "target": "js_data_colors_ralserileri",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5462,6 +6378,30 @@
       "context": "import",
       "source_file": "js/data/models.test.js",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_ralclassic_test",
+      "target": "js_data_ralclassic_ral_classic_kartela",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/data/ralClassic.test.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_ralclassic_test",
+      "target": "js_data_ralclassic_ralclassicserileri",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/data/ralClassic.test.js",
+      "source_location": "L2",
       "weight": 1.0
     },
     {
@@ -5609,6 +6549,30 @@
       "weight": 1.0
     },
     {
+      "source": "js_paylasim",
+      "target": "js_data_models_idilemodelbul",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/paylasim.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "js_paylasim",
+      "target": "js_data_models_kapak_modelleri",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/paylasim.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
       "source": "js_paylasim_test",
       "target": "js_paylasim_durumusorguyakodla",
       "relation": "imports",
@@ -5623,6 +6587,30 @@
     {
       "source": "js_paylasim_test",
       "target": "js_paylasim_paylasimadresiolustur",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/paylasim.test.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "js_paylasim_test",
+      "target": "js_paylasim_paylasimdosyaadiolustur",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/paylasim.test.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "js_paylasim_test",
+      "target": "js_paylasim_paylasimmetniolustur",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5669,15 +6657,39 @@
       "weight": 1.0
     },
     {
+      "source": "js_projeler",
+      "target": "js_ustbar_ustbarikur",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/projeler.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
       "source": "js_renkler",
-      "target": "js_data_colors_ralserileri",
+      "target": "js_data_colors_idilerenkbul",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/renkler.js",
-      "source_location": "L10",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "js_renkler",
+      "target": "js_data_ralclassic_ralclassicserileri",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/renkler.js",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -5689,7 +6701,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/renkler.js",
-      "source_location": "L11",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -5701,7 +6713,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/renkler.js",
-      "source_location": "L12",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -5885,42 +6897,6 @@
       "weight": 1.0
     },
     {
-      "source": "js_ui",
-      "target": "js_paylasim_durumusorguyakodla",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "js/ui.js",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui",
-      "target": "js_paylasim_paylasimadresiolustur",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "js/ui.js",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui",
-      "target": "js_paylasim_sorgudandurumcoz",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "js/ui.js",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
       "source": "js_viewer",
       "target": "js_materials_malzemeuygula",
       "relation": "imports",
@@ -5957,6 +6933,78 @@
       "weight": 1.0
     },
     {
+      "source": "scripts_model_links",
+      "target": "js_data_models_kapak_modelleri",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/model-links.mjs",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_model_links",
+      "target": "js_paylasim_paylasimadresiolustur",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/model-links.mjs",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_model_links_test",
+      "target": "js_data_models_idilemodelbul",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/model-links.test.mjs",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_model_links_test",
+      "target": "js_data_models_kapak_modelleri",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/model-links.test.mjs",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_model_links_test",
+      "target": "js_paylasim_durumusorguyakodla",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/model-links.test.mjs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_model_links_test",
+      "target": "js_paylasim_sorgudandurumcoz",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/model-links.test.mjs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
       "source": "js_anasayfa",
       "target": "js_ustbar",
       "relation": "imports_from",
@@ -5990,6 +7038,18 @@
       "context": "import",
       "source_file": "js/anasayfa.js",
       "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "js_anasayfa",
+      "target": "js_data_yuzeyler",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/anasayfa.js",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -6041,6 +7101,18 @@
       "weight": 1.0
     },
     {
+      "source": "js_data_ralclassic_test",
+      "target": "js_data_ralclassic",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/data/ralClassic.test.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "js_glbyukleyici",
       "target": "js_kenarolcekleme",
       "relation": "imports_from",
@@ -6074,18 +7146,6 @@
       "context": "import",
       "source_file": "js/kenarOlcekleme.test.js",
       "source_location": "L7",
-      "weight": 1.0
-    },
-    {
-      "source": "js_main",
-      "target": "js_ui",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "js/main.js",
-      "source_location": "L1",
       "weight": 1.0
     },
     {
@@ -6149,6 +7209,18 @@
       "weight": 1.0
     },
     {
+      "source": "js_paylasim",
+      "target": "js_data_models",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/paylasim.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
       "source": "js_paylasim_test",
       "target": "js_paylasim",
       "relation": "imports_from",
@@ -6161,6 +7233,18 @@
       "weight": 1.0
     },
     {
+      "source": "js_projeler",
+      "target": "js_ustbar",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/projeler.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
       "source": "js_renkler",
       "target": "js_data_colors",
       "relation": "imports_from",
@@ -6169,7 +7253,19 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/renkler.js",
-      "source_location": "L10",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "js_renkler",
+      "target": "js_data_ralclassic",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/renkler.js",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -6181,7 +7277,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/renkler.js",
-      "source_location": "L11",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -6193,7 +7289,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/renkler.js",
-      "source_location": "L12",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -6257,18 +7353,6 @@
       "weight": 1.0
     },
     {
-      "source": "js_ui",
-      "target": "js_paylasim",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "js/ui.js",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
       "source": "js_viewer",
       "target": "js_materials",
       "relation": "imports_from",
@@ -6290,6 +7374,65 @@
       "context": "import",
       "source_file": "js/viewer.js",
       "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_model_links",
+      "target": "js_data_models",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/model-links.mjs",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_model_links",
+      "target": "js_paylasim",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/model-links.mjs",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_model_links_test",
+      "target": "js_data_models",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/model-links.test.mjs",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_model_links_test",
+      "target": "js_paylasim",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/model-links.test.mjs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "agents",
+      "target": "agents_calisma_kurallari",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
       "weight": 1.0
     },
     {
@@ -6597,7 +7740,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/anasayfa.js",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -6608,7 +7751,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/anasayfa.js",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -6751,7 +7894,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/data/colors.js",
-      "source_location": "L212",
+      "source_location": "L214",
       "weight": 1.0
     },
     {
@@ -6821,6 +7964,17 @@
       "weight": 1.0
     },
     {
+      "source": "js_data_colors_test",
+      "target": "js_data_colors_test_seriler",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/colors.test.js",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
       "source": "js_data_galeri",
       "target": "js_data_galeri_galeri_fotograflari",
       "relation": "contains",
@@ -6833,7 +7987,7 @@
     },
     {
       "source": "js_data_models",
-      "target": "js_data_models_kapak_modelleri",
+      "target": "js_data_models_genel_limitler",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6844,13 +7998,90 @@
     },
     {
       "source": "js_data_models",
+      "target": "js_data_models_genel_varsayilan",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.js",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models",
+      "target": "js_data_models_varyantli_uretim_kodlari",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.js",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models",
+      "target": "js_data_models_mkodunubul",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.js",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models",
       "target": "js_data_models_idilemodelbul",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/data/models.js",
-      "source_location": "L58",
+      "source_location": "L158",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models",
+      "target": "js_data_models_kapakmodeli",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.js",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models",
+      "target": "js_data_models_ozelmodel",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.js",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models",
+      "target": "js_data_models_liste_sonu_modelleri",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models",
+      "target": "js_data_models_kapak_modelleri",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.js",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
@@ -6861,7 +8092,51 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/data/models.test.js",
-      "source_location": "L26",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models_test",
+      "target": "js_data_models_test_siralimodelkodlari",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.test.js",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models_test",
+      "target": "js_data_models_test_sonatasinanlar",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.test.js",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models_test",
+      "target": "js_data_models_test_ongrup",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.test.js",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_models_test",
+      "target": "js_data_models_test_katalogkodlari",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/models.test.js",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -6872,7 +8147,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/data/models.test.js",
-      "source_location": "L38",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -6942,6 +8217,61 @@
       "weight": 1.0
     },
     {
+      "source": "js_data_ralclassic",
+      "target": "js_data_ralclassic_ral_classic_seri_etiketleri",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/ralClassic.js",
+      "source_location": "L225",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_ralclassic",
+      "target": "js_data_ralclassic_ralclassicserileri",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/ralClassic.js",
+      "source_location": "L238",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_ralclassic",
+      "target": "js_data_ralclassic_ral_classic_kartela",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/ralClassic.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_ralclassic_test",
+      "target": "js_data_ralclassic_test_seriler",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/ralClassic.test.js",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "js_data_ralclassic_test",
+      "target": "js_data_ralclassic_test_kodlar",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/data/ralClassic.test.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
       "source": "js_data_yuzeyler",
       "target": "js_data_yuzeyler_yuzeyler",
       "relation": "contains",
@@ -6976,17 +8306,6 @@
     },
     {
       "source": "js_glbyukleyici",
-      "target": "js_glbyukleyici_glbkapakgrubuolustur",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/glbYukleyici.js",
-      "source_location": "L117",
-      "weight": 1.0
-    },
-    {
-      "source": "js_glbyukleyici",
       "target": "js_glbyukleyici_yukleyici",
       "relation": "contains",
       "_origin": "ast",
@@ -7009,13 +8328,46 @@
     },
     {
       "source": "js_glbyukleyici",
-      "target": "js_glbyukleyici_glbsablonunuyukle",
+      "target": "js_glbyukleyici_glbkapakgrubuolustur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/glbYukleyici.js",
+      "source_location": "L167",
+      "weight": 1.0
+    },
+    {
+      "source": "js_glbyukleyici",
+      "target": "js_glbyukleyici_onyuzuvleriniolustur",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/glbYukleyici.js",
       "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "js_glbyukleyici",
+      "target": "js_glbyukleyici_aynalanmisyuzleriduzelt",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/glbYukleyici.js",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "js_glbyukleyici",
+      "target": "js_glbyukleyici_glbsablonunuyukle",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/glbYukleyici.js",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -7130,24 +8482,46 @@
     },
     {
       "source": "js_materials",
-      "target": "js_materials_renkverisindenmalzemeolustur",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/materials.js",
-      "source_location": "L14",
-      "weight": 1.0
-    },
-    {
-      "source": "js_materials",
       "target": "js_materials_malzemeuygula",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/materials.js",
-      "source_location": "L28",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "js_materials",
+      "target": "js_materials_lakenoisedokusuolustur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/materials.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "js_materials",
+      "target": "js_materials_renkverisindenmalzemeolustur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/materials.js",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "js_materials",
+      "target": "js_materials_cammalzemesiolustur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/materials.js",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -7229,13 +8603,24 @@
     },
     {
       "source": "js_paylasim",
+      "target": "js_paylasim_paylasimdosyaadiolustur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/paylasim.js",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
+      "source": "js_paylasim",
       "target": "js_paylasim_anahtarlar",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.js",
-      "source_location": "L13",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -7246,7 +8631,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.js",
-      "source_location": "L16",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -7257,7 +8642,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.js",
-      "source_location": "L23",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -7268,7 +8653,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.js",
-      "source_location": "L28",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -7279,7 +8664,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.js",
-      "source_location": "L47",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -7290,7 +8675,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.js",
-      "source_location": "L81",
+      "source_location": "L92",
+      "weight": 1.0
+    },
+    {
+      "source": "js_paylasim",
+      "target": "js_paylasim_paylasimmetniolustur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/paylasim.js",
+      "source_location": "L96",
       "weight": 1.0
     },
     {
@@ -7301,7 +8697,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.test.js",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -7312,7 +8708,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.test.js",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -7323,7 +8719,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.test.js",
-      "source_location": "L36",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "js_paylasim_test",
+      "target": "js_paylasim_test_publicstate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/paylasim.test.js",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -7334,7 +8741,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.test.js",
-      "source_location": "L43",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -7345,7 +8752,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.test.js",
-      "source_location": "L48",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -7356,18 +8763,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/paylasim.test.js",
-      "source_location": "L53",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
-      "source": "js_renkler",
-      "target": "js_renkler_aramayikur",
+      "source": "js_paylasim_test",
+      "target": "js_paylasim_test_paylasimbilgisi",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "js/renkler.js",
-      "source_location": "L122",
+      "source_file": "js/paylasim.test.js",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -7378,7 +8785,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/renkler.js",
-      "source_location": "L14",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "js_renkler",
+      "target": "js_renkler_aramayikur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/renkler.js",
+      "source_location": "L126",
       "weight": 1.0
     },
     {
@@ -7389,18 +8807,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/renkler.js",
-      "source_location": "L162",
-      "weight": 1.0
-    },
-    {
-      "source": "js_renkler",
-      "target": "js_renkler_seritakibinikur",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/renkler.js",
-      "source_location": "L170",
+      "source_location": "L166",
       "weight": 1.0
     },
     {
@@ -7411,7 +8818,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/renkler.js",
-      "source_location": "L21",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "js_renkler",
+      "target": "js_renkler_seritakibinikur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/renkler.js",
+      "source_location": "L174",
       "weight": 1.0
     },
     {
@@ -7422,7 +8840,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/renkler.js",
-      "source_location": "L29",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -7433,7 +8851,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/renkler.js",
-      "source_location": "L35",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -7444,7 +8862,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/renkler.js",
-      "source_location": "L41",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -7455,29 +8873,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/renkler.js",
-      "source_location": "L62",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui",
-      "target": "js_ui_zeminiuygula",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L105",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui",
-      "target": "js_ui_paylasilacakdurum",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L132",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -7488,18 +8884,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L136",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui",
-      "target": "js_ui_baslangicmodel",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L14",
+      "source_location": "L102",
       "weight": 1.0
     },
     {
@@ -7510,18 +8895,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L152",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui",
-      "target": "js_ui_durum",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L16",
+      "source_location": "L109",
       "weight": 1.0
     },
     {
@@ -7532,7 +8906,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L163",
+      "source_location": "L127",
       "weight": 1.0
     },
     {
@@ -7543,7 +8917,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L172",
+      "source_location": "L136",
       "weight": 1.0
     },
     {
@@ -7554,7 +8928,73 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L195",
+      "source_location": "L161",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_modelisec",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L169",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_baslangicmodel",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_masaustumodelcekmecesimi",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L189",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_modelcekmecesiniac",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L193",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_durum",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_modelcekmecesinikapat",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L202",
       "weight": 1.0
     },
     {
@@ -7565,7 +9005,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L201",
+      "source_location": "L211",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_modelpanelikartiolustur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L243",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_modelpaneliniciz",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L263",
       "weight": 1.0
     },
     {
@@ -7576,7 +9038,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L234",
+      "source_location": "L269",
       "weight": 1.0
     },
     {
@@ -7587,7 +9049,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L252",
+      "source_location": "L290",
       "weight": 1.0
     },
     {
@@ -7598,7 +9060,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L260",
+      "source_location": "L299",
       "weight": 1.0
     },
     {
@@ -7609,7 +9071,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L265",
+      "source_location": "L304",
       "weight": 1.0
     },
     {
@@ -7620,7 +9082,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L285",
+      "source_location": "L334",
       "weight": 1.0
     },
     {
@@ -7631,7 +9093,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L306",
+      "source_location": "L355",
       "weight": 1.0
     },
     {
@@ -7642,7 +9104,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L316",
+      "source_location": "L365",
       "weight": 1.0
     },
     {
@@ -7653,7 +9115,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L35",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -7664,7 +9126,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L351",
+      "source_location": "L400",
       "weight": 1.0
     },
     {
@@ -7675,7 +9137,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L376",
+      "source_location": "L425",
       "weight": 1.0
     },
     {
@@ -7686,7 +9148,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L389",
+      "source_location": "L438",
       "weight": 1.0
     },
     {
@@ -7697,7 +9159,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L415",
+      "source_location": "L464",
       "weight": 1.0
     },
     {
@@ -7708,7 +9170,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L421",
+      "source_location": "L470",
       "weight": 1.0
     },
     {
@@ -7719,7 +9181,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L427",
+      "source_location": "L476",
       "weight": 1.0
     },
     {
@@ -7730,7 +9192,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L438",
+      "source_location": "L487",
       "weight": 1.0
     },
     {
@@ -7741,7 +9203,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L444",
+      "source_location": "L493",
       "weight": 1.0
     },
     {
@@ -7752,7 +9214,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L479",
+      "source_location": "L528",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_olculerisifirlamabutonunukur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L566",
       "weight": 1.0
     },
     {
@@ -7763,7 +9236,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L516",
+      "source_location": "L590",
       "weight": 1.0
     },
     {
@@ -7774,7 +9247,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L529",
+      "source_location": "L603",
       "weight": 1.0
     },
     {
@@ -7785,7 +9258,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L546",
+      "source_location": "L620",
       "weight": 1.0
     },
     {
@@ -7796,7 +9269,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L552",
+      "source_location": "L626",
       "weight": 1.0
     },
     {
@@ -7807,7 +9280,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L564",
+      "source_location": "L638",
       "weight": 1.0
     },
     {
@@ -7818,7 +9291,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L589",
+      "source_location": "L663",
       "weight": 1.0
     },
     {
@@ -7829,40 +9302,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L614",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui",
-      "target": "js_ui_isikpaneliniackapa",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L627",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui",
-      "target": "js_ui_sahneyiacigacikar",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L642",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui",
-      "target": "js_ui_isikpanelinikur",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L648",
+      "source_location": "L688",
       "weight": 1.0
     },
     {
@@ -7873,7 +9313,40 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L67",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_isikpaneliniackapa",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L701",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_sahneyiacigacikar",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L716",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_isikpanelinikur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L722",
       "weight": 1.0
     },
     {
@@ -7884,7 +9357,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L707",
+      "source_location": "L781",
       "weight": 1.0
     },
     {
@@ -7895,62 +9368,51 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L712",
+      "source_location": "L786",
       "weight": 1.0
     },
     {
       "source": "js_ui",
-      "target": "js_ui_whatsappbaglantisiniguncelle",
+      "target": "js_ui_paylasimbilgisiniolustur",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L750",
+      "source_location": "L818",
       "weight": 1.0
     },
     {
       "source": "js_ui",
-      "target": "js_ui_tamekranbutonukur",
+      "target": "js_ui_canvasblobuolustur",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L769",
+      "source_location": "L835",
       "weight": 1.0
     },
     {
       "source": "js_ui",
-      "target": "js_ui_dikeykaydirmayiuygula",
+      "target": "js_ui_paylasimpaketinipanoyakopyala",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L794",
+      "source_location": "L839",
       "weight": 1.0
     },
     {
       "source": "js_ui",
-      "target": "js_ui_dikeykaydirmayiplanla",
+      "target": "js_ui_genelpaylasbutonunukur",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L817",
-      "weight": 1.0
-    },
-    {
-      "source": "js_ui",
-      "target": "js_ui_zeminseciciyikur",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/ui.js",
-      "source_location": "L824",
+      "source_location": "L858",
       "weight": 1.0
     },
     {
@@ -7961,7 +9423,40 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L84",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_tamekranbutonukur",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L908",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_dikeykaydirmayiuygula",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L933",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ui",
+      "target": "js_ui_dikeykaydirmayiplanla",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/ui.js",
+      "source_location": "L968",
       "weight": 1.0
     },
     {
@@ -7972,12 +9467,12 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/ui.js",
-      "source_location": "L870",
+      "source_location": "L977",
       "weight": 1.0
     },
     {
       "source": "js_ui",
-      "target": "js_ui_zemin_secenekleri",
+      "target": "js_ui_paylasilacakdurum",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8010,13 +9505,24 @@
     },
     {
       "source": "js_viewer",
+      "target": "js_viewer_mevcutmalzemeler",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/viewer.js",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "js_viewer",
       "target": "js_viewer_pencereboyutlandi",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L147",
+      "source_location": "L150",
       "weight": 1.0
     },
     {
@@ -8027,7 +9533,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L158",
+      "source_location": "L161",
       "weight": 1.0
     },
     {
@@ -8038,7 +9544,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L166",
+      "source_location": "L169",
       "weight": 1.0
     },
     {
@@ -8049,7 +9555,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L182",
+      "source_location": "L185",
       "weight": 1.0
     },
     {
@@ -8060,18 +9566,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L190",
-      "weight": 1.0
-    },
-    {
-      "source": "js_viewer",
-      "target": "js_viewer_sahneyibaslat",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "js/viewer.js",
-      "source_location": "L21",
+      "source_location": "L193",
       "weight": 1.0
     },
     {
@@ -8082,7 +9577,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L215",
+      "source_location": "L217",
+      "weight": 1.0
+    },
+    {
+      "source": "js_viewer",
+      "target": "js_viewer_sahneyibaslat",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/viewer.js",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -8093,7 +9599,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L237",
+      "source_location": "L250",
       "weight": 1.0
     },
     {
@@ -8104,7 +9610,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L238",
+      "source_location": "L251",
       "weight": 1.0
     },
     {
@@ -8115,7 +9621,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L240",
+      "source_location": "L253",
       "weight": 1.0
     },
     {
@@ -8126,7 +9632,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L267",
+      "source_location": "L280",
       "weight": 1.0
     },
     {
@@ -8137,7 +9643,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L281",
+      "source_location": "L294",
       "weight": 1.0
     },
     {
@@ -8148,7 +9654,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/viewer.js",
-      "source_location": "L301",
+      "source_location": "L314",
       "weight": 1.0
     },
     {
@@ -8185,6 +9691,50 @@
       "weight": 1.0
     },
     {
+      "source": "package",
+      "target": "package_scripts",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "package_scripts",
+      "target": "package_scripts_start",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "package_scripts",
+      "target": "package_scripts_test",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "package_scripts",
+      "target": "package_scripts_check",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
       "source": "scripts_dev_server",
       "target": "scripts_dev_server_mime",
       "relation": "contains",
@@ -8218,6 +9768,73 @@
       "weight": 1.0
     },
     {
+      "source": "scripts_model_links",
+      "target": "scripts_model_links_rows",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/model-links.mjs",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_seo_test",
+      "target": "scripts_seo_test_addeventlistener",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/seo.test.mjs",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_seo_test",
+      "target": "scripts_seo_test_routes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/seo.test.mjs",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_site_safety_test",
+      "target": "scripts_site_safety_test_publichtmlfiles",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/site-safety.test.mjs",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_export_model_qr_rationale_1",
+      "target": "scripts_export_model_qr",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/export-model-qr.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "js_ana_sayfa_adresi",
+      "target": "js_ana_sayfa_adresi_anasayfaadresinitemizle",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "js/ana-sayfa-adresi.js",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
       "source": "js_anasayfa",
       "target": "js_anasayfa_baslat",
       "relation": "indirect_call",
@@ -8226,7 +9843,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "js/anasayfa.js",
-      "source_location": "L140",
+      "source_location": "L144",
       "weight": 1.0
     },
     {
@@ -8286,19 +9903,19 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "js/ui.js",
-      "source_location": "L897",
+      "source_location": "L1005",
       "weight": 1.0
     },
     {
-      "source": "js_ui_modelseciciyikur",
-      "target": "js_ui_modelgalerisiniac",
+      "source": "js_ui_modelpaneliniciz",
+      "target": "js_ui_modelpanelikartiolustur",
       "relation": "indirect_call",
       "_origin": "ast",
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "js/ui.js",
-      "source_location": "L267",
+      "source_location": "L266",
       "weight": 1.0
     },
     {
@@ -8310,7 +9927,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "js/ui.js",
-      "source_location": "L268",
+      "source_location": "L316",
       "weight": 1.0
     },
     {
@@ -8322,7 +9939,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "js/ui.js",
-      "source_location": "L709",
+      "source_location": "L783",
       "weight": 1.0
     },
     {
@@ -8334,7 +9951,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "js/viewer.js",
-      "source_location": "L139",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -8346,7 +9963,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "js/viewer.js",
-      "source_location": "L86",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -9559,5 +11176,5 @@
       "source_file": "docs/superpowers/plans/2026-08-06-kapak-konfiguratoru.md"
     }
   ],
-  "built_at_commit": "cd0f2030823c38724f6ed0615755f0a71ddc32d2"
+  "built_at_commit": "bca69ba61e7dbb3b1be2e691f9650addf5ee3577"
 }

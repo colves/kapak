@@ -1,5 +1,10 @@
 {
   "name": "sahinkaya-kapak-konfiguratoru",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/dev-server.mjs",
+    "test": "node --test scripts/*.test.mjs js/*.test.js js/data/*.test.js",
+    "check": "npm test"
+  }
 }

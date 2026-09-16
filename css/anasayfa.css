@@ -519,7 +519,7 @@ img { display: block; max-width: 100%; }
 }
 .alt-marka img { max-height: 52px; width: auto; margin-bottom: 16px; }
 .alt-marka p { max-width: 240px; font-size: 12px; color: #6D655C; line-height: 1.7; }
-.alt h3 {
+.alt .alt-baslik {
     margin: 0 0 6px;
     font: 10px 'DM Mono', ui-monospace, monospace;
     letter-spacing: 0.1em;

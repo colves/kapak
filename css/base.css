@@ -171,6 +171,7 @@ html, body {
 /* ===================== Genel yerleşim ===================== */
 
 .konfigurator {
+    position: relative;
     display: flex;
     height: calc(100% - var(--ustbar-h));
     height: calc(100dvh - var(--ustbar-h));

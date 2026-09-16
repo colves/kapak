@@ -1,7 +1,8 @@
-# Şahinkaya Kapak Konfigüratörü
+# Şahinkaya Mobilya Web Sitesi
 
-Özel tasarım mutfak/dolap kapaklarını 3 boyutlu olarak model, ölçü ve gerçek
-renk/yüzey seçenekleriyle önizlemeye yarayan bağımsız, framework'süz statik web sayfası.
+Şahinkaya Mobilya'nın kurumsal sitesi, tamamlanmış proje galerisi, RAL renk
+kartelası, lake kapak model kataloğu ve 3B kapak konfigüratörü. Proje bağımlılıksız,
+framework kullanmayan statik bir web sitesidir ve GitHub Pages üzerinden yayınlanır.
 
 ## Çalıştırma
 
@@ -19,34 +20,33 @@ Sonra tarayıcıda `http://localhost:5500` adresini açın. Alternatif olarak VS
 
 ## Klasör Yapısı
 
-- `index.html` — tek sayfa giriş noktası
-- `css/` — `base.css` (layout) + iki tema dosyası (`theme-atolye.css`, `theme-sahinkaya.css`)
-- `js/data/` — renk kataloğu ve model tanımları (sabit veri, Node ile test edilebilir)
-- `js/doorGeometry.js` — kapak geometrisi (düz kutu / çıtalı çerçeve+panel)
-- `js/materials.js` — gerçekçi malzeme ve procedural ahşap dokusu üretimi
-- `js/viewer.js` — Three.js sahnesi, kamera, ışık, on-demand render döngüsü
-- `js/theme.js` — "Atölye" / "Şahinkaya Klasik" tema geçişi
-- `js/ui.js`, `js/main.js` — arayüz bağlama ve giriş noktası
-- `scripts/dev-server.mjs` — bağımlılıksız yerel önizleme sunucusu
+- `index.html` — ana sayfa
+- `modeller/`, `renkler/`, `projeler/`, `iletisim/` — temiz URL kullanan içerik sayfaları
+- `konfigurator/` — 3B lake kapak konfigüratörü
+- `assets/models/` — üretim modellerinden dönüştürülen GLB kapaklar
+- `assets/model-fotograflari/` — model katalog görselleri
+- `assets/projeler/` — tamamlanmış uygulama fotoğrafları
+- `css/` — ortak ve sayfaya özel stiller
+- `js/data/` — model, RAL renk, yüzey ve ortam tanımları
+- `js/viewer.js`, `js/glbYukleyici.js`, `js/materials.js` — 3B görüntüleme katmanı
+- `scripts/` — yerel sunucu, bağlantı üretimi ve yayın öncesi testler
+- `graphify-out/` — güncel kod bağımlılık haritası ve raporu
 
-## Veri Testlerini Çalıştırma
+## Yayın Öncesi Kontrol
 
 ```bash
-node js/data/colors.test.js
-node js/data/models.test.js
+npm test
 ```
+
+Bu komut model ve renk verilerini, kalıcı bağlantıları, SEO alanlarını, yerel
+kaynakları, güvenlik kurallarını ve eski URL yönlendirmelerini birlikte doğrular.
 
 ## Notlar
 
-- Renkler gerçek kaynaklara dayanır: RAL Classic (Lake/Membran/Akrilik tonları),
-  doğrulanmış EGGER dekor kodları ve gerçek ağaç türü isimleri (Membran Ahşap
-  Desenli/Masif Ahşap). Kaynak künyesi `js/data/colors.js` başındaki yorumdadır.
+- Renkler RAL Classic verisine dayanır. Kaynak künyesi `js/data/colors.js`
+  başındaki yorumdadır.
 - Performans: sürekli render döngüsü yoktur (yalnızca kamera hareketi/etkileşim
   render tetikler), `devicePixelRatio` üst sınırı 2, doku üretimi renk başına
   önbelleklenir, geometri/materyal her güncellemede `dispose()` edilir.
 - Mobilde (≤860px) ayar paneli alttan açılan bir "bottom sheet"e dönüşür.
-
-## Kapsam Dışı / Sonraki Adımlar
-
-- WhatsApp üzerinden teklif alma entegrasyonu henüz eklenmedi (bilinçli olarak ertelendi).
-- Renk kataloğu sabit kod (JS) olarak yönetiliyor; ileride admin panelinden yönetilebilir hale getirilebilir.
+- `CNAME`, `robots.txt` ve `sitemap.xml` doğrudan yayın kökünde tutulur.
