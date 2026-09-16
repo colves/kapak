@@ -10,43 +10,20 @@
     padding-top: var(--bar-y);
 }
 
-.proje-giris,
 .proje,
 .proje-iletisim {
     width: min(100% - 64px, 1440px);
     margin-inline: auto;
 }
 
-.proje-giris {
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
-    align-items: end;
-    gap: 48px;
-    padding: clamp(76px, 9vw, 138px) 0 clamp(70px, 8vw, 118px);
-}
-
-.proje-giris .etiket {
-    grid-column: 1 / -1;
-    margin-bottom: -26px;
-}
-
-.proje-giris h1 {
-    margin: 0;
-    font: 600 clamp(52px, 7.2vw, 112px)/.92 'Playfair Display', Georgia, serif;
-    letter-spacing: -.055em;
-}
-
-.proje-giris p {
-    max-width: 520px;
-    margin: 0 0 8px;
-    color: #6b635a;
-    font-size: clamp(15px, 1.45vw, 20px);
-    line-height: 1.7;
-}
-
 .proje {
     padding: clamp(54px, 7vw, 96px) 0;
     border-top: 1px solid rgba(37, 35, 33, .16);
+}
+
+.projeler-main > .proje:first-child {
+    padding-top: clamp(72px, 8vw, 116px);
+    border-top: 0;
 }
 
 .proje-baslik {
@@ -65,6 +42,7 @@
     letter-spacing: .14em;
 }
 
+.proje h1,
 .proje h2 {
     margin: 0;
     font: 600 clamp(36px, 4.6vw, 68px)/1 'Playfair Display', Georgia, serif;
@@ -94,11 +72,14 @@
 .mutfak-galeri .tezgah,
 .mutfak-galeri .buzdolabi { aspect-ratio: 3 / 4; }
 
-.vitrin-galeri { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.oda-galeri { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.vitrin-galeri { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.oda-galeri { grid-template-columns: repeat(12, minmax(0, 1fr)); }
 
 .vitrin-galeri .proje-gorsel,
 .oda-galeri .proje-gorsel { aspect-ratio: 9 / 16; }
+
+.oda-galeri .genis { grid-column: span 6; }
+.oda-galeri .uc { grid-column: span 4; }
 
 .proje-gorsel {
     position: relative;
@@ -154,29 +135,14 @@
 }
 
 @media (max-width: 800px) {
-    .proje-giris,
     .proje-baslik,
     .proje-iletisim {
         grid-template-columns: 1fr;
     }
 
-    .proje-giris,
     .proje,
     .proje-iletisim {
         width: min(100% - 40px, 1440px);
-    }
-
-    .proje-giris {
-        gap: 28px;
-        padding-top: 64px;
-    }
-
-    .proje-giris .etiket {
-        margin-bottom: -8px;
-    }
-
-    .proje-giris h1 br {
-        display: none;
     }
 
     .proje-baslik {
@@ -199,6 +165,9 @@
 
     .vitrin-galeri .proje-gorsel,
     .oda-galeri .proje-gorsel { aspect-ratio: 9 / 16; }
+
+    .oda-galeri .genis,
+    .oda-galeri .uc { grid-column: auto; }
 
     .proje-iletisim {
         gap: 20px;

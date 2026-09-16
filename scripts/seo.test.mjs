@@ -74,8 +74,8 @@ test('Projects page uses the curated completed-project photography', () => {
     const html = fs.readFileSync('projeler/index.html', 'utf8');
     const projects = [
         ['Sakarya Beyaz Lake Mutfak', 'sakarya-beyaz-lake-mutfak-', 3],
-        ['Sakarya Aynalı Lake Vitrin', 'sakarya-aynali-lake-vitrin-', 3],
-        ['Sakarya Klasik Çocuk Odası', 'sakarya-klasik-cocuk-odasi-', 4]
+        ['Sakarya Aynalı Lake Vitrin', 'sakarya-aynali-lake-vitrin-', 4],
+        ['Sakarya Klasik Çocuk Odası', 'sakarya-klasik-cocuk-odasi-', 7]
     ];
 
     for (const [name, prefix, expectedCount] of projects) {
