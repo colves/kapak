@@ -130,6 +130,42 @@ html, body {
 
 .ustbar-sag { display: flex; align-items: center; justify-content: flex-end; gap: var(--s-2); }
 
+/* İletişim, bilgi sayfası bağlantılarından farklı olarak doğrudan aksiyon:
+   diğer üst barlardaki koyu kapsül ve turuncu durum noktası burada da aynı
+   görsel önceliği korur. */
+.iletisim-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 36px;
+    padding: 9px 16px;
+    border: 1px solid #252321;
+    border-radius: 999px;
+    background: #252321;
+    color: #FFFFFF;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+.iletisim-link::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: #F29200;
+    box-shadow: 0 0 0 4px rgba(242, 146, 0, 0.15);
+}
+.iletisim-link:hover {
+    transform: translateY(-1px);
+    background: #8A4F00;
+    border-color: #8A4F00;
+}
+
 /* Menü sayfaya göre tam ortalanıyor — ana sayfadaki .ust-bar ile aynı
    kurulum ve aynı gerekçe (bkz. anasayfa.css). */
 @media (min-width: 1121px) {
@@ -1073,6 +1109,11 @@ body.sahne-hazir .canvas-kapsayici { opacity: 1; }
    modeller mobildeki kompakt seçiciden açılır. */
 @media (max-width: 1100px) {
     .model-paneli { width: min(320px, 42vw); }
+}
+
+/* Orta ve dar ekranlarda dört sahne aracı zaten üst barı dolduruyor. */
+@media (max-width: 1320px) {
+    .ustbar .iletisim-link { display: none; }
 }
 
 @media (max-width: 760px) {

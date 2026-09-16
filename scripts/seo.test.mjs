@@ -86,7 +86,7 @@ test('Projects page uses the curated completed-project photography', () => {
 });
 
 test('Primary pages keep contact prominent and the showroom map resolvable', () => {
-    for (const route of ['', 'renkler/', 'modeller/', 'projeler/', 'iletisim/']) {
+    for (const route of ['', 'renkler/', 'modeller/', 'projeler/', 'iletisim/', 'konfigurator/']) {
         const html = fs.readFileSync(`${route}index.html`, 'utf8');
         assert.match(html, /class="iletisim-link(?: etkin)?" href="\/iletisim\/"/);
     }
