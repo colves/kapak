@@ -105,7 +105,7 @@ html, body {
    kendisi büyümez. */
 .marka-logo { max-height: 60px; min-height: 32px; width: auto; max-width: 210px; object-fit: contain; display: block; }
 
-/* Üst bardaki menü. Ölçüler anasayfa.css'teki .menu ile AYNI (15px, Modeller
+/* Üst bardaki menü. Ölçüler anasayfa.css'teki .menu ile AYNI (15px, Projeler
    18px, 28px aralık) — iki üst bar arasında geçerken yazılar yerinden
    oynamasın diye. Sınıf adları da bilinçli olarak aynı: işaretleme dört
    sayfada birebir aynı kalıyor.

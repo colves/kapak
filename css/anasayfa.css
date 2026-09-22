@@ -176,8 +176,7 @@ img { display: block; max-width: 100%; }
     }
 }
 
-/* Modeller katalogun ana girişi — diğer ikisinden belirgin şekilde büyük.
-   Oran korunuyor: üçü birlikte büyütüldü, Modeller'in öne çıkması aynı kaldı. */
+/* Projeler ana giriş — diğer bağlantılardan belirgin şekilde büyük. */
 .menu a.one-cikan { font-size: 18px; font-weight: 600; }
 .menu a { opacity: 0.86; transition: opacity 0.2s ease; }
 .menu a:hover { opacity: 1; }

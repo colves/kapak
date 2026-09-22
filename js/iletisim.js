@@ -1,6 +1,6 @@
 // İletişim sayfası. Üst bar davranışını ortak modülden alıyor; kendi işi
 // yalnızca haritaları gömmek.
-import { ustBariKur } from './ustBar.js';
+import { ustBariKur } from './ustBar.js?v=20260922-1';
 
 // Her konum TEK YERDE tanımlı: kartın "Google Haritalar'da Aç" düğmesinin
 // href'i. Harita gömülüsü buradaki sorgudan türetiliyor — adres değişince

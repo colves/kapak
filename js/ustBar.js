@@ -1,5 +1,5 @@
-// Her sayfada ortak olan üst bar davranışı: mobil menünün açılıp kapanması ve
-// kaydırma çubuğu payının ölçülmesi.
+// Her sayfada ortak olan üst bar davranışı: kaydırma durumu ve çubuk payı.
+// Mobil menü ayrı, bağımsız mobilMenu.js dosyasında kuruluyor.
 //
 // Ayrı bir modül olmasının sebebi iletişim sayfası: ana sayfa modülü
 // three.js'i (ve dolayısıyla ~600 KB'ı) içeri alıyor, 3B'si olmayan bir
@@ -34,21 +34,4 @@ export function ustBariKur() {
         window.addEventListener('scroll', durumuYaz, { passive: true });
     }
 
-    const dugme = document.getElementById('menu-dugmesi');
-    const menu = document.getElementById('menu');
-    if (!dugme || !menu) return;
-
-    const menuyuAyarla = (ac) => {
-        menu.classList.toggle('acik', ac);
-        dugme.setAttribute('aria-expanded', String(ac));
-    };
-    dugme.addEventListener('click', () => menuyuAyarla(!menu.classList.contains('acik')));
-    // Bir bağlantıya basılınca menü kapansın — aksi hâlde hedef bölümün
-    // üstünü kapatıp duruyor.
-    menu.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') menuyuAyarla(false);
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') menuyuAyarla(false);
-    });
 }

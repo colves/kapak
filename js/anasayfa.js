@@ -7,7 +7,7 @@
 // Model kartları artık burada değil: kendi sayfasına taşındı (js/modeller.js).
 import { KAPAK_MODELLERI } from './data/models.js';
 import { ralSirasindakiRenkler } from './data/colors.js';
-import { ustBariKur } from './ustBar.js';
+import { ustBariKur } from './ustBar.js?v=20260922-1';
 // 3B önizleme konfigüratörün görüntüleyicisini kullanıyor: ayrı bir sahne
 // kodu yazmak yerine aynı modülü çağırmak, kapağın iki sayfada da birebir
 // aynı görünmesini garanti ediyor (aynı geometri, aynı malzeme, aynı kenar

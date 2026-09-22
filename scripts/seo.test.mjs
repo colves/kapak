@@ -85,6 +85,53 @@ test('Projects page uses the curated completed-project photography', () => {
     assert.doesNotMatch(html, /assets\/renderlar|\/katalog\//);
 });
 
+test('Projects lead site navigation and describe only completed work', () => {
+    for (const route of ['', 'renkler/', 'modeller/', 'projeler/', 'iletisim/', 'konfigurator/']) {
+        const html = fs.readFileSync(`${route}index.html`, 'utf8');
+        const nav = html.match(/<nav class="menu"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
+        assert.ok(nav, `Missing primary navigation: ${route}`);
+        assert.ok(nav.indexOf('href="/projeler/"') < nav.indexOf('href="/modeller/"'), `Projects should come before models: ${route}`);
+        assert.match(nav, /class="[^"]*one-cikan[^"]*" href="\/projeler\/"/);
+    }
+    const projects = fs.readFileSync('projeler/index.html', 'utf8');
+    for (const term of ['mutfak', 'gardırop', 'çalışma alanı']) {
+        assert.ok(projects.toLocaleLowerCase('tr').includes(term), `Missing real project category: ${term}`);
+    }
+});
+
+test('Mobile menu loads independently of the 3D page modules', () => {
+    for (const route of ['', 'renkler/', 'modeller/', 'projeler/', 'iletisim/']) {
+        const html = fs.readFileSync(`${route}index.html`, 'utf8');
+        assert.match(html, /<script src="js\/mobilMenu\.js" defer><\/script>/, `Missing standalone mobile menu: ${route}`);
+    }
+    const listeners = {};
+    const classes = new Set();
+    const button = {
+        addEventListener: (type, handler) => { listeners.button = handler; },
+        setAttribute: (name, value) => { listeners.expanded = value; }
+    };
+    const menu = {
+        classList: {
+            contains: (name) => classes.has(name),
+            toggle: (name, enabled) => enabled ? classes.add(name) : classes.delete(name)
+        },
+        addEventListener: (type, handler) => { listeners.menu = handler; }
+    };
+    const document = {
+        getElementById: (id) => id === 'menu-dugmesi' ? button : menu,
+        addEventListener: (type, handler) => { listeners.keydown = handler; }
+    };
+    vm.runInNewContext(fs.readFileSync('js/mobilMenu.js', 'utf8'), { document });
+    listeners.button();
+    assert.equal(listeners.expanded, 'true');
+    assert.ok(classes.has('acik'));
+    listeners.menu({ target: { closest: () => ({ tagName: 'A' }) } });
+    assert.equal(listeners.expanded, 'false');
+    listeners.button();
+    listeners.keydown({ key: 'Escape' });
+    assert.equal(listeners.expanded, 'false');
+});
+
 test('Primary pages keep contact prominent and the showroom map resolvable', () => {
     for (const route of ['', 'renkler/', 'modeller/', 'projeler/', 'iletisim/', 'konfigurator/']) {
         const html = fs.readFileSync(`${route}index.html`, 'utf8');
