@@ -504,11 +504,13 @@ img { display: block; max-width: 100%; }
 
 /* ===================== Çalışma süreci ===================== */
 .surec-serit {
-    background: #252321;
-    color: #FAF7F1;
+    background:
+        radial-gradient(circle at 78% 18%, rgba(210, 184, 145, 0.34), transparent 36%),
+        linear-gradient(135deg, #F8F3EB 0%, #EEE5D9 100%);
+    color: var(--murekkep);
 }
 .surec { text-align: center; }
-.surec .etiket { color: #E2B66E; font-weight: 600; letter-spacing: 0.16em; }
+.surec .etiket { color: var(--indigo); font-weight: 600; letter-spacing: 0.16em; }
 .surec h2 {
     margin: 16px 0 48px;
     font-family: 'Playfair Display', Georgia, serif;
@@ -526,20 +528,21 @@ img { display: block; max-width: 100%; }
 .surec-kart {
     min-height: 254px;
     padding: 34px;
-    border: 1px solid rgba(250, 247, 241, 0.14);
+    border: 1px solid rgba(37, 35, 33, 0.13);
     border-radius: 4px;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 16px 36px rgba(72, 54, 35, 0.06);
     transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 .surec-kart:hover {
     transform: translateY(-5px);
-    border-color: rgba(226, 182, 110, 0.68);
-    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(138, 79, 0, 0.52);
+    background-color: rgba(255, 255, 255, 0.72);
 }
 .surec-no {
     display: block;
     margin-bottom: 48px;
-    color: rgba(250, 247, 241, 0.27);
+    color: rgba(37, 35, 33, 0.24);
     font: 600 clamp(34px, 3vw, 48px)/1 'DM Mono', ui-monospace, monospace;
     letter-spacing: -0.08em;
 }
@@ -553,9 +556,37 @@ img { display: block; max-width: 100%; }
 .surec-kart p {
     max-width: 34ch;
     margin: 0;
-    color: rgba(250, 247, 241, 0.7);
+    color: #686058;
     font-size: 14px;
     line-height: 1.7;
+}
+
+/* Sayfanın her yerinden doğrudan müşteri temsilcisine ulaşılabilsin diye
+   sabit tutulur. Mesaj bağlantıda hazır gelir; ziyaretçi sıfırdan yazmaz. */
+.whatsapp-yuzen {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 40;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 10px 16px 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.66);
+    border-radius: 999px;
+    background: #25D366;
+    color: #FFFFFF;
+    box-shadow: 0 12px 28px rgba(17, 91, 48, 0.28);
+    font-size: 13px;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.whatsapp-yuzen svg { width: 24px; height: 24px; fill: currentColor; }
+.whatsapp-yuzen:hover {
+    transform: translateY(-3px);
+    background: #1DBA5A;
+    box-shadow: 0 16px 32px rgba(17, 91, 48, 0.34);
 }
 
 /* ===================== Footer ===================== */
@@ -655,6 +686,8 @@ img { display: block; max-width: 100%; }
     .surec-kartlari { grid-template-columns: 1fr; }
     .surec-kart { min-height: 0; padding: 28px 24px; }
     .surec-no { margin-bottom: 26px; }
+    .whatsapp-yuzen { right: 16px; bottom: 16px; width: 52px; min-height: 52px; justify-content: center; padding: 0; }
+    .whatsapp-yuzen span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     .kaydir-ipucu { display: none; }
     .alt { padding-left: 20px; padding-right: 20px; }
     .alt-taban { display: block; }
