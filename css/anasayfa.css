@@ -693,6 +693,9 @@ img { display: block; max-width: 100%; }
     .whatsapp-yuzen span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     .kaydir-ipucu { display: none; }
     .alt { padding-left: 20px; padding-right: 20px; }
+    .alt-marka { text-align: center; }
+    .alt-marka img { margin-left: auto; margin-right: auto; }
+    .alt-marka p { margin-left: auto; margin-right: auto; }
     .alt-taban { display: block; }
     .alt-taban span { display: block; margin: 6px 0; }
 }
