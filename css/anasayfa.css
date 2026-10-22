@@ -510,6 +510,9 @@ img { display: block; max-width: 100%; }
     color: var(--murekkep);
 }
 .surec { text-align: center; }
+.surec-eylem { margin-top: 36px; }
+.surec-eylem .dugme { justify-content: center; max-width: 100%; padding: 15px 26px; font-size: 14px; }
+.surec-eylem .dugme:hover { background: var(--indigo); border-color: var(--indigo); }
 .surec .etiket { color: var(--indigo); font-weight: 600; letter-spacing: 0.16em; }
 .surec h2 {
     margin: 16px 0 48px;
