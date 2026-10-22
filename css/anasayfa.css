@@ -502,6 +502,62 @@ img { display: block; max-width: 100%; }
 .konfig-metin .dugme { background: var(--murekkep); border-color: var(--murekkep); color: #FFFFFF; padding: 15px 26px; font-size: 14px; }
 .konfig-metin .dugme:hover { background: var(--indigo); border-color: var(--indigo); }
 
+/* ===================== Çalışma süreci ===================== */
+.surec-serit {
+    background: #252321;
+    color: #FAF7F1;
+}
+.surec { text-align: center; }
+.surec .etiket { color: #E2B66E; font-weight: 600; letter-spacing: 0.16em; }
+.surec h2 {
+    margin: 16px 0 48px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(38px, 4.4vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.045em;
+    font-weight: 600;
+}
+.surec-kartlari {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+}
+.surec-kart {
+    min-height: 254px;
+    padding: 34px;
+    border: 1px solid rgba(250, 247, 241, 0.14);
+    border-radius: 4px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+.surec-kart:hover {
+    transform: translateY(-5px);
+    border-color: rgba(226, 182, 110, 0.68);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+.surec-no {
+    display: block;
+    margin-bottom: 48px;
+    color: rgba(250, 247, 241, 0.27);
+    font: 600 clamp(34px, 3vw, 48px)/1 'DM Mono', ui-monospace, monospace;
+    letter-spacing: -0.08em;
+}
+.surec-kart h3 {
+    margin: 0 0 12px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 25px;
+    line-height: 1.1;
+    font-weight: 600;
+}
+.surec-kart p {
+    max-width: 34ch;
+    margin: 0;
+    color: rgba(250, 247, 241, 0.7);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
 /* ===================== Footer ===================== */
 .alt {
     background: linear-gradient(180deg, #E9E1D6 0%, #DED3C5 100%);
@@ -554,6 +610,8 @@ img { display: block; max-width: 100%; }
     .konfig { grid-template-columns: 1fr; }
     .konfig { grid-template-areas: "metin" "sahne"; }
     .kapak-sahne { height: 420px; min-height: 0; }
+    .surec-kartlari { gap: 14px; }
+    .surec-kart { padding: 26px 22px; }
     .alt-ust { grid-template-columns: 1fr 1fr; }
     .alt-ust > div:first-child { grid-column: span 2; }
 }
@@ -593,6 +651,10 @@ img { display: block; max-width: 100%; }
     .hero-icerik h1 { font-size: clamp(43px, 12.5vw, 64px); }
     .hero-icerik p { font-size: 15px; }
     .bolum { padding-left: 20px; padding-right: 20px; }
+    .surec h2 { margin-bottom: 30px; }
+    .surec-kartlari { grid-template-columns: 1fr; }
+    .surec-kart { min-height: 0; padding: 28px 24px; }
+    .surec-no { margin-bottom: 26px; }
     .kaydir-ipucu { display: none; }
     .alt { padding-left: 20px; padding-right: 20px; }
     .alt-taban { display: block; }

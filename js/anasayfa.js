@@ -38,9 +38,9 @@ function ornekKapagiKur() {
         .map((kod) => tumRenkler.find((r) => r.kod === `RAL ${kod}`))
         .filter(Boolean);
 
-    // Vitrinde konfigüratörün ilk modeli duruyor; models.js'e yeni bir model
-    // eklenip başa alınırsa ana sayfa da kendiliğinden onu gösterir.
-    const model = KAPAK_MODELLERI[0];
+    // Ana sayfadaki vitrinde M012 sabit: sayfanın görsel dilini bu klasik
+    // model temsil ediyor; katalog sıralaması değişse de önizleme değişmez.
+    const model = KAPAK_MODELLERI.find((aday) => aday.id === 'hk-012-001');
     if (secimler.length === 0 || !model) return;
 
     // Vitrin en sağdaki (en koyu) tonla açılıyor: kapağın profil derinliği
