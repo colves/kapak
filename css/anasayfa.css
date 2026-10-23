@@ -386,6 +386,39 @@ img { display: block; max-width: 100%; }
 }
 
 
+/* ===================== Tamamlanmış projeler ===================== */
+.proje-vitrini { background: var(--kagit); }
+.proje-vitrini-basi {
+    display: grid;
+    grid-template-columns: 1.3fr 0.8fr;
+    align-items: end;
+    gap: 48px;
+    margin-bottom: 40px;
+}
+.proje-vitrini h2 {
+    margin: 16px 0 0;
+    font: 600 clamp(34px, 4vw, 60px)/1.08 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.04em;
+}
+.proje-vitrini-basi p { margin: 0; max-width: 44ch; color: var(--celik); font-size: 16px; line-height: 1.75; }
+.proje-vitrini-izgara { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; }
+.proje-vitrini-kart { display: block; min-width: 0; }
+.proje-vitrini-gorsel { height: clamp(320px, 36vw, 480px); overflow: hidden; background: var(--krem); }
+.proje-vitrini-gorsel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.proje-vitrini-kart:hover img { transform: scale(1.025); }
+.proje-vitrini-bilgi { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--cizgi); }
+.proje-vitrini h3 { margin: 9px 0 0; font: 600 clamp(23px, 2.4vw, 32px)/1.2 'Playfair Display', Georgia, serif; letter-spacing: -0.025em; }
+.proje-vitrini-ok { flex: 0 0 auto; font-size: 25px; color: var(--indigo); }
+.proje-vitrini-eylem { margin-top: 32px; text-align: center; }
+.proje-vitrini-eylem .dugme:hover { background: var(--indigo); border-color: var(--indigo); }
+@media (max-width: 780px) {
+    .proje-vitrini-basi, .proje-vitrini-izgara { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .proje-vitrini-basi { margin-bottom: 28px; }
+    .proje-vitrini-basi p { font-size: 15px; }
+    .proje-vitrini-gorsel { height: auto; aspect-ratio: 4 / 3; width: 100%; }
+    .proje-vitrini-kart:nth-child(2) .proje-vitrini-gorsel { aspect-ratio: 3 / 4; }
+}
+
 /* ===================== Konfigüratör tanıtımı ===================== */
 .konfig-serit {
     background:

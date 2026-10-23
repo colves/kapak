@@ -5,7 +5,7 @@
 import { idIleRenkBul } from './data/colors.js';
 import { ralClassicSerileri } from './data/ralClassic.js';
 import { durumuSorguyaKodla } from './paylasim.js';
-import { ustBariKur } from './ustBar.js?v=20260922-1';
+import { ustBariKur } from './ustBar.js?v=20261023-2';
 
 const hexMetni = (renk) => `#${renk.hex.toString(16).padStart(6, '0')}`;
 

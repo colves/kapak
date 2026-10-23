@@ -17,6 +17,7 @@
 }
 
 .proje {
+    scroll-margin-top: calc(var(--bar-y) + 20px);
     padding: clamp(54px, 7vw, 96px) 0;
     border-top: 1px solid rgba(37, 35, 33, .16);
 }

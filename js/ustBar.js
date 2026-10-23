@@ -13,7 +13,7 @@
 // Çubuğun gerçek kalınlığı işletim sistemine ve tarayıcıya göre değişiyor
 // (macOS'ta 0), o yüzden sabit bir sayı yazılmıyor: bir kez ölçülüp CSS'e
 // değişken olarak veriliyor.
-import { whatsappAdresiOlustur } from './iletisimBaglantilari.js';
+import { whatsappAdresiOlustur } from './iletisimBaglantilari.js?v=20261023-2';
 
 function kaydirmaCubuguPayiniOlc() {
     const pay = Math.max(0, window.innerWidth - document.documentElement.clientWidth);

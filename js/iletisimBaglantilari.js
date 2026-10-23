@@ -1,7 +1,7 @@
 import { paylasimMetniOlustur } from './paylasim.js';
 
 export const ILETISIM_NUMARASI = '905336639714';
-export const GENEL_WHATSAPP_MESAJI = 'Merhaba, Şahinkaya Mobilya lake kapak modelleri hakkında bilgi almak istiyorum.';
+export const GENEL_WHATSAPP_MESAJI = 'Merhaba, mutfak, gardırop veya özel ölçü mobilya projem için bilgi almak istiyorum.';
 
 export function whatsappAdresiOlustur(secim) {
     const mesaj = secim

@@ -1,6 +1,6 @@
 import { KAPAK_MODELLERI } from './data/models.js';
 import { katalogHtmliniOlustur } from './katalog.js';
-import { ustBariKur } from './ustBar.js?v=20261023-1';
+import { ustBariKur } from './ustBar.js?v=20261023-2';
 
 document.addEventListener('DOMContentLoaded', () => {
     ustBariKur();
