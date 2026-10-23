@@ -84,6 +84,8 @@
 
 .katalog-gorsel {
     display: block;
+    /* Safari'de yükseklik sınırı, otomatik genişliği aspect-ratio ile daraltmasın. */
+    width: 100%;
     /* Görsel MUTLAK konumlanıyor (aşağıya bak) — kapsayıcı referans olmalı. */
     position: relative;
     /* Kutu, kapağın TAMAMI görünsün diye kurulu. Önceden object-fit:cover ve
