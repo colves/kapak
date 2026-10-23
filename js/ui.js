@@ -1,4 +1,5 @@
 import { idIleRenkBul, ralSerileri } from './data/colors.js';
+import { whatsappAdresiOlustur } from './iletisimBaglantilari.js';
 import { KAPAK_MODELLERI, idIleModelBul } from './data/models.js';
 import { ORTAM_SECENEKLERI, varsayilanOrtami, idIleOrtamBul } from './data/ortamlar.js';
 import { YUZEYLER, varsayilanYuzey, idIleYuzeyBul } from './data/yuzeyler.js';
@@ -63,6 +64,8 @@ function guncellemeyiUygula() {
     ayarOzetiniGuncelle(renk, model);
 
     urliDurumaEsitle();
+    const whatsapp = document.querySelector('.whatsapp-yuzen');
+    if (whatsapp) whatsapp.href = whatsappAdresiOlustur(paylasimBilgisiniOlustur());
 }
 
 // Slider sürüklemesi gibi hızlı ardışık olayları tek bir kareye toplar.
@@ -987,6 +990,13 @@ export function arayuzuBaslat() {
     olcuKontrolleriniKur();
     olculeriSifirlamaButonunuKur();
     ayarPaneliniKur();
+    const ayarPaneli = document.querySelector('.ayar-paneli');
+    if (ayarPaneli && typeof ResizeObserver === 'function') {
+        // Teklif düğmesi açılan mobil ayarları ve sahne araçlarını örtmesin.
+        new ResizeObserver(() => {
+            document.documentElement.style.setProperty('--whatsapp-panel-yuksekligi', `${ayarPaneli.getBoundingClientRect().height}px`);
+        }).observe(ayarPaneli);
+    }
     isikPaneliniKur();
     sifirlaButonuKur();
     paylasButonunuKur();

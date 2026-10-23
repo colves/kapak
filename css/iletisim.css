@@ -125,6 +125,12 @@
     .konumlar { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 480px) {
+    .konum-kart { min-width: 0; }
+    .konum-bilgi > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .konum-bilgi dd { overflow-wrap: anywhere; }
+}
+
 /* ===================== Tek ekran =====================
    Bu sayfada geriye yalnızca iki konum kartı kaldı ve sayfanın aşağı
    kaydırılmaması isteniyor. Kartlar ekranda kalan yüksekliği paylaşıyor,

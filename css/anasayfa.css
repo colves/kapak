@@ -646,7 +646,9 @@ img { display: block; max-width: 100%; }
     .kapak-sahne { height: 420px; min-height: 0; }
     .surec-kartlari { gap: 14px; }
     .surec-kart { padding: 26px 22px; }
-    .alt-ust { grid-template-columns: 1fr 1fr; }
+    .alt-ust { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .alt-ust > div { min-width: 0; }
+    .alt a { overflow-wrap: anywhere; }
     .alt-ust > div:first-child { grid-column: span 2; }
 }
 
@@ -685,6 +687,7 @@ img { display: block; max-width: 100%; }
     .hero-icerik h1 { font-size: clamp(43px, 12.5vw, 64px); }
     .hero-icerik p { font-size: 15px; }
     .bolum { padding-left: 20px; padding-right: 20px; }
+    .kapak-ipucu { top: 50px; left: 24px; right: auto; bottom: auto; font-size: 10px; }
     .surec h2 { margin-bottom: 30px; }
     .surec-kartlari { grid-template-columns: 1fr; }
     .surec-kart { min-height: 0; padding: 28px 24px; }
@@ -701,12 +704,17 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 420px) {
+    .ust-bar { gap: 8px; }
     .marka img { max-width: 122px; }
     .ust { padding-left: 10px; padding-right: 10px; }
     .ust-araclar { gap: 5px; }
     .iletisim-link,
     .konfig-link { min-height: 38px; padding: 6px 8px; font-size: 10px; }
     .menu-dugmesi { width: 38px; height: 38px; }
+}
+
+@media (max-width: 360px) {
+    .marka img { max-width: 98px; }
 }
 
 /* ===================== Hareket hassasiyeti ===================== */

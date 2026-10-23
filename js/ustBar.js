@@ -13,6 +13,8 @@
 // Çubuğun gerçek kalınlığı işletim sistemine ve tarayıcıya göre değişiyor
 // (macOS'ta 0), o yüzden sabit bir sayı yazılmıyor: bir kez ölçülüp CSS'e
 // değişken olarak veriliyor.
+import { whatsappAdresiOlustur } from './iletisimBaglantilari.js';
+
 function kaydirmaCubuguPayiniOlc() {
     const pay = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
     document.documentElement.style.setProperty('--kaydirma-cubugu', `${pay}px`);
@@ -23,7 +25,7 @@ function whatsappBaglantisiniEkle() {
 
     const baglanti = document.createElement('a');
     baglanti.className = 'whatsapp-yuzen';
-    baglanti.href = 'https://wa.me/905336639714?text=Merhaba%2C%20%C5%9Eahinkaya%20Mobilya%20lake%20kapak%20modelleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.';
+    baglanti.href = whatsappAdresiOlustur();
     baglanti.target = '_blank';
     baglanti.rel = 'noopener';
     baglanti.setAttribute('aria-label', 'WhatsApp üzerinden iletişime geçin');

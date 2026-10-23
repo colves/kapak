@@ -3,8 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node scripts/build-catalog.mjs",
     "start": "node scripts/dev-server.mjs",
     "test": "node --test scripts/*.test.mjs js/*.test.js js/data/*.test.js",
-    "check": "npm test"
+    "check": "node scripts/build-catalog.mjs --check && npm test"
   }
 }

@@ -13,7 +13,6 @@ import { ustBariKur } from './ustBar.js?v=20260922-1';
 // aynı görünmesini garanti ediyor (aynı geometri, aynı malzeme, aynı kenar
 // korumalı ölçekleme). viewer.js tekil bir sahne tutuyor — ana sayfada tek
 // bir 3B alan olduğu için bu bir sorun değil.
-import { sahneyiBaslat, kapagiGuncelle, ortamiDegistir } from './viewer.js';
 import { varsayilanOrtami } from './data/ortamlar.js';
 import { varsayilanYuzey } from './data/yuzeyler.js';
 
@@ -47,10 +46,12 @@ function ornekKapagiKur() {
     // koyu bir lakede en iyi okunuyor.
     let secili = secimler[secimler.length - 1];
     let sahneHazir = false;
+    let baslatiliyor = false;
+    let goruntuleyici;
 
     const kapagiCiz = () => {
         if (!sahneHazir) return;
-        Promise.resolve(kapagiGuncelle(
+        Promise.resolve(goruntuleyici.kapagiGuncelle(
             model.varsayilan.genislik,
             model.varsayilan.yukseklik,
             secili,
@@ -99,24 +100,25 @@ function ornekKapagiKur() {
     // Sahne, bölüm ekrana YAKLAŞINCA kuruluyor. Ana sayfaya giren herkes
     // aşağı inmiyor; WebGL bağlamını ve .glb dosyasını sayfa açılışında
     // yüklemek ilk görüntülemeyi gereksiz yere ağırlaştırırdı.
-    const baslat = () => {
-        if (sahneHazir) return;
-        sahneHazir = true;
-        // 1500 mm: dikey FOV 40° olduğu için kameranın gördüğü yükseklik
-        // 2·d·tan(20°) = 0.728·d. 1500'de bu ~1092 mm eder, 720 mm'lik kapak
-        // çerçevenin ~%66'sını doldurur — kabın eni ne olursa olsun (kamera
-        // dikeyden çerçeveliyor) her ekran genişliğinde aynı duruyor.
-        // yakinlastirma: false — vitrin sabit uzaklıkta kalsın, yalnızca çevrilsin.
-        sahneyiBaslat('ornek-kapak', { kameraMesafesi: 1500, yakinlastirma: false });
-        kapagiCiz();
-        // Konfiguratorle AYNI studyo isigi (Klasik Studyo HDR) — kapak iki
-        // sayfada da ayni isikta gorunsun. Sayfa acilisinda indirilmiyor:
-        // bu blok zaten yalnizca bolum gorunume girdiginde calisiyor.
-        // Yuklenemezse sahne procedural ortamla surer, bos kalmaz.
-        const ortam = varsayilanOrtami();
-        if (ortam) {
-            Promise.resolve(ortamiDegistir(ortam.dosya))
-                .catch((h) => console.warn('Studyo isigi yuklenemedi, procedural ortam suruyor:', h));
+    const baslat = async () => {
+        if (sahneHazir || baslatiliyor) return;
+        baslatiliyor = true;
+        try {
+            // Three.js ilk açılıştaki menü ve iletişim bağlantılarını bekletmez.
+            goruntuleyici = await import('./viewer.js');
+            goruntuleyici.sahneyiBaslat('ornek-kapak', { kameraMesafesi: 1500, yakinlastirma: false });
+            sahneHazir = true;
+            kapagiCiz();
+            const ortam = varsayilanOrtami();
+            if (ortam) {
+                Promise.resolve(goruntuleyici.ortamiDegistir(ortam.dosya))
+                    .catch((h) => console.warn('Studyo isigi yuklenemedi, procedural ortam suruyor:', h));
+            }
+        } catch (hata) {
+            console.error('Ana sayfa 3B alanı başlatılamadı:', hata);
+            if (yukleniyor) yukleniyor.textContent = 'Önizleme yüklenemedi — konfigüratörde görüntüleyebilirsiniz.';
+        } finally {
+            baslatiliyor = false;
         }
     };
 

@@ -6,7 +6,9 @@ framework kullanmayan statik bir web sitesidir ve GitHub Pages üzerinden yayın
 
 ## Çalıştırma
 
-Build adımı yoktur. ES modülleri kullanıldığı için `file://` ile doğrudan açmak
+Model verisi değiştiğinde `npm run build` komutu katalog kartlarını statik
+HTML'ye işler. Yayın için ek sunucu veya framework gerekmez.
+ES modülleri kullanıldığı için `file://` ile doğrudan açmak
 CORS kısıtına takılır — yerel bir sunucu üzerinden açılması gerekir.
 
 Depoda bağımlılıksız bir geliştirme sunucusu hazır:
@@ -35,10 +37,12 @@ Sonra tarayıcıda `http://localhost:5500` adresini açın. Alternatif olarak VS
 ## Yayın Öncesi Kontrol
 
 ```bash
-npm test
+npm run build
+npm run check
 ```
 
-Bu komut model ve renk verilerini, kalıcı bağlantıları, SEO alanlarını, yerel
+Bu komutlar katalog HTML'sinin güncelliğini, WhatsApp teklif bilgilerini,
+model ve renk verilerini, kalıcı bağlantıları, SEO alanlarını, yerel
 kaynakları, güvenlik kurallarını ve eski URL yönlendirmelerini birlikte doğrular.
 
 ## Notlar
