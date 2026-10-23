@@ -296,7 +296,7 @@ function modelGalerisiniAc(tetikleyici) {
     modelGalerisiniCiz('');
     const arama = document.getElementById('model-galeri-arama');
     arama.value = '';
-    arama.focus();
+    document.getElementById('model-galeri-kapat').focus({ preventScroll: true });
 }
 
 function modelGalerisiniKapat() {
